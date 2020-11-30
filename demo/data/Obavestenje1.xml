@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<obavestenje:obavestenje xmlns:obavestenje="https://www.obavestenje.rs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.obavestenje.rs Obavestenje.xsd ">
+  <obavestenje:opste_informacije>
+    <obavestenje:podaci_o_organu>
+      <obavestenje:naziv>obavestenje:naziv</obavestenje:naziv>
+      <obavestenje:sediste>obavestenje:sediste</obavestenje:sediste>
+    </obavestenje:podaci_o_organu>
+    <obavestenje:broj_predmeta>obavestenje:broj_predmeta</obavestenje:broj_predmeta>
+    <obavestenje:datum>
+      <obavestenje:dan>---01</obavestenje:dan>
+      <obavestenje:mesec>--01</obavestenje:mesec>
+      <obavestenje:godina>2001</obavestenje:godina>
+    </obavestenje:datum>
+    <obavestenje:podaci_o_podnosiocu>
+      <obavestenje:ime>obavestenje:ime</obavestenje:ime>
+      <obavestenje:prezime>obavestenje:prezime</obavestenje:prezime>
+      <obavestenje:naziv>obavestenje:naziv</obavestenje:naziv>
+      <obavestenje:adresa>
+        <obavestenje:ulica>obavestenje:ulica</obavestenje:ulica>
+        <obavestenje:broj_ulice>obavestenje:broj_ulice</obavestenje:broj_ulice>
+        <obavestenje:grad>obavestenje:grad</obavestenje:grad>
+        <obavestenje:postanski_broj>1</obavestenje:postanski_broj>
+      </obavestenje:adresa>
+    </obavestenje:podaci_o_podnosiocu>
+  </obavestenje:opste_informacije>
+  <obavestenje:naslov>obavestenje:naslov</obavestenje:naslov>
+  <obavestenje:podnaslov>obavestenje:podnaslov</obavestenje:podnaslov>
+  <obavestenje:telo>
+    <obavestenje:godina>2001</obavestenje:godina>
+    <obavestenje:opis>obavestenje:opis</obavestenje:opis>
+    <obavestenje:datum>
+      <obavestenje:dan>---01</obavestenje:dan>
+      <obavestenje:mesec>--01</obavestenje:mesec>
+      <obavestenje:godina>2001</obavestenje:godina>
+    </obavestenje:datum>
+    <obavestenje:vreme>12:00:00</obavestenje:vreme>
+    <obavestenje:od>12:00:00</obavestenje:od>
+    <obavestenje:do>12:00:00</obavestenje:do>
+    <obavestenje:adresa_organa>
+      <obavestenje:naziv_ulice>obavestenje:naziv_ulice</obavestenje:naziv_ulice>
+      <obavestenje:broj_ulice>obavestenje:broj_ulice</obavestenje:broj_ulice>
+      <obavestenje:broj_kancelarije>1</obavestenje:broj_kancelarije>
+    </obavestenje:adresa_organa>
+    <obavestenje:iznos>0.0</obavestenje:iznos>
+  </obavestenje:telo>
+  <obavestenje:dostavljeno>Imenovanom</obavestenje:dostavljeno>
+</obavestenje:obavestenje>

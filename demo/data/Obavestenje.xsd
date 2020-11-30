@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="https://www.obavestenje.rs" xmlns:obavestenje="https://www.obavestenje.rs">
+
+    <xs:element name="obavestenje">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="opste_informacije">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="podaci_o_organu">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="naziv" type="xs:string"/>
+                                        <xs:element name="sediste" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="broj_predmeta" type="xs:string"/>
+                            <xs:element ref="obavestenje:datum"/>
+                            <xs:element name="podaci_o_podnosiocu">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="ime" type="xs:string"/>
+                                        <xs:element name="prezime" type="xs:string"/>
+                                        <xs:element name="naziv" type="xs:string"/>
+                                        <xs:element name="adresa">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element name="ulica" type="xs:string"/>
+                                                  <xs:element name="broj_ulice" type="xs:string"/>
+                                                  <xs:element name="grad" type="xs:string"/>
+                                                  <xs:element name="postanski_broj">
+                                                  <xs:simpleType>
+                                                  <xs:restriction base="xs:integer">
+                                                  <xs:minInclusive value="1"/>
+                                                  </xs:restriction>
+                                                  </xs:simpleType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="naslov" type="xs:string"/>
+                <xs:element name="podnaslov" type="xs:string"/>
+                <xs:element name="telo">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="godina" type="xs:gYear"/>
+                            <xs:element name="opis" type="xs:string"/>
+                            <xs:element ref="obavestenje:datum"/>
+                            <xs:element name="vreme" type="xs:time"/>
+                            <xs:element name="od" type="xs:time"/>
+                            <xs:element name="do" type="xs:time"/>
+                            <xs:element name="adresa_organa">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="naziv_ulice" type="xs:string"/>
+                                        <xs:element name="broj_ulice" type="xs:string"/>
+                                        <xs:element name="broj_kancelarije">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:int">
+                                                  <xs:minInclusive value="1"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="iznos">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:double">
+                                        <xs:minInclusive value="0"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="dostavljeno">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Imenovanom"/>
+                            <xs:enumeration value="Arhivi"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="datum">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="dan" type="xs:gDay"/>
+                <xs:element name="mesec" type="xs:gMonth"/>
+                <xs:element name="godina" type="xs:gYear"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<obavestenje>
+    <opste_informacije>
+        <podaci_o_organu>
+            <naziv>Neki organ</naziv>
+            <sediste>Novi Sad</sediste>
+        </podaci_o_organu>
+        <broj_predmeta>1</broj_predmeta>
+        <datum>
+            <dan>1</dan>
+            <mesec>1</mesec>
+            <godina>2020</godina>
+        </datum>
+        <podaci_o_podnosiocu>
+            <ime>Neko</ime>
+            <prezime>Prezimenko</prezime>
+            <naziv>asdasdasd</naziv>
+            <adresa>
+                <ulica>Neka ulica</ulica>
+                <broj_ulice>12</broj_ulice>
+                <grad>Neki grad</grad>
+                <postanski_broj>11111</postanski_broj>
+            </adresa>
+        </podaci_o_podnosiocu>
+    </opste_informacije>
+    <naslov>О Б А В Е Ш Т Е Њ Е</naslov>
+    <podnaslov>
+        о стављању на увид документа који садржи
+        тражену информацију и о изради копије
+    </podnaslov>
+    <telo>
+        На основу члана 16. ст. 1. Закона о слободном приступу информацијама од јавног          значаја, поступајући по вашем захтеву за слободан приступ информацијама од  
+        <godina></godina>год., којим сте тражили увид у документ/е са информацијама о / у вези са:
+        <opis></opis> обавештавамо вас да дана 
+        <datum>
+            <dan>1</dan>
+            <mesec>1</mesec>
+            <godina>1</godina>
+        </datum>, у 
+        <vreme>10:00</vreme> часова, односно у времену од 
+        <od>12:00</od> до 
+        <do>14:00</do> часова, у просторијама органа у 
+        <adresa_organa>
+            <naziv_ulice>asdasd</naziv_ulice>ул. 
+            <broj_ulice>2</broj_ulice>,бр. 
+            <broj_kancelarije>31</broj_kancelarije> канцеларија бр. 
+        </adresa_organa>
+        можете извршити увид у документ/е у коме је садржана тражена информација. 
+        
+        Том приликом, на ваш захтев, може вам се издати и копија документа са траженом информацијом.
+        
+        Трошкови су утврђени Уредбом Владе Републике Србије („Сл. гласник РС“, бр. 8/06), и то: копија стране А4 формата износи 3 динара, А3 формата 6 динара, CD 35 динара, дискете 20 динара, DVD 40 динара, аудио-касета – 150 динара, видео-касета 300 динара, претварање једне стране документа из физичког у електронски облик – 30 динара.
+        
+        Износ укупних трошкова израде копије документа по вашем захтеву износи 
+        <iznos>500.00</iznos> 
+        динара и уплаћује се на жиро-рачун Буџета Републике Србије бр. 840-742328-843-30, с позивом на број 97 – ознака шифре општине/града где се налази орган власти (из Правилника о условима и начину вођења рачуна – „Сл. гласник РС“, 20/07... 40/10). 
+        
+    </telo>
+    <dostavljen>
+        Достављено:
+        <imenovanom>1.	Именованом </imenovanom>
+        <arhivi>2.	Архиви</arhivi>
+    </dostavljen>
+ 
+    
+</obavestenje>
