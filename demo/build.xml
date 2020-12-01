@@ -44,11 +44,14 @@
 		<xjc schema="${data.dir}/zalbazbogcutanjacir.xsd" destdir="${gen.dir}"/>
 	</target>
 	
+	<target name="generate_classes_3" depends="init">
+			<xjc schema="${data.dir}/zalbanaodlukucir.xsd" destdir="${gen.dir}"/>
+		</target>
 	
 	
 	
 	<!--u depends dodati samo name novog targeta tipa "generate_classes_1, generate_classes_2" -->		
-	<target name="generate_all" depends="generate_classes_1, generate_classes_2"/>
+	<target name="generate_all" depends="generate_classes_1, generate_classes_2, generate_classes_3"/>
 
 
 	<target name="main" depends="generate_all"/>
