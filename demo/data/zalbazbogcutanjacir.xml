@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zc:zalba_cutanje xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zc="http://www.ftn.uns.ac.rs/zalbaCutanja" xsi:schemaLocation="http://www.ftn.uns.ac.rs/zalbaCutanja zalbazbogcutanjacir.xsd ">
+  <zc:naslov>zc:naslov</zc:naslov>
+  <zc:podaci_o_povereniku>
+    <zc:adresa>
+      <zc:grad>zc:grad</zc:grad>
+      <zc:ulica>zc:ulica</zc:ulica>
+      <zc:broj>1</zc:broj>
+    </zc:adresa>
+    <zc:naziv_poverenika>zc:naziv_poverenika</zc:naziv_poverenika>
+  </zc:podaci_o_povereniku>
+  <zc:telo_zalbe>
+    <zc:poziv_na_zakon>zc:poziv_na_zakon</zc:poziv_na_zakon>
+    <zc:naziv_organa>zc:naziv_organa</zc:naziv_organa>
+    <zc:razlozi/>
+    <zc:datum>2001-01-01</zc:datum>
+    <zc:podaci_o_zahtevu_i_informaciji>zc:podaci_o_zahtevu_i_informaciji</zc:podaci_o_zahtevu_i_informaciji>
+    <zc:napomena>zc:napomena</zc:napomena>
+  </zc:telo_zalbe>
+  <zc:podaci_o_podnosiocu_zalbe>
+    <zc:adresa>
+      <zc:grad>zc:grad</zc:grad>
+      <zc:ulica>zc:ulica</zc:ulica>
+      <zc:broj>1</zc:broj>
+    </zc:adresa>
+    <zc:ime>zc:ime</zc:ime>
+    <zc:prezime>zc:prezime</zc:prezime>
+    <zc:potpis>zc:potpis</zc:potpis>
+    <zc:drugi_podaci_za_kontakt>zc:drugi_podaci_za_kontakt</zc:drugi_podaci_za_kontakt>
+  </zc:podaci_o_podnosiocu_zalbe>
+  <zc:podaci_o_mestu_i_datumu_podnosenja_zalbe>
+    <zc:mesto>zc:mesto</zc:mesto>
+    <zc:datum>2001-01-01</zc:datum>
+  </zc:podaci_o_mestu_i_datumu_podnosenja_zalbe>
+</zc:zalba_cutanje>

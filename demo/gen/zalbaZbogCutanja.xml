@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<zalba_cutanje xmlns="http://www.ftn.uns.ac.rs/zalbaCutanja">
+    <naslov>zc:naslov</naslov>
+    <podaci_o_povereniku>
+        <adresa>
+            <grad>zc:grad</grad>
+            <ulica>zc:ulica</ulica>
+            <broj>1</broj>
+        </adresa>
+        <naziv_poverenika>zc:naziv_poverenika</naziv_poverenika>
+    </podaci_o_povereniku>
+    <telo_zalbe>
+    <poziv_na_zakon>zc:poziv_na_zakon</poziv_na_zakon>
+    <naziv_organa>zc:naziv_organa</naziv_organa>
+    <razlozi xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zc="http://www.ftn.uns.ac.rs/zalbaCutanja"/>
+    <datum>2001-01-01</datum>
+    <podaci_o_zahtevu_i_informaciji>zc:podaci_o_zahtevu_i_informaciji</podaci_o_zahtevu_i_informaciji>
+    <napomena>zc:napomena</napomena>
+  </telo_zalbe>
+    <podaci_o_podnosiocu_zalbe>
+        <adresa>
+            <grad>zc:grad</grad>
+            <ulica>zc:ulica</ulica>
+            <broj>1</broj>
+        </adresa>
+        <ime>zc:ime</ime>
+        <prezime>zc:prezime</prezime>
+        <potpis>zc:potpis</potpis>
+        <drugi_podaci_za_kontakt>zc:drugi_podaci_za_kontakt</drugi_podaci_za_kontakt>
+    </podaci_o_podnosiocu_zalbe>
+    <podaci_o_mestu_i_datumu_podnosenja_zalbe>
+        <mesto>zc:mesto</mesto>
+        <datum>2001-01-01</datum>
+    </podaci_o_mestu_i_datumu_podnosenja_zalbe>
+</zalba_cutanje>
