@@ -84,14 +84,6 @@
                             </xs:restriction>
                         </xs:simpleType>
                     </xs:element>
-                    <xs:element name="potpis">
-                        <xs:simpleType>
-                            <xs:restriction base="xs:string">
-                                <xs:minLength value="1"/>
-                                <xs:maxLength value="30"/>
-                            </xs:restriction>
-                        </xs:simpleType>
-                    </xs:element>
                     <xs:element name="drugi_podaci_za_kontakt">
                         <xs:simpleType>
                             <xs:restriction base="xs:string">
@@ -122,7 +114,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="razlozi"/>
+            <xs:element name="razlozi" type="zc:Trazlozi"/>
             <xs:element name="datum" type="xs:date"/>
             <xs:element name="podaci_o_zahtevu_i_informaciji">
                 <xs:simpleType>
@@ -154,5 +146,12 @@
             </xs:element>
             <xs:element name="datum" type="xs:date"/>
         </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Trazlozi">
+        <xs:choice>
+            <xs:element name="nije_postupio"/>
+            <xs:element name="nije_postupio_u_celosti"/>
+            <xs:element name="nije_postupio_u_zakonskom_roku"/>
+        </xs:choice>
     </xs:complexType>
 </xs:schema>

@@ -12,7 +12,9 @@
     <telo_zalbe>
     <poziv_na_zakon>zc:poziv_na_zakon</poziv_na_zakon>
     <naziv_organa>zc:naziv_organa</naziv_organa>
-    <razlozi xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zc="http://www.ftn.uns.ac.rs/zalbaCutanja"/>
+    <razlozi>
+            <nije_postupio xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zc="http://www.ftn.uns.ac.rs/zalbaCutanja"/>
+        </razlozi>
     <datum>2001-01-01</datum>
     <podaci_o_zahtevu_i_informaciji>zc:podaci_o_zahtevu_i_informaciji</podaci_o_zahtevu_i_informaciji>
     <napomena>zc:napomena</napomena>
@@ -25,7 +27,6 @@
         </adresa>
         <ime>zc:ime</ime>
         <prezime>zc:prezime</prezime>
-        <potpis>zc:potpis</potpis>
         <drugi_podaci_za_kontakt>zc:drugi_podaci_za_kontakt</drugi_podaci_za_kontakt>
     </podaci_o_podnosiocu_zalbe>
     <podaci_o_mestu_i_datumu_podnosenja_zalbe>

@@ -12,7 +12,9 @@
   <zc:telo_zalbe>
     <zc:poziv_na_zakon>zc:poziv_na_zakon</zc:poziv_na_zakon>
     <zc:naziv_organa>zc:naziv_organa</zc:naziv_organa>
-    <zc:razlozi/>
+    <zc:razlozi>
+      <zc:nije_postupio/>
+    </zc:razlozi>
     <zc:datum>2001-01-01</zc:datum>
     <zc:podaci_o_zahtevu_i_informaciji>zc:podaci_o_zahtevu_i_informaciji</zc:podaci_o_zahtevu_i_informaciji>
     <zc:napomena>zc:napomena</zc:napomena>
@@ -25,7 +27,6 @@
     </zc:adresa>
     <zc:ime>zc:ime</zc:ime>
     <zc:prezime>zc:prezime</zc:prezime>
-    <zc:potpis>zc:potpis</zc:potpis>
     <zc:drugi_podaci_za_kontakt>zc:drugi_podaci_za_kontakt</zc:drugi_podaci_za_kontakt>
   </zc:podaci_o_podnosiocu_zalbe>
   <zc:podaci_o_mestu_i_datumu_podnosenja_zalbe>
