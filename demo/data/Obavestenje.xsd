@@ -58,7 +58,7 @@
                             <xs:element name="od" type="xs:time"/>
                             <xs:element name="do" type="xs:time"/>
                             <xs:element name="adresa_organa">
-                                <xs:complexType>
+                                <xs:complexType mixed="true">
                                     <xs:sequence>
                                         <xs:element name="naziv_ulice" type="xs:string"/>
                                         <xs:element name="broj_ulice" type="xs:string"/>

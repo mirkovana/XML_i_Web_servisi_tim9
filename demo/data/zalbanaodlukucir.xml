@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zo:zalba_na_odluku xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zo="http://www.ftn.uns.ac.rs/zalbanaodluku" xsi:schemaLocation="http://www.ftn.uns.ac.rs/zalbanaodluku zalbanaodlukucir.xsd ">
+<zo:zalba_na_odluku xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:zo="http://www.ftn.uns.ac.rs/zalbanaodluku" 
+xsi:schemaLocation="http://www.ftn.uns.ac.rs/zalbanaodluku zalbanaodlukucir.xsd ">
   <zo:naslov>zo:naslov</zo:naslov>
   <zo:podaci_o_povereniku>
     <zo:adresa>
