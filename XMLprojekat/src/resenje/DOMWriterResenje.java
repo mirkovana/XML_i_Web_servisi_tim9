@@ -75,6 +75,7 @@ public class DOMWriterResenje {
 		document.appendChild(zalba);
 		
 		zalba.setAttributeNS(XSI_NAMESPACE, "xsi:schemaLocation", "http://www.projekat.org/resenje resenje.xsd");
+		zalba.setAttribute("xmlns:resenje", "http://www.projekat.org/resenje");
 		zalba.setAttribute("status", "odbacena");		
 		zalba.appendChild(uvod());
 		zalba.appendChild(sadrzaj());
@@ -170,7 +171,7 @@ public class DOMWriterResenje {
 		Element resenje = document.createElementNS(TARGET_NAMESPACE, "resenje");
 		
 		Element naslov = document.createElementNS(TARGET_NAMESPACE, "naslov");
-			naslov.setAttribute("naslov", "2");
+			naslov.setAttribute("resenje:nivo", "2");
 			naslov.appendChild(text("RESENJE"));
 		
 		Element paragraf1 = document.createElementNS(TARGET_NAMESPACE, "paragraf");
@@ -202,7 +203,7 @@ public class DOMWriterResenje {
 		Element obrazlozenje = document.createElementNS(TARGET_NAMESPACE, "obrazlozenje");
 
 		Element naslov = document.createElementNS(TARGET_NAMESPACE, "naslov");
-			naslov.setAttribute("naslov", "2");
+			naslov.setAttribute("resenje:nivo", "2");
 			naslov.appendChild(text("OBRAZLOZENJE"));
 		
 		Element paragraf1 = document.createElementNS(TARGET_NAMESPACE, "paragraf");

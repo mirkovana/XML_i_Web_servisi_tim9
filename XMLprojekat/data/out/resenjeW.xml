@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zalba xmlns="http://www.projekat.org/resenje"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" status="odbacena" 
- xsi:schemaLocation="http://www.projekat.org/resenje resenje.xsd">
+<zalba xmlns="http://www.projekat.org/resenje" 
+  xmlns:resenje="http://www.projekat.org/resenje" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  status="odbacena" xsi:schemaLocation="http://www.projekat.org/resenje resenje.xsd">
   <uvod>
     <broj>123-45-6789/1011-12</broj>
     <datum>10.10.2010.</datum>
@@ -34,7 +35,7 @@
   </uvod>
   <sadrzaj>
     <resenje>
-      <naslov naslov="2">RESENJE</naslov>
+      <naslov resenje:nivo="2">RESENJE</naslov>
       <paragraf>Nalaže se <institucija>
           <naziv>Učiteljskom fakultetu</naziv> u <mesto>Prizrenu</mesto>
         </institucija>sa privremenim sedištem u <mesto>Leposaviću</mesto>, da bez odlaganja, a najkasnije u roku od pet dana od dana prijema ovog rešenja, obavesti <osoba>
@@ -49,7 +50,7 @@
         </institucija>sa privremenim sedištem u <mesto>Leposaviću</mesto>, će obavestiti Poverenika u roku od sedam dana od prijema ovog rešenja.</paragraf>
     </resenje>
     <obrazlozenje>
-      <naslov naslov="2">OBRAZLOZENJE</naslov>
+      <naslov resenje:nivo="2">OBRAZLOZENJE</naslov>
       <paragraf>
         <osoba>
           <ime>A</ime>

@@ -73,7 +73,8 @@ public class DOMWriterZahtev {
 		// Kreiranje i postavljanje korenskog elementa
 		Element zahtev = document.createElementNS(TARGET_NAMESPACE, "zahtev");	
 		zahtev.setAttributeNS(XSI_NAMESPACE, "xsi:schemaLocation", "http://www.projekat.org/zahtev zahtev.xsd");
-
+		zahtev.setAttribute("xmlns:za", "http://www.projekat.org/zahtev");
+		
 		zahtev.appendChild(institucija("naziv0", "mesto0"));
 		zahtev.appendChild(naslov("4", "bold", "Zahtev za pristupanje informacijama"));
 		zahtev.appendChild(tekstZahteva());
@@ -119,8 +120,8 @@ public class DOMWriterZahtev {
 	
 	public Element naslov(String nivo, String stil, String naslovS) {
 		Element naslov = document.createElementNS(TARGET_NAMESPACE, "naslov");
-		naslov.setAttribute("nivo", nivo);
-		naslov.setAttribute("stil", stil);
+		naslov.setAttribute("za:nivo", nivo);
+		naslov.setAttribute("za:stil", stil);
 		naslov.appendChild(text(naslovS));
 		return naslov;
 	}
@@ -152,22 +153,15 @@ public class DOMWriterZahtev {
 		lista.appendChild(stavka("false", "3", "kopiju dokumenta koji sadrži traženu informaciju"));
 		
 		Element stavka4 = stavka("false", "4", "dostavljanje kopije dokumenta koji sadrži traženu informaciju:**");
-		/*<lista>
-                    <stavka za:checked="false" za:id="5">поштом</stavka>
-                    <stavka za:checked="false" za:id="6">elektronskom postom</stavka>
-                    <stavka za:checked="false" za:id="7">faksom</stavka>
-                    <stavka  za:checked="false" za:id="8">na drugi nacin***: 
-                        <drugi_nacin>dajshkdandaskla</drugi_nacin>
-                    </stavka>
-                </lista>*/
+		
 		lista.appendChild(stavka4);
 		Element lista2 = document.createElementNS(TARGET_NAMESPACE, "lista");
 		lista2.appendChild(stavka("false", "5", "postom"));
 		lista2.appendChild(stavka("false", "6", "elektronskom postom"));
 		lista2.appendChild(stavka("false", "7", "faksom"));
 		Element stavka8 = document.createElementNS(TARGET_NAMESPACE, "stavka");
-		stavka8.setAttribute("checked", "false");
-		stavka8.setAttribute("id", "8");
+		stavka8.setAttribute("za:checked", "false");
+		stavka8.setAttribute("za:id", "8");
 		stavka8.appendChild(text("na drugi nacin:***"));
 			Element dn = document.createElementNS(TARGET_NAMESPACE, "drugi_nacin");
 			dn.appendChild(text("neki drugi nacin za dostavu"));
@@ -181,8 +175,8 @@ public class DOMWriterZahtev {
 	
 	public Element stavka(String checked, String id, String stavkaS) {
 		Element stavka = document.createElementNS(TARGET_NAMESPACE, "stavka");
-		stavka.setAttribute("checked", checked);
-		stavka.setAttribute("id", id);
+		stavka.setAttribute("za:checked", checked);
+		stavka.setAttribute("za:id", id);
 		stavka.appendChild(text(stavkaS));
 		return stavka;
 	}
