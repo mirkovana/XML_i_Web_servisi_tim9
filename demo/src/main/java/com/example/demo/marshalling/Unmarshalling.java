@@ -1,9 +1,11 @@
 package com.example.demo.marshalling;
 
 import java.io.File;
+import java.io.FileOutputStream;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,10 +32,17 @@ public class Unmarshalling {
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 
 			// Unmarshalling generiÅ¡e objektni model na osnovu XML fajla
-			Obavestenje obavestenje = (Obavestenje) unmarshaller.unmarshal(new File("./data/Obavestenje1.xml"));
+			Obavestenje obavestenje = (Obavestenje) unmarshaller.unmarshal(new File("./data/obavestenje.xml"));
 
-			// Prikazuje unmarshallovan objekat
-//			System.out.println(obavestenje.getNaslov());
+			//			System.out.println(obavestenje.getNaslov());
+//			printObavestenje(obavestenje);
+			Marshaller marshaller = context.createMarshaller();
+			
+	
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+			
+			
+			marshaller.marshal(obavestenje, System.out);
 
 		} catch (JAXBException e) {
 			e.printStackTrace();
@@ -52,19 +61,47 @@ public class Unmarshalling {
 
 			// Unmarshaller je objekat zaduÅ¾en za konverziju iz XML-a u objektni model
 			Unmarshaller unmarshaller = context.createUnmarshaller();
-
+			Marshaller marshaller = context.createMarshaller();
 			// Unmarshalling generiÅ¡e objektni model na osnovu XML fajla
 			ZalbaCutanje zalbaCutanje = (ZalbaCutanje) unmarshaller
 					.unmarshal(new File("./data/zalbazbogcutanjacir.xml"));
 
 			// Prikazuje unmarshallovan objekat
-			printZalbaCutanje(zalbaCutanje);
-
+			//printZalbaCutanje(zalbaCutanje);
+			marshaller.marshal(zalbaCutanje,System.out);
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
 	}
 
+	private void printObavestenje(Obavestenje obavestenje) {
+		System.out.println("Opste informacije:\n");
+		System.out.println("Podaci o organu:" );
+		System.out.println("Naziv organa: " + obavestenje.getOpsteInformacije().getPodaciOOrganu().getNaziv());
+		System.out.println("Sediste organa: " + obavestenje.getOpsteInformacije().getPodaciOOrganu().getSediste() + "\n");
+		System.out.println("Broj predmeta: " + obavestenje.getOpsteInformacije().getBrojPredmeta());
+		System.out.println("Datum: " );
+		System.out.println("Dan: " + obavestenje.getOpsteInformacije().getDatum().getDan());
+		System.out.println("Mesec: " + obavestenje.getOpsteInformacije().getDatum().getMesec());
+		System.out.println("Godina: " + obavestenje.getOpsteInformacije().getDatum().getGodina() + "\n");
+		System.out.println("Podaci o podnosiocu: \n");
+		System.out.println("Ime: " +obavestenje.getOpsteInformacije().getPodaciOPodnosiocu().getIme());
+		System.out.println("Prezime: " +obavestenje.getOpsteInformacije().getPodaciOPodnosiocu().getPrezime());
+		System.out.println("Naziv predmeta: " +obavestenje.getOpsteInformacije().getPodaciOPodnosiocu().getNazivZahteva());
+		System.out.println("Adresa: \n");
+		System.out.println("Naziv ulice: " + obavestenje.getOpsteInformacije().getPodaciOPodnosiocu().getAdresa().getNazivUlice());
+		System.out.println("Broj ulice: " + obavestenje.getOpsteInformacije().getPodaciOPodnosiocu().getAdresa().getBrojUlice());
+		System.out.println("Naziv grada: " + obavestenje.getOpsteInformacije().getPodaciOPodnosiocu().getAdresa().getGrad());
+		System.out.println("Postanski broj: " + obavestenje.getOpsteInformacije().getPodaciOPodnosiocu().getAdresa().getPostanskiBroj() + "\n");
+		System.out.println("Naslov: " + obavestenje.getNaslov() + "\n");
+		System.out.println("Podnaslov: " + obavestenje.getPodnaslov() + "\n");
+		System.out.println("Telo: ");
+		System.out.println("Godina: " + obavestenje.getTelo().getGodina());
+		System.out.println("Opis trazene informacije: " + obavestenje.getTelo().getOpis());
+		System.out.println("Datum: " + obavestenje.getOpsteInformacije().getDatum());
+	}
+	
+	
 	private void printZalbaCutanje(ZalbaCutanje zalbaCutanje) {
 
 		// Prikaz naziva fakulteta (getter metoda)
@@ -93,14 +130,14 @@ public class Unmarshalling {
 
 			// Unmarshaller je objekat zaduÅ¾en za konverziju iz XML-a u objektni model
 			Unmarshaller unmarshaller = context.createUnmarshaller();
-
+			Marshaller marshaller = context.createMarshaller();
 			// Unmarshalling generiÅ¡e objektni model na osnovu XML fajla
 			ZalbaNaOdluku zalbaNaOdluku = (ZalbaNaOdluku) unmarshaller
 					.unmarshal(new File("./data/zalbanaodlukucir.xml"));
 
 			// Prikazuje unmarshallovan objekat
-			printZalbaOdluka(zalbaNaOdluku);
-
+			//printZalbaOdluka(zalbaNaOdluku);
+			marshaller.marshal(zalbaNaOdluku,System.out);
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
