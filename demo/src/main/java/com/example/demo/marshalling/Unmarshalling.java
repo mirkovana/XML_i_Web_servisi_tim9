@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,14 +53,14 @@ public class Unmarshalling {
 
 			// Unmarshaller je objekat zaduÅ¾en za konverziju iz XML-a u objektni model
 			Unmarshaller unmarshaller = context.createUnmarshaller();
-
+			Marshaller marshaller = context.createMarshaller();
 			// Unmarshalling generiÅ¡e objektni model na osnovu XML fajla
 			ZalbaCutanje zalbaCutanje = (ZalbaCutanje) unmarshaller
 					.unmarshal(new File("./data/zalbazbogcutanjacir.xml"));
 
 			// Prikazuje unmarshallovan objekat
-			printZalbaCutanje(zalbaCutanje);
-
+			//printZalbaCutanje(zalbaCutanje);
+			marshaller.marshal(zalbaCutanje,System.out);
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
@@ -93,14 +94,14 @@ public class Unmarshalling {
 
 			// Unmarshaller je objekat zaduÅ¾en za konverziju iz XML-a u objektni model
 			Unmarshaller unmarshaller = context.createUnmarshaller();
-
+			Marshaller marshaller = context.createMarshaller();
 			// Unmarshalling generiÅ¡e objektni model na osnovu XML fajla
 			ZalbaNaOdluku zalbaNaOdluku = (ZalbaNaOdluku) unmarshaller
 					.unmarshal(new File("./data/zalbanaodlukucir.xml"));
 
 			// Prikazuje unmarshallovan objekat
-			printZalbaOdluka(zalbaNaOdluku);
-
+			//printZalbaOdluka(zalbaNaOdluku);
+			marshaller.marshal(zalbaNaOdluku,System.out);
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
