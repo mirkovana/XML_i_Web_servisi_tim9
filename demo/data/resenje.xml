@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zalba
+    xmlns="http://www.projekat.org/resenje"
+    xmlns:resenje="http://www.projekat.org/resenje"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="file:/D:/2020/XML/projekatgit/XML_i_Web_servisi_tim9/demo/data/resenjaschema.xsd"
-    status="osnovana">
+    xsi:schemaLocation="http://www.projekat.org/resenje resenje.xsd"
+    status="osnovana"> 
     <uvod>
         <broj>000-00-0000/0000-00</broj>
         <datum>00.00.0000.</datum>
@@ -11,7 +13,7 @@
             podataka o ličnosti, u postupku po albi koju je izjavio
             <osoba><ime>A</ime><prezime>A</prezime></osoba> 
             zbog nepostupanja 
-            <institucija>
+            <institucija> 
                 <naziv>Učiteljskog fakulteta</naziv> u <mesto>Prizrenu</mesto>
             </institucija>
             sa privremenim sedištem u 
@@ -25,7 +27,7 @@
                 <tacka>tačka 5.</tacka>
                 <naziv>Zakona o slobodnom pristupu informacijama od javnog značaja</naziv>
                 <glasnik>(„Sl. glasnik RS“, br. 120/04, 54/07, 104/09 i 36/10)</glasnik>
-            </zakon>
+            </zakon> 
             a u vezi sa 
             <zakon>
                 <clan>članom 4.</clan>
@@ -51,7 +53,7 @@
     </uvod>
     <sadrzaj>
         <resenje>
-            <naslov nivo="2">RESENJE</naslov>
+            <naslov resenje:nivo="2">RESENJE</naslov>
             <paragraf>
                 Nalaže se 
                 <institucija>
@@ -75,7 +77,7 @@
                 adresa stanovanja, lični matični broj građana, ime oca, radni staž,
                 prosečna ocena studiranja i sl. ukoliko su takvi podaci sadržani
                 u traženom dokumentu.
-            </paragraf>  
+            </paragraf>
             <paragraf>
                 II O izvršenju rešenja 
                 <institucija>
@@ -88,7 +90,7 @@
             </paragraf>
         </resenje>
         <obrazlozenje>
-            <naslov nivo="2">OBRAZLOZENJE</naslov>
+            <naslov resenje:nivo="2">OBRAZLOZENJE</naslov>
             <paragraf>
                 <osoba><ime>A</ime><prezime>A</prezime></osoba>
                 , kao tražilac informacija, izjavio je dana 
