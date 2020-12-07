@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<obavestenje xmlns="https://www.obavestenje.rs">
+<obavestenje xmlns="http://www.ftn.uns.ac.rs/obavestenje">
     <opste_informacije>
         <podaci_o_organu>
-            <naziv>obavestenje:naziv</naziv>
-            <sediste>obavestenje:sediste</sediste>
+            <naziv>Neki organ</naziv>
+            <sediste>Novi Sad</sediste>
         </podaci_o_organu>
-        <broj_predmeta>obavestenje:broj_predmeta</broj_predmeta>
+        <broj_predmeta>123abc</broj_predmeta>
         <datum>
             <dan>---01</dan>
-            <mesec>--01</mesec>
+            <mesec>--01--</mesec>
             <godina>2001</godina>
         </datum>
         <podaci_o_podnosiocu>
-            <ime>obavestenje:ime</ime>
-            <prezime>obavestenje:prezime</prezime>
-            <naziv>obavestenje:naziv</naziv>
+            <ime>Imenko</ime>
+            <prezime>Prezimenko</prezime>
+            <naziv_zahteva>Zahteva za nesto</naziv_zahteva>
             <adresa>
-                <ulica>obavestenje:ulica</ulica>
-                <broj_ulice>obavestenje:broj_ulice</broj_ulice>
-                <grad>obavestenje:grad</grad>
-                <postanski_broj>1</postanski_broj>
+                <naziv_ulice>Bul. Despota Stefana</naziv_ulice>
+                <broj_ulice>7</broj_ulice>
+                <grad>Novi Sad</grad>
+                <postanski_broj>21000</postanski_broj>
             </adresa>
         </podaci_o_podnosiocu>
     </opste_informacije>
-    <naslov>obavestenje:naslov</naslov>
-    <podnaslov>obavestenje:podnaslov</podnaslov>
+    <naslov>Naslov obavestenja</naslov>
+    <podnaslov>Podnaslov obavestenja</podnaslov>
     <telo>
         <godina>2001</godina>
-        <opis>obavestenje:opis</opis>
+        <opis>Opis trazene informacije</opis>
         <datum>
             <dan>---01</dan>
-            <mesec>--01</mesec>
+            <mesec>--01--</mesec>
             <godina>2001</godina>
         </datum>
         <vreme>12:00:00</vreme>
         <od>12:00:00</od>
         <do>12:00:00</do>
         <adresa_organa>
-            <naziv_ulice>obavestenje:naziv_ulice</naziv_ulice>
-            <broj_ulice>obavestenje:broj_ulice</broj_ulice>
-            <broj_kancelarije>1</broj_kancelarije>
+            <naziv_ulice>Bul. Despota Stefana</naziv_ulice>
+            <broj_ulice>12</broj_ulice>
+            <broj_kancelarije>12</broj_kancelarije>
         </adresa_organa>
-        <iznos>0.0</iznos>
+        <iznos>1200.0</iznos>
     </telo>
     <dostavljeno>Imenovanom</dostavljeno>
 </obavestenje>

@@ -22,7 +22,7 @@ public class Marshalling {
 	@GetMapping(path = "/marshalling_obavestenje")
 	public void marshallingObavestenje() {
 		try {
-			System.out.println("[INFO] Example 2: JAXB unmarshalling/marshalling.\n");
+			System.out.println("[INFO] Obavestenje: JAXB marshalling.\n");
 			
 			// DefiniÅ¡e se JAXB kontekst (putanja do paketa sa JAXB bean-ovima)
 			JAXBContext context = JAXBContext.newInstance("com.example.demo.klaseObavestenja");
@@ -30,7 +30,7 @@ public class Marshalling {
 			// Unmarshaller je objekat zaduÅ¾en za konverziju iz XML-a u objektni model
 			Unmarshaller unmarshaller = context.createUnmarshaller();
 
-			Obavestenje obavestenje = (Obavestenje) unmarshaller.unmarshal(new File("./data/Obavestenje1.xml"));
+			Obavestenje obavestenje = (Obavestenje) unmarshaller.unmarshal(new File("./data/Obavestenje.xml"));
 			
 			// Izmena nad objektnim modelom dodavanjem novog odseka
 //			fakultet.getOdsek().add(createOdsek("23", "GRID"));

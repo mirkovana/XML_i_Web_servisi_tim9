@@ -22,7 +22,7 @@ public class Unmarshalling {
 		System.out.println();
 		try {
 
-			System.out.println("[INFO] Example 1: JAXB unmarshalling.\n");
+			System.out.println("[INFO] Obavestenje : JAXB unmarshalling.\n");
 
 			// DefiniÅ¡e se JAXB kontekst (putanja do paketa sa JAXB bean-ovima)
 			JAXBContext context = JAXBContext.newInstance("com.example.demo.klaseObavestenja");
