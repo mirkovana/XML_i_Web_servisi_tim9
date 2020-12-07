@@ -1,7 +1,6 @@
 package com.example.demo.marshalling;
 
 import java.io.File;
-import java.io.FileOutputStream;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

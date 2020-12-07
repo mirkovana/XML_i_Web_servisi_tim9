@@ -116,14 +116,6 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element name="napomena">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:minLength value="1"/>
-                        <xs:maxLength value="100"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="Tmesto_datum">
