@@ -10,7 +10,6 @@
         <naziv_poverenika>zc:naziv_poverenika</naziv_poverenika>
     </podaci_o_povereniku>
     <telo_zalbe>
-    <poziv_na_zakon>zc:poziv_na_zakon</poziv_na_zakon>
     <naziv_organa>zc:naziv_organa</naziv_organa>
     <razlozi>
             <nije_postupio xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zc="http://www.ftn.uns.ac.rs/zalbaCutanja"/>

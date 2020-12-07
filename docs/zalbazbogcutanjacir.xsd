@@ -98,14 +98,6 @@
     </xs:complexType>
     <xs:complexType mixed="true" name="Ttelo_zalbe">
         <xs:sequence>
-            <xs:element name="poziv_na_zakon" maxOccurs="1">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:minLength value="1"/>
-                        <xs:maxLength value="100"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
             <xs:element name="naziv_organa">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">

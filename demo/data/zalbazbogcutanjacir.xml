@@ -10,7 +10,6 @@
     <zc:naziv_poverenika>zc:naziv_poverenika</zc:naziv_poverenika>
   </zc:podaci_o_povereniku>
   <zc:telo_zalbe>
-    <zc:poziv_na_zakon>zc:poziv_na_zakon</zc:poziv_na_zakon>
     <zc:naziv_organa>zc:naziv_organa</zc:naziv_organa>
     <zc:razlozi>
       <zc:nije_postupio/>
