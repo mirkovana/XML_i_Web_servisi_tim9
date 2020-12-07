@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<obavestenje
+    xmlns="http://www.projekat.org/obavestenje"
+    xmlns:ob="http://www.projekat.org/obavestenje"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.projekat.org/obavestenje obavestenje.xsd">
+    <opste_informacije>
+        <podaci_o_organu>
+            <naziv></naziv>
+            <sediste></sediste>
+        </podaci_o_organu>
+        <broj_predmeta></broj_predmeta>
+        <datum></datum> 
+        <podaci_o_podnosiocu>
+            <ime></ime>
+            <prezime></prezime>
+            <naziv_zahteva></naziv_zahteva>
+            <adresa>
+                <naziv_ulice></naziv_ulice>
+                <broj_ulice></broj_ulice>
+                <naziv_grada></naziv_grada>
+                <postanski_broj></postanski_broj>
+            </adresa>
+        </podaci_o_podnosiocu>
+    </opste_informacije>
+    <naslov ob:nivo="4" ob:stil="bold">O B A V E Š T E Nj E</naslov>
+    <podnaslov ob:nivo="2" ob:stil="bold">
+        o stavljanju na uvid dokumenta koji sadrži
+        traženu informaciju i o izradi kopije
+    </podnaslov>
+    <telo>
+        Na osnovu         
+        <zakon>
+            <clan>člana 16.</clan>
+            <stav>st. 1.</stav>
+            <naziv>Zakona o slobodnom pristupu informacijama od javnog značaja</naziv>
+        </zakon>
+        , postupajući po vašem zahtevu za slobodan pristup informacijama od
+        <godina></godina>god.,
+        kojim ste trazili uvid u dokument/e sa informacijama o / u vezi sa:
+        <opis_trazene_informacije></opis_trazene_informacije> 
+        obaveštavamo vas da dana
+        <datum></datum>
+        , u 
+        <vreme></vreme> časova, odnosno u vremenu od 
+        <od></od>
+        do 
+        <do></do>
+        časova, u prostorijama organa u 
+        <adresa_organa>
+            <naziv_ulice></naziv_ulice> 
+            <broj_ulice></broj_ulice>
+            <naziv_grada> Sadu</naziv_grada>
+            kancelarija br.
+            <broj_kancelarije></broj_kancelarije>
+        </adresa_organa>
+        možete izvršiti uvid u dokument/e u kome je sadržana tražena informacija.
+        Tom prilikom, na vaš zahtev, može vam se izdati i kopija dokumenta sa traženom informacijom.
+        Troškovi su utvrđeni 
+        <zakon>
+            <naziv>Uredbom Vlade Republike Srbije</naziv>
+            <glasnik>(„Sl. glasnik RS“, br. 8/06)</glasnik>
+        </zakon>
+        , i to: 
+        <troskovi>
+            <stavka>
+                <naziv_troska>kopija strane A4 formata</naziv_troska>
+                iznosi
+                <cena>3</cena>dinara,
+            </stavka>
+            <stavka>
+                <naziv_troska>A3 formata</naziv_troska>
+                <cena>6</cena> dinara,
+            </stavka>
+            <stavka>
+                <naziv_troska>CD</naziv_troska>
+                <cena>35</cena> dinara,
+            </stavka>
+            <stavka>
+                <naziv_troska>diskete</naziv_troska>
+                <cena>20</cena> dinara,
+            </stavka>    
+            <stavka>
+                <naziv_troska>DVD</naziv_troska>
+                <cena>40</cena> dinara,
+            </stavka>
+        </troskovi>
+        Iznos ukupnih troškova izrade kopije dokumenta po vašem zahtevu iznosi 
+        <ukupni_trosak>500.00</ukupni_trosak> 
+        dinara i uplaćuje se na žiro-račun 
+        <ziro_racun>
+            <primalac>Budžeta Republike Srbije </primalac>
+            br. <br_racuna>840-742328-843-30</br_racuna>,
+            s pozivom na broj <poziv_na_broj>97</poziv_na_broj>
+        </ziro_racun> 
+        - oznaka šifre opštine/grada gde se nalazi organ vlasti 
+        (iz Pravilnika o uslovima i načinu vođenja računa – „Sl. glasnik RS“, 20/07... 40/10).
+    </telo>
+    Dostavljeno:
+    <dostavljeno>Imenovanom</dostavljeno>
+    <dostavljeno>Arhivi</dostavljeno>
+    <potpis_rukovodioca>
+        potpis
+    </potpis_rukovodioca>
+</obavestenje>

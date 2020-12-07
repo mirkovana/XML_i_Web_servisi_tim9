@@ -297,7 +297,7 @@ public class DOMWriterResenje {
 
 		System.out.println("[INFO] DOM Parser");
 
-		if (args.length != 1) {
+		/*if (args.length != 1) {
 
 			filePath = "data/xml/resenje.xml";
 
@@ -305,7 +305,7 @@ public class DOMWriterResenje {
 
 		} else {
 			filePath = args[0];
-		}
+		}*/
 
 		DOMWriterResenje handler = new DOMWriterResenje();
 

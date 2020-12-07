@@ -266,7 +266,7 @@ public class DOMWriterZahtev {
 
 		System.out.println("[INFO] DOM Parser");
 
-		if (args.length != 1) {
+		/*if (args.length != 1) {
 
 			filePath = "data/xml/zahtevW.xml";
 
@@ -274,7 +274,7 @@ public class DOMWriterZahtev {
 
 		} else {
 			filePath = args[0];
-		}
+		}*/
 
 		DOMWriterZahtev handler = new DOMWriterZahtev();
 

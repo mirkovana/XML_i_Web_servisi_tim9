@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zalba_na_odluku 
+  xmlns="http://www.projekat.org/zalbanaodluku"
+  xmlns:zalba="http://www.projekat.org/zalbanaodluku"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.projekat.org/zalbanaodluku zalbanaodluku.xsd">  
+  <naslov zalba:nivo="2" zalba:stil="bold">
+    ŽALBA PROTIV ODLUKE ORGANA VLASTI KOJOM JE
+    ODBIJEN ILI ODBAČEN ZAHTEV ZA PRISTUP INFORMACIJI
+  </naslov>
+  <podaci_o_povereniku>
+    <adresa>
+      <grad></grad>
+      <ulica></ulica>
+      <broj></broj>
+    </adresa>
+    <naziv_poverenika>Povereniku za informacije od javnog značaja i zaštitu podataka o ličnosti</naziv_poverenika>
+  </podaci_o_povereniku>
+  <podaci_o_zalbi>
+    <naslov zalba:nivo="2">ZALBA</naslov>
+    <podnosilac_zalbe>
+      <adresa>
+        <grad></grad>
+        <ulica></ulica>
+        <broj></broj>
+      </adresa>
+      <ime></ime>
+      <prezime></prezime>
+      <potpis></potpis>
+    </podnosilac_zalbe>
+    protiv resenja-zakljucka
+    <organ_koji_je_doneo_odluku>
+    </organ_koji_je_doneo_odluku>
+    <broj_zalbe></broj_zalbe>
+    <datum></datum>
+  </podaci_o_zalbi>
+  <sadrzaj_zalbe>
+    Navedenom odlukom organa vlasti (rešenjem, zaključkom, obaveštenjem u pisanoj formi sa 
+    elementima odluke) , suprotno zakonu, odbijen-odbačen je moj zahtev koji sam podneo/la-uputio/la
+    dana <datum></datum> godine i tako mi uskraćeno-onemogućeno ostvarivanje ustavnog i zakonskog 
+    prava na slobodan pristup informacijama od javnog značaja. Odluku pobijam u celosti, odnosno u 
+    delu kojim
+    <zbog_cega_se_pobija_odluka>
+    </zbog_cega_se_pobija_odluka>
+    Na osnovu iznetih razloga, predlažem da 
+    <predlog_povereniku>  
+    </predlog_povereniku>
+    Žalbu podnosim blagovremeno, u zakonskom roku utvrđenom u 
+    članu 22. st. 1. Zakona o slobodnom pristupu informacijama od javnog značaja.
+  </sadrzaj_zalbe>
+  <podaci_o_podnosiocu_zalbe>
+    <adresa>
+      <grad></grad>
+      <ulica></ulica>
+      <broj></broj>
+    </adresa>
+    <ime></ime>
+    <prezime></prezime>
+    <potpis></potpis>
+  </podaci_o_podnosiocu_zalbe>
+  <podaci_o_mestu_i_datumu_podnosenja_zalbe>
+    <mesto></mesto>
+    <datum></datum>
+  </podaci_o_mestu_i_datumu_podnosenja_zalbe>
+  <napomena>
+    <tacka>
+      U žalbi se mora navesti odluka koja se pobija (rešenje, zaključak, obaveštenje), 
+      naziv organa koji je odluku doneo, kao i broj i datum odluke. 
+      Dovoljno je da žalilac navede u žalbi u kom pogledu je nezadovoljan odlukom,
+      s tim da žalbu ne mora posebno obrazložiti. 
+      Ako žalbu izjavljuje na ovom obrascu, dodatno obrazloženje može posebno priložiti.
+    </tacka>
+    <tacka>
+      Uz žalbu obavezno priložiti kopiju podnetog zahteva i dokaz o njegovoj 
+      predaji-upućivanju organu kao i kopiju odluke organa koja se osporava žalbom.
+    </tacka>
+  </napomena>
+</zalba_na_odluku>

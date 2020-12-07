@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zalba
+    xmlns="http://www.projekat.org/resenje"
+    xmlns:resenje="http://www.projekat.org/resenje"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.projekat.org/resenje resenje.xsd"
+    status=""> 
+    <uvod>
+        <broj></broj>
+        <datum></datum>
+        <paragraf>
+            Poverenik za informacije od javnog značaja i zaštitu 
+            podataka o ličnosti, u postupku po albi koju je izjavio
+            <osoba><ime></ime><prezime></prezime></osoba> 
+            zbog nepostupanja 
+            <institucija> 
+                <naziv></naziv> u <mesto></mesto>
+            </institucija>
+            sa privremenim sedištem u 
+            <mesto></mesto>, 
+            po njegovom zahtevu od 
+            <datum></datum> 
+            godine za pristup informacijama od javnog značaja, na osnovu 
+            <zakon>
+                <clan>člana 35.</clan>
+                <stav>stav 1.</stav>
+                <tacka>tačka 5.</tacka>
+                <naziv>Zakona o slobodnom pristupu informacijama od javnog značaja</naziv>
+                <glasnik>(„Sl. glasnik RS“, br. 120/04, 54/07, 104/09 i 36/10)</glasnik>
+            </zakon> 
+            a u vezi sa 
+            <zakon>
+                <clan>članom 4.</clan>
+                <tacka>tačka 22.</tacka>
+                <naziv>Zakona o zaštiti podataka o ličnosti</naziv>
+                <glasnik>(„Sl. glasnik RS“, broj 87/18)</glasnik>
+            </zakon>
+            kao i 
+            <zakon>
+                <clan>člana 23. i člana 24.</clan>
+                <stav>stav 4.</stav>
+                <naziv>Zakona o slobodnom pristupu informacijama od javnog značaja</naziv>
+            </zakon>
+            i
+            <zakon>
+                <clan>člana 173.</clan>
+                <stav>stav 2.</stav>
+                <naziv>Zakona o opštem upravnom postupku</naziv>
+                <glasnik>(„Sl. glasnik RS“, br. 18/2016 i 95/2018-autentično tumačenje)</glasnik>
+            </zakon>
+            , donosi
+        </paragraf>
+    </uvod>
+    <sadrzaj>
+        <resenje>
+            <naslov resenje:nivo="2">RESENJE</naslov>
+            <paragraf>
+                Nalaže se 
+                <institucija>
+                    <naziv></naziv> u
+                    <mesto></mesto>
+                </institucija>
+                sa privremenim sedištem u 
+                <mesto></mesto>
+                , da bez odlaganja, a najkasnije u roku od pet dana od dana prijema 
+                ovog rešenja, obavesti 
+                <osoba><ime></ime><prezime></prezime></osoba>
+                , da li poseduje tražene informacije odnosno dokument u kome su iste 
+                sadržane, i to: Ugovor o radu koji je kao poslednji potpisan između 
+                tog Fakulteta i 
+                <osoba><ime></ime><prezime></prezime></osoba>
+                , te da mu, ukoliko takav dokument poseduje dostavi kopiju
+                istog elektronskom poštom na adresu … ili poštom,
+                s tim što će pre dostavljanja zaštititi i učiniti nedostupnim
+                podatke o ličnosti kojima bi se povredilo pravo na privatnost
+                lica na koje se informacije odnose, kao što su: 
+                adresa stanovanja, lični matični broj građana, ime oca, radni staž,
+                prosečna ocena studiranja i sl. ukoliko su takvi podaci sadržani
+                u traženom dokumentu.
+            </paragraf>
+            <paragraf>
+                II O izvršenju rešenja 
+                <institucija>
+                    <naziv></naziv> u 
+                    <mesto></mesto>
+                </institucija>
+                sa privremenim sedištem u 
+                <mesto></mesto>
+                , će obavestiti Poverenika u roku od sedam dana od prijema ovog rešenja.
+            </paragraf>
+        </resenje>
+        <obrazlozenje>
+            <naslov resenje:nivo="2">OBRAZLOZENJE</naslov>
+            <paragraf>
+                <osoba><ime>A</ime><prezime>A</prezime></osoba>
+                , kao tražilac informacija, izjavio je dana 
+                <datum>07.05.2020.</datum>
+                godine žalbu Povereniku, zbog nepostupanja 
+                <institucija>
+                    <naziv>Učiteljskog fakulteta</naziv>u
+                    <mesto>Prizrenu</mesto>
+                </institucija>
+                sa privremenim sedištem u 
+                <mesto>Leposaviću</mesto>
+                po njegovom zahtevu od 
+                <datum>16.04.2020.</datum>
+                godine za pristup informacijama od javnog značaja i u prilogu dostavio kopiju istog.
+            </paragraf>
+            <paragraf>
+                Protiv ovog rešenja nije dopuštena žalba već se, u skladu sa 
+                <zakon>
+                    <naziv>Zakonom o upravnim sporovima</naziv>
+                </zakon>
+                , može pokrenuti upravni spor tužbom 
+                <institucija>
+                    <naziv>Upravnom sudu</naziv> u 
+                    <mesto>Beogradu</mesto>
+                </institucija>
+                u roku od 30 dana od dana prijema rešenja. 
+                Taksa na tužbu iznosi <taksa>390.00</taksa>dinara.
+            </paragraf>
+        </obrazlozenje>
+        <poverenik>
+            <ime>IME</ime>
+            <prezime>PREZIME</prezime>
+        </poverenik>
+    </sadrzaj>
+</zalba>

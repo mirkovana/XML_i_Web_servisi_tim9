@@ -131,7 +131,7 @@ public class DOMParserResenje implements ErrorHandler {
 		    	elementName = scanner.next();
 		    	NodeList nodes = document.getElementsByTagName(elementName);
 		    	
-		    	System.out.println("\nPronađeno " + nodes.getLength() + " elemenata. ");
+		    	System.out.println("\nPronadjeno " + nodes.getLength() + " elemenata. ");
 	    	
 	    		for (int i = 0; i < nodes.getLength(); i++)
 	    			printNode(nodes.item(i));
