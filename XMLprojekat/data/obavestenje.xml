@@ -14,11 +14,11 @@
         <podaci_o_podnosiocu>
             <ime>Neko</ime>
             <prezime>Prezimenko</prezime>
-            <naziv>asdasdasd</naziv>
+            <naziv_zahteva>asdasdasd</naziv_zahteva>
             <adresa>
-                <ulica>Neka ulica</ulica>
+                <naziv_ulice>Neka ulica</naziv_ulice>
                 <broj_ulice>12</broj_ulice>
-                <grad>Neki grad</grad>
+                <naziv_grada>Neki grad</naziv_grada>
                 <postanski_broj>11111</postanski_broj>
             </adresa>
         </podaci_o_podnosiocu>
@@ -28,17 +28,17 @@
         o stavljanju na uvid dokumenta koji sadrži
         traženu informaciju i o izradi kopije
     </podnaslov>
-    <telo> 
-        Na osnovu 
+    <telo>
+        Na osnovu         
         <zakon>
             <clan>člana 16.</clan>
             <stav>st. 1.</stav>
             <naziv>Zakona o slobodnom pristupu informacijama od javnog značaja</naziv>
-        </zakon> 
+        </zakon>
         , postupajući po vašem zahtevu za slobodan pristup informacijama od
-        <god>2010</god>год., 
+        <godina>2010</godina>god.,
         kojim ste trazili uvid u dokument/e sa informacijama o / u vezi sa:
-        <opis_trazene_info>_____opis trazene informaicje______</opis_trazene_info> 
+        <opis_trazene_informacije>_____opis trazene informaicje______</opis_trazene_informacije> 
         obaveštavamo vas da dana
         <datum>10.10.2010.</datum>
         , u 
@@ -48,14 +48,14 @@
         <do>11:00:00</do>
         časova, u prostorijama organa u 
         <adresa_organa>
+            <naziv_ulice>asdasd</naziv_ulice> 
+            <broj_ulice>10</broj_ulice>
             <naziv_grada>Novom Sadu</naziv_grada>
-            ul. <naziv_ulice>asdasd</naziv_ulice> 
-            , бр. <broj_ulice>2</broj_ulice> 
-            kancelarija br. <broj_kancelarije>10</broj_kancelarije>
+            kancelarija br.
+            <broj_kancelarije>10</broj_kancelarije>
         </adresa_organa>
         možete izvršiti uvid u dokument/e u kome je sadržana tražena informacija.
         Tom prilikom, na vaš zahtev, može vam se izdati i kopija dokumenta sa traženom informacijom.
-
         Troškovi su utvrđeni 
         <zakon>
             <naziv>Uredbom Vlade Republike Srbije</naziv>
@@ -96,11 +96,9 @@
         - oznaka šifre opštine/grada gde se nalazi organ vlasti 
         (iz Pravilnika o uslovima i načinu vođenja računa – „Sl. glasnik RS“, 20/07... 40/10).
     </telo>
-    <dostavljeno>
-        Dostavljeno:
-        1.	Imenovanom
-        2.	Arhivi
-    </dostavljeno>
+    Dostavljeno:
+    <dostavljeno>Imenovanom</dostavljeno>
+    <dostavljeno>Arhivi</dostavljeno>
     <potpis_rukovodioca>
         potpis
     </potpis_rukovodioca>
