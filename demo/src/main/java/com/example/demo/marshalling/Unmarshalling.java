@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.klaseObavestenja.Obavestenje;
 import com.example.demo.klaseZalbaNaOdluku.ZalbaNaOdluku;
-import com.example.demo.klaseZalbaZbogCutanja.Trazlozi;
 import com.example.demo.klaseZalbaZbogCutanja.ZalbaCutanje;
 
 @RestController
@@ -100,11 +99,30 @@ public class Unmarshalling {
 					.unmarshal(new File("./data/zalbanaodlukucir.xml"));
 
 			// Prikazuje unmarshallovan objekat
-//			System.out.println(obavestenje.getNaslov());
+			printZalbaOdluka(zalbaNaOdluku);
 
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void printZalbaOdluka(ZalbaNaOdluku zalbaNaOdluku) {
+
+		// Prikaz naziva fakulteta (getter metoda)
+		System.out.println("- Naslov zalbe: " + zalbaNaOdluku.getNaslov() + "\n");
+		System.out.println("- Podaci o povereniku: " + "\n");
+		System.out.println("    Naziv poverenika: " + zalbaNaOdluku.getPodaciOPovereniku().getNazivPoverenika() + "\n");
+		System.out.println("    Adresa poverenika: " + zalbaNaOdluku.getPodaciOPovereniku().getAdresa().getUlica() +" "
+		+zalbaNaOdluku.getPodaciOPovereniku().getAdresa().getBroj() + ","+ zalbaNaOdluku.getPodaciOPovereniku().getAdresa().getGrad()+ "\n");
+		System.out.println("- Sadrzaj zalbe: " + "\n");
+		System.out.println("    Datum podnosenja odbijenog zahteva: " + zalbaNaOdluku.getSadrzajZalbe().getDatum() +"\n");
+		System.out.println("    Razlog pobijanja odluke: "+ zalbaNaOdluku.getSadrzajZalbe().getZbogCegaSePobijaOdluka() +"\n");
+		System.out.println("- Podaci o podnosiocu zalbe: " + "\n");
+		System.out.println("    Ime podnosioca: "+zalbaNaOdluku.getPodaciOPodnosiocuZalbe().getIme()+"\n");
+		System.out.println("    Prezime podnosioca: "+zalbaNaOdluku.getPodaciOPodnosiocuZalbe().getPrezime()+"\n");
+		System.out.println("    Adresa podnosioca: "+zalbaNaOdluku.getPodaciOPodnosiocuZalbe().getAdresa().getUlica()+" "+zalbaNaOdluku.getPodaciOPodnosiocuZalbe().getAdresa().getBroj()+", "+zalbaNaOdluku.getPodaciOPodnosiocuZalbe().getAdresa().getGrad()+"\n");
+		System.out.println("    Drugi podaci za kontakt podnosioca: "+zalbaNaOdluku.getPodaciOPodnosiocuZalbe().getDrugiPodaciZaKontakt()+"\n");
+		System.out.println("- Podaci o mestu i datumu podnosenja zalbe: " + zalbaNaOdluku.getPodaciOMestuIDatumuPodnosenjaZalbe().getMesto()+", "+zalbaNaOdluku.getPodaciOMestuIDatumuPodnosenjaZalbe().getDatum()+ "\n");
 	}
 
 }

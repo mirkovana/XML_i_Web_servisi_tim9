@@ -19,7 +19,6 @@
                 <xs:element name="sadrzaj_zalbe" type="zo:Tsadrzaj_zalbe"/>
                 <xs:element name="podaci_o_podnosiocu_zalbe" type="zo:TFizicko_lice"/>
                 <xs:element name="podaci_o_mestu_i_datumu_podnosenja_zalbe" type="zo:Tmesto_datum"/>
-                <xs:element name="napomena" type="zo:Tnapomena"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -87,14 +86,6 @@
                             </xs:restriction>
                         </xs:simpleType>
                     </xs:element>
-                    <xs:element name="potpis">
-                        <xs:simpleType>
-                            <xs:restriction base="xs:string">
-                                <xs:minLength value="1"/>
-                                <xs:maxLength value="30"/>
-                            </xs:restriction>
-                        </xs:simpleType>
-                    </xs:element>
                     <xs:element name="drugi_podaci_za_kontakt">
                         <xs:simpleType>
                             <xs:restriction base="xs:string">
@@ -147,11 +138,6 @@
                 </xs:simpleType>
             </xs:element>
             <xs:element name="datum" type="xs:date"/>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="Tnapomena">
-        <xs:sequence>
-            <xs:element maxOccurs="2" name="tacka" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>

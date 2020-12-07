@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zo:zalba_na_odluku xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-xmlns:zo="http://www.ftn.uns.ac.rs/zalbanaodluku" 
-xsi:schemaLocation="http://www.ftn.uns.ac.rs/zalbanaodluku zalbanaodlukucir.xsd ">
+<zo:zalba_na_odluku xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zo="http://www.ftn.uns.ac.rs/zalbanaodluku" xsi:schemaLocation="http://www.ftn.uns.ac.rs/zalbanaodluku zalbanaodlukucir.xsd ">
   <zo:naslov>zo:naslov</zo:naslov>
   <zo:podaci_o_povereniku>
     <zo:adresa>
@@ -21,7 +19,6 @@ xsi:schemaLocation="http://www.ftn.uns.ac.rs/zalbanaodluku zalbanaodlukucir.xsd 
       </zo:adresa>
       <zo:ime>zo:ime</zo:ime>
       <zo:prezime>zo:prezime</zo:prezime>
-      <zo:potpis>zo:potpis</zo:potpis>
       <zo:drugi_podaci_za_kontakt>zo:drugi_podaci_za_kontakt</zo:drugi_podaci_za_kontakt>
     </zo:podnosilac_zalbe>
     <zo:organ_koji_je_doneo_odluku>
@@ -47,14 +44,10 @@ xsi:schemaLocation="http://www.ftn.uns.ac.rs/zalbanaodluku zalbanaodlukucir.xsd 
     </zo:adresa>
     <zo:ime>zo:ime</zo:ime>
     <zo:prezime>zo:prezime</zo:prezime>
-    <zo:potpis>zo:potpis</zo:potpis>
     <zo:drugi_podaci_za_kontakt>zo:drugi_podaci_za_kontakt</zo:drugi_podaci_za_kontakt>
   </zo:podaci_o_podnosiocu_zalbe>
   <zo:podaci_o_mestu_i_datumu_podnosenja_zalbe>
     <zo:mesto>zo:mesto</zo:mesto>
     <zo:datum>2001-01-01</zo:datum>
   </zo:podaci_o_mestu_i_datumu_podnosenja_zalbe>
-  <zo:napomena>
-    <zo:tacka>zo:tacka</zo:tacka>
-  </zo:napomena>
 </zo:zalba_na_odluku>

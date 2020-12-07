@@ -19,7 +19,6 @@
             </adresa>
             <ime>zo:ime</ime>
             <prezime>zo:prezime</prezime>
-            <potpis>zo:potpis</potpis>
             <drugi_podaci_za_kontakt>zo:drugi_podaci_za_kontakt</drugi_podaci_za_kontakt>
         </podnosilac_zalbe>
     <organ_koji_je_doneo_odluku>
@@ -45,14 +44,10 @@
         </adresa>
         <ime>zo:ime</ime>
         <prezime>zo:prezime</prezime>
-        <potpis>zo:potpis</potpis>
         <drugi_podaci_za_kontakt>zo:drugi_podaci_za_kontakt</drugi_podaci_za_kontakt>
     </podaci_o_podnosiocu_zalbe>
     <podaci_o_mestu_i_datumu_podnosenja_zalbe>
         <mesto>zo:mesto</mesto>
         <datum>2001-01-01</datum>
     </podaci_o_mestu_i_datumu_podnosenja_zalbe>
-    <napomena>
-        <tacka>zo:tacka</tacka>
-    </napomena>
 </zalba_na_odluku>
