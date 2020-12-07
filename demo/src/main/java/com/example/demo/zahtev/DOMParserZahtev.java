@@ -1,4 +1,4 @@
-package resenje;
+package com.example.demo.zahtev;
 
 import java.io.File;
 import java.util.Scanner;
@@ -39,7 +39,7 @@ import static org.apache.xerces.jaxp.JAXPConstants.*;
  * atribut (npr. "test") u XML fajl koji se parsira.
  * 
  */
-public class DOMParserResenje implements ErrorHandler {
+public class DOMParserZahtev implements ErrorHandler {
 
 	private static DocumentBuilderFactory factory;
 	
@@ -51,7 +51,7 @@ public class DOMParserResenje implements ErrorHandler {
 	static {
 		factory = DocumentBuilderFactory.newInstance();
 		
-		/* Uklju�?uje validaciju. */ 
+		/* Uklju�?uje validaciju. */ 
 		factory.setValidating(true);
 		
 		factory.setNamespaceAware(true);
@@ -110,61 +110,14 @@ public class DOMParserResenje implements ErrorHandler {
 	 * Ispis pojedinih elemenata i atributa DOM 
 	 * stabla upotrebom DOM API-ja.
 	 */
-	public void printElement(Scanner scanner) {
+	public void printElement() {
 		
 		System.out.println("Prikaz sadržaja DOM stabla parsiranog XML dokumenta.");
 		//Scanner scanner = new Scanner(System.in);
 	    String elementName, attrName, choice = "";
 	    Element element;
 	    
-	    while (!choice.equals("*")) {
-		    
-	    	System.out.println("\n[INPUT] Unesite 0 - za prikaz celog dokumenta, 1 - prikaz elemenata, 2 - prikaz atributa, * - kraj: ");
-	    	choice = scanner.next();
-	    	
-	    	if (choice.equals("0")) {
-	    		printNode(document);
-	    		
-	    	} else if (choice.equals("1")) {
-		    	
-		    	System.out.print("\n[INPUT] Unesite naziv elementa: ");
-		    	elementName = scanner.next();
-		    	NodeList nodes = document.getElementsByTagName(elementName);
-		    	
-		    	System.out.println("\nPronadjeno " + nodes.getLength() + " elemenata. ");
-	    	
-	    		for (int i = 0; i < nodes.getLength(); i++)
-	    			printNode(nodes.item(i));
-	    		
-		    } else if (choice.equals("2")) {
-
-		    	System.out.print("\n[INPUT] Unesite naziv elementa: ");
-		    	elementName = scanner.next();
-		    	
-		    	System.out.print("\n[INPUT] Unesite naziv atributa: ");
-		    	attrName = scanner.next();
-		    	
-		    	NodeList nodes = document.getElementsByTagName(elementName);
-		    	
-	    		System.out.println("\nPronađeno " + nodes.getLength() + " \"" + elementName + "\" elemenata.");
-	    	
-	    		for (int i = 0; i < nodes.getLength(); i++) {
-	    			
-	    			element = (Element) nodes.item(i);
-	    			
-	    			if (!element.getAttribute(attrName).equals("")) {
-	    				System.out.println("\n" + (i+1) + ". element ima vrednost atributa \"" + attrName + "\": " + element.getAttribute(attrName) + ".");
-	    			} else { 
-	    				System.out.println("\n" + (i+1) + ". element \"" + elementName + "\" ne poseduje atribut \"" + attrName + "\".");
-	    			}
-	    		}
-		    	
-		    } else if (choice.equals("*")){
-		    	break;
-		    } else {
-		    	System.out.println("Nepoznata komanda.");
-		    }
-	    }
+	    printNode(document);
 	    
 		System.out.println("[INFO] Kraj.");
 	}
@@ -181,10 +134,10 @@ public class DOMParserResenje implements ErrorHandler {
 		if (node == null)
 			return;
 
-		// Ispis uopštenih podataka o �?voru iz Node interfejsa
+		// Ispis uopštenih podataka o �?voru iz Node interfejsa
 		// printNodeDetails(node, indent);
 		
-		// Ako je upitanju dokument �?vor (korenski element)
+		// Ako je upitanju dokument �?vor (korenski element)
 		if (node instanceof Document) {
 			
 			System.out.println("START_DOCUMENT");
@@ -279,20 +232,19 @@ public class DOMParserResenje implements ErrorHandler {
         System.out.println("[WARN] " + err.getMessage());
     }
 
-	public static void test(Scanner scanner) {
+	public static void test() {
 
 		String filePath = null;
 
 		System.out.println("[INFO] DOM Parser");
+		filePath = "./data/zahtev.xml";
 
-		filePath = "data/resenje.xml";
-
-		DOMParserResenje handler = new DOMParserResenje();
+		DOMParserZahtev handler = new DOMParserZahtev();
 
 		// Kreiranje DOM stabla na osnovu XML fajla
 		handler.buildDocument(filePath);
 
 		// Prikaz sadržaja korišćenjem DOM API-ja 
-		handler.printElement(scanner);
+		handler.printElement();
 	}
 }

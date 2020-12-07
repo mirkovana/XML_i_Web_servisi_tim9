@@ -1,8 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<zalba xmlns="http://www.projekat.org/resenje" 
-  xmlns:resenje="http://www.projekat.org/resenje" 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-  status="odbacena" xsi:schemaLocation="http://www.projekat.org/resenje resenje.xsd">
+<?xml version="1.0" encoding="UTF-8"?><zalba xmlns="http://www.projekat.org/resenje" xmlns:resenje="http://www.projekat.org/resenje" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" status="odbacena" xsi:schemaLocation="http://www.projekat.org/resenje resenje.xsd">
   <uvod>
     <broj>123-45-6789/1011-12</broj>
     <datum>10.10.2010.</datum>

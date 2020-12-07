@@ -39,7 +39,7 @@ import static org.apache.xerces.jaxp.JAXPConstants.*;
  * atribut (npr. "test") u XML fajl koji se parsira.
  * 
  */
-public class DOMParser implements ErrorHandler {
+public class DOMParserResenje implements ErrorHandler {
 
 	private static DocumentBuilderFactory factory;
 	
@@ -51,7 +51,7 @@ public class DOMParser implements ErrorHandler {
 	static {
 		factory = DocumentBuilderFactory.newInstance();
 		
-		/* Uključuje validaciju. */ 
+		/* Uklju�?uje validaciju. */ 
 		factory.setValidating(true);
 		
 		factory.setNamespaceAware(true);
@@ -106,99 +106,21 @@ public class DOMParser implements ErrorHandler {
 		}
 	}
 
-	public void printAll() {
-		int level = 0;
-		printNode(document, level);
-	}
-	public void printElement(String elementName) {
-		
-		NodeList nodes = document.getElementsByTagName(elementName);
-    	System.out.println("\nPronađeno " + nodes.getLength() + " elemenata. ");
-		for (int i = 0; i < nodes.getLength(); i++)
-			printNode(nodes.item(i), 0);
-		
-	}
-	
-	public void printAttr(String elementName, String attrName) {
-		
-		Element element;
-    	NodeList nodes = document.getElementsByTagName(elementName);
-		System.out.println("\nPronađeno " + nodes.getLength() + " \"" + elementName + "\" elemenata.");
-		for (int i = 0; i < nodes.getLength(); i++) {
-			element = (Element) nodes.item(i);
-			if (!element.getAttribute(attrName).equals("")) {
-				System.out.println("\n" + (i+1) + ". element ima vrednost atributa \"" + attrName + "\": " + element.getAttribute(attrName) + ".");
-			} else { 
-				System.out.println("\n" + (i+1) + ". element \"" + elementName + "\" ne poseduje atribut \"" + attrName + "\".");
-			}
-		}
-	}
 	/**
 	 * Ispis pojedinih elemenata i atributa DOM 
 	 * stabla upotrebom DOM API-ja.
 	 */
-	/*public void printElement() {
+	public void printElement() {
 		
 		System.out.println("Prikaz sadržaja DOM stabla parsiranog XML dokumenta.");
-		Scanner scanner = new Scanner(System.in);
+		//Scanner scanner = new Scanner(System.in);
 	    String elementName, attrName, choice = "";
 	    Element element;
 	    
-	    while (!choice.equals("*")) {
-		    
-	    	System.out.println("\n[INPUT] Unesite"
-	    			+ " 0 - za prikaz celog dokumenta,"
-	    			+ " 1 - prikaz elemenata,"
-	    			+ " 2 - prikaz atributa, * - kraj: ");
-	    	choice = scanner.next();
-	    	
-	    	if (choice.equals("0")) {
-	    		printNode(document);
-	    		
-	    	} else if (choice.equals("1")) {
-		    	
-		    	System.out.print("\n[INPUT] Unesite naziv elementa: ");
-		    	elementName = scanner.next();
-		    	NodeList nodes = document.getElementsByTagName(elementName);
-		    	
-		    	System.out.println("\nPronađeno " + nodes.getLength() + " elemenata. ");
-	    	
-	    		for (int i = 0; i < nodes.getLength(); i++)
-	    			printNode(nodes.item(i));
-	    		
-		    } else if (choice.equals("2")) {
-
-		    	System.out.print("\n[INPUT] Unesite naziv elementa: ");
-		    	elementName = scanner.next();
-		    	
-		    	System.out.print("\n[INPUT] Unesite naziv atributa: ");
-		    	attrName = scanner.next();
-		    	
-		    	NodeList nodes = document.getElementsByTagName(elementName);
-		    	
-	    		System.out.println("\nPronađeno " + nodes.getLength() + " \"" + elementName + "\" elemenata.");
-	    	
-	    		for (int i = 0; i < nodes.getLength(); i++) {
-	    			
-	    			element = (Element) nodes.item(i);
-	    			
-	    			if (!element.getAttribute(attrName).equals("")) {
-	    				System.out.println("\n" + (i+1) + ". element ima vrednost atributa \"" + attrName + "\": " + element.getAttribute(attrName) + ".");
-	    			} else { 
-	    				System.out.println("\n" + (i+1) + ". element \"" + elementName + "\" ne poseduje atribut \"" + attrName + "\".");
-	    			}
-	    		}
-		    	
-		    } else if (choice.equals("*")){
-		    	break;
-		    } else {
-		    	System.out.println("Nepoznata komanda.");
-		    }
-	    }
-	    
-		scanner.close();
+	    printNode(document);
+	    	    
 		System.out.println("[INFO] Kraj.");
-	}*/
+	}
 	
 	/**
 	 * A recursive helper method for iterating 
@@ -206,98 +128,85 @@ public class DOMParser implements ErrorHandler {
 	 * 
 	 * @param node current node
 	 */
-	private void printNode(Node node, int level) {
+	private void printNode(Node node) {
 		
 		// Uslov za izlazak iz rekurzije
 		if (node == null)
 			return;
 
-		// Ispis uopštenih podataka o čvoru iz Node interfejsa
+		// Ispis uopštenih podataka o �?voru iz Node interfejsa
 		// printNodeDetails(node, indent);
 		
-		// Ako je upitanju dokument čvor (korenski element)
+		// Ako je upitanju dokument �?vor (korenski element)
 		if (node instanceof Document) {
-			String tabs = "";
-			for(int i = 0; i < level; i++) { tabs += "\t";}
-			System.out.println(tabs + "START_DOCUMENT");
+			
+			System.out.println("START_DOCUMENT");
+
 			// Rekurzivni poziv za prikaz korenskog elementa
 			Document doc = (Document) node;
-			printNode(doc.getDocumentElement(), level+1);
+			printNode(doc.getDocumentElement());
 		} else if (node instanceof Element) {
 			
 			Element element = (Element) node;
-			String tabs = "";
-			for(int i = 0; i < level; i++) { tabs += "\t";}
-
-			System.out.print(tabs+"START_ELEMENT: " + element.getTagName());
+			
+			System.out.print("START_ELEMENT: " + element.getTagName());
 
 			// Preuzimanje liste atributa
 			NamedNodeMap attributes = element.getAttributes();
 
 			if (attributes.getLength() > 0) {
 				
-				System.out.print(tabs + ", ATTRIBUTES: ");
+				System.out.print(", ATTRIBUTES: ");
+				
 				for (int i = 0; i < attributes.getLength(); i++) {
 					Node attribute = attributes.item(i);
-					printNode(attribute, level+1);
-					if (i < attributes.getLength()-1) {
+					printNode(attribute);
+					if (i < attributes.getLength()-1)
 	        			System.out.print(", ");
-					}
 				}
 			}
 			
 			System.out.println();
+			
 			// Prikaz svakog od child nodova, rekurzivnim pozivom
 			NodeList children = element.getChildNodes();
 			
 			if (children != null) {
 				for (int i = 0; i < children.getLength(); i++) {
 					Node aChild = children.item(i);
-					printNode(aChild, level+1);
+					printNode(aChild);
 				}
 			}
 		} 	
-		// Za naredne čvorove nema rekurzivnog poziva jer ne mogu imati podelemente
+		// Za naredne Cvorove nema rekurzivnog poziva jer ne mogu imati podelemente
 		else if (node instanceof Attr) {
 
 			Attr attr = (Attr) node;
 			System.out.print(attr.getName() + "=" + attr.getValue());
+			
 		}
 		else if (node instanceof Text) {
 			Text text = (Text) node;
 			
-			if (text.getTextContent().trim().length() > 0) {
-				String tabs = "";
-				for(int i = 0; i < level; i++) { tabs += "\t";}
-
-				System.out.println(tabs + "CHARACTERS: " + text.getTextContent().trim());
-			}
+			if (text.getTextContent().trim().length() > 0)
+				System.out.println("CHARACTERS: " + text.getTextContent().trim());
 		}
 		else if (node instanceof CDATASection) {
-			String tabs = "";
-			for(int i = 0; i < level; i++) { tabs += "\t";}
-
-			System.out.println(tabs + "CDATA: " + node.getNodeValue());
+			System.out.println("CDATA: " + node.getNodeValue());
 		}
 		else if (node instanceof Comment) {
-			String tabs = "";
-			for(int i = 0; i < level; i++) { tabs += "\t";}
-
-			System.out.println(tabs + "COMMENT: " + node.getNodeValue());
+			System.out.println("COMMENT: " + node.getNodeValue());
 		}
 		else if (node instanceof ProcessingInstruction) {
 			System.out.print("PROCESSING INSTRUCTION: ");
-			
+
 			ProcessingInstruction instruction = (ProcessingInstruction) node;
 			System.out.print("data: " + instruction.getData());
 			System.out.println(", target: " + instruction.getTarget());
 		}
 		else if (node instanceof Entity) {
 			Entity entity = (Entity) node;
-			String tabs = "";
-			for(int i = 0; i < level; i++) { tabs += "\t";}
-
-			System.out.println(tabs + "ENTITY: " + entity.getNotationName());
+			System.out.println("ENTITY: " + entity.getNotationName());
 		}
 	}
 	
@@ -323,32 +232,15 @@ public class DOMParser implements ErrorHandler {
         System.out.println("[WARN] " + err.getMessage());
     }
 
-	public DOMParser() {}
-
-	public DOMParser(String filePath) {}
-
-	/*public static void main(String args[]) {
+	public static void test() {
 
 		String filePath = null;
-
 		System.out.println("[INFO] DOM Parser");
-
-		if (args.length != 1) {
-
-			filePath = "./data/resenja.xml";
-
-			System.out.println("[INFO] No input file, using default \""	+ filePath + "\"");
-
-		} else {
-			filePath = args[0];
-		}
-
-		DOMParser handler = new DOMParser();
-
+		filePath = "./data/resenje.xml";
+		DOMParserResenje handler = new DOMParserResenje();
 		// Kreiranje DOM stabla na osnovu XML fajla
 		handler.buildDocument(filePath);
-
 		// Prikaz sadržaja korišćenjem DOM API-ja 
 		handler.printElement();
-	}*/
+	}
 }

@@ -13,9 +13,21 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.klaseObavestenja.Obavestenje;
 import com.example.demo.klaseZalbaNaOdluku.ZalbaNaOdluku;
 import com.example.demo.klaseZalbaZbogCutanja.ZalbaCutanje;
+import com.example.demo.resenje.DOMParserResenje;
+import com.example.demo.zahtev.DOMParserZahtev;
 
 @RestController
 public class Unmarshalling {
+
+	@GetMapping(path = "/unmarshalling_resenje")
+	public void readResenje() {
+		DOMParserResenje.test();
+	}
+
+	@GetMapping(path = "/unmarshalling_zahtev")
+	public void readZahtev() {
+		DOMParserZahtev.test();
+	}
 
 	@GetMapping(path = "/unmarshalling_obavestenje")
 	public void unmarshallingObavestenje() {

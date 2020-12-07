@@ -1,4 +1,4 @@
-package resenje;
+package com.example.demo.resenje;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -291,36 +291,17 @@ public class DOMWriterResenje {
 		}
 	}
 	
-	public static void main(String args[]) {
-
-		String filePath = null;
-
+	public static void test() {
 		System.out.println("[INFO] DOM Parser");
-
-		/*if (args.length != 1) {
-
-			filePath = "data/xml/resenje.xml";
-
-			System.out.println("[INFO] No input file, using default \""	+ filePath + "\"");
-
-		} else {
-			filePath = args[0];
-		}*/
-
 		DOMWriterResenje handler = new DOMWriterResenje();
-
 		// Kreiranje Document Ä?vora
 		handler.createDocument();
-
 		// Generisanje DOM stabla
 		handler.generateDOM();
-		
 		// Prikaz sadrÅ¾aja (isprobati sa FileOutputStream-om)
 		handler.transform(System.out);
-		
-		
 		try {
-			handler.transform(new FileOutputStream("data/out/resenjeW.xml"));
+			handler.transform(new FileOutputStream("./gen/resenje.xml"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

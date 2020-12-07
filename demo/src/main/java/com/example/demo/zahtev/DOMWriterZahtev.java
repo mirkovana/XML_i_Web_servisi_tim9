@@ -1,4 +1,4 @@
-package zahtev;
+package com.example.demo.zahtev;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -260,36 +260,18 @@ public class DOMWriterZahtev {
 		}
 	}
 	
-	public static void main(String args[]) {
-
-		String filePath = null;
+	public static void test() {
 
 		System.out.println("[INFO] DOM Parser");
-
-		/*if (args.length != 1) {
-
-			filePath = "data/xml/zahtevW.xml";
-
-			System.out.println("[INFO] No input file, using default \""	+ filePath + "\"");
-
-		} else {
-			filePath = args[0];
-		}*/
-
 		DOMWriterZahtev handler = new DOMWriterZahtev();
-
 		// Kreiranje Document Ä?vora
 		handler.createDocument();
-
 		// Generisanje DOM stabla
 		handler.generateDOM();
-		
 		// Prikaz sadrÅ¾aja (isprobati sa FileOutputStream-om)
 		handler.transform(System.out);
-		
-		
 		try {
-			handler.transform(new FileOutputStream("data/out/zahtevW.xml"));
+			handler.transform(new FileOutputStream("./gen/zahtev.xml"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

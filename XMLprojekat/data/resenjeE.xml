@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zalba
+    xmlns="http://www.projekat.org/resenje"
+    xmlns:resenje="http://www.projekat.org/resenje"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="file:/D:/2020/XML/projekatgit/XML_i_Web_servisi_tim9/demo/data/resenjaschema.xsd"
-    status="osnovana">
+    xsi:schemaLocation="http://www.projekat.org/resenje resenje.xsd"
+    status=""> 
     <uvod>
-        <broj>000-00-0000/0000-00</broj>
-        <datum>00.00.0000.</datum>
+        <broj></broj>
+        <datum></datum>
         <paragraf>
             Poverenik za informacije od javnog značaja i zaštitu 
             podataka o ličnosti, u postupku po albi koju je izjavio
-            <osoba><ime>A</ime><prezime>A</prezime></osoba> 
+            <osoba><ime></ime><prezime></prezime></osoba> 
             zbog nepostupanja 
-            <institucija>
-                <naziv>Učiteljskog fakulteta</naziv> u <mesto>Prizrenu</mesto>
+            <institucija> 
+                <naziv></naziv> u <mesto></mesto>
             </institucija>
             sa privremenim sedištem u 
-            <mesto>Leposaviću, ul. Nemanjina bb</mesto>, 
+            <mesto></mesto>, 
             po njegovom zahtevu od 
-            <datum>16.04.2020.</datum> 
+            <datum></datum> 
             godine za pristup informacijama od javnog značaja, na osnovu 
             <zakon>
                 <clan>člana 35.</clan>
@@ -25,7 +27,7 @@
                 <tacka>tačka 5.</tacka>
                 <naziv>Zakona o slobodnom pristupu informacijama od javnog značaja</naziv>
                 <glasnik>(„Sl. glasnik RS“, br. 120/04, 54/07, 104/09 i 36/10)</glasnik>
-            </zakon>
+            </zakon> 
             a u vezi sa 
             <zakon>
                 <clan>članom 4.</clan>
@@ -51,22 +53,22 @@
     </uvod>
     <sadrzaj>
         <resenje>
-            <naslov nivo="2">RESENJE</naslov>
+            <naslov resenje:nivo="2">RESENJE</naslov>
             <paragraf>
                 Nalaže se 
                 <institucija>
-                    <naziv>Učiteljskom fakultetu</naziv> u
-                    <mesto>Prizrenu</mesto>
+                    <naziv></naziv> u
+                    <mesto></mesto>
                 </institucija>
                 sa privremenim sedištem u 
-                <mesto>Leposaviću</mesto>
+                <mesto></mesto>
                 , da bez odlaganja, a najkasnije u roku od pet dana od dana prijema 
                 ovog rešenja, obavesti 
-                <osoba><ime>A</ime><prezime>A</prezime></osoba>
+                <osoba><ime></ime><prezime></prezime></osoba>
                 , da li poseduje tražene informacije odnosno dokument u kome su iste 
                 sadržane, i to: Ugovor o radu koji je kao poslednji potpisan između 
                 tog Fakulteta i 
-                <osoba><ime>B</ime><prezime>B</prezime></osoba>
+                <osoba><ime></ime><prezime></prezime></osoba>
                 , te da mu, ukoliko takav dokument poseduje dostavi kopiju
                 istog elektronskom poštom na adresu … ili poštom,
                 s tim što će pre dostavljanja zaštititi i učiniti nedostupnim
@@ -75,20 +77,20 @@
                 adresa stanovanja, lični matični broj građana, ime oca, radni staž,
                 prosečna ocena studiranja i sl. ukoliko su takvi podaci sadržani
                 u traženom dokumentu.
-            </paragraf>  
+            </paragraf>
             <paragraf>
                 II O izvršenju rešenja 
                 <institucija>
-                    <naziv>Učiteljski fakultet</naziv> u 
-                    <mesto>Prizrenu</mesto>
+                    <naziv></naziv> u 
+                    <mesto></mesto>
                 </institucija>
                 sa privremenim sedištem u 
-                <mesto>Leposaviću</mesto>
+                <mesto></mesto>
                 , će obavestiti Poverenika u roku od sedam dana od prijema ovog rešenja.
             </paragraf>
         </resenje>
         <obrazlozenje>
-            <naslov nivo="2">OBRAZLOZENJE</naslov>
+            <naslov resenje:nivo="2">OBRAZLOZENJE</naslov>
             <paragraf>
                 <osoba><ime>A</ime><prezime>A</prezime></osoba>
                 , kao tražilac informacija, izjavio je dana 

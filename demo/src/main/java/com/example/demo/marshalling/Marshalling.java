@@ -15,10 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.klaseObavestenja.Obavestenje;
 import com.example.demo.klaseZalbaNaOdluku.ZalbaNaOdluku;
 import com.example.demo.klaseZalbaZbogCutanja.ZalbaCutanje;
+import com.example.demo.resenje.DOMParserResenje;
+import com.example.demo.resenje.DOMWriterResenje;
+import com.example.demo.zahtev.DOMParserZahtev;
+import com.example.demo.zahtev.DOMWriterZahtev;
 
 
 @RestController
 public class Marshalling {
+	
 	@GetMapping(path = "/marshalling_obavestenje")
 	public void marshallingObavestenje() {
 		try {
@@ -116,5 +121,14 @@ public class Marshalling {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@GetMapping(path = "/marshalling_resenje")
+	public void writeResenje() {
+		DOMWriterResenje.test();
+	}
+	@GetMapping(path = "/marshalling_zahtev")
+	public void writeZahtev() {
+		DOMWriterZahtev.test();
 	}
 }

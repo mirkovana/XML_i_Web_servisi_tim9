@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><zalba_cutanje xmlns="http://www.projekat.org/zalbazbogcutanja" xmlns:zc="http://www.projekat.org/zalbazbogcutanja" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.projekat.org/zalbazbogcutanja zalbazbogcutanja.xsd">
+  <naslov zc:nivo="2" zc:stil="bold">ŽALBA KADA ORGAN VLASTI NIJE POSTUPIO/ nije postupio u celosti/ PO ZAHTEVU TRAŽIOCA U ZAKONSKOM ROKU (ĆUTANjE UPRAVE)</naslov>
+  <podaci_o_povereniku>
+    <adresa>
+      <grad>Grad1</grad>
+      <ulica>Ulica1</ulica>
+      <broj>15</broj>
+    </adresa>
+    <naziv_poverenika>Povereniky za informacije od javnog značaja i zaštitu podataka o ličnosti</naziv_poverenika>
+  </podaci_o_povereniku>
+  <telo_zalbe>U skladu sa <zakon>
+      <clan>članom 22.</clan>
+      <naziv>Zakona o slobodnom pristupu informacijama od javnog značaja</naziv>
+    </zakon> podnosim: ZALBU protiv<naziv_organa>naziv organa</naziv_organa>zbog toga sto organ vlasti nije:<razlozi>
+      <razlog id="1" podvuceno="false">nije postupio</razlog>
+      <razlog id="2" podvuceno="false">nije postupio u celosti</razlog>
+      <razlog id="3" podvuceno="false">nije postupio u zakonskom roku</razlog>
+    </razlozi>po mom zahtevu za slobodan pristup informacijama od javnog značaja koji sam podneo tom organu dana<datum>10.10.2010.</datum>godine, a kojim sam tražio/la da mi se u skladu sa <zakon>
+      <naziv>Zakona o slobodnom pristupu informacijama od javnog značaja</naziv>
+    </zakon>
+    <podaci_o_zahtevu_i_informaciji>hasda hahda hsh adha adjhajda</podaci_o_zahtevu_i_informaciji>Na osnovu iznetog, predlažem da Poverenik uvaži moju žalbu i omogući mi pristup traženoj/im informaciji/ma. Kao dokaz , uz žalbu dostavljam kopiju zahteva sa dokazom o predaji organu vlasti<napomena>Kod žalbe zbog nepostupanju po zahtevu u celosti, treba priložiti i dobijeni odgovor organa vlasti.</napomena>
+  </telo_zalbe>
+  <podaci_o_podnosiocu_zalbe>
+    <adresa>
+      <grad>Grad2</grad>
+      <ulica>Ulica2</ulica>
+      <broj>10</broj>
+    </adresa>
+    <ime>Ime2</ime>
+    <prezime>Prezime2</prezime>
+    <drugi_podaci_za_kontakt>kjahdajbdkja podaci</drugi_podaci_za_kontakt>
+    <potpis>potpis2</potpis>
+  </podaci_o_podnosiocu_zalbe>
+  <podaci_o_mestu_i_datumu_podnosenja_zalbe>
+    <mesto>Mesto1</mesto>
+    <datum>10.10.2010.</datum>
+  </podaci_o_mestu_i_datumu_podnosenja_zalbe>
+</zalba_cutanje>

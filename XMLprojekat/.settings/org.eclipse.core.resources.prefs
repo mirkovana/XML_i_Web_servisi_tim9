@@ -1,3 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/resenje/DOMWriterResenje.java=UTF-8
 encoding//src/zahtev/DOMWriterZahtev.java=UTF-8
+encoding//src/zalbanaodluku/DOMWriterZalbaNaOdluku.java=UTF-8
+encoding//src/zalbazbogcutanja/DOMWriterZalbaZbogCutanja.java=UTF-8
