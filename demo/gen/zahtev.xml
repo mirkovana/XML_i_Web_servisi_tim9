@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><zahtev xmlns="http://www.projekat.org/zahtev" xmlns:za="http://www.projekat.org/zahtev" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.projekat.org/zahtev zahtev.xsd">
+  <institucija>
+    <naziv>naziv0</naziv> u <mesto>mesto0</mesto>
+  </institucija>
+  <naslov za:nivo="4" za:stil="bold">Zahtev za pristupanje informacijama</naslov>
+  <tekst_zahteva>
+    <uvod>Na osnovu<zakon>
+        <clan>clana 15.</clan>
+        <stav>st. 1.</stav>
+        <naziv>Zakona o slobodnom pristupu informacijama od javnog značaja</naziv>
+        <glasnik>(„Službeni glasnik RS“, br. 120/04, 54/07, 104/09 i 36/10)</glasnik>
+      </zakon>od gore navedenog organa zahtevam:*</uvod>
+    <lista>
+      <stavka za:checked="false" za:id="1">obaveštenje da li poseduje traženu informaciju</stavka>
+      <stavka za:checked="false" za:id="2">uvid u dokument koji sadrži traženu informaciju</stavka>
+      <stavka za:checked="false" za:id="3">kopiju dokumenta koji sadrži traženu informaciju</stavka>
+      <stavka za:checked="false" za:id="4">dostavljanje kopije dokumenta koji sadrži traženu informaciju:**<lista>
+          <stavka za:checked="false" za:id="5">postom</stavka>
+          <stavka za:checked="false" za:id="6">elektronskom postom</stavka>
+          <stavka za:checked="false" za:id="7">faksom</stavka>
+          <stavka za:checked="false" za:id="8">na drugi nacin:***<drugi_nacin>neki drugi nacin za dostavu</drugi_nacin>
+          </stavka>
+        </lista>
+      </stavka>
+    </lista>Ovaj zahtev se odnosi na sledece informacije:<informacije>ahda hahd ua dhajdh ah dlakhdah alsh dka </informacije>
+  </tekst_zahteva>
+  <mesto_datum>U <mesto>mesto1</mesto>dana<datum>10.10.2010.</datum>godine</mesto_datum>
+  <podnosilac>
+    <osoba>
+      <ime>ime0</ime>
+      <prezime>prezime0</prezime>
+    </osoba>
+    <adresa>adresa0</adresa>
+    <drugi_podaci>drugi_podaci0</drugi_podaci>
+    <potpis>potpis</potpis>
+  </podnosilac>
+  <footer>
+    <reference>*U kućici označiti koja zakonska prava na pristup informacijama želite da ostvarite</reference>
+    <reference>**U kućici označiti način dostavljanja kopije dokumenata.</reference>
+    <reference>***Kada zahtevate drugi način dostavljanja obavezno upisati koji način dostavljanja</reference>
+  </footer>
+</zahtev>

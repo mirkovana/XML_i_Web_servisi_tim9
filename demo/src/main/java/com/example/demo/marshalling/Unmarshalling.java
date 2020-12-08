@@ -79,6 +79,7 @@ public class Unmarshalling {
 
 			// Prikazuje unmarshallovan objekat
 			//printZalbaCutanje(zalbaCutanje);
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 			marshaller.marshal(zalbaCutanje,System.out);
 		} catch (JAXBException e) {
 			e.printStackTrace();
@@ -148,6 +149,7 @@ public class Unmarshalling {
 
 			// Prikazuje unmarshallovan objekat
 			//printZalbaOdluka(zalbaNaOdluku);
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 			marshaller.marshal(zalbaNaOdluku,System.out);
 		} catch (JAXBException e) {
 			e.printStackTrace();
