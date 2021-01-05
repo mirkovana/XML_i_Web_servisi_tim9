@@ -1,0 +1,25 @@
+<div class="container ml-auto mr-auto mt-5 w-25 border pt-5 pl-5 pr-5 pb-0 bg-white shadow-lg rounded">
+    <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" name="username" formControlName="username" id="username" placeholder="Enter username">
+        <div *ngIf="loginForm.controls['username'].invalid && loginForm.controls['username'].touched" class="ml-1 mt-0 mb-0">
+          <small *ngIf="loginForm.controls['username'].errors?.required" class="text-danger">Please enter username</small>
+          <small *ngIf="loginForm.controls['username'].errors?.username" class="text-danger">Username form is not valid</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" formControlName="password" id="password" placeholder="Enter password">
+        <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched" class="ml-1 mt-0 mb-0">
+          <small *ngIf="loginForm.controls['password'].errors?.required" class="text-danger">Please enter password</small>
+        </div>
+      </div>
+      <div class="pt-3">
+        <button class="btn btn-block mt-3 btn-success" [disabled]="!loginForm.valid" (click)="loginUser()">Login</button>
+      </div>
+    </form>
+    <div class="text-center pt-3">
+      <p>Don't have an account? <a routerLink="/sign-up" class="signUpLink">Sign Up</a></p>
+    </div>
+  </div>
