@@ -1,47 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ob:obavestenje xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ftn.uns.ac.rs/obavestenje Obavestenje.xsd ">
-  <ob:opste_informacije>
-    <ob:podaci_o_organu>
-      <ob:naziv>Neki organ</ob:naziv>
-      <ob:sediste>Novi Sad</ob:sediste>
-    </ob:podaci_o_organu>
-    <ob:broj_predmeta>123abc</ob:broj_predmeta>
-    <ob:datum>
-      <ob:dan>---01</ob:dan>
-      <ob:mesec>--01</ob:mesec>
-      <ob:godina>2001</ob:godina>
-    </ob:datum>
-    <ob:podaci_o_podnosiocu>
-      <ob:ime>Imenko</ob:ime>
-      <ob:prezime>Prezimenko</ob:prezime>
-      <ob:naziv_zahteva>Zahteva za nesto</ob:naziv_zahteva>
-      <ob:adresa>
-        <ob:naziv_ulice>Bul. Despota Stefana</ob:naziv_ulice>
-        <ob:broj_ulice>7</ob:broj_ulice>
-        <ob:grad>Novi Sad</ob:grad>
-        <ob:postanski_broj>21000</ob:postanski_broj>
-      </ob:adresa>
-    </ob:podaci_o_podnosiocu>
-  </ob:opste_informacije>
-  <ob:naslov>Naslov obavestenja</ob:naslov>
-  <ob:podnaslov>Podnaslov obavestenja</ob:podnaslov>
-  <ob:telo>
-    <ob:godina>2001</ob:godina>
-    <ob:opis>Opis trazene informacije</ob:opis>
-    <ob:datum>
-      <ob:dan>---01</ob:dan>
-      <ob:mesec>--01</ob:mesec>
-      <ob:godina>2001</ob:godina>
-    </ob:datum>
-    <ob:vreme>12:00:00</ob:vreme>
-    <ob:od>12:00:00</ob:od>
-    <ob:do>12:00:00</ob:do>
-    <ob:adresa_organa>
-      <ob:naziv_ulice>Bul. Despota Stefana</ob:naziv_ulice>
-      <ob:broj_ulice>12</ob:broj_ulice>
-      <ob:broj_kancelarije>12</ob:broj_kancelarije>
-    </ob:adresa_organa>
-    <ob:iznos>1200.00</ob:iznos>
-  </ob:telo>
-  <ob:dostavljeno>Imenovanom</ob:dostavljeno>
-</ob:obavestenje>
+<obavestenje>
+  <opste_informacije>
+    <podaci_o_organu>
+      <naziv>Neki organ</naziv>
+      <sediste>Novi Sad</sediste>
+    </podaci_o_organu>
+    <broj_predmeta>123abc</broj_predmeta>
+    <datum>
+      <dan>---01</dan>
+      <mesec>--01</mesec>
+      <godina>2001</godina>
+    </datum>
+    <podaci_o_podnosiocu>
+      <ime>Imenko</ime>
+      <prezime>Prezimenko</prezime>
+      <naziv_zahteva>Zahteva za nesto</naziv_zahteva>
+      <adresa>
+        <naziv_ulice>Bul. Despota Stefana</naziv_ulice>
+        <broj_ulice>7</broj_ulice>
+        <grad>Novi Sad</grad>
+        <postanski_broj>21000</postanski_broj>
+      </adresa>
+    </podaci_o_podnosiocu>
+  </opste_informacije>
+  <naslov>O B A V E Š T E NJ E</naslov>
+  <podnaslov>o stavljanju na uvid dokumenta koji sadrži
+    traženu informaciju i o izradi kopije
+    
+  </podnaslov>
+  <telo>
+    <godina>2001</godina>
+    <opis>Opis trazene informacije</opis>
+    <datum>
+      <dan>---01</dan>
+      <mesec>--01</mesec>
+      <godina>2001</godina>
+    </datum>
+    <vreme>12:00:00</vreme>
+    <od>12:00:00</od>
+    <do>12:00:00</do>
+    <adresa_organa>
+      <naziv_ulice>Bul. Despota Stefana</naziv_ulice>
+      <broj_ulice>12</broj_ulice>
+      <broj_kancelarije>12</broj_kancelarije>
+    </adresa_organa>
+    <iznos>1200.00</iznos>
+  </telo>
+  <dostavljeno>Imenovanom</dostavljeno>
+</obavestenje>
