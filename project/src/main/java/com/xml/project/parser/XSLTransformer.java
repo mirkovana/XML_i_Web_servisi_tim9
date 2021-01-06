@@ -28,7 +28,6 @@ public class XSLTransformer {
 	public String getHTMLfromXML(String xslFileName, Document xml) {
 		
 		String xmlString = getStringFromXML(xml);
-	
 		TransformerFactory factory = TransformerFactory.newInstance();
 		StreamSource xslStream = new StreamSource(new File(xslFileName));
 		
