@@ -56,8 +56,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests().antMatchers("/auth/**").permitAll().antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()
 			.antMatchers(HttpMethod.POST, "/api/user/login", "/api/user/register").permitAll()
 			.antMatchers(HttpMethod.GET, "/api/db/init").permitAll()
-			.antMatchers(HttpMethod.GET, "/api/response/html/**").permitAll()
-			.antMatchers(HttpMethod.GET, "/api/response/pdf/**").permitAll()
+			.antMatchers(HttpMethod.GET, "/api/response/**").permitAll()
+			.antMatchers(HttpMethod.GET, "/api/request/**").permitAll()
 			.anyRequest().authenticated().and()
 			.cors().and();
 		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
@@ -68,8 +68,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) {
 		web.ignoring().antMatchers(HttpMethod.POST, "/api/user/login");
 		web.ignoring().antMatchers(HttpMethod.POST, "/api/user/register");
-		web.ignoring().antMatchers(HttpMethod.GET, "/api/response/html/**");
-		web.ignoring().antMatchers(HttpMethod.GET, "/api/response/pdf/**");
+		web.ignoring().antMatchers(HttpMethod.GET, "/api/response/**");
+		web.ignoring().antMatchers(HttpMethod.GET, "/api/request/**");
 		web.ignoring().antMatchers(HttpMethod.GET, "/api/db/init");
 		web.ignoring().antMatchers(HttpMethod.GET, "/", "/webjars/**", "/*.html", "/favicon.ico", "/**/*.html",
 				"/**/*.css", "/**/*.js","/v2/api-docs");

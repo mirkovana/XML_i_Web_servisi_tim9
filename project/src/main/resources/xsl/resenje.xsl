@@ -10,12 +10,21 @@
           p.indent {
             text-indent: 12px;
           }
-          h2.headertekst {
+          h1.headertekst {
             text-align: center;
           }
+          h2.headertekst {
+          text-align: center;
+          }
+          h3.headertekst {
+          text-align: center;
+          }
           h4.headertekst {
+          text-align: center;
+          }
+          h5.headertekst {
             text-align: center;
-          },
+          }
         </style>
       </head>
       <body>

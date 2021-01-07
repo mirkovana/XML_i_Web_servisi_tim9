@@ -23,9 +23,11 @@ import { MatCardModule } from '@angular/material/card';
 
 import { UserService } from './service/user.service';
 import { ResponseService } from './service/response.service';
+import { RequestService } from './service/request.service';
 import { InterceptorService } from './service/interceptor.service';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AddResponseComponent } from './components/add-response/add-response.component';
+import { AddRequestComponent } from './components/add-request/add-request.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { AddResponseComponent } from './components/add-response/add-response.com
     HomeComponent,
     SignUpComponent,
     AddResponseComponent,
+    AddRequestComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +73,7 @@ import { AddResponseComponent } from './components/add-response/add-response.com
   },
     UserService,
     ResponseService,
+    RequestService,
   ],
   bootstrap: [AppComponent]
 })
