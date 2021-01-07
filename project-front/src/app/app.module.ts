@@ -24,10 +24,15 @@ import { MatCardModule } from '@angular/material/card';
 import { UserService } from './service/user.service';
 import { ResponseService } from './service/response.service';
 import { RequestService } from './service/request.service';
-import { InterceptorService } from './service/interceptor.service';
+import { InterceptorService } from './service/interceptor.service'
+import { DecisionAppealService } from './service/decision-appeal.service';
+import { SilenceAppealService } from './service/silence-appeal.service';
+
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AddResponseComponent } from './components/add-response/add-response.component';
 import { AddRequestComponent } from './components/add-request/add-request.component';
+import { AddDecisionAppealComponent } from './components/add-decision-appeal/add-decision-appeal.component';
+import { AddSilenceAppealComponent } from './components/add-silence-appeal/add-silence-appeal.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +42,8 @@ import { AddRequestComponent } from './components/add-request/add-request.compon
     SignUpComponent,
     AddResponseComponent,
     AddRequestComponent,
+    AddDecisionAppealComponent,
+    AddSilenceAppealComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +81,8 @@ import { AddRequestComponent } from './components/add-request/add-request.compon
     UserService,
     ResponseService,
     RequestService,
+    DecisionAppealService,
+    SilenceAppealService,
   ],
   bootstrap: [AppComponent]
 })
