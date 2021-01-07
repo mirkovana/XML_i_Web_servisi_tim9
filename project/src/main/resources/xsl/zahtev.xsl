@@ -76,13 +76,13 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     </p> 
 
     <p style="text-align:left;">
-      U <u><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:mesto_datum/za:mesto/."/></u><br></br> 
-      Datuma <u><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:mesto_datum/za:datum/."/></u>
+      U <u><xsl:value-of select="za:zahtev/za:mesto_datum/za:mesto/."/></u><br></br> 
+      Datuma <u><xsl:value-of select="za:zahtev/za:mesto_datum/za:datum/."/></u>
       <span style="float:right;">
-        Ime: <u><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:podnosilac/za:osoba/."/></u> <br></br>
-        Adresa: <u><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:podnosilac/za:adresa/."/></u> <br></br>
-        Drugi podaci: <u><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:podnosilac/za:drugi_podaci/."/></u> <br></br>
-        Potpis: <u><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:podnosilac/za:potpis/."/> </u>
+        Ime: <u><xsl:value-of select="za:zahtev/za:podnosilac/za:osoba/."/></u> <br></br>
+        Adresa: <u><xsl:value-of select="za:zahtev/za:podnosilac/za:adresa/."/></u> <br></br>
+        Drugi podaci: <u><xsl:value-of select="za:zahtev/za:podnosilac/za:drugi_podaci/."/></u> <br></br>
+        Potpis: <u><xsl:value-of select="za:zahtev/za:podnosilac/za:potpis/."/> </u>
       </span>
     </p>
     <br></br><br></br>
