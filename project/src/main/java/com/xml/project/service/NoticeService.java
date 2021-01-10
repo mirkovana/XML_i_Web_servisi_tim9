@@ -60,7 +60,7 @@ public class NoticeService {
 		}
 		if (prev != null) {
 			System.out.println("response already exist");
-//			return;
+			return;
 		}
 		System.out.println("found response = " + prev);
 		
