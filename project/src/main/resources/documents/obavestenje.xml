@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ob:obavestenje 
+  xmlns="http://www.ftn.uns.ac.rs/obavestenje" 
+  xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:pred="http://www.ftn.uns.ac.rs/predicate/"
+  xsi:schemaLocation="http://www.ftn.uns.ac.rs/obavestenje Obavestenje.xsd "
+ 
+>
+  <ob:opste_informacije>
+    <ob:podaci_o_organu>
+      <ob:naziv>Naziv organa</ob:naziv>
+      <ob:sediste>Novi Sad</ob:sediste>
+    </ob:podaci_o_organu>
+    <ob:broj_predmeta xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" property="pred:brojPredmeta">123abc</ob:broj_predmeta>
+    <ob:datum xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" property="pred:datum">10.10.2020.</ob:datum>
+    <ob:podaci_o_podnosiocu>
+      <ob:ime xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" property="pred:ime">Imenko</ob:ime>
+      <ob:prezime xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" property="pred:prezime">Prezimenko</ob:prezime>
+      <ob:naziv_zahteva>Naziv_zahteva</ob:naziv_zahteva>
+      <ob:adresa>
+        <ob:naziv_ulice>Bul Despota Stefana</ob:naziv_ulice>
+        <ob:broj_ulice>7</ob:broj_ulice>
+        <ob:grad>Novi Sad</ob:grad>
+        <ob:postanski_broj>21000</ob:postanski_broj>
+      </ob:adresa>
+    </ob:podaci_o_podnosiocu>
+  </ob:opste_informacije>
+  <ob:naslov>O B A V E S T E NJ E</ob:naslov>
+  <ob:podnaslov>P O D N A S L O V</ob:podnaslov>
+  <ob:telo>
+    <ob:godina>2001</ob:godina>
+    <ob:opis>Neki opis</ob:opis>
+     <ob:datum>10.10.2020.</ob:datum>
+    <ob:vreme>12:00:00</ob:vreme>
+    <ob:od>12:00:00</ob:od>
+    <ob:do>12:00:00</ob:do>
+    <ob:adresa_organa>
+      <ob:naziv_ulice>Mire Popare</ob:naziv_ulice>
+      <ob:broj_ulice>25</ob:broj_ulice>
+      <ob:broj_kancelarije>12</ob:broj_kancelarije>
+    </ob:adresa_organa>
+    <ob:iznos>1200.00</ob:iznos>
+  </ob:telo>
+  <ob:dostavljeno>Imenovanom</ob:dostavljeno>
+</ob:obavestenje>

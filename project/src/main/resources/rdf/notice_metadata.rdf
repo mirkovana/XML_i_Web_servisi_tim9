@@ -1,0 +1,14 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
+  <rdf:Description rdf:about="">
+    <pred:brojPredmeta xmlns:pred="http://www.ftn.uns.ac.rs/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">123abc</pred:brojPredmeta>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <pred:datum xmlns:pred="http://www.ftn.uns.ac.rs/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">10.10.2020.</pred:datum>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <pred:ime xmlns:pred="http://www.ftn.uns.ac.rs/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Imenko</pred:ime>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <pred:prezime xmlns:pred="http://www.ftn.uns.ac.rs/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Prezimenko</pred:prezime>
+  </rdf:Description>
+</rdf:RDF>

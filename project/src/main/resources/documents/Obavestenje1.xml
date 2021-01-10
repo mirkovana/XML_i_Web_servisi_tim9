@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ob:obavestenje xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ftn.uns.ac.rs/obavestenje Obavestenje.xsd ">
+  <ob:opste_informacije>
+    <ob:podaci_o_organu>
+      <ob:naziv>ob:naziv</ob:naziv>
+      <ob:sediste>ob:sediste</ob:sediste>
+    </ob:podaci_o_organu>
+    <ob:broj_predmeta property="">ob:broj_predmeta</ob:broj_predmeta>
+    <ob:datum property="">ob:datum</ob:datum>
+    <ob:podaci_o_podnosiocu>
+      <ob:ime property="">ob:ime</ob:ime>
+      <ob:prezime property="">ob:prezime</ob:prezime>
+      <ob:naziv_zahteva>ob:naziv_zahteva</ob:naziv_zahteva>
+      <ob:adresa>
+        <ob:naziv_ulice>ob:naziv_ulice</ob:naziv_ulice>
+        <ob:broj_ulice>ob:broj_ulice</ob:broj_ulice>
+        <ob:grad>ob:grad</ob:grad>
+        <ob:postanski_broj>0</ob:postanski_broj>
+      </ob:adresa>
+    </ob:podaci_o_podnosiocu>
+  </ob:opste_informacije>
+  <ob:naslov>ob:naslov</ob:naslov>
+  <ob:podnaslov>ob:podnaslov</ob:podnaslov>
+  <ob:telo>
+    <ob:godina>2001</ob:godina>
+    <ob:opis>ob:opis</ob:opis>
+    <ob:datum>ob:datum</ob:datum>
+    <ob:vreme>12:00:00</ob:vreme>
+    <ob:od>12:00:00</ob:od>
+    <ob:do>12:00:00</ob:do>
+    <ob:adresa_organa>
+      <ob:naziv_ulice>ob:naziv_ulice</ob:naziv_ulice>
+      <ob:broj_ulice>ob:broj_ulice</ob:broj_ulice>
+      <ob:broj_kancelarije>0</ob:broj_kancelarije>
+    </ob:adresa_organa>
+    <ob:iznos>0.0</ob:iznos>
+  </ob:telo>
+  <ob:dostavljeno>Imenovanom</ob:dostavljeno>
+</ob:obavestenje>
