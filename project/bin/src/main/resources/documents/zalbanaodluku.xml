@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zo:zalba_na_odluku 
+  xmlns="http://www.projekat.org/zalbanaodluku"
+  xmlns:zo="http://www.projekat.org/zalbanaodluku"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.projekat.org/zalbanaodluku zalbanaodluku.xsd"
+  username="username"
+  datum="10.10.2010."
+  broj="000-00-0000/0000-00">  
+  <zo:naslov>  
+    ŽALBA PROTIV ODLUKE ORGANA VLASTI KOJOM JE 
+    ODBIJEN ILI ODBAČEN ZAHTEV ZA PRISTUP INFORMACIJI
+  </zo:naslov>
+  <zo:podaci_o_povereniku>
+    <zo:adresa>
+      <zo:grad>Beograd</zo:grad>
+      <zo:ulica>Bulevar kralja</zo:ulica>
+      <zo:broj>15</zo:broj>
+    </zo:adresa>
+    <zo:naziv_poverenika>Povereniku za informacije od javnog značaja i zaštitu podataka o ličnosti</zo:naziv_poverenika>
+  </zo:podaci_o_povereniku>
+  <zo:podaci_o_zalbi>
+    <zo:naslov>ZALBA</zo:naslov>
+    <zo:podnosilac_zalbe>
+      <zo:adresa>
+        <zo:grad>Novi Sad</zo:grad>
+        <zo:ulica>ulicaneka</zo:ulica>
+        <zo:broj>15</zo:broj>
+      </zo:adresa>
+      <zo:ime>Ime1</zo:ime>
+      <zo:prezime>Prezime1</zo:prezime>
+      <zo:potpis>Potpis1</zo:potpis>
+    </zo:podnosilac_zalbe>
+    protiv resenja-zakljucka
+    <zo:organ_koji_je_doneo_odluku>
+      orgaan koji je doneo odluku
+    </zo:organ_koji_je_doneo_odluku>
+    <zo:broj_zalbe>000-00-0000/0000-00</zo:broj_zalbe>
+    <zo:datum>10.10.2010.</zo:datum>
+  </zo:podaci_o_zalbi>
+  <zo:sadrzaj_zalbe>
+    Navedenom odlukom organa vlasti (rešenjem, zaključkom, obaveštenjem u pisanoj formi sa 
+    elementima odluke) , suprotno zakonu, odbijen-odbačen je moj zahtev koji sam podneo/la-uputio/la
+    dana <zo:datum>10.10.2010.</zo:datum> godine i tako mi uskraćeno-onemogućeno ostvarivanje ustavnog i zakonskog 
+    prava na slobodan pristup informacijama od javnog značaja. Odluku pobijam u celosti, odnosno u 
+    delu kojim
+    <zo:zbog_cega_se_pobija_odluka>
+      __________________ jer nije zasnovana na Zakonu o slobodnom pristupu informacijama od javnog značaja.
+    </zo:zbog_cega_se_pobija_odluka>
+    Na osnovu iznetih razloga, predlažem da 
+    <zo:predlog_povereniku>
+      Poverenik uvaži moju žalbu, poništi odluka 
+      prvostepenog organa i omogući mi pristup traženoj/im informaciji/ma.      
+    </zo:predlog_povereniku>
+    Žalbu podnosim blagovremeno, u zakonskom roku utvrđenom u 
+    članu 22. st. 1. Zakona o slobodnom pristupu informacijama od javnog značaja.
+  </zo:sadrzaj_zalbe>
+  <zo:podaci_o_podnosiocu_zalbe>
+    <zo:adresa>
+      <zo:grad>grad2</zo:grad>
+      <zo:ulica>ulica2</zo:ulica>
+      <zo:broj>10</zo:broj>
+    </zo:adresa>
+    <zo:ime>Ime1</zo:ime>
+    <zo:prezime>Prezime1</zo:prezime>
+    <zo:potpis>Potpis1</zo:potpis>
+    <zo:drugi_podaci_za_kontakt>Drugipodaci</zo:drugi_podaci_za_kontakt>
+  </zo:podaci_o_podnosiocu_zalbe>
+  <zo:podaci_o_mestu_i_datumu_podnosenja_zalbe>
+    <zo:mesto>Novi Sad</zo:mesto>
+    <zo:datum>10.10.2010.</zo:datum>
+  </zo:podaci_o_mestu_i_datumu_podnosenja_zalbe>
+  <zo:napomena> 
+    <zo:tacka>
+      U žalbi se mora navesti odluka koja se pobija (rešenje, zaključak, obaveštenje), 
+      naziv organa koji je odluku doneo, kao i broj i datum odluke. 
+      Dovoljno je da žalilac navede u žalbi u kom pogledu je nezadovoljan odlukom,
+      s tim da žalbu ne mora posebno obrazložiti. 
+      Ako žalbu izjavljuje na ovom obrascu, dodatno obrazloženje može posebno priložiti.
+    </zo:tacka>
+    <zo:tacka>
+      Uz žalbu obavezno priložiti kopiju podnetog zahteva i dokaz o njegovoj 
+      predaji-upućivanju organu kao i kopiju odluke organa koja se osporava žalbom.
+    </zo:tacka>
+  </zo:napomena>
+</zo:zalba_na_odluku>

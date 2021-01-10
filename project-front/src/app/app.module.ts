@@ -33,6 +33,7 @@ import { AddResponseComponent } from './components/add-response/add-response.com
 import { AddRequestComponent } from './components/add-request/add-request.component';
 import { AddDecisionAppealComponent } from './components/add-decision-appeal/add-decision-appeal.component';
 import { AddSilenceAppealComponent } from './components/add-silence-appeal/add-silence-appeal.component';
+import { AddNoticeComponent } from './components/add-notice/add-notice.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { AddSilenceAppealComponent } from './components/add-silence-appeal/add-s
     AddRequestComponent,
     AddDecisionAppealComponent,
     AddSilenceAppealComponent,
+    AddNoticeComponent,
   ],
   imports: [
     BrowserModule,

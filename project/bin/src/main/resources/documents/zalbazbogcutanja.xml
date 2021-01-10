@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zc:zalba_cutanje 
+  xmlns="http://www.projekat.org/zalbazbogcutanja"
+  xmlns:zc="http://www.projekat.org/zalbazbogcutanja"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.projekat.org/zalbazbogcutanja zalbazbogcutanja.xsd"
+  id="0"
+  username="username"
+  nazivOrgana="nazivOrgana">
+  <zc:naslov> 
+    ŽALBA KADA ORGAN VLASTI NIJE POSTUPIO/ nije 
+    postupio u celosti/ PO ZAHTEVU TRAŽIOCA U ZAKONSKOM ROKU (ĆUTANjE UPRAVE)
+  </zc:naslov>
+  <zc:podaci_o_povereniku>
+    <zc:adresa>
+      <zc:grad>Grad1</zc:grad>
+      <zc:ulica>Ulica1</zc:ulica>
+      <zc:broj>15</zc:broj>
+    </zc:adresa>
+    <zc:naziv_poverenika>Povereniky za informacije od javnog značaja i zaštitu podataka o ličnosti</zc:naziv_poverenika>
+  </zc:podaci_o_povereniku>
+  <zc:telo_zalbe>
+    U skladu sa 
+    <zc:zakon>
+      <zc:clan>članom 22.</zc:clan>
+      <zc:naziv>Zakona o slobodnom pristupu informacijama od javnog značaja</zc:naziv>
+    </zc:zakon>
+    podnosim:
+    ZALBU protiv
+    <zc:naziv_organa>
+      naziv organa
+    </zc:naziv_organa>
+    zbog toga sto organ vlasti nije:
+    <zc:razlozi>
+      <zc:razlog podvuceno="false" id="1">nije postupio</zc:razlog>
+      <zc:razlog podvuceno="false" id="2">nije postupio u celosti</zc:razlog>
+      <zc:razlog podvuceno="false" id="3">u zakonskom roku</zc:razlog>
+    </zc:razlozi>
+    po mom zahtevu za slobodan pristup informacijama od javnog značaja koji sam podneo tom organu 
+    dana <zc:datum>10.10.2010.</zc:datum> godine, a kojim sam tražio/la da mi se u skladu sa 
+    <zc:zakon> 
+      <zc:naziv>Zakona o slobodnom pristupu informacijama od javnog značaja</zc:naziv>
+    </zc:zakon>
+    omogući uvid- kopija dokumenta koji sadrži informacije o /u vezi sa :
+    <zc:podaci_o_zahtevu_i_informaciji>
+      hasda hahda hsh adha adjhajda
+    </zc:podaci_o_zahtevu_i_informaciji>
+    Na osnovu iznetog, predlažem da Poverenik uvaži moju žalbu i 
+    omogući mi pristup traženoj/im informaciji/ma.
+    Kao dokaz , uz žalbu dostavljam kopiju zahteva sa dokazom o predaji organu vlasti
+    <zc:napomena>
+      Kod žalbe zbog nepostupanju po zahtevu u celosti, treba priložiti i dobijeni odgovor organa vlasti.
+    </zc:napomena>
+  </zc:telo_zalbe>
+  <zc:podaci_o_podnosiocu_zalbe>
+    <zc:adresa>
+      <zc:grad>Grad2</zc:grad>
+      <zc:ulica>Ulica2</zc:ulica>
+      <zc:broj>10</zc:broj>
+    </zc:adresa>
+    <zc:ime>Ime2</zc:ime>
+    <zc:prezime>Prezime2</zc:prezime>
+    <zc:drugi_podaci_za_kontakt>kjahdajbdkja</zc:drugi_podaci_za_kontakt>
+    <zc:potpis>potpis2</zc:potpis>
+  </zc:podaci_o_podnosiocu_zalbe>
+  <zc:podaci_o_mestu_i_datumu_podnosenja_zalbe>
+    <zc:mesto>Mesto1</zc:mesto>
+    <zc:datum>10.10.2010.</zc:datum>
+  </zc:podaci_o_mestu_i_datumu_podnosenja_zalbe>
+</zc:zalba_cutanje>

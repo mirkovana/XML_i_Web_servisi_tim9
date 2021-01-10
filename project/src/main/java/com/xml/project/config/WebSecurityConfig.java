@@ -75,6 +75,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		web.ignoring().antMatchers(HttpMethod.GET, "/api/request/**");
 		web.ignoring().antMatchers(HttpMethod.GET, "/api/decision-appeals/**");
 		web.ignoring().antMatchers(HttpMethod.GET, "/api/silence-appeals/**");
+		web.ignoring().antMatchers(HttpMethod.GET, "/api/notice/**");
 		web.ignoring().antMatchers(HttpMethod.GET, "/api/db/init");
 		web.ignoring().antMatchers(HttpMethod.GET, "/", "/webjars/**", "/*.html", "/favicon.ico", "/**/*.html",
 				"/**/*.css", "/**/*.js","/v2/api-docs");
