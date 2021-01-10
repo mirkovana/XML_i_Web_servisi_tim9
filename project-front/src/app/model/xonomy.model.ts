@@ -452,4 +452,91 @@ export class XonomyModel {
             }
         }
     }
+
+    public static requestXonomy = {
+        elements: {
+            "za:zahtev": {
+                menu: [
+                    {
+                        caption: "Add attribute 'id'",
+                        action: Xonomy.newAttribute,
+                        actionParameter: { name: "id", value: "0" },
+                        hideIf(jsElement) {
+                            return jsElement.hasAttribute('id');
+                        }
+                    },
+                    {
+                        caption: "Add attribute 'username'",
+                        action: Xonomy.newAttribute,
+                        actionParameter: { name: "username", value: "0" },
+                        hideIf(jsElement) {
+                            return jsElement.hasAttribute('username');
+                        }
+                    },
+                    {
+                        caption: "Add attribute 'datum'",
+                        action: Xonomy.newAttribute,
+                        actionParameter: { name: "datum", value: "0" },
+                        hideIf(jsElement) {
+                            return jsElement.hasAttribute('datum');
+                        }
+                    },
+                    {
+                        caption: "Add attribute 'institucija'",
+                        action: Xonomy.newAttribute,
+                        actionParameter: { name: "institucija", value: "0" },
+                        hideIf(jsElement) {
+                            return jsElement.hasAttribute('institucija');
+                        }
+                    },
+                    
+                    {
+                        caption: 'Add <sadrzaj>',
+                        action: Xonomy.newElementChild,
+                        actionParameter: '<sadrzaj></sadrzaj>',
+                        hideIf: function (jsElement) {
+                            return jsElement.hasChildElement("sadrzaj");
+                        }
+                    }
+                ],
+                attributes: {
+                    "status": {
+                        asker: Xonomy.askString,
+                        menu: [{
+                            caption: 'Delete this @status',
+                            action: Xonomy.deleteAttribute
+                        }]
+                    },
+                    "broj": {
+                        asker: Xonomy.askString,
+                        menu: [{
+                            caption: 'Delete this @broj',
+                            action: Xonomy.deleteAttribute
+                        }]
+                    },
+                    "username": {
+                        asker: Xonomy.askString,
+                        menu: [{
+                            caption: 'Delete this @username',
+                            action: Xonomy.deleteAttribute
+                        }]
+                    },
+                    "poverenikUsername": {
+                        asker: Xonomy.askString,
+                        menu: [{
+                            caption: 'Delete this @poverenikUsername',
+                            action: Xonomy.deleteAttribute
+                        }]
+                    },
+                    "id": {
+                        asker: Xonomy.askString,
+                        menu: [{
+                            caption: 'Delete this @id',
+                            action: Xonomy.deleteAttribute
+                        }]
+                    }
+                }
+            },
+        }
+    }
 }
