@@ -37,6 +37,7 @@ public class MetadataExtractor {
 	public static final String REQUEST_RDF_FILE = "src/main/resources/rdf/request_metadata.rdf";
 	public static final String DECISION_APPEAL_RDF_FILE = "src/main/resources/rdf/decision_appeal_metadata.rdf";
 	public static final String SILENCE_APPEAL_RDF_FILE = "src/main/resources/rdf/silence_appeal_metadata.rdf";
+	public static final String NOTICE_RDF_FILE = "src/main/resources/rdf/notice_metadata.rdf";
 
 	public MetadataExtractor() throws SAXException, IOException {
 		

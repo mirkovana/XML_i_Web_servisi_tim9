@@ -37,15 +37,7 @@
                 <br />
 
                 <b>Datum: </b>
-                <xsl:variable name="dan1"  select="ob:obavestenje/ob:opste_informacije/ob:datum/ob:dan" />
-                <xsl:variable name="noviDAN1" select="translate($dan1,'-','')"/>
-                <xsl:value-of select="$noviDAN1"/>.
-
-                <xsl:variable name="mesec1"  select="ob:obavestenje/ob:opste_informacije/ob:datum/ob:mesec" />
-                <xsl:variable name="noviMESEC1" select="translate($mesec1,'-','')"/>
-                <xsl:value-of select="$noviMESEC1"/>.
-
-                <xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:datum/ob:godina" />.
+                <xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:datum" />
                 <br />
                 <br />
 
@@ -83,18 +75,7 @@
                     <xsl:value-of select="ob:obavestenje/ob:telo/ob:godina" /> god., kojim ste tražili uvid u dokument/e sa
                     informacijama o / u vezi sa:
                     <xsl:value-of select="obavestenje/telo/opis" /> obaveštavamo vas da dana
-                    <xsl:variable name="dan"  select="ob:obavestenje/ob:telo/ob:datum/ob:dan" />
-                    <xsl:variable name="noviDAN" select="translate($dan,'-','')"/>
-                    <xsl:value-of select="$noviDAN"/>.
-
-                    <xsl:variable name="mesec"  select="ob:obavestenje/ob:telo/ob:datum/ob:mesec" />
-                    <xsl:variable name="noviMESEC" select="translate($mesec,'-','')"/>
-                    <xsl:value-of select="$noviMESEC"/>.
-
-                    <xsl:value-of select="ob:obavestenje/ob:telo/ob:datum/ob:godina" />. u
-                    <xsl:variable name="vreme"  select="ob:obavestenje/ob:telo/ob:vreme" />
-                    <xsl:variable name="vremeNovo"  select=" substring($vreme, 1, 5)" />
-                    <xsl:value-of select="$vremeNovo"/>
+                    <xsl:value-of select="ob:obavestenje/ob:telo/ob:datum" />
 
                     <!-- <xsl:value-of select="obavestenje/telo/vreme" /> -->
                     časova, odnosno u vremenu od

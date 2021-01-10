@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified"
+	targetNamespace="http://www.ftn.uns.ac.rs/obavestenje"
+	xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje">
+	<xs:element name="obavestenje">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="opste_informacije"
+					type="ob:Topste_informacije">
+				</xs:element>
+				<xs:element name="naslov">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="podnaslov">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="telo" type="ob:Ttelo_obavestenja">
+				</xs:element>
+				<xs:element name="dostavljeno">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="Imenovanom" />
+							<xs:enumeration value="Arhivi" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType abstract="true" name="Tadresa">
+		<xs:sequence>
+			<xs:element name="naziv_ulice">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1" />
+						<xs:maxLength value="50" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="broj_ulice">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1" />
+						<xs:maxLength value="5" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Tadresa_organa">
+		<xs:complexContent>
+			<xs:extension base="ob:Tadresa">
+				<xs:sequence>
+					<xs:element name="broj_kancelarije">
+						<xs:simpleType>
+							<xs:restriction base="xs:int">
+								<xs:minInclusive value="1" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Tadresa_podnosioca">
+		<xs:complexContent>
+			<xs:extension base="ob:Tadresa">
+				<xs:sequence>
+					<xs:element name="grad">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1" />
+								<xs:maxLength value="50" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="postanski_broj">
+						<xs:simpleType>
+							<xs:restriction base="xs:int">
+								<xs:minInclusive value="11000" />
+								<xs:maxInclusive value="38999" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Ttelo_obavestenja" mixed="false">
+		<xs:sequence>
+			<xs:element name="godina" type="xs:gYear" />
+			<xs:element name="opis">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1" />
+						<xs:maxLength value="1000" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="datum" type="ob:Tdatum" />
+			<xs:element name="vreme" type="xs:time" />
+			<xs:element name="od" type="xs:time" />
+			<xs:element name="do" type="xs:time" />
+			<xs:element name="adresa_organa" type="ob:Tadresa_organa" />
+			<xs:element name="iznos">
+				<xs:simpleType>
+					<xs:restriction base="xs:double">
+						<xs:minInclusive value="0" />
+						<xs:pattern value="[0-9]*.[0-9]{2}" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Torgan">
+		<xs:sequence>
+			<xs:element name="naziv">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1" />
+						<xs:maxLength value="50" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="sediste">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1" />
+						<xs:maxLength value="50" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Tpodnosilac">
+		<xs:sequence>
+			<xs:element name="ime">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="property" type="xs:string" />
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="prezime">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="property" type="xs:string" />
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="naziv_zahteva">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1" />
+						<xs:maxLength value="50" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="adresa" type="ob:Tadresa_podnosioca" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Topste_informacije">
+		<xs:sequence>
+			<xs:element name="podaci_o_organu" type="ob:Torgan" />
+			<xs:element name="broj_predmeta">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="property" type="xs:string" />
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="datum">
+				<xs:annotation>
+					<xs:documentation>Datum formata dd.mm.yyyy.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="ob:Tdatum">
+							<xs:attribute name="property" type="xs:string" />
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="podaci_o_podnosiocu"
+				type="ob:Tpodnosilac" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Tdatum">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\d{2}[.]\d{2}[.]\d{4}[.]" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="datum" type="ob:Tdatum" />
+</xs:schema>

@@ -20,12 +20,13 @@ import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 import com.xml.project.dto.NoticeDTO;
-import com.xml.project.dto.RequestDTO;
 import com.xml.project.parser.DOMParser;
 import com.xml.project.parser.XSLTransformer;
-import com.xml.project.repository.RequestRepository;
+import com.xml.project.rdf.FusekiWriter;
+import com.xml.project.rdf.MetadataExtractor;
+import com.xml.project.repository.NoticeRepository;
 
-@Service
+@Service()
 public class NoticeService {
 
 	private final String requestXSL = "src/main/resources/xsl/obavestenje.xsl";
@@ -35,7 +36,9 @@ public class NoticeService {
 	@Autowired
 	private XSLTransformer xslTransformer;
 	@Autowired
-	private RequestRepository repository;
+	private NoticeRepository repository;
+	@Autowired
+	private MetadataExtractor metadataExtractor;
 	
 	public void save(NoticeDTO dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 //		System.out.println("save service = " + dto);
@@ -73,6 +76,9 @@ public class NoticeService {
 		
 		System.out.println("broj after = " + broj);
 		repository.save(sw.toString(), broj + ".xml");
+		
+		metadataExtractor.extractMetadata(sw.toString(), MetadataExtractor.NOTICE_RDF_FILE);
+		FusekiWriter.saveRDF(FusekiWriter.NOTICE_RDF_FILEPATH, FusekiWriter.NOTICE_METADATA_GRAPH_URI);
 	}
 	
 	public String getHTML(String broj) {
