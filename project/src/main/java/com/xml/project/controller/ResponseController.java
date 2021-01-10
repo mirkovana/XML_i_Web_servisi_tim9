@@ -2,6 +2,8 @@ package com.xml.project.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -36,13 +38,33 @@ public class ResponseController {
 		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}
 	
-	@GetMapping("/search/{broj}/{osobaIme}/{osobaPrezime}")
-    public ResponseEntity<String> searchFromRDF(@PathVariable("broj") String broj,
-    										@PathVariable("osobaIme") String osobaIme,
-								    		@PathVariable("osobaPrezime") String osobaPrezime) throws IOException {
-        broj = broj.replace("_", "/");
+	@GetMapping("/search")
+	public ResponseEntity<String> searchFromRDF() throws IOException{
+	//public ResponseEntity<String> searchFromRDF(@PathVariable("broj") String broj,
+    //										@PathVariable("osobaIme") String osobaIme,
+	//							    		@PathVariable("osobaPrezime") String osobaPrezime) throws IOException {
+        String broj = "000-00-0000/0000-00";
+        String status = "osnovana";
+        String osobaIme = "A";
+        String osobaPrezime = "A";
+        String institucijaNaziv = "Učiteljskog fakulteta";
+        String datum = "16.04.2020.";
+        String trazena_informacija = "Ugovor o radu";
+        String poverenikIme = "IME";
+        String poverenikPrezime = "PREZIME";
+        Map<String, String> params = new HashMap<>();
+        params.put("broj", broj);
+        params.put("status", status);
+        params.put("osobaIme", osobaIme);
+        params.put("osobaPrezime", osobaPrezime);
+        params.put("institucijaNaziv", institucijaNaziv);
+        params.put("datum", datum);
+        params.put("trazena_informacija", trazena_informacija);
+        params.put("poverenikIme", poverenikIme);
+        params.put("poverenikPrezime", poverenikPrezime);
+
         System.out.println("seatchFromRDF = " + broj + " " + osobaIme + " " + osobaPrezime);
-        ArrayList<String> result = service.searchByMetadata(broj, osobaIme, osobaPrezime);
+        ArrayList<String> result = service.searchByMetadata(params);
         String output = "";
         for (String r : result) {
             output += "\n" + r;

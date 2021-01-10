@@ -85,11 +85,7 @@ public class ResponseService {
 		FusekiWriter.saveRDF(FusekiWriter.RESPONSE_RDF_FILEPATH, FusekiWriter.RESPONSE_METADATA_GRAPH_URI);
 	}
 	
-	public ArrayList<String> searchByMetadata(String broj, String osobaIme, String osobaPrezime) throws IOException {
-        Map<String, String> params = new HashMap<>();
-        params.put("broj", broj);
-        params.put("osobaIme", osobaIme);
-        params.put("osobaPrezime", osobaPrezime);
+	public ArrayList<String> searchByMetadata(Map<String, String> params) throws IOException {
         System.out.println("service executeQuerry");
         ArrayList<String> result = FusekiReader.executeQuery(params, FusekiReader.RESPONSE_QUERY_FILEPATH);
         System.out.println("return result querry");

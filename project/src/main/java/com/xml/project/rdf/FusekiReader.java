@@ -45,8 +45,8 @@ public class FusekiReader {
 		System.out.println("results = " + results);
 		String varName;
 		RDFNode varValue;
-		ArrayList<String> foundTitles = new ArrayList<String>();
-		System.out.println("foundTitles = " + foundTitles);
+		ArrayList<String> items = new ArrayList<String>();
+		System.out.println("items = " + items);
 		
 		while(results.hasNext()){
 			System.out.println("results.hasNext()");
@@ -90,7 +90,7 @@ public class FusekiReader {
 	    ResultSetFormatter.outputAsXML(System.out, results);
 		query.close() ;
 		System.out.println("[INFO] SPARQL Query End.");
-		return foundTitles;
+		return items;
 	}
 	
 	public static String readFile(String path, Charset encoding) throws IOException {
