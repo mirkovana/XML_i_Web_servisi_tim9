@@ -7,23 +7,17 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <html>
   <head>
         <style>
+          body {
+            margin:100px;
+          }
           p.indent {
-            text-indent: 12px;
-          }
-          h1.headertekst {
-            text-align: center;
-          }
-          h2.headertekst {
-          text-align: center;
+            text-indent: 24px;
           }
           h3.headertekst {
           text-align: center;
           }
           h4.headertekst {
           text-align: center;
-          }
-          h5.headertekst {
-            text-align: center;
           }
           .center {
             text-align: center;

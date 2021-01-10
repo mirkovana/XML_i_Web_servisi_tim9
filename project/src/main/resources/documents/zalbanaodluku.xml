@@ -3,6 +3,7 @@
   xmlns="http://www.projekat.org/zalbanaodluku"
   xmlns:zo="http://www.projekat.org/zalbanaodluku"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:pred="http://www.projekat.org/predicate/"
   xsi:schemaLocation="http://www.projekat.org/zalbanaodluku zalbanaodluku.xsd"
   username="username"
   datum="10.10.2010."
@@ -32,10 +33,10 @@
       <zo:potpis>Potpis1</zo:potpis>
     </zo:podnosilac_zalbe>
     protiv resenja-zakljucka
-    <zo:organ_koji_je_doneo_odluku>
-      orgaan koji je doneo odluku
+    <zo:organ_koji_je_doneo_odluku xmlns:zo ="http://www.projekat.org/zalbanaodluku" property="pred:organVlasti">
+      orgaan koji je doneo odluku 
     </zo:organ_koji_je_doneo_odluku>
-    <zo:broj_zalbe>000-00-0000/0000-00</zo:broj_zalbe>
+    <zo:broj_zalbe xmlns:zo ="http://www.projekat.org/zalbanaodluku" property="pred:broj">000-00-0000/0000-00</zo:broj_zalbe>
     <zo:datum>10.10.2010.</zo:datum>
   </zo:podaci_o_zalbi>
   <zo:sadrzaj_zalbe>
@@ -61,14 +62,14 @@
       <zo:ulica>ulica2</zo:ulica>
       <zo:broj>10</zo:broj>
     </zo:adresa>
-    <zo:ime>Ime1</zo:ime>
-    <zo:prezime>Prezime1</zo:prezime>
+    <zo:ime xmlns:zo ="http://www.projekat.org/zalbanaodluku" property="pred:ime">Ime1</zo:ime>
+    <zo:prezime xmlns:zo ="http://www.projekat.org/zalbanaodluku" property="pred:prezime">Prezime1</zo:prezime>
     <zo:potpis>Potpis1</zo:potpis>
     <zo:drugi_podaci_za_kontakt>Drugipodaci</zo:drugi_podaci_za_kontakt>
   </zo:podaci_o_podnosiocu_zalbe>
   <zo:podaci_o_mestu_i_datumu_podnosenja_zalbe>
-    <zo:mesto>Novi Sad</zo:mesto>
-    <zo:datum>10.10.2010.</zo:datum>
+    <zo:mesto xmlns:zo ="http://www.projekat.org/zalbanaodluku" property="pred:mesto">Novi Sad</zo:mesto>
+    <zo:datum xmlns:zo ="http://www.projekat.org/zalbanaodluku" property="pred:datum">10.10.2010.</zo:datum>
   </zo:podaci_o_mestu_i_datumu_podnosenja_zalbe>
   <zo:napomena> 
     <zo:tacka>

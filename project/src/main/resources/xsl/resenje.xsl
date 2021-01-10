@@ -7,23 +7,14 @@
     <html>
       <head>
         <style>
+          body {
+            margin:100px;
+          }
           p.indent {
-            text-indent: 12px;
-          }
-          h1.headertekst {
-            text-align: center;
-          }
-          h2.headertekst {
-          text-align: center;
+            text-indent: 24px;
           }
           h3.headertekst {
           text-align: center;
-          }
-          h4.headertekst {
-          text-align: center;
-          }
-          h5.headertekst {
-            text-align: center;
           }
         </style>
       </head>
@@ -50,41 +41,13 @@
         <xsl:value-of select="res:zalba/res:uvod/res:paragraf/."/>
         <br></br>
         
-        <xsl:if test="res:zalba/res:sadrzaj/res:resenje/res:naslov/@res:nivo = '1'">
-          <h1 class="headertekst"><xsl:value-of select="res:zalba/res:sadrzaj/res:resenje/res:naslov/."/></h1>
-        </xsl:if> 
-        <xsl:if test="res:zalba/res:sadrzaj/res:resenje/res:naslov/@res:nivo = '2'">
-          <h2 class="headertekst"><xsl:value-of select="res:zalba/res:sadrzaj/res:resenje/res:naslov/."/></h2>
-        </xsl:if> 
-        <xsl:if test="res:zalba/res:sadrzaj/res:resenje/res:naslov/@res:nivo = '3'">
-          <h3 class="headertekst"><xsl:value-of select="res:zalba/res:sadrzaj/res:resenje/res:naslov/."/></h3>
-        </xsl:if> 
-        <xsl:if test="res:zalba/res:sadrzaj/res:resenje/res:naslov/@res:nivo = '4'">
-          <h4 class="headertekst"><xsl:value-of select="res:zalba/res:sadrzaj/res:resenje/res:naslov/."/></h4>
-        </xsl:if> 
-        <xsl:if test="res:zalba/res:sadrzaj/res:resenje/res:naslov/@res:nivo = '5'">
-          <h5 class="headertekst"><xsl:value-of select="res:zalba/res:sadrzaj/res:resenje/res:naslov/."/></h5>
-        </xsl:if> 
+        <h3 class="headertekst"><xsl:value-of select="res:zalba/res:sadrzaj/res:resenje/res:naslov/."/></h3>
         
         <xsl:for-each select="res:zalba/res:sadrzaj/res:resenje/res:paragraf">
           <p class="indent"><xsl:value-of select="."/></p>
         </xsl:for-each>
         
-        <xsl:if test="res:zalba/res:sadrzaj/res:obrazlozenje/res:naslov/@res:nivo = '1'">
-          <h1 class="headertekst"><xsl:value-of select="res:zalba/res:sadrzaj/res:obrazlozenje/res:naslov/."/></h1>
-        </xsl:if> 
-        <xsl:if test="res:zalba/res:sadrzaj/res:obrazlozenje/res:naslov/@res:nivo = '2'">
-          <h2 class="headertekst"><xsl:value-of select="res:zalba/res:sadrzaj/res:obrazlozenje/res:naslov/."/></h2>
-        </xsl:if> 
-        <xsl:if test="res:zalba/res:sadrzaj/res:obrazlozenje/res:naslov/@res:nivo = '3'">
-          <h3 class="headertekst"><xsl:value-of select="res:zalba/res:sadrzaj/res:obrazlozenje/res:naslov/."/></h3>
-        </xsl:if> 
-        <xsl:if test="res:zalba/res:sadrzaj/res:obrazlozenje/res:naslov/@res:nivo = '4'">
-          <h4 class="headertekst"><xsl:value-of select="res:zalba/res:sadrzaj/res:obrazlozenje/res:naslov/."/></h4>
-        </xsl:if> 
-        <xsl:if test="res:zalba/res:sadrzaj/res:obrazlozenje/res:naslov/@res:nivo = '5'">
-          <h5 class="headertekst"><xsl:value-of select="res:zalba/res:sadrzaj/res:obrazlozenje/res:naslov/."/></h5>
-        </xsl:if> 
+        <h3 class="headertekst"><xsl:value-of select="res:zalba/res:sadrzaj/res:obrazlozenje/res:naslov/."/></h3>
         
         <xsl:for-each select="res:zalba/res:sadrzaj/res:obrazlozenje/res:paragraf">
           <p class="indent"><xsl:value-of select="."/></p>

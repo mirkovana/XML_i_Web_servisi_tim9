@@ -3,25 +3,32 @@
     xmlns ="http://www.projekat.org/resenje"
     xmlns:res="http://www.projekat.org/resenje"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:pred="http://www.projekat.org/predicate/"
     xsi:schemaLocation="http://www.projekat.org/resenje resenje.xsd"
     status="osnovana"
     broj="000-00-0000/0000-00"
     username="username"
     datum="00.00.0000."
-    poverenikUsername="poverenikUsername"> 
+    poverenikUsername="poverenikUsername">
+    <res:broj xmlns:res ="http://www.projekat.org/resenje" property="pred:broj">000-00-0000/0000-00</res:broj>
+    <res:status xmlns:res ="http://www.projekat.org/resenje" property="pred:status">osnovana</res:status>
     <res:uvod>
         <res:paragraf>
-            Poverenik za informacije od javnog značaja i zaštitu 
-            podataka o ličnosti, u postupku po albi koju je izjavio
-            <res:osoba><res:ime>A</res:ime><res:prezime>A</res:prezime></res:osoba> 
-            zbog nepostupanja 
+            Poverenik za informacije od javnog značaja i zaštitu
+            podataka o ličnosti, u postupku po zalbi koju je izjavio
+            <res:osoba>
+                <res:ime  xmlns:res ="http://www.projekat.org/resenje" property="pred:osobaIme">A</res:ime>
+                <res:prezime  xmlns:res ="http://www.projekat.org/resenje" property="pred:osobaPrezime">A</res:prezime>
+            </res:osoba> 
+            zbog nepostupanja
             <res:institucija> 
-                <res:naziv>Učiteljskog fakulteta</res:naziv> u <res:mesto>Prizrenu</res:mesto>
+                <res:naziv xmlns:res ="http://www.projekat.org/resenje" property="pred:institucijaNaziv">Učiteljskog fakulteta</res:naziv> 
+                u <res:mesto>Prizrenu</res:mesto>
             </res:institucija>
             sa privremenim sedištem u 
             <res:mesto>Leposaviću, ul. Nemanjina bb</res:mesto>, 
             po njegovom zahtevu od 
-            <res:datum>16.04.2020.</res:datum> 
+            <res:datum xmlns:res ="http://www.projekat.org/resenje" property="pred:datum">16.04.2020.</res:datum> 
             godine za pristup informacijama od javnog značaja, na osnovu 
             <res:zakon>
                 <res:clan>člana 35.</res:clan>
@@ -55,7 +62,7 @@
     </res:uvod>
     <res:sadrzaj>
         <res:resenje>
-            <res:naslov res:nivo="2">RESENJE</res:naslov>
+            <res:naslov>RESENJE</res:naslov>
             <res:paragraf>
                 Nalaže se 
                 <res:institucija>
@@ -68,8 +75,8 @@
                 ovog rešenja, obavesti 
                 <res:osoba><res:ime>A</res:ime><res:prezime>A</res:prezime></res:osoba>
                 , da li poseduje tražene informacije odnosno dokument u kome su iste 
-                sadržane, i to: Ugovor o radu koji je kao poslednji potpisan između 
-                tog Fakulteta i 
+                sadržane, i to: <res:trazena_informacija xmlns:res ="http://www.projekat.org/resenje" property="pred:trazena_informacija">Ugovor o radu</res:trazena_informacija> 
+                koji je kao poslednji potpisan između tog Fakulteta i 
                 <res:osoba><res:ime>B</res:ime><res:prezime>B</res:prezime></res:osoba>
                 , te da mu, ukoliko takav dokument poseduje dostavi kopiju
                 istog elektronskom poštom na adresu … ili poštom,
@@ -92,8 +99,8 @@
             </res:paragraf>
         </res:resenje>
         <res:obrazlozenje>
-            <res:naslov res:nivo="2">OBRAZLOZENJE</res:naslov>
-            <res:paragraf>
+            <res:naslov>OBRAZLOZENJE</res:naslov>
+            <res:paragraf> 
                 <res:osoba><res:ime>A</res:ime><res:prezime>A</res:prezime></res:osoba>
                 , kao tražilac informacija, izjavio je dana 
                 <res:datum>07.05.2020.</res:datum>
@@ -104,7 +111,7 @@
                 </res:institucija>
                 sa privremenim sedištem u 
                 <res:mesto>Leposaviću</res:mesto>
-                po njegovom zahtevu od 
+                po njegovom zahtevu od
                 <res:datum>16.04.2020.</res:datum>
                 godine za pristup informacijama od javnog značaja i u prilogu dostavio kopiju istog.
             </res:paragraf>
@@ -123,8 +130,8 @@
             </res:paragraf>
         </res:obrazlozenje>
         <res:poverenik>
-            <res:ime>IME</res:ime>
-            <res:prezime>PREZIME</res:prezime>
+            <res:ime xmlns:res ="http://www.projekat.org/resenje" property="pred:poverenikIme">IME</res:ime>
+            <res:prezime xmlns:res ="http://www.projekat.org/resenje" property="pred:poverenikPrezime">PREZIME</res:prezime>
         </res:poverenik>
     </res:sadrzaj>
 </res:zalba>

@@ -22,6 +22,8 @@ import org.xmldb.api.base.XMLDBException;
 import com.xml.project.dto.SilenceAppealDTO;
 import com.xml.project.parser.DOMParser;
 import com.xml.project.parser.XSLTransformer;
+import com.xml.project.rdf.FusekiWriter;
+import com.xml.project.rdf.MetadataExtractor;
 import com.xml.project.repository.SilenceAppealRepository;
 
 @Service()
@@ -35,19 +37,25 @@ public class SilenceAppealService {
 	private XSLTransformer xslTransformer;
 	@Autowired
 	private SilenceAppealRepository repository;
-	
+	@Autowired
+	private MetadataExtractor metadataExtractor;
+
 	public void save(SilenceAppealDTO dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("save service = " + dto);
 		Document document = domParser.getDocument(dto.getText());
 		System.out.println("got document = " + document);
 		NodeList nodeList = document.getElementsByTagName("zc:zalba_cutanje");
 		Element sp = (Element) nodeList.item(0);
-		String id = sp.getAttribute("id");
-		System.out.println("node id = " + id);
+		String broj = sp.getAttribute("broj");
+		System.out.println("node broj = " + broj);
+		broj = broj.replace("/", "_");
+		
+		//String id = sp.getAttribute("id");
+		System.out.println("node broj = " + broj);
 		Document prev = null;
 		try {
 			System.out.println("findSilenceAppealById call");
-			prev = repository.findSilenceAppealById(id);
+			prev = repository.findSilenceAppealByBroj(broj);
 		} catch (Exception e) {
 			System.out.println("exception = " + e.getMessage());
 		}
@@ -67,12 +75,14 @@ public class SilenceAppealService {
 		
 		transformer.transform(new DOMSource(document), new StreamResult(sw));
 		
-		repository.save(sw.toString(), id + ".xml");
+		repository.save(sw.toString(), broj + ".xml");
 		
+		metadataExtractor.extractMetadata(sw.toString(), MetadataExtractor.SILENCE_APPEAL_RDF_FILE);
+		FusekiWriter.saveRDF(FusekiWriter.SILENCE_APPEAL_RDF_FILEPATH, FusekiWriter.SILENCE_APPEAL_METADATA_GRAPH_URI);
 	}
 	
 	public String getHTML(String id) {
-		Document xml = repository.findSilenceAppealById(id);
+		Document xml = repository.findSilenceAppealByBroj(id);
 		return xslTransformer.getHTMLfromXML(requestXSL, xml);
 	}
 }

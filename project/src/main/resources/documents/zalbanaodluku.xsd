@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
     targetNamespace="http://www.projekat.org/zalbanaodluku"
-    xmlns:zo="http://www.projekat.org/zalbanaodluku">
+    xmlns:zo="http://www.projekat.org/zalbanaodluku" xmlns:pred="http://www.projekat.org/predicate/">
 
     <xs:element name="zalba_na_odluku">
         <xs:complexType>
@@ -80,20 +80,22 @@
             <xs:extension base="zo:TLice">
                 <xs:sequence>
                     <xs:element name="ime">
-                        <xs:simpleType>
-                            <xs:restriction base="xs:string">
-                                <xs:minLength value="2"/>
-                                <xs:maxLength value="15"/>
-                            </xs:restriction>
-                        </xs:simpleType>
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="property" type="xs:string" use="optional"/>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
                     </xs:element>
                     <xs:element name="prezime">
-                        <xs:simpleType>
-                            <xs:restriction base="xs:string">
-                                <xs:minLength value="2"/>
-                                <xs:maxLength value="20"/>
-                            </xs:restriction>
-                        </xs:simpleType>
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="property" type="xs:string" use="optional"/>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
                     </xs:element>
                     <xs:element name="potpis">
                         <xs:simpleType>
@@ -126,13 +128,23 @@
             </xs:element>
             <xs:element name="podnosilac_zalbe" type="zo:TFizicko_lice"/>
             <xs:element name="organ_koji_je_doneo_odluku">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:minLength value="1"/>
-                    </xs:restriction>
-                </xs:simpleType>
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
             </xs:element>
-            <xs:element name="broj_zalbe" type="zo:TBroj"> </xs:element>
+            <xs:element name="broj_zalbe">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="zo:TBroj">
+                            <xs:attribute name="property" type="xs:string" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
             <xs:element name="datum" type="zo:TDatum"/>
         </xs:sequence>
     </xs:complexType>
@@ -153,14 +165,23 @@
     <xs:complexType name="Tmesto_datum">
         <xs:sequence>
             <xs:element name="mesto">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:minLength value="1"/>
-                        <xs:maxLength value="20"/>
-                    </xs:restriction>
-                </xs:simpleType>
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
             </xs:element>
-            <xs:element name="datum" type="zo:TDatum"/>
+            <xs:element name="datum">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="zo:TDatum">
+                            <xs:attribute name="property" type="xs:string" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="Tnapomena">

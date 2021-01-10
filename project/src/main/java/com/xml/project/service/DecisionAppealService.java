@@ -22,6 +22,8 @@ import org.xmldb.api.base.XMLDBException;
 import com.xml.project.dto.DecisionAppealDTO;
 import com.xml.project.parser.DOMParser;
 import com.xml.project.parser.XSLTransformer;
+import com.xml.project.rdf.FusekiWriter;
+import com.xml.project.rdf.MetadataExtractor;
 import com.xml.project.repository.DecisionAppealRepository;
 
 @Service()
@@ -35,6 +37,8 @@ public class DecisionAppealService {
 	private XSLTransformer xslTransformer;
 	@Autowired
 	private DecisionAppealRepository repository;
+	@Autowired
+	private MetadataExtractor metadataExtractor;
 	
 	public void save(DecisionAppealDTO dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("save service = " + dto);
@@ -70,6 +74,8 @@ public class DecisionAppealService {
 		
 		repository.save(sw.toString(), broj + ".xml");
 		
+		metadataExtractor.extractMetadata(sw.toString(), MetadataExtractor.DECISION_APPEAL_RDF_FILE);
+		FusekiWriter.saveRDF(FusekiWriter.DECISION_APPEAL_RDF_FILEPATH, FusekiWriter.DECISION_APPEAL_METADATA_GRAPH_URI);
 	}
 	
 	public String getHTML(String id) {

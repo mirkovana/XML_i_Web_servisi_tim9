@@ -49,4 +49,9 @@ public class DOMParser {
 		return document;
 	}
 
+	public Document buildDocumentFromText(String fileText) throws ParserConfigurationException, SAXException, IOException {
+		DocumentBuilder builder = factory.newDocumentBuilder();
+		Document document = builder.parse(new InputSource(new StringReader(fileText)));
+		return document;
+	}
 }

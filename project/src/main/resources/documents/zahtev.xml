@@ -3,15 +3,16 @@
     xmlns ="http://www.projekat.org/zahtev"
     xmlns:za="http://www.projekat.org/zahtev"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:pred="http://www.projekat.org/predicate/"
     xsi:schemaLocation="http://www.projekat.org/zahtev zahtev.xsd"
-    id="0"
+    id="0" 
     username="username"
     datum="00.00.0000."
     institucija="nazivinstitucije">
     <za:institucija>
-        <za:naziv>naziv0</za:naziv> u <za:mesto>mesto0</za:mesto>
+        <za:naziv xmlns:za ="http://www.projekat.org/zahtev" property="pred:nazivInstitucije">naziv0</za:naziv> u <za:mesto>mesto0</za:mesto>
     </za:institucija>
-    <za:naslov za:nivo="4" za:stil="bold">Zahtev za pristupanje informacijama</za:naslov>
+    <za:naslov>Zahtev za pristupanje informacijama</za:naslov>
     <za:tekst_zahteva>
         <za:uvod>
             Na osnovu 
@@ -40,18 +41,18 @@
             </za:stavka>
         </za:lista>
         Ovaj zahtev se odnosi na sledece informacije:
-        <za:informacije>
+        <za:informacije xmlns:za ="http://www.projekat.org/zahtev" property="pred:informacije">
             ahda hahd ua dhajdh ah dlakhdah alsh dka 
         </za:informacije>
     </za:tekst_zahteva>
     <za:mesto_datum>
         U <za:mesto>mesto1</za:mesto> dana
-        <za:datum>10.10.2020.</za:datum> godine
+        <za:datum xmlns:za ="http://www.projekat.org/zahtev" property="pred:datum">10.10.2020.</za:datum> godine
     </za:mesto_datum>
     <za:podnosilac>
         <za:osoba>
-            <za:ime>ime0</za:ime>
-            <za:prezime>prezime0</za:prezime>
+            <za:ime xmlns:za ="http://www.projekat.org/zahtev" property="pred:ime">ime0</za:ime>
+            <za:prezime xmlns:za ="http://www.projekat.org/zahtev" property="pred:prezime">prezime0</za:prezime>
         </za:osoba>
         <za:adresa>adresa0</za:adresa>
         <za:drugi_podaci>drugiPodaci0</za:drugi_podaci>

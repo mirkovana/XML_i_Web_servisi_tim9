@@ -1,0 +1,21 @@
+SELECT * FROM <http://localhost:8081/fuseki/Project/data/responseMetadata> WHERE {
+  ?broj <http://www.projekat.org/resenje/predicate/broj> ?broj .
+  ?osobaIme <http://www.projekat.org/resenje/predicate/status> ?status .
+  ?osobaPrezime <http://www.projekat.org/resenje/predicate/osobaIme> ?osobaIme .
+  ?osobaIme <http://www.projekat.org/resenje/predicate/osobaPrezime> ?osobaPrezime .
+  ?osobaIme <http://www.projekat.org/resenje/predicate/institucijaNaziv> ?institucijaNaziv .
+  ?osobaIme <http://www.projekat.org/resenje/predicate/datum> ?datum .
+  ?osobaIme <http://www.projekat.org/resenje/predicate/trazena_informacija> ?trazena_informacija .
+  ?osobaIme <http://www.projekat.org/resenje/predicate/poverenikIme> ?poverenikIme .
+  ?osobaIme <http://www.projekat.org/resenje/predicate/poverenikPrezime> ?poverenikPrezime .
+  FILTER( CONTAINS(UCASE(str(?broj)), UCASE("{{broj}}"))
+    && CONTAINS(UCASE(str(?status)), UCASE("{{status}}"))
+    && CONTAINS(UCASE(str(?osobaIme)), UCASE("{{osobaIme}}"))
+    && CONTAINS(UCASE(str(?osobaPrezime)), UCASE("{{osobaPrezime}}"))
+    && CONTAINS(UCASE(str(?institucijaNaziv)), UCASE("{{institucijaNaziv}}"))
+    && CONTAINS(UCASE(str(?datum)), UCASE("{{datum}}"))
+    && CONTAINS(UCASE(str(?trazena_informacija)), UCASE("{{trazena_informacija}}"))
+    && CONTAINS(UCASE(str(?poverenikIme)), UCASE("{{poverenikIme}}"))
+    && CONTAINS(UCASE(str(?poverenikPrezime)), UCASE("{{poverenikPrezime}}"))
+  ) .
+} 

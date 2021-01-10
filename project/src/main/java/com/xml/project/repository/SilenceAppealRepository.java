@@ -23,7 +23,7 @@ public class SilenceAppealRepository {
 		return "SAVED";
 	}
 	
-	public Document findSilenceAppealById(String id) {
+	public Document findSilenceAppealByBroj(String id) {
 		Document document = null;
 		System.out.println("in repository finding id = " + id);
 		if (!id.endsWith(".xml")) {

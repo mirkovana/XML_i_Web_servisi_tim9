@@ -22,6 +22,8 @@ import org.xmldb.api.base.XMLDBException;
 import com.xml.project.dto.RequestDTO;
 import com.xml.project.parser.DOMParser;
 import com.xml.project.parser.XSLTransformer;
+import com.xml.project.rdf.FusekiWriter;
+import com.xml.project.rdf.MetadataExtractor;
 import com.xml.project.repository.RequestRepository;
 
 @Service()
@@ -35,6 +37,8 @@ public class RequestService {
 	private XSLTransformer xslTransformer;
 	@Autowired
 	private RequestRepository repository;
+	@Autowired
+	private MetadataExtractor metadataExtractor;
 	
 	public void save(RequestDTO dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("save service = " + dto);
@@ -69,6 +73,9 @@ public class RequestService {
 		
 		repository.save(sw.toString(), id + ".xml");
 		
+		metadataExtractor.extractMetadata(sw.toString(), MetadataExtractor.REQUEST_RDF_FILE);
+		FusekiWriter.saveRDF(FusekiWriter.REQUEST_RDF_FILEPATH, FusekiWriter.REQUEST_METADATA_GRAPH_URI);
+
 	}
 	
 	public String getHTML(String broj) {

@@ -1,5 +1,8 @@
 package com.xml.project.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -32,6 +35,21 @@ public class ResponseController {
 		service.save(dto);
 		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}
+	
+	@GetMapping("/search/{broj}/{osobaIme}/{osobaPrezime}")
+    public ResponseEntity<String> searchFromRDF(@PathVariable("broj") String broj,
+    										@PathVariable("osobaIme") String osobaIme,
+								    		@PathVariable("osobaPrezime") String osobaPrezime) throws IOException {
+        broj = broj.replace("_", "/");
+        System.out.println("seatchFromRDF = " + broj + " " + osobaIme + " " + osobaPrezime);
+        ArrayList<String> result = service.searchByMetadata(broj, osobaIme, osobaPrezime);
+        String output = "";
+        for (String r : result) {
+            output += "\n" + r;
+        }
+        System.out.println("OUTPUT: " + output);
+        return new ResponseEntity<>(output, HttpStatus.OK);
+    }
 	
 	@GetMapping(value = "/html/{id}", produces = MediaType.TEXT_HTML_VALUE)
 	public ResponseEntity<String> getResponseHTML(@PathVariable("id") String id) {

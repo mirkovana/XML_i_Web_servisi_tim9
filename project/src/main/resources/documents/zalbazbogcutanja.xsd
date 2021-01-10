@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
     targetNamespace="http://www.projekat.org/zalbazbogcutanja"
-    xmlns:zc="http://www.projekat.org/zalbazbogcutanja">
+    xmlns:zc="http://www.projekat.org/zalbazbogcutanja"
+    xmlns:pred="http://www.projekat.org/predicate/">
     <xs:element name="zalba_cutanje">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="broj">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="zc:TBroj">
+                                <xs:attribute name="property" type="xs:string" use="required"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element name="naslov">
                     <xs:simpleType>
                         <xs:restriction base="xs:string">
@@ -38,6 +48,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
+            <xs:attribute name="broj" type="zc:TBroj" use="required"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="adresa">
@@ -89,20 +100,22 @@
             <xs:extension base="zc:TLice">
                 <xs:sequence>
                     <xs:element name="ime">
-                        <xs:simpleType>
-                            <xs:restriction base="xs:string">
-                                <xs:minLength value="2"/>
-                                <xs:maxLength value="15"/>
-                            </xs:restriction>
-                        </xs:simpleType>
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="property" type="xs:string" use="required"/>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
                     </xs:element>
                     <xs:element name="prezime">
-                        <xs:simpleType>
-                            <xs:restriction base="xs:string">
-                                <xs:minLength value="2"/>
-                                <xs:maxLength value="20"/>
-                            </xs:restriction>
-                        </xs:simpleType>
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="property" type="xs:string" use="required"/>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
                     </xs:element>
                     <xs:element name="drugi_podaci_za_kontakt">
                         <xs:simpleType>
@@ -127,12 +140,13 @@
         <xs:sequence maxOccurs="unbounded">
             <xs:element name="zakon" maxOccurs="1" minOccurs="0" type="zc:TZakon"> </xs:element>
             <xs:element name="naziv_organa" minOccurs="0">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:minLength value="1"/>
-                        <xs:maxLength value="100"/>
-                    </xs:restriction>
-                </xs:simpleType>
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
             </xs:element>
             <xs:element name="razlozi" type="zc:Trazlozi" minOccurs="0"/>
             <xs:element name="datum" type="zc:TDatum" minOccurs="0"/>
@@ -156,14 +170,23 @@
     <xs:complexType name="Tmesto_datum">
         <xs:sequence>
             <xs:element name="mesto">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:minLength value="1"/>
-                        <xs:maxLength value="20"/>
-                    </xs:restriction>
-                </xs:simpleType>
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
             </xs:element>
-            <xs:element name="datum" type="zc:TDatum"/>
+            <xs:element name="datum">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="zc:TDatum">
+                            <xs:attribute name="property" type="xs:string"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="Trazlozi">
@@ -229,6 +252,11 @@
     <xs:simpleType name="TGlasnik">
         <xs:restriction base="xs:string">
             <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TBroj">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9]{3}-[0-9]{2}-[0-9]{4}/[0-9]{4}-[0-9]{2}"/>
         </xs:restriction>
     </xs:simpleType>
 </xs:schema>

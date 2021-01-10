@@ -2,6 +2,9 @@ package com.xml.project.service;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
@@ -16,8 +19,14 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import org.xmldb.api.base.ResourceIterator;
+import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
+import org.xmldb.api.modules.XMLResource;
 
+import com.xml.project.rdf.MetadataExtractor;
+import com.xml.project.rdf.FusekiWriter;
+import com.xml.project.rdf.FusekiReader;
 import com.xml.project.dto.ResponseDTO;
 import com.xml.project.parser.DOMParser;
 import com.xml.project.parser.XSLTransformer;
@@ -34,7 +43,9 @@ public class ResponseService {
 	private XSLTransformer xslTransformer;
 	@Autowired
 	private ResponseRepository repository;
-	
+	@Autowired
+	private MetadataExtractor metadataExtractor;
+
 	public void save(ResponseDTO dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("save service = " + dto);
 		Document document = domParser.getDocument(dto.getText());
@@ -70,8 +81,21 @@ public class ResponseService {
 		System.out.println("broj after = " + broj);
 		repository.save(sw.toString(), broj + ".xml");
 		
+		metadataExtractor.extractMetadata(sw.toString(), MetadataExtractor.RESPONSE_RDF_FILE);
+		FusekiWriter.saveRDF(FusekiWriter.RESPONSE_RDF_FILEPATH, FusekiWriter.RESPONSE_METADATA_GRAPH_URI);
 	}
 	
+	public ArrayList<String> searchByMetadata(String broj, String osobaIme, String osobaPrezime) throws IOException {
+        Map<String, String> params = new HashMap<>();
+        params.put("broj", broj);
+        params.put("osobaIme", osobaIme);
+        params.put("osobaPrezime", osobaPrezime);
+        System.out.println("service executeQuerry");
+        ArrayList<String> result = FusekiReader.executeQuery(params, FusekiReader.RESPONSE_QUERY_FILEPATH);
+        System.out.println("return result querry");
+        return result;
+    }
+
 	public String getHTML(String broj) {
 		Document xml = repository.findResponseByBroj(broj);
 		return xslTransformer.getHTMLfromXML(responseXSL, xml);
@@ -96,3 +120,9 @@ public class ResponseService {
 		return new UrlResource(file.toUri());
 	}*/
 }
+
+/*
+ *  <http://localhost:8081/fuseki/Project/data/papersMetadata> { <file:///D:/2020/XML/projekatgit/XML_i_Web_servisi_tim9/project/src/main/resources/rdf/paper_metadata.rdf> <http://www.projekat.org/predicate/osobaPrezime> "messi"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral> .
+<file:///D:/2020/XML/projekatgit/XML_i_Web_servisi_tim9/project/src/main/resources/rdf/paper_metadata.rdf> <http://www.projekat.org/predicate/osobaIme> "leo"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral> .
+<file:///D:/2020/XML/projekatgit/XML_i_Web_servisi_tim9/project/src/main/resources/rdf/paper_metadata.rdf> <http://www.projekat.org/predicate/broj> "000-00-0000/0000-00"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral> .
+ } }*/
