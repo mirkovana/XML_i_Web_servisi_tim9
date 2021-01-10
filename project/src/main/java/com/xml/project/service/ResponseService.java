@@ -86,9 +86,9 @@ public class ResponseService {
 	}
 	
 	public ArrayList<String> searchByMetadata(Map<String, String> params) throws IOException {
-        System.out.println("service executeQuerry");
+        System.out.println("service executeQuerry!");
         ArrayList<String> result = FusekiReader.executeQuery(params, FusekiReader.RESPONSE_QUERY_FILEPATH);
-        System.out.println("return result querry");
+        System.out.println("return result querry!");
         return result;
     }
 
@@ -116,9 +116,3 @@ public class ResponseService {
 		return new UrlResource(file.toUri());
 	}*/
 }
-
-/*
- *  <http://localhost:8081/fuseki/Project/data/papersMetadata> { <file:///D:/2020/XML/projekatgit/XML_i_Web_servisi_tim9/project/src/main/resources/rdf/paper_metadata.rdf> <http://www.projekat.org/predicate/osobaPrezime> "messi"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral> .
-<file:///D:/2020/XML/projekatgit/XML_i_Web_servisi_tim9/project/src/main/resources/rdf/paper_metadata.rdf> <http://www.projekat.org/predicate/osobaIme> "leo"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral> .
-<file:///D:/2020/XML/projekatgit/XML_i_Web_servisi_tim9/project/src/main/resources/rdf/paper_metadata.rdf> <http://www.projekat.org/predicate/broj> "000-00-0000/0000-00"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral> .
- } }*/
