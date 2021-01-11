@@ -53,6 +53,15 @@ Broj: <xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_zalbi/zo:broj_zalbe/.
   </p>
 <p class="indent">
  <xsl:value-of select="zo:zalba_na_odluku/zo:sadrzaj_zalbe/."/>
+ <p>
+ Navedenom odlukom organa vlasti (rešenjem, zaključkom, obaveštenjem u pisanoj formi sa elementima odluke) , 
+ suprotno zakonu, odbijen-odbačen je moj zahtev koji sam podneo/la-uputio/la dana ............... godine i tako mi uskraćeno-onemogućeno ostvarivanje ustavnog i 
+ zakonskog prava na slobodan pristup informacijama od javnog značaja. Odluku pobijam u celosti, odnosno u delu kojim................................................................................................................................................................................................................................................................................................................................................................................................................................................
+............. jer nije zasnovana na Zakonu o slobodnom pristupu informacijama od javnog značaja.
+<br></br>Na osnovu iznetih razloga, predlažem da Poverenik uvaži moju žalbu,  poništi odluka prvostepenog organa i omogući mi pristup traženoj/im  informaciji/ma.<br></br>
+Žalbu podnosim blagovremeno, u zakonskom roku utvrđenom u članu 22. st. 1. Zakona o slobodnom pristupu informacijama od javnog značaja.
+ 
+ </p>
 </p>
 
 <p style="text-align:left;">
@@ -62,17 +71,19 @@ Broj: <xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_zalbi/zo:broj_zalbe/.
         Ime: <u><xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_podnosiocu_zalbe/zo:ime"/> <xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_podnosiocu_zalbe/zo:prezime"/></u> <br></br>
         Adresa: <u><xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_podnosiocu_zalbe/zo:adresa"/></u> <br></br>
         Drugi podaci: <u><xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_podnosiocu_zalbe/zo:drugi_podaci_za_kontakt"/></u> <br></br>
-        Potpis: <u><xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_podnosiocu_zalbe/zo:potpis"/></u>
+         
       </span>
     </p>
     <br></br><br></br>
 <p class="indent"><b>Napomena:</b></p>
-<xsl:for-each select="zo:zalba_na_odluku/zo:napomena/zo:tacka">
-<ul>
-          <p><li> <xsl:value-of select="."/> </li></p>
+<p>
 
-</ul>
-        </xsl:for-each>
+
+•	U žalbi se mora navesti odluka koja se pobija (rešenje, zaključak, obaveštenje), naziv organa koji je odluku doneo, kao i broj i datum odluke. Dovoljno je da žalilac navede u žalbi u kom pogledu je nezadovoljan odlukom, s tim da žalbu ne mora posebno obrazložiti. Ako žalbu izjavljuje na ovom obrascu, dodatno obrazloženje može  posebno priložiti.<br></br> 
+•	Uz žalbu obavezno priložiti kopiju podnetog zahteva i dokaz o njegovoj predaji-upućivanju organu kao i kopiju odluke organa koja se osporava žalbom.
+
+</p>
+  
   </body>
   </html>
 </xsl:template>

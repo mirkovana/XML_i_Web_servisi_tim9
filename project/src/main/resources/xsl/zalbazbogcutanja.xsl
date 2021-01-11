@@ -54,9 +54,14 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	    <xsl:value-of select="zc:zalba_cutanje/zc:telo_zalbe/zc:datum/."/>
 	  </u> 
 	   godine, a kojim sam tražio/la da mi se u skladu sa Zakona o slobodnom pristupu informacijama od javnog značaja omogući uvid- kopija dokumenta koji sadrži informacije o /u vezi sa :
-	  <u>
-	    <xsl:value-of select="zc:zalba_cutanje/zc:telo_zalbe/zc:podaci_o_zahtevu_i_informaciji/."/>
-	  </u> 
+	   <p class="center">
+	   	    <xsl:value-of select="zc:zalba_cutanje/zc:telo_zalbe/zc:podaci_o_zahtevu_i_informaciji/."/>
+	   
+	   </p>
+	  
+	  <p>.....................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+                               <p class="center">(navesti podatke o zahtevu i informaciji/ama)</p> 
+	  </p>
 	  <p class="indent">
 	    Na osnovu iznetog, predlažem da Poverenik uvaži moju žalbu i omogući mi pristup traženoj/im informaciji/ma.
 	  </p>
@@ -70,15 +75,11 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	    Podnosilac zalbe:
 	    <u>
 	      <xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_podnosiocu_zalbe/zc:ime/."/>
+	       
 	      <xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_podnosiocu_zalbe/zc:prezime/."/>
 	    </u>
 	  </p>
-	  <p style="text-align:right;">
-	    Potpis:
-	    <u>
-	      <xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_podnosiocu_zalbe/zc:potpis/."/>
-	    </u>
-	  </p>
+	 
 	  <p style="text-align:right;">
 	    Adresa:
 	    <u>
