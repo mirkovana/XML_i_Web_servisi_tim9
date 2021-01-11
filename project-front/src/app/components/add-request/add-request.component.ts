@@ -12,6 +12,7 @@ declare const Xonomy: any;
 })
 export class AddRequestComponent implements OnInit {
   nazivOrgana: string;
+  sedisteOrgana: string;
   option1: string;
   option2: string;
   option3: string;
@@ -49,6 +50,7 @@ export class AddRequestComponent implements OnInit {
   sendFile() {
     console.log("sendFile");
     console.log(this.nazivOrgana + " " +
+      this.sedisteOrgana + " "+
       this.option1 + " "+
       this.option2 + " "+
       this.option3 + " "+
@@ -99,10 +101,10 @@ export class AddRequestComponent implements OnInit {
       xsi:schemaLocation="http://www.projekat.org/zahtev zahtev.xsd"
       id="0" 
       username="username"
-      datum="00.00.0000."
-      institucija="nazivinstitucije">
+      datum="`+this.datum+`"
+      institucija="`+this.nazivOrgana+`">
       <za:institucija>
-          <za:naziv xmlns:za ="http://www.projekat.org/zahtev" property="pred:nazivInstitucije">`+this.nazivOrgana+`</za:naziv> u <za:mesto>`+this.mesto+`</za:mesto>
+          <za:naziv xmlns:za ="http://www.projekat.org/zahtev" property="pred:nazivInstitucije">`+this.nazivOrgana+`</za:naziv> u <za:mesto>`+this.sedisteOrgana+`</za:mesto>
       </za:institucija>
       <za:naslov>Zahtev za pristupanje informacijama</za:naslov>
       <za:tekst_zahteva>

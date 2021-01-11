@@ -7,6 +7,9 @@
 
         <head>
             <style>
+                body {
+	              margin:100px;
+	            }
                 h1 {
                     text-align: center;
                 }

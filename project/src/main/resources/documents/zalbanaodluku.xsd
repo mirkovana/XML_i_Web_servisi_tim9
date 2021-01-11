@@ -18,6 +18,7 @@
                 <xs:element name="sadrzaj_zalbe" type="zo:Tsadrzaj_zalbe"/>
                 <xs:element name="podaci_o_podnosiocu_zalbe" type="zo:TFizicko_lice"/>
                 <xs:element name="podaci_o_mestu_i_datumu_podnosenja_zalbe" type="zo:Tmesto_datum"/>
+                <xs:element name="napomena" type="zo:Tnapomena"/>
             </xs:sequence>
             <xs:attribute name="broj" type="zo:TBroj" use="required"/>
             <xs:attribute name="username" use="required">
@@ -63,13 +64,12 @@
             <xs:extension base="zo:TLice">
                 <xs:sequence>
                     <xs:element name="naziv_poverenika">
-                        <xs:complexType>
-                            <xs:simpleContent>
-                                <xs:extension base="xs:string">
-                                    <xs:attribute name="property" type="xs:string" use="required"/>
-                                </xs:extension>
-                            </xs:simpleContent>
-                        </xs:complexType>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="500"/>
+                            </xs:restriction>
+                        </xs:simpleType>
                     </xs:element>
                 </xs:sequence>
             </xs:extension>
@@ -97,6 +97,14 @@
                             </xs:simpleContent>
                         </xs:complexType>
                     </xs:element>
+                    <xs:element name="potpis">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="30"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
                     <xs:element name="drugi_podaci_za_kontakt" minOccurs="0">
                         <xs:simpleType>
                             <xs:restriction base="xs:string">
@@ -119,7 +127,15 @@
                 </xs:simpleType>
             </xs:element>
             <xs:element name="podnosilac_zalbe" type="zo:TFizicko_lice"/>
-            <xs:element name="organ_koji_je_doneo_odluku" type="zo:TPravno_lice"/>
+            <xs:element name="organ_koji_je_doneo_odluku">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
             <xs:element name="broj_zalbe">
                 <xs:complexType>
                     <xs:simpleContent>
@@ -143,6 +159,7 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
+            <xs:element minOccurs="0" name="predlog_povereniku" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="Tmesto_datum">
@@ -167,6 +184,17 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
+    <xs:complexType name="Tnapomena">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="tacka">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
     <xs:simpleType name="TDatum">
         <xs:restriction base="xs:string">
             <xs:pattern value="\d{2}[.]\d{2}[.]\d{4}[.]"/>
@@ -175,7 +203,7 @@
     </xs:simpleType>
     <xs:simpleType name="TBroj">
         <xs:restriction base="xs:string">
-            <xs:pattern value="[0-9]{3}-[0-9]{2}-[0-9]{4}-[0-9]{4}-[0-9]{2}"/>
+            <xs:pattern value="[0-9]{3}-[0-9]{2}-[0-9]{4}/[0-9]{4}-[0-9]{2}"/>
         </xs:restriction>
     </xs:simpleType>
 </xs:schema>

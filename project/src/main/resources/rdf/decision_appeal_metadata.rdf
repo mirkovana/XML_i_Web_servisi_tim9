@@ -1,23 +1,20 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
   <rdf:Description rdf:about="">
-    <pred:organVlasti xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">POVERENIK</pred:organVlasti>
+    <pred:organVlasti xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Fc Barcelona</pred:organVlasti>
   </rdf:Description>
   <rdf:Description rdf:about="">
-    <pred:organVlasti xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">POVERENIIIK</pred:organVlasti>
+    <pred:broj xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">123456789</pred:broj>
   </rdf:Description>
   <rdf:Description rdf:about="">
-    <pred:broj xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">000-00-0000/0000-00</pred:broj>
+    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Leo</pred:ime>
   </rdf:Description>
   <rdf:Description rdf:about="">
-    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">zo:ime</pred:ime>
+    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Messi</pred:prezime>
   </rdf:Description>
   <rdf:Description rdf:about="">
-    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">zo:prezime</pred:prezime>
+    <pred:mesto xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Barcelona</pred:mesto>
   </rdf:Description>
   <rdf:Description rdf:about="">
-    <pred:mesto xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">NEKO MESTO</pred:mesto>
-  </rdf:Description>
-  <rdf:Description rdf:about="">
-    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">10.10.2010.</pred:datum>
+    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">05.10.2015.</pred:datum>
   </rdf:Description>
 </rdf:RDF>

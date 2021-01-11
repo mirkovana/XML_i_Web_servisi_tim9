@@ -61,7 +61,7 @@ public class SilenceAppealService {
 		}
 		if (prev != null) {
 			System.out.println("silence appeal already exist");
-			//return;
+			return;
 		}
 		System.out.println("found silence appeal = " + prev);
 		

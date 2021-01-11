@@ -2,3 +2,23 @@ textarea {
     width: 100%;
     height: 500px;
 }
+body {
+    margin:100px;
+}
+p.indent {
+    text-indent: 24px;
+}
+h3.headertekst {
+  text-align: center;
+}
+h4.headertekst {
+  text-align: center;
+}
+.center {
+    text-align: center;
+}
+hr {
+    border-top:2px dotted #000;
+    margin-left:100px;
+    margin-right:100px;
+}

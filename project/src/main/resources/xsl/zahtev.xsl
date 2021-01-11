@@ -36,27 +36,27 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <h2 class="headertekst"><xsl:value-of select="za:zahtev/za:naslov/."/></h2>
     <p class="indent"><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:uvod/."/></p>
     <ul>
-      <p><input type="checkbox"/><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[@za:id='1']/."/></p>
+      <p><input type="checkbox"/>obaveštenje da li poseduje traženu informaciju;</p>
     </ul>
     <ul>
-      <p><input type="checkbox"/><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[@za:id='2']/."/></p>
+      <p><input type="checkbox"/>uvid u dokument koji sadrži traženu informaciju;</p>
     </ul>
     <ul>
-      <p><input type="checkbox"/><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[@za:id='3']/."/></p>
+      <p><input type="checkbox"/>kopiju dokumenta koji sadrži traženu informaciju;</p>
     </ul>
     <ul>
-      <p><input type="checkbox"/><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[@za:id='4']/text()"/></p>
+      <p><input type="checkbox"/>dostavljanje kopije dokumenta koji sadrži traženu informaciju:** </p>
       <ul>
-         <p><input type="checkbox"/><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[@za:id='4']/za:lista/za:stavka[@za:id='5']"/></p>
+         <p><input type="checkbox"/>postom</p>
       </ul>
       <ul>
-        <p><input type="checkbox"/><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[@za:id='4']/za:lista/za:stavka[@za:id='6']"/></p>
+        <p><input type="checkbox"/>elektronskom postom</p>
       </ul>
       <ul>
-        <p><input type="checkbox"/><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[@za:id='4']/za:lista/za:stavka[@za:id='7']"/></p>
+        <p><input type="checkbox"/>faksom</p>
       </ul>
       <ul>
-        <p><input type="checkbox"/><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[@za:id='4']/za:lista/za:stavka[@za:id='8']"/></p>
+        <p><input type="checkbox"/>na drugi nacin***:<u><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[@za:id='4']/za:lista/za:stavka[@za:id='8']/za:drugi_nacin/."/></u></p>
       </ul>
     </ul>
     <p class="indent">Ovaj zahtev se odnosi na sledece informacije:</p>

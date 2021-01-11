@@ -4,9 +4,7 @@
   xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" 
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
   xmlns:pred="http://www.ftn.uns.ac.rs/predicate/"
-  xsi:schemaLocation="http://www.ftn.uns.ac.rs/obavestenje Obavestenje.xsd "
- 
->
+  xsi:schemaLocation="http://www.ftn.uns.ac.rs/obavestenje Obavestenje.xsd ">
   <ob:opste_informacije>
     <ob:podaci_o_organu>
       <ob:naziv>Naziv organa</ob:naziv>
