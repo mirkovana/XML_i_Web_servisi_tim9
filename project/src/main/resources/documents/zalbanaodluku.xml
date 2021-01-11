@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zo:zalba_na_odluku
- broj="000-00-0000/0000-00" 
+ broj="000-00-0000-0000-00" 
  datum="00.00.0000."
  username="username"
  xmlns ="http://www.projekat.org/zalbanaodluku"
@@ -36,7 +36,7 @@
       </zo:adresa>
       <zo:naziv_poverenika xmlns:zo ="http://www.projekat.org/zalbanaodluku" property="pred:organVlasti">POVERENIIIK</zo:naziv_poverenika>
     </zo:organ_koji_je_doneo_odluku>
-    <zo:broj_zalbe xmlns:zo ="http://www.projekat.org/zalbanaodluku" property="pred:broj">000-00-0000/0000-00</zo:broj_zalbe>
+    <zo:broj_zalbe xmlns:zo ="http://www.projekat.org/zalbanaodluku" property="pred:broj">000-00-0000-0000-00</zo:broj_zalbe>
     <zo:datum>10.10.2010.</zo:datum>
   </zo:podaci_o_zalbi>
   <zo:sadrzaj_zalbe/>

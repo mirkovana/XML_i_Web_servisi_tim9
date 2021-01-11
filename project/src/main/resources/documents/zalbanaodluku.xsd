@@ -175,7 +175,7 @@
     </xs:simpleType>
     <xs:simpleType name="TBroj">
         <xs:restriction base="xs:string">
-            <xs:pattern value="[0-9]{3}-[0-9]{2}-[0-9]{4}/[0-9]{4}-[0-9]{2}"/>
+            <xs:pattern value="[0-9]{3}-[0-9]{2}-[0-9]{4}-[0-9]{4}-[0-9]{2}"/>
         </xs:restriction>
     </xs:simpleType>
 </xs:schema>
