@@ -1,20 +1,21 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
   <rdf:Description rdf:about="">
-    <pred:organVlasti xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">
-      orgaan koji je doneo odluku 
-    </pred:organVlasti>
+    <pred:organVlasti xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">POVERENIK</pred:organVlasti>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <pred:organVlasti xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">POVERENIIIK</pred:organVlasti>
   </rdf:Description>
   <rdf:Description rdf:about="">
     <pred:broj xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">000-00-0000/0000-00</pred:broj>
   </rdf:Description>
   <rdf:Description rdf:about="">
-    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Ime1</pred:ime>
+    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">zo:ime</pred:ime>
   </rdf:Description>
   <rdf:Description rdf:about="">
-    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Prezime1</pred:prezime>
+    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">zo:prezime</pred:prezime>
   </rdf:Description>
   <rdf:Description rdf:about="">
-    <pred:mesto xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Novi Sad</pred:mesto>
+    <pred:mesto xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">NEKO MESTO</pred:mesto>
   </rdf:Description>
   <rdf:Description rdf:about="">
     <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">10.10.2010.</pred:datum>

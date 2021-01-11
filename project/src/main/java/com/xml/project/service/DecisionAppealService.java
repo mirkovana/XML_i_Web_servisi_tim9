@@ -58,7 +58,7 @@ public class DecisionAppealService {
 		}
 		if (prev != null) {
 			System.out.println("decision already exist");
-			return;
+			//return;
 		}
 		System.out.println("found decision = " + prev);
 		
