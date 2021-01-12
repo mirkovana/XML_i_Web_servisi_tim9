@@ -54,7 +54,12 @@ export class AddNoticeComponent implements OnInit {
       xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" 
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
       xmlns:pred="http://www.ftn.uns.ac.rs/predicate/"
-      xsi:schemaLocation="http://www.ftn.uns.ac.rs/obavestenje Obavestenje.xsd ">
+      about="http://www.ftn.uns.ac.rs/obavestenje/`+this.broj+`"
+      xsi:schemaLocation="http://www.ftn.uns.ac.rs/obavestenje Obavestenje.xsd"
+      broj="000-00-0000/0000-00"
+      username="username"  
+      datum="`+this.datum+`"
+      poverenikUsername="poverenikUsername">
       <ob:opste_informacije>
         <ob:podaci_o_organu>
           <ob:naziv>`+this.nazivOrgana+`</ob:naziv>

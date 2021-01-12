@@ -45,6 +45,7 @@ export class AddDecisionAppealComponent implements OnInit {
       xmlns:zo="http://www.projekat.org/zalbanaodluku"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xmlns:pred="http://www.projekat.org/predicate/"
+      about="http://www.projekat.org/zalbanaodluku/`+this.broj+`"
       xsi:schemaLocation="http://www.projekat.org/zalbanaodluku zalbanaodluku.xsd"
       username="username"
       datum="`+this.datum+`"

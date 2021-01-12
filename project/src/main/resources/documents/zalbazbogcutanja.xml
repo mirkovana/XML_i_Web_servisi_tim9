@@ -4,6 +4,7 @@
   xmlns:zc="http://www.projekat.org/zalbazbogcutanja"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:pred="http://www.projekat.org/predicate/"
+  about="http://www.projekat.org/zalbazbogcutanja/000-00-0000/0000-00"
   xsi:schemaLocation="http://www.projekat.org/zalbazbogcutanja zalbazbogcutanja.xsd"
   id="0" 
   broj="000-00-0000/0000-00"

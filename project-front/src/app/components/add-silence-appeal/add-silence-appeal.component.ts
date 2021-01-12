@@ -56,6 +56,7 @@ export class AddSilenceAppealComponent implements OnInit {
       xmlns:zc="http://www.projekat.org/zalbazbogcutanja"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xmlns:pred="http://www.projekat.org/predicate/"
+      about="http://www.projekat.org/zalbazbogcutanja/`+this.broj+`"
       xsi:schemaLocation="http://www.projekat.org/zalbazbogcutanja zalbazbogcutanja.xsd"
       id="0" 
       broj="`+this.broj+`"

@@ -1,17 +1,17 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="">
-    <pred:nazivInstitucije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">fc barcelona club</pred:nazivInstitucije>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/0">
+    <pred:nazivInstitucije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">fc barcelona</pred:nazivInstitucije>
   </rdf:Description>
-  <rdf:Description rdf:about="">
-    <pred:informacije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">let messi go in winter transfer windows</pred:informacije>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/0">
+    <pred:informacije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">as,ndkjahdajd jka kjak jdajdalk</pred:informacije>
   </rdf:Description>
-  <rdf:Description rdf:about="">
-    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">10.10.2010.</pred:datum>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/0">
+    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">10.10.201.</pred:datum>
   </rdf:Description>
-  <rdf:Description rdf:about="">
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/0">
     <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Leo</pred:ime>
   </rdf:Description>
-  <rdf:Description rdf:about="">
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/0">
     <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Messi</pred:prezime>
   </rdf:Description>
 </rdf:RDF>

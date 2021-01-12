@@ -1,29 +1,29 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="">
+  <rdf:Description rdf:about="http://www.projekat.org/resenje/000-00-0000/0000-00">
     <pred:broj xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">000-00-0000/0000-00</pred:broj>
   </rdf:Description>
-  <rdf:Description rdf:about="">
+  <rdf:Description rdf:about="http://www.projekat.org/resenje/000-00-0000/0000-00">
     <pred:status xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">osnovana</pred:status>
   </rdf:Description>
-  <rdf:Description rdf:about="">
+  <rdf:Description rdf:about="http://www.projekat.org/resenje/000-00-0000/0000-00">
     <pred:osobaIme xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">A</pred:osobaIme>
   </rdf:Description>
-  <rdf:Description rdf:about="">
+  <rdf:Description rdf:about="http://www.projekat.org/resenje/000-00-0000/0000-00">
     <pred:osobaPrezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">A</pred:osobaPrezime>
   </rdf:Description>
-  <rdf:Description rdf:about="">
+  <rdf:Description rdf:about="http://www.projekat.org/resenje/000-00-0000/0000-00">
     <pred:institucijaNaziv xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Učiteljskog fakulteta</pred:institucijaNaziv>
   </rdf:Description>
-  <rdf:Description rdf:about="">
+  <rdf:Description rdf:about="http://www.projekat.org/resenje/000-00-0000/0000-00">
     <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">16.04.2020.</pred:datum>
   </rdf:Description>
-  <rdf:Description rdf:about="">
+  <rdf:Description rdf:about="http://www.projekat.org/resenje/000-00-0000/0000-00">
     <pred:trazena_informacija xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Ugovor o radu</pred:trazena_informacija>
   </rdf:Description>
-  <rdf:Description rdf:about="">
+  <rdf:Description rdf:about="http://www.projekat.org/resenje/000-00-0000/0000-00">
     <pred:poverenikIme xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">IME</pred:poverenikIme>
   </rdf:Description>
-  <rdf:Description rdf:about="">
+  <rdf:Description rdf:about="http://www.projekat.org/resenje/000-00-0000/0000-00">
     <pred:poverenikPrezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">PREZIME</pred:poverenikPrezime>
   </rdf:Description>
 </rdf:RDF>

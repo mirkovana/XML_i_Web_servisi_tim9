@@ -4,6 +4,7 @@
   xmlns:zo="http://www.projekat.org/zalbanaodluku"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:pred="http://www.projekat.org/predicate/"
+  about="http://www.projekat.org/zalbanaodluku/000-00-0000/0000-00"
   xsi:schemaLocation="http://www.projekat.org/zalbanaodluku zalbanaodluku.xsd"
   username="username"
   datum="10.10.2010."

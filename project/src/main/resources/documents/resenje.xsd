@@ -49,6 +49,7 @@
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="datum" type="res:TDatum"/>
+            <xs:attribute name="about" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:complexType name="TUvod">

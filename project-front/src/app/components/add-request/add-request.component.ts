@@ -98,6 +98,7 @@ export class AddRequestComponent implements OnInit {
       xmlns:za="http://www.projekat.org/zahtev"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xmlns:pred="http://www.projekat.org/predicate/"
+      about="http://www.projekat.org/zahtev/0"
       xsi:schemaLocation="http://www.projekat.org/zahtev zahtev.xsd"
       id="0" 
       username="username"
