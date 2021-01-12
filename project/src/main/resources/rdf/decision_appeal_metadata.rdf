@@ -1,20 +1,20 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/150-00-0000/1548-00">
-    <pred:organVlasti xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">adadas</pred:organVlasti>
+  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/10">
+    <pred:organVlasti xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asasdsad</pred:organVlasti>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/150-00-0000/1548-00">
-    <pred:broj xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">150-00-0000/1548-00</pred:broj>
+  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/10">
+    <pred:broj xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">10</pred:broj>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/150-00-0000/1548-00">
-    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">adsas</pred:ime>
+  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/10">
+    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdas</pred:ime>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/150-00-0000/1548-00">
-    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdas</pred:prezime>
+  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/10">
+    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">sadas</pred:prezime>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/150-00-0000/1548-00">
-    <pred:mesto xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asd</pred:mesto>
+  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/10">
+    <pred:mesto xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">sadas</pred:mesto>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/150-00-0000/1548-00">
+  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/10">
     <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">10.10.2010.</pred:datum>
   </rdf:Description>
 </rdf:RDF>

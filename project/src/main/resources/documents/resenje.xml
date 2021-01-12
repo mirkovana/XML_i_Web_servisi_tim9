@@ -4,14 +4,14 @@
     xmlns:res="http://www.projekat.org/resenje"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:pred="http://www.projekat.org/predicate/"
-    about="http://www.projekat.org/resenje/000-00-0000/0000-00"
+    about="http://www.projekat.org/resenje/10"
     xsi:schemaLocation="http://www.projekat.org/resenje resenje.xsd"
     status="osnovana"
-    broj="000-00-0000/0000-00"
+    broj="10"
     username="username"
     datum="00.00.0000."
     poverenikUsername="poverenikUsername">
-    <res:broj xmlns:res ="http://www.projekat.org/resenje" property="pred:broj">000-00-0000/0000-00</res:broj>
+    <res:broj xmlns:res ="http://www.projekat.org/resenje" property="pred:broj">10</res:broj>
     <res:status xmlns:res ="http://www.projekat.org/resenje" property="pred:status">osnovana</res:status>
     <res:uvod>
         <res:paragraf>

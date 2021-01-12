@@ -1,14 +1,14 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/obavestenje/000-00-0000/0000-00">
-    <pred:brojPredmeta xmlns:pred="http://www.ftn.uns.ac.rs/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">000-00-0000/0000-00</pred:brojPredmeta>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/obavestenje/10">
+    <pred:brojPredmeta xmlns:pred="http://www.ftn.uns.ac.rs/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">10</pred:brojPredmeta>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/obavestenje/000-00-0000/0000-00">
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/obavestenje/10">
     <pred:datum xmlns:pred="http://www.ftn.uns.ac.rs/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">10.10.2010.</pred:datum>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/obavestenje/000-00-0000/0000-00">
-    <pred:ime xmlns:pred="http://www.ftn.uns.ac.rs/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Leo</pred:ime>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/obavestenje/10">
+    <pred:ime xmlns:pred="http://www.ftn.uns.ac.rs/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">sadas</pred:ime>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/obavestenje/000-00-0000/0000-00">
-    <pred:prezime xmlns:pred="http://www.ftn.uns.ac.rs/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Messi</pred:prezime>
+  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/obavestenje/10">
+    <pred:prezime xmlns:pred="http://www.ftn.uns.ac.rs/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">qsadas</pred:prezime>
   </rdf:Description>
 </rdf:RDF>
