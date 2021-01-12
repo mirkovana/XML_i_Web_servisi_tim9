@@ -3,16 +3,16 @@
     <pred:broj xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">10</pred:broj>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/10">
-    <pred:organVlasti xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdsaas</pred:organVlasti>
+    <pred:organVlasti xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">agdaidhasjhas</pred:organVlasti>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/10">
-    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asd</pred:ime>
+    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">jsajskhdsakj</pred:ime>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/10">
-    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asd</pred:prezime>
+    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">askjhdaskj</pred:prezime>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/10">
-    <pred:mesto xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asfasfasd</pred:mesto>
+    <pred:mesto xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">jahdjasghjdk</pred:mesto>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/10">
     <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">10.10.2010.</pred:datum>

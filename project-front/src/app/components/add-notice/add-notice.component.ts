@@ -62,8 +62,8 @@ export class AddNoticeComponent implements OnInit {
       poverenikUsername="poverenikUsername">
       <ob:opste_informacije>
         <ob:podaci_o_organu>
-          <ob:naziv>`+this.nazivOrgana+`</ob:naziv>
-          <ob:sediste>`+this.sedisteOrgana+`</ob:sediste>
+          <ob:naziv xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" property="pred:nazivOrgana">`+this.nazivOrgana+`</ob:naziv>
+          <ob:sediste xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" property="pred:sedisteOrgana">`+this.sedisteOrgana+`</ob:sediste>
         </ob:podaci_o_organu>
         <ob:broj_predmeta xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" property="pred:brojPredmeta">`+this.broj+`</ob:broj_predmeta>
         <ob:datum xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" property="pred:datum">`+this.datum+`</ob:datum>
