@@ -1,0 +1,110 @@
+<div>
+    <div style="margin-left: 100px; margin-right: 100px;">
+        <div class="center">
+            <input [(ngModel)]="nazivOrgana" style="width: 50%;" type="text" id="naziv_organa" name="naziv_organa" placeholder="Naziv organa">
+            u <input [(ngModel)]="sedisteOrgana" style="width: 10%;" type="text" id="sediste_organa" name="sediste_organa" placeholder="Sediste organa">
+            <br>
+            <hr>
+            (naziv i sediste organa kome se zahtev upucuje)
+        </div>
+        <h2 class="headertekst">Zahtev za pristupanje informacijama</h2>
+        <p class="indent">Na osnovu člana 15. Zakona o slobodnom pristupu informacijama od javnog značaja („Službeni
+            glasnik RS“, br. 120/04, 54/07, 104/09 i 36/10) ,
+            od gore navedenog organa zahtevam:*</p>
+        <ul>
+            <p><input [(ngModel)]="option1" type="checkbox" />
+                obaveštenje da li poseduje traženu informaciju;
+            </p>
+        </ul>
+        <ul>
+            <p><input [(ngModel)]="option2" type="checkbox" />
+                uvid u dokument koji sadrži traženu informaciju;
+            </p>
+        </ul>
+        <ul>
+            <p><input [(ngModel)]="option3" type="checkbox" />
+                kopiju dokumenta koji sadrži traženu informaciju;
+            </p>
+        </ul>
+        <ul>
+            <p><input [(ngModel)]="option4" type="checkbox" />
+                dostavljanje kopije dokumenta koji sadrži traženu informaciju:**
+            </p>
+            <ul>
+                <p><input [(ngModel)]="option5" type="checkbox" />
+                    postom
+                </p>
+            </ul>
+            <ul>
+                <p><input [(ngModel)]="option6" type="checkbox" />
+                    elektronsom postom
+                </p>
+            </ul>
+            <ul>
+                <p><input [(ngModel)]="option7" type="checkbox" />
+                    faksom
+                </p>
+            </ul>
+            <ul>
+                <p><input [(ngModel)]="option8" type="checkbox" />
+                    na drugi nacin <input [(ngModel)]="drugiNacin" style="width: 400px;" type="text" id="drugiNacinText"/>
+                </p>
+            </ul>
+        </ul>
+        <p class="indent">Ovaj zahtev se odnosi na sledece informacije:</p>
+        <p class="indent">
+            <u>
+                <textarea [(ngModel)]="informacije" id="informacije"></textarea>
+            </u>
+        </p>
+        <table style="text-align:left; margin-left: 20px;">
+            <tr>
+                <td>U: </td>
+                <td>
+                    <u>
+                        <input [(ngModel)]="mesto" type="text" id="mesto" />
+                    </u>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Datuma:
+                </td>
+                <td>
+                    <u>
+                        <input [(ngModel)]="datum" type="text" id="datum"/>
+                    </u>
+                </td>
+            </tr>
+            <tr>
+                <td>Ime:</td>
+                <td><u><input [(ngModel)]="ime" type="text" id="ime"/></u></td>
+            </tr>
+            <tr>
+                <td>Prezime:</td>
+                <td><u><input [(ngModel)]="prezime" type="text" id="prezime"/></u></td>
+            </tr>
+            <tr>
+                <td>Adresa:</td>
+                <td><u><input [(ngModel)]="adresa" type="text" id="adresa"/></u></td>
+            </tr>
+            <tr>
+                <td>Drugi podaci:</td>
+                <td><u><input [(ngModel)]="drugiPodaci" type="text" id="drugiPodaci"/></u></td>
+            </tr>
+            <tr>
+                <td>Potpis:</td>
+                <td><u><input [(ngModel)]="potpis" type="text" id="potpis"/></u></td>
+            </tr>
+        </table>
+        
+        <br><br>
+        _____________________________________________________________________________________
+        <p class="indent">*U kućici označiti koja zakonska prava na pristup informacijama želite da ostvarite.</p>
+        <p class="indent">**U kućici označiti način dostavljanja kopije dokumenata.</p>
+        <p class="indent">***Kada zahtevate drugi način dostavljanja obavezno upisati koji način dostavljanja zahtevate.</p>
+    </div>
+    <div>
+        <button mat-raised-button color="primary" (click)="sendFile()">Save file</button>
+    </div>
+</div>
