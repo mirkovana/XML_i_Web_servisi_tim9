@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Login } from '../../model/login.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { map } from 'rxjs/operators';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-login',
@@ -26,21 +28,27 @@ export class LoginComponent implements OnInit {
       (response => {
         console.log(response);
         if (response != null) {
-          console.log(localStorage.getItem('token'));
+          //console.log(localStorage.getItem('token'));
           localStorage.setItem('token', response.token);
           const jwt: JwtHelperService = new JwtHelperService();
           const info = jwt.decodeToken(response.token);
-          console.log(info);
+          //console.log(info);
           const role = info.role[0].authority;
           localStorage.setItem('role', info.role[0].authority);
           localStorage.setItem('username', info.sub);
-          console.log('Logged In successfully.');
-          console.log(localStorage.getItem('token'));
+          //console.log('Logged In successfully.');
+          //console.log(localStorage.getItem('token'));
           this.router.navigateByUrl('/home');
         }
       }),
       (error => {
-        console.log(error.error.message);
+        Swal.fire({
+          title: 'Error!',
+          text: 'Wrong username or password! ',
+          icon: 'error',
+          confirmButtonColor: '#DC143C',
+          confirmButtonText: 'OK'
+        });
       }));
   }
   

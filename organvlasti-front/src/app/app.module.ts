@@ -34,6 +34,8 @@ import { AddRequestComponent } from './components/add-request/add-request.compon
 import { AddDecisionAppealComponent } from './components/add-decision-appeal/add-decision-appeal.component';
 import { AddSilenceAppealComponent } from './components/add-silence-appeal/add-silence-appeal.component';
 import { AddNoticeComponent } from './components/add-notice/add-notice.component';
+import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import { RequestsComponent } from './components/requests/requests.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { AddNoticeComponent } from './components/add-notice/add-notice.component
     AddDecisionAppealComponent,
     AddSilenceAppealComponent,
     AddNoticeComponent,
+    NavigationBarComponent,
+    RequestsComponent,
   ],
   imports: [
     BrowserModule,
