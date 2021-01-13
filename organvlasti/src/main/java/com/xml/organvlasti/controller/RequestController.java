@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xml.organvlasti.dto.RequestDTO;
+import com.xml.organvlasti.model.request.Zahtev;
 import com.xml.organvlasti.service.RequestService;
 
 @RestController()
@@ -23,13 +24,30 @@ public class RequestController {
 	@Autowired
 	private RequestService service;
 	
-	@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin
 	public ResponseEntity<RequestDTO> saveRequest(@RequestBody RequestDTO dto) throws Exception {
 		System.out.println("controller saveRequest = ");
 		service.save(dto);
 		return new ResponseEntity<>(dto, HttpStatus.OK);
+	}*/
+	
+	@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity saveRequestXML(@RequestBody String xmlString) throws Exception {
+		System.out.println("controller saveRequest as xml= ");
+		service.save(xmlString);
+		return new ResponseEntity(HttpStatus.OK);
 	}
+	
+	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<Zahtev> saveRequestJax(@RequestBody Zahtev dto) throws Exception {
+		System.out.println("controller saveRequest xml = ");
+		System.out.println("Zahtev dto = " + dto);
+		Zahtev zahtev = service.saveJax(dto);
+		return new ResponseEntity<>(zahtev, HttpStatus.OK);
+	}*/
 	
 	@GetMapping(value = "/html/{id}", produces = MediaType.TEXT_HTML_VALUE)
 	public ResponseEntity<String> getRequestHTML(@PathVariable("id") String id) {

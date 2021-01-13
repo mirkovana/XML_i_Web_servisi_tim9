@@ -7,8 +7,8 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="za:institucija"/>
-                <xs:element ref="za:naslov"/>
-                <xs:element ref="za:tekst_zahteva"/>
+                <xs:element ref="za:naslov" minOccurs="0"/>
+                <xs:element ref="za:tekst_zahteva" minOccurs="1"/>
                 <xs:element name="mesto_datum">
                     <xs:complexType mixed="true">
                         <xs:sequence>
@@ -32,11 +32,9 @@
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
-            <xs:attribute name="id" use="required">
+            <xs:attribute name="broj" use="required">
                 <xs:simpleType>
-                    <xs:restriction base="xs:int">
-                        <xs:minInclusive value="0"/>
-                    </xs:restriction>
+                    <xs:restriction base="xs:string"> </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="username" use="required">
@@ -47,7 +45,7 @@
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="datum" type="za:TDatum" use="required"/>
-            <xs:attribute form="unqualified" name="institucija" use="required">
+            <xs:attribute form="unqualified" name="institucijaNaziv" use="required">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:minLength value="1"/>
@@ -84,7 +82,7 @@
     <xs:element name="tekst_zahteva">
         <xs:complexType mixed="true">
             <xs:sequence>
-                <xs:element name="uvod">
+                <xs:element name="uvod" minOccurs="0">
                     <xs:complexType mixed="true">
                         <xs:sequence>
                             <xs:element minOccurs="0" name="zakon" maxOccurs="unbounded">
@@ -233,6 +231,15 @@
                     <xs:simpleContent>
                         <xs:extension base="xs:string">
                             <xs:attribute name="property" type="xs:string" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="username">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string"/>
                         </xs:extension>
                     </xs:simpleContent>
                 </xs:complexType>

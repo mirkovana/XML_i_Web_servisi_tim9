@@ -1,20 +1,20 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/obavestenje/10">
-    <pred:nazivOrgana xmlns:pred="http://www.ftn.uns.ac.rs/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdjhajkslj</pred:nazivOrgana>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/NOTICE3">
+    <pred:nazivOrgana xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">NOTICE1</pred:nazivOrgana>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/obavestenje/10">
-    <pred:sedisteOrgana xmlns:pred="http://www.ftn.uns.ac.rs/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">ljadsjhasjk</pred:sedisteOrgana>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/NOTICE3">
+    <pred:sedisteOrgana xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">NOTICE2</pred:sedisteOrgana>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/obavestenje/10">
-    <pred:brojPredmeta xmlns:pred="http://www.ftn.uns.ac.rs/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">10</pred:brojPredmeta>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/NOTICE3">
+    <pred:brojPredmeta xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">NOTICE3</pred:brojPredmeta>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/obavestenje/10">
-    <pred:datum xmlns:pred="http://www.ftn.uns.ac.rs/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">skahdakjs</pred:datum>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/NOTICE3">
+    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">NOTICE4</pred:datum>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/obavestenje/10">
-    <pred:ime xmlns:pred="http://www.ftn.uns.ac.rs/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">ashdkjl</pred:ime>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/NOTICE3">
+    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">NOTICE5</pred:ime>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.ftn.uns.ac.rs/obavestenje/10">
-    <pred:prezime xmlns:pred="http://www.ftn.uns.ac.rs/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">lhdkjah</pred:prezime>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/NOTICE3">
+    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">NOTICE6</pred:prezime>
   </rdf:Description>
 </rdf:RDF>

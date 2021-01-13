@@ -40,15 +40,16 @@ public class SilenceAppealService {
 	@Autowired
 	private MetadataExtractor metadataExtractor;
 
-	public void save(SilenceAppealDTO dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+	public void save(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("save service = " + dto);
-		Document document = domParser.getDocument(dto.getText());
+		Document document = domParser.getDocument(dto);
 		System.out.println("got document = " + document);
 		NodeList nodeList = document.getElementsByTagName("zc:zalba_cutanje");
 		Element sp = (Element) nodeList.item(0);
 		String broj = sp.getAttribute("broj");
+		sp.setAttribute("about", "http://www.projekat.org/zalbazbogcutanja/" + broj);
 		System.out.println("node broj = " + broj);
-		broj = broj.replace("/", "_");
+		//broj = broj.replace("/", "_");
 		
 		//String id = sp.getAttribute("id");
 		System.out.println("node broj = " + broj);

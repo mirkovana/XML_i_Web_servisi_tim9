@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
           console.log(info);
           const role = info.role[0].authority;
           localStorage.setItem('role', info.role[0].authority);
+          localStorage.setItem('username', info.sub);
           console.log('Logged In successfully.');
           console.log(localStorage.getItem('token'));
           this.router.navigateByUrl('/home');

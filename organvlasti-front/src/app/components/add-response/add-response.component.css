@@ -1,4 +1,10 @@
 textarea {
-  width: 100%;
-  height: 500px;
+  width: 90%;
+  height: 250px;
+}
+p.indent {
+  text-indent: 24px;
+}
+h3.headertekst {
+  text-align: center;
 }

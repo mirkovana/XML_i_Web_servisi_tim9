@@ -50,27 +50,26 @@ export class AddNoticeComponent implements OnInit {
 
     let xmlSpec: string = `<?xml version="1.0" encoding="UTF-8"?>
     <ob:obavestenje 
-      xmlns="http://www.ftn.uns.ac.rs/obavestenje" 
-      xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" 
+      xmlns="http://www.projekat.org/obavestenje" 
+      xmlns:ob="http://www.projekat.org/obavestenje" 
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-      xmlns:pred="http://www.ftn.uns.ac.rs/predicate/"
-      about="http://www.ftn.uns.ac.rs/obavestenje/`+this.broj+`"
-      xsi:schemaLocation="http://www.ftn.uns.ac.rs/obavestenje Obavestenje.xsd"
-      broj="000-00-0000/0000-00"
-      username="username"  
+      xmlns:pred="http://www.projekat.org/predicate/"
+      about="http://www.projekat.org/obavestenje/`+this.broj+`"
+      xsi:schemaLocation="http://www.projekat.org/obavestenje Obavestenje.xsd"
+      broj="`+this.broj+`"
+      username="`+localStorage.getItem('username')+`"  
       datum="`+this.datum+`"
       poverenikUsername="poverenikUsername">
       <ob:opste_informacije>
         <ob:podaci_o_organu>
-          <ob:naziv xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" property="pred:nazivOrgana">`+this.nazivOrgana+`</ob:naziv>
-          <ob:sediste xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" property="pred:sedisteOrgana">`+this.sedisteOrgana+`</ob:sediste>
+          <ob:naziv xmlns:ob="http://www.projekat.org/obavestenje" property="pred:nazivOrgana">`+this.nazivOrgana+`</ob:naziv>
+          <ob:sediste xmlns:ob="http://www.projekat.org/obavestenje" property="pred:sedisteOrgana">`+this.sedisteOrgana+`</ob:sediste>
         </ob:podaci_o_organu>
-        <ob:broj_predmeta xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" property="pred:brojPredmeta">`+this.broj+`</ob:broj_predmeta>
-        <ob:datum xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" property="pred:datum">`+this.datum+`</ob:datum>
+        <ob:broj_predmeta xmlns:ob="http://www.projekat.org/obavestenje" property="pred:brojPredmeta">`+this.broj+`</ob:broj_predmeta>
+        <ob:datum xmlns:ob="http://www.projekat.org/obavestenje" property="pred:datum">`+this.datum+`</ob:datum>
         <ob:podaci_o_podnosiocu>
-          <ob:ime xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" property="pred:ime">`+this.ime+`</ob:ime>
-          <ob:prezime xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje" property="pred:prezime">`+this.prezime+`</ob:prezime>
-          <ob:naziv_zahteva>Naziv_zahteva</ob:naziv_zahteva>
+          <ob:ime xmlns:ob="http://www.projekat.org/obavestenje" property="pred:ime">`+this.ime+`</ob:ime>
+          <ob:prezime xmlns:ob="http://www.projekat.org/obavestenje" property="pred:prezime">`+this.prezime+`</ob:prezime>
           <ob:adresa>
             <ob:naziv_ulice>`+this.ulica+`</ob:naziv_ulice>
             <ob:broj_ulice>`+this.br+`</ob:broj_ulice>
@@ -79,15 +78,13 @@ export class AddNoticeComponent implements OnInit {
           </ob:adresa>
         </ob:podaci_o_podnosiocu>
       </ob:opste_informacije>
-      <ob:naslov>O B A V E S T E NJ E</ob:naslov>
-      <ob:podnaslov>P O D N A S L O V</ob:podnaslov>
       <ob:telo>
         <ob:godina>`+this.odDatum+`</ob:godina>
         <ob:opis>`+this.opisInformacije+`</ob:opis>
          <ob:datum>`+this.danaDatum+`</ob:datum>
         <ob:vreme>`+this.casova+`</ob:vreme>
         <ob:od>`+this.odCasova+`</ob:od>
-        <ob:do>`+this.doCasova+`00</ob:do>
+        <ob:do>`+this.doCasova+`</ob:do>
         <ob:adresa_organa>
           <ob:naziv_ulice>`+this.nazivUlice+`</ob:naziv_ulice>
           <ob:broj_ulice>`+this.brojUlice+`</ob:broj_ulice>
@@ -95,15 +92,18 @@ export class AddNoticeComponent implements OnInit {
         </ob:adresa_organa>
         <ob:iznos>`+this.iznos+`</ob:iznos>
       </ob:telo>
-      <ob:dostavljeno>Imenovanom</ob:dostavljeno>
+      <ob:potpis>`+this.potpisLica+`</ob:potpis>
     </ob:obavestenje>`;
+
     console.log(xmlSpec);
-
-    let obj : NoticeDTO = {
+    /*let obj : NoticeDTO = {
       "text" : xmlSpec
-    }
+    }*/
 
-    this.service.addNotice(obj).subscribe(
+    this.service.addNotice(xmlSpec, ()=>{
+      this.router.navigateByUrl('/home');
+    })
+    /*.subscribe(
       response =>{
         console.log("added notice");
         this.router.navigateByUrl('/home');
@@ -111,7 +111,7 @@ export class AddNoticeComponent implements OnInit {
       error => {
         console.log(error);
       }
-    );
+    );*/
   }
 
 }

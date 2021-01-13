@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" 
- xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje"
+ xmlns:ob="http://www.projekat.org/obavestenje"
  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:template match="/">
         <html>
@@ -21,6 +21,9 @@
                 .tekst {
                     text-align: center;
                 }
+                p.indent {
+		           text-indent: 24px;
+		        }
             </style>
         </head>
 
@@ -52,10 +55,6 @@
                 <xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:podaci_o_podnosiocu/ob:prezime" />
                 <br />
 
-                <b>Naziv zahteva: </b>
-                <xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:podaci_o_podnosiocu/ob:naziv_zahteva" />
-                <br />
-
                 <b>Adresa: </b>
                 <xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:podaci_o_podnosiocu/ob:adresa/ob:naziv_ulice" />
                 &#160;
@@ -67,22 +66,19 @@
                 <br />
 
                 <h1>
-                    <xsl:value-of select="ob:obavestenje/ob:naslov" />
+                   O B A V E S T E NJ E
                 </h1>
                 <h3>
-                    <xsl:value-of select="ob:obavestenje/ob:podnaslov" />
+                    o stavljanju na uvid dokumenta koji sadrži traženu informaciju i o izradi kopije
                 </h3>
-                <p class="tekst">
+                <p class="indent">
                     Na osnovu člana 16. st. 1. Zakona o slobodnom pristupu informacijama od javnog značaja, postupajući
                     po vašem zahtevu za slobodan pristup informacijama od
                     <xsl:value-of select="ob:obavestenje/ob:telo/ob:godina" /> god., kojim ste tražili uvid u dokument/e sa
                     informacijama o / u vezi sa:
                     <xsl:value-of select="obavestenje/telo/opis" /> obaveštavamo vas da dana
                     <xsl:value-of select="ob:obavestenje/ob:telo/ob:datum" />
-
-                    <!-- <xsl:value-of select="obavestenje/telo/vreme" /> -->
                     časova, odnosno u vremenu od
-                    <!-- <xsl:value-of select="obavestenje/telo/od" /> -->
                     <xsl:variable name="od"  select="ob:obavestenje/ob:telo/ob:od" />
                     <xsl:variable name="odNovo"  select=" substring($od, 1, 5)" />
                     <xsl:value-of select="$odNovo"/>
@@ -98,18 +94,18 @@
                     možete izvršiti uvid u dokument/e u kome je sadržana tražena informacija.
                 </p>
 
-                <p class="tekst">
+                <p class="indent">
                     Tom prilikom, na vaš zahtev, može vam se izdati i kopija dokumenta sa traženom informacijom.
                 </p>
 
-                <p class="tekst">
+                <p class="indent">
                     Troškovi su utvrđeni Uredbom Vlade Republike Srbije („Sl. glasnik RS“, br. 8/06), i to: kopija
                     strane A4 formata iznosi 3 dinara, A3 formata 6 dinara, CD 35 dinara, diskete 20 dinara, DVD 40
                     dinara, audio-kaseta – 150 dinara, video-kaseta 300 dinara, pretvaranje jedne strane dokumenta iz
                     fizičkog u elektronski oblik – 30 dinara.
                 </p>
 
-                <p class="tekst">
+                <p class="indent">
                     Iznos ukupnih troškova izrade kopije dokumenta po vašem zahtevu iznosi
                     <xsl:value-of select="ob:obavestenje/ob:telo/ob:iznos" /> dinara i uplaćuje se na žiro-račun Budžeta
                     Republike Srbije br. 840-742328-843-30, s pozivom na broj 97 – oznaka šifre opštine/grada gde se
@@ -117,23 +113,16 @@
                     40/10).
                 </p>
 
-                <br />
+                <br/>
 
                     <b>Dostavljeno: </b>
-                <xsl:if test="ob:obavestenje/ob:dostavljeno = 'Imenovanom'">
                     <br/>
-                    &#x3000;<b><i>1. Imenovanom</i></b>
+                    <b><i>1. Imenovanom</i></b>
                     <br/>
-                    &#x3000;2. Arhivi
-                </xsl:if>
-                <xsl:if test="ob:obavestenje/ob:dostavljeno = 'Arhivi'">
-                    <br/>
-                    &#x3000;1. Imenovanom
-                    <br/>
-                    &#x3000;<b><i>2. Arhivi</i></b>   
-            </xsl:if>
-               
+                    <b><i>2. Arhivi</i></b>
             </table>
+            <br/>
+            Potpis ovlascenog lica: <xsl:value-of select="ob:obavestenje/ob:potpis/." />
         </body>
 
         </html>

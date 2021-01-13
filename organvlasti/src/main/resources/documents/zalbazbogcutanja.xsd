@@ -15,25 +15,18 @@
                         </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="naslov">
+                <xs:element name="naslov" minOccurs="0">
                     <xs:simpleType>
                         <xs:restriction base="xs:string">
                             <xs:minLength value="1"/>
                         </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
-                <xs:element name="podaci_o_povereniku" type="zc:TPravno_lice"/>
+                <xs:element name="podaci_o_povereniku" type="zc:TPravno_lice" minOccurs="0"/>
                 <xs:element name="telo_zalbe" type="zc:Ttelo_zalbe"/>
                 <xs:element name="podaci_o_podnosiocu_zalbe" type="zc:TFizicko_lice"/>
                 <xs:element name="podaci_o_mestu_i_datumu_podnosenja_zalbe" type="zc:Tmesto_datum"/>
             </xs:sequence>
-            <xs:attribute name="id" use="required">
-                <xs:simpleType>
-                    <xs:restriction base="xs:int">
-                        <xs:minInclusive value="0"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:attribute>
             <xs:attribute name="username" use="required">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
@@ -84,7 +77,7 @@
         <xs:complexContent>
             <xs:extension base="zc:TLice">
                 <xs:sequence>
-                    <xs:element name="naziv_poverenika">
+                    <xs:element name="naziv_poverenika" minOccurs="0">
                         <xs:simpleType>
                             <xs:restriction base="xs:string">
                                 <xs:minLength value="1"/>
@@ -256,8 +249,6 @@
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="TBroj">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="[0-9]{3}-[0-9]{2}-[0-9]{4}/[0-9]{4}-[0-9]{2}"/>
-        </xs:restriction>
+        <xs:restriction base="xs:string"> </xs:restriction>
     </xs:simpleType>
 </xs:schema>

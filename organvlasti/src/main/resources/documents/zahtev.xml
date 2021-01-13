@@ -4,27 +4,16 @@
     xmlns:za="http://www.projekat.org/zahtev"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:pred="http://www.projekat.org/predicate/"
-    about="http://www.projekat.org/zahtev/0"
+    about="http://www.projekat.org/zahtev/aa54057c188c-2021"
     xsi:schemaLocation="http://www.projekat.org/zahtev zahtev.xsd"
-    id="0" 
+    broj="aa54057c188c-2021"
     username="username"
-    datum="00.00.0000."
-    institucija="nazivinstitucije">
+    datum="00.00.0000." 
+    institucijaNaziv="nazivinstitucije">
     <za:institucija>
         <za:naziv xmlns:za ="http://www.projekat.org/zahtev" property="pred:nazivInstitucije">naziv0</za:naziv> u <za:mesto>mesto0</za:mesto>
     </za:institucija>
-    <za:naslov>Zahtev za pristupanje informacijama</za:naslov>
     <za:tekst_zahteva>
-        <za:uvod>
-            Na osnovu 
-            <za:zakon>
-                <za:clan>člana 15.</za:clan>
-                <za:stav>st. 1.</za:stav>
-                <za:naziv>Zakona o slobodnom pristupu informacijama od javnog značaja </za:naziv>
-                <za:glasnik>(„Službeni glasnik RS“, br. 120/04, 54/07, 104/09 i 36/10)</za:glasnik>
-            </za:zakon>, 
-            od gore navedenog organa zahtevam:*
-        </za:uvod>
         <za:lista>
             <za:stavka za:checked="false" za:id="1">obaveštenje da li poseduje traženu informaciju;</za:stavka>
             <za:stavka za:checked="false" za:id="2">uvid u dokument koji sadrži traženu informaciju;</za:stavka>
@@ -41,27 +30,22 @@
                 </za:lista>
             </za:stavka>
         </za:lista>
-        Ovaj zahtev se odnosi na sledece informacije:
         <za:informacije xmlns:za ="http://www.projekat.org/zahtev" property="pred:informacije">
             ahda hahd ua dhajdh ah dlakhdah alsh dka 
         </za:informacije>
     </za:tekst_zahteva>
     <za:mesto_datum>
-        U <za:mesto>mesto1</za:mesto> dana
+        <za:mesto>mesto1</za:mesto>
         <za:datum xmlns:za ="http://www.projekat.org/zahtev" property="pred:datum">10.10.2020.</za:datum> godine
     </za:mesto_datum>
     <za:podnosilac>
-        <za:osoba>
+        <za:osoba> 
             <za:ime xmlns:za ="http://www.projekat.org/zahtev" property="pred:ime">ime0</za:ime>
             <za:prezime xmlns:za ="http://www.projekat.org/zahtev" property="pred:prezime">prezime0</za:prezime>
+            <za:username xmlns:za ="http://www.projekat.org/zahtev" property="pred:username">username</za:username>
         </za:osoba>
         <za:adresa>adresa0</za:adresa>
         <za:drugi_podaci>drugiPodaci0</za:drugi_podaci>
         <za:potpis>potpis0</za:potpis>
     </za:podnosilac>
-    <za:footer>
-        <za:reference>*U kućici označiti koja zakonska prava na pristup informacijama želite da ostvarite.</za:reference>
-        <za:reference>**U kućici označiti način dostavljanja kopije dokumenata.</za:reference>
-        <za:reference>***Kada zahtevate drugi način dostavljanja obavezno upisati koji način dostavljanja zahtevate.</za:reference>
-    </za:footer>
 </za:zahtev>

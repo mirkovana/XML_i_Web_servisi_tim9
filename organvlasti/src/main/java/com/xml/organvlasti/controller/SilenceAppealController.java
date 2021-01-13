@@ -23,12 +23,20 @@ public class SilenceAppealController {
 	@Autowired
 	private SilenceAppealService service;
 	
-	@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin
 	public ResponseEntity<SilenceAppealDTO> saveSilenceAppeal(@RequestBody SilenceAppealDTO dto) throws Exception {
 		System.out.println("controller saveSilenceAppeal= ");
 		service.save(dto);
 		return new ResponseEntity<>(dto, HttpStatus.OK);
+	}*/
+	
+	@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity saveSilenceAppeal(@RequestBody String dto) throws Exception {
+		System.out.println("controller saveSilenceAppeal= ");
+		service.save(dto);
+		return new ResponseEntity(HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/html/{id}", produces = MediaType.TEXT_HTML_VALUE)

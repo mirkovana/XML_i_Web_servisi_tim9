@@ -23,12 +23,20 @@ public class DecisionAppealController {
 	@Autowired
 	private DecisionAppealService service;
 	
-	@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin
 	public ResponseEntity<DecisionAppealDTO> saveDecisionAppeal(@RequestBody DecisionAppealDTO dto) throws Exception {
 		System.out.println("controller saveDecisionAppeal = ");
 		service.save(dto);
 		return new ResponseEntity<>(dto, HttpStatus.OK);
+	}*/
+	
+	@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity saveDecisionAppeal(@RequestBody String xmlString) throws Exception {
+		System.out.println("controller saveDecisionAppeal = ");
+		service.save(xmlString);
+		return new ResponseEntity(HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/html/{id}", produces = MediaType.TEXT_HTML_VALUE)

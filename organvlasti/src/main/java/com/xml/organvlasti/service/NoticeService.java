@@ -40,9 +40,9 @@ public class NoticeService {
 	@Autowired
 	private MetadataExtractor metadataExtractor;
 	
-	public void save(NoticeDTO dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+	public void save(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 //		System.out.println("save service = " + dto);
-		Document document = domParser.getDocument(dto.getText());
+		Document document = domParser.getDocument(dto);
 //		System.out.println("got document = " + document);
 
 		NodeList br_predmeta = document.getElementsByTagName("ob:broj_predmeta");
@@ -50,6 +50,7 @@ public class NoticeService {
 		Element el = (Element) br_predmeta.item(0);
 
 		String broj = el.getTextContent(); // broj_predmeta
+		el.setAttribute("about", "http://www.projekat.org/obavestenje/" + broj);
 
 		Document prev = null;
 		try {

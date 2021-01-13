@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-	targetNamespace="http://www.ftn.uns.ac.rs/obavestenje"
-	xmlns:ob="http://www.ftn.uns.ac.rs/obavestenje">
+	targetNamespace="http://www.projekat.org/obavestenje"
+	xmlns:ob="http://www.projekat.org/obavestenje" xmlns:pred="http://www.projekat.org/predicate/">
 	<xs:element name="obavestenje">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element name="opste_informacije" type="ob:Topste_informacije"> </xs:element>
-				<xs:element name="naslov">
+				<xs:element name="naslov" minOccurs="0">
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:minLength value="1"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
-				<xs:element name="podnaslov">
+				<xs:element name="podnaslov" minOccurs="0">
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:minLength value="1"/>
@@ -21,7 +21,7 @@
 					</xs:simpleType>
 				</xs:element>
 				<xs:element name="telo" type="ob:Ttelo_obavestenja"> </xs:element>
-				<xs:element name="dostavljeno">
+				<xs:element name="dostavljeno" maxOccurs="2" minOccurs="0">
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:enumeration value="Imenovanom"/>
@@ -29,6 +29,7 @@
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:element>
+				<xs:element name="potpis" type="xs:string"/>
 			</xs:sequence>
 			<xs:attribute name="about" type="xs:string"/>
 			<xs:attribute name="broj" type="ob:TBroj"/>
@@ -125,20 +126,22 @@
 	<xs:complexType name="Torgan">
 		<xs:sequence>
 			<xs:element name="naziv">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:minLength value="1"/>
-						<xs:maxLength value="50"/>
-					</xs:restriction>
-				</xs:simpleType>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="property" type="xs:string"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
 			</xs:element>
 			<xs:element name="sediste">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:minLength value="1"/>
-						<xs:maxLength value="50"/>
-					</xs:restriction>
-				</xs:simpleType>
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:string">
+							<xs:attribute name="property" type="xs:string"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
@@ -162,14 +165,6 @@
 					</xs:simpleContent>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="naziv_zahteva">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:minLength value="1"/>
-						<xs:maxLength value="50"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
 			<xs:element name="adresa" type="ob:Tadresa_podnosioca"/>
 		</xs:sequence>
 	</xs:complexType>
@@ -179,7 +174,7 @@
 			<xs:element name="broj_predmeta">
 				<xs:complexType>
 					<xs:simpleContent>
-						<xs:extension base="xs:string">
+						<xs:extension base="ob:TBroj">
 							<xs:attribute name="property" type="xs:string"/>
 						</xs:extension>
 					</xs:simpleContent>
@@ -207,8 +202,6 @@
 	</xs:simpleType>
 	<xs:element name="datum" type="ob:Tdatum"/>
 	<xs:simpleType name="TBroj">
-		<xs:restriction base="xs:string">
-			<xs:pattern value="[0-9]{3}-[0-9]{2}-[0-9]{4}/[0-9]{4}-[0-9]{2}"/>
-		</xs:restriction>
+		<xs:restriction base="xs:string"> </xs:restriction>
 	</xs:simpleType>
 </xs:schema>

@@ -14,7 +14,7 @@
             text-indent: 24px;
           }
           h3.headertekst {
-          text-align: center;
+            text-align: center;
           }
         </style>
       </head>
@@ -41,13 +41,13 @@
         <xsl:value-of select="res:zalba/res:uvod/res:paragraf/."/>
         <br></br>
         
-        <h3 class="headertekst"><xsl:value-of select="res:zalba/res:sadrzaj/res:resenje/res:naslov/."/></h3>
+        <h3 class="headertekst">RESENJE</h3>
         
         <xsl:for-each select="res:zalba/res:sadrzaj/res:resenje/res:paragraf">
           <p class="indent"><xsl:value-of select="."/></p>
         </xsl:for-each>
         
-        <h3 class="headertekst"><xsl:value-of select="res:zalba/res:sadrzaj/res:obrazlozenje/res:naslov/."/></h3>
+        <h3 class="headertekst">OBRAZLOZENJE</h3>
         
         <xsl:for-each select="res:zalba/res:sadrzaj/res:obrazlozenje/res:paragraf">
           <p class="indent"><xsl:value-of select="."/></p>

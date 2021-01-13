@@ -100,25 +100,14 @@ export class AddRequestComponent implements OnInit {
       xmlns:pred="http://www.projekat.org/predicate/"
       about="http://www.projekat.org/zahtev/0"
       xsi:schemaLocation="http://www.projekat.org/zahtev zahtev.xsd"
-      id="0" 
-      username="username"
+      broj="0" 
+      username="`+localStorage.getItem('username')+`"
       datum="`+this.datum+`"
       institucija="`+this.nazivOrgana+`">
       <za:institucija>
           <za:naziv xmlns:za ="http://www.projekat.org/zahtev" property="pred:nazivInstitucije">`+this.nazivOrgana+`</za:naziv> u <za:mesto>`+this.sedisteOrgana+`</za:mesto>
       </za:institucija>
-      <za:naslov>Zahtev za pristupanje informacijama</za:naslov>
       <za:tekst_zahteva>
-          <za:uvod>
-              Na osnovu 
-              <za:zakon>
-                  <za:clan>člana 15.</za:clan>
-                  <za:stav>st. 1.</za:stav>
-                  <za:naziv>Zakona o slobodnom pristupu informacijama od javnog značaja </za:naziv>
-                  <za:glasnik>(„Službeni glasnik RS“, br. 120/04, 54/07, 104/09 i 36/10)</za:glasnik>
-              </za:zakon>, 
-              od gore navedenog organa zahtevam:*
-          </za:uvod>
           <za:lista>
               <za:stavka za:checked="`+this.option1+`" za:id="1">obaveštenje da li poseduje traženu informaciju;</za:stavka>
               <za:stavka za:checked="`+this.option2+`" za:id="2">uvid u dokument koji sadrži traženu informaciju;</za:stavka>
@@ -135,7 +124,6 @@ export class AddRequestComponent implements OnInit {
                   </za:lista>
               </za:stavka>
           </za:lista>
-          Ovaj zahtev se odnosi na sledece informacije:
           <za:informacije xmlns:za ="http://www.projekat.org/zahtev" property="pred:informacije">`+this.informacije+`</za:informacije>
       </za:tekst_zahteva>
       <za:mesto_datum>
@@ -151,20 +139,19 @@ export class AddRequestComponent implements OnInit {
           <za:drugi_podaci>`+this.drugiPodaci+`</za:drugi_podaci>
           <za:potpis>`+this.potpis+`</za:potpis>
       </za:podnosilac>
-      <za:footer>
-          <za:reference>*U kućici označiti koja zakonska prava na pristup informacijama želite da ostvarite.</za:reference>
-          <za:reference>**U kućici označiti način dostavljanja kopije dokumenata.</za:reference>
-          <za:reference>***Kada zahtevate drugi način dostavljanja obavezno upisati koji način dostavljanja zahtevate.</za:reference>
-      </za:footer>
-  </za:zahtev>
-  `;
-  console.log(xmlString);
+  </za:zahtev>`;
+  
+    console.log(xmlString);
 
-    let obj: RequestDTO = {
+    /*let obj: RequestDTO = {
       "text" : xmlString
     };
-    console.log(obj);
-    this.requestService.addRequest(obj).subscribe(
+    console.log(obj);*/
+    this.requestService.addRequest(xmlString, ()=>{
+      this.router.navigateByUrl('/home');
+      
+    });
+    /*.subscribe(
       response => {
         console.log("added request");
         this.router.navigateByUrl('/home');
@@ -172,7 +159,7 @@ export class AddRequestComponent implements OnInit {
       error => {
         console.log(error);
       }
-    );
+    );*/
   }
 }
 /*

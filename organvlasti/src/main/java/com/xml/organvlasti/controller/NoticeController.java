@@ -23,14 +23,22 @@ public class NoticeController {
 	@Autowired
 	private NoticeService service;
 
-	@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin
 	public ResponseEntity<NoticeDTO> saveDecisionAppeal(@RequestBody NoticeDTO dto) throws Exception {
 		System.out.println("controller saveNotice = ");
 		service.save(dto);
 		return new ResponseEntity<>(dto, HttpStatus.OK);
-	}
+	}*/
 
+	@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity saveDecisionAppeal(@RequestBody String dto) throws Exception {
+		System.out.println("controller saveNotice = ");
+		service.save(dto);
+		return new ResponseEntity(HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "/html/{id}", produces = MediaType.TEXT_HTML_VALUE)
 	public ResponseEntity<String> getDecisionAppealHTML(@PathVariable("id") String id) {
 		System.out.println("controller html id = " + id);

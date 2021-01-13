@@ -33,8 +33,8 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
       <hr></hr>
       (naziv i sediste organa kome se zahtev upucuje)
     </div>
-    <h2 class="headertekst"><xsl:value-of select="za:zahtev/za:naslov/."/></h2>
-    <p class="indent"><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:uvod/."/></p>
+    <h2 class="headertekst">Zahtev za pristupanje informacijama</h2>
+    <p class="indent">Na osnovu člana 15. st. 1. Zakona o slobodnom pristupu informacijama od javnog značaja („Službeni glasnik RS“, br. 120/04, 54/07, 104/09 i 36/10) od gore navedenog organa zahtevam:*</p>
     <ul>
       <p><input type="checkbox"/>obaveštenje da li poseduje traženu informaciju;</p>
     </ul>
@@ -77,7 +77,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
       </span>
     </p>
     <br></br><br></br>
-  _________________________________________________________________
+   ___________________________________________________________________________
     <p class="indent">*U kućici označiti koja zakonska prava na pristup informacijama želite da ostvarite.</p>
     <p class="indent">**U kućici označiti način dostavljanja kopije dokumenata.</p>
     <p class="indent">***Kada zahtevate drugi način dostavljanja obavezno upisati koji način dostavljanja zahtevate.</p>

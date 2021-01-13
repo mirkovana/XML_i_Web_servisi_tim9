@@ -40,15 +40,15 @@ public class DecisionAppealService {
 	@Autowired
 	private MetadataExtractor metadataExtractor;
 	
-	public void save(DecisionAppealDTO dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+	public void save(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("save service = " + dto);
-		Document document = domParser.getDocument(dto.getText());
+		Document document = domParser.getDocument(dto);
 		System.out.println("got document = " + document);
 		NodeList nodeList = document.getElementsByTagName("zo:zalba_na_odluku");
 		Element sp = (Element) nodeList.item(0);
 		String broj = sp.getAttribute("broj");
 		System.out.println("node broj = " + broj);
-		broj = broj.replace("/", "_");
+		//broj = broj.replace("/", "_");
 		Document prev = null;
 		try {
 			System.out.println("findDecisionAppealById call");
