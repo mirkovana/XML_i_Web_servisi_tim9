@@ -199,6 +199,10 @@ public class DbManager {
 		}
 	}
 
+	public Collection getCollection(String collectionUri) throws XMLDBException {
+		return getOrCreateCollection(collectionUri, 0);
+	}
+	 
 	private Collection getOrCreateCollection(String collectionUri, int pathSegmentOffset) throws XMLDBException {
 		Collection col = DatabaseManager.getCollection(authUtil.getUri() + collectionUri, authUtil.getUser(),
 				authUtil.getPassword());

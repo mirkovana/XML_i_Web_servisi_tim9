@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
@@ -26,6 +27,7 @@ import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 import com.xml.organvlasti.dto.RequestDTO;
+import com.xml.organvlasti.dto.RequestItem;
 import com.xml.organvlasti.model.request.Zahtev;
 import com.xml.organvlasti.parser.DOMParser;
 import com.xml.organvlasti.parser.JAXParser;
@@ -78,6 +80,10 @@ public class RequestService {
 		return dto;
 	}*/
 	
+	public ArrayList<RequestItem> getAll() throws XMLDBException, ParserConfigurationException, SAXException, IOException {
+		return repository.getAll();
+	}
+	
 	public void save(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("save service = " + dto);
 		Document document = domParser.getDocument(dto);
@@ -88,6 +94,7 @@ public class RequestService {
 		String id = UUID.randomUUID().toString().split("-")[4] + "-2021";
 		sp.setAttribute("broj", id);
 		sp.setAttribute("about", "http://www.projekat.org/zahtev/" + id);
+		sp.setAttribute("time", Long.toString(System.currentTimeMillis()));
 		System.out.println("node id = " + id);
 		Document prev = null;
 		try {
@@ -117,6 +124,27 @@ public class RequestService {
 		metadataExtractor.extractMetadata(sw.toString(), MetadataExtractor.REQUEST_RDF_FILE);
 		FusekiWriter.saveRDF(FusekiWriter.REQUEST_RDF_FILEPATH, FusekiWriter.REQUEST_METADATA_GRAPH_URI);
 
+	}
+	
+	public void deleteRequest(String broj) {
+		try {
+			if (!broj.endsWith(".xml")) {
+				broj = broj + ".xml";
+			}
+			repository.deleteRequest(broj);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (XMLDBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public String getHTML(String broj) {

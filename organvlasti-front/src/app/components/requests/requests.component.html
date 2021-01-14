@@ -1,3 +1,32 @@
 <div class="row col-md-12 pl-5 pr-0">
-    <p>requests works!</p>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr class="text-center">
+                <th>Broj</th>
+                <th>Datum</th>
+                <th>Institucija</th>
+                <th>Status</th>
+                <th>HTML</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center" *ngFor="let c of requests">
+                <td>{{c.broj}}</td>
+                <td>{{c.datum}}</td>
+                <td>{{c.institucija}}</td>
+                <td>{{c.status}}</td>
+                <td><a href="http://localhost:8080/api/request/html/{{c.broj}}" target="_blank">file</a></td>
+                <td>
+                    <button mat-mini-fab color="warn" class="mr-2 mb-2" (click)="deleteRequest(c)"
+                        style="outline: none">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="requests.length === 0">
+        <h4>No requests in the database</h4>
+    </div>
 </div>

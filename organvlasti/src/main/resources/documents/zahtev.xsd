@@ -53,6 +53,8 @@
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="about" type="xs:string"/>
+            <xs:attribute name="time" type="xs:string" use="required"/>
+            <xs:attribute name="status" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="institucija">

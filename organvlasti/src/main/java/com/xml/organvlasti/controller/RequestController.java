@@ -1,18 +1,28 @@
 package com.xml.organvlasti.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
+import org.xmldb.api.base.XMLDBException;
 
 import com.xml.organvlasti.dto.RequestDTO;
+import com.xml.organvlasti.dto.RequestItem;
 import com.xml.organvlasti.model.request.Zahtev;
 import com.xml.organvlasti.service.RequestService;
 
@@ -40,6 +50,12 @@ public class RequestController {
 		return new ResponseEntity(HttpStatus.OK);
 	}
 	
+	@GetMapping(value = "/all")
+	@CrossOrigin
+	public ResponseEntity<ArrayList<RequestItem>> getAll() throws XMLDBException, ParserConfigurationException, SAXException, IOException {
+		System.out.println("controller = ");
+		return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+	}
 	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
 	public ResponseEntity<Zahtev> saveRequestJax(@RequestBody Zahtev dto) throws Exception {
@@ -48,6 +64,12 @@ public class RequestController {
 		Zahtev zahtev = service.saveJax(dto);
 		return new ResponseEntity<>(zahtev, HttpStatus.OK);
 	}*/
+	
+	@DeleteMapping(value = "/{broj}")
+	public ResponseEntity<Void> deletePaper(@PathVariable("broj") String broj) {
+		service.deleteRequest(broj);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
 	
 	@GetMapping(value = "/html/{id}", produces = MediaType.TEXT_HTML_VALUE)
 	public ResponseEntity<String> getRequestHTML(@PathVariable("id") String id) {

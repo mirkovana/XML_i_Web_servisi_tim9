@@ -103,7 +103,9 @@ export class AddRequestComponent implements OnInit {
       broj="0" 
       username="`+localStorage.getItem('username')+`"
       datum="`+this.datum+`"
-      institucija="`+this.nazivOrgana+`">
+      institucija="`+this.nazivOrgana+`"
+      time="0"
+      status="sent">
       <za:institucija>
           <za:naziv xmlns:za ="http://www.projekat.org/zahtev" property="pred:nazivInstitucije">`+this.nazivOrgana+`</za:naziv> u <za:mesto>`+this.sedisteOrgana+`</za:mesto>
       </za:institucija>

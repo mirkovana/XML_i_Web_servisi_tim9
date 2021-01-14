@@ -27,5 +27,5 @@ public class RequestDTO {
 	public String toString() {
 		return "RequestDTO [text=" + text + "]";
 	}
-	
 }
+

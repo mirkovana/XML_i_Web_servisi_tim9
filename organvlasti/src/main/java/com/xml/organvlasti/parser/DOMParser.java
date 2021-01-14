@@ -43,9 +43,9 @@ public class DOMParser {
 	}
 	public Document getDocument(String xmlText) throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilder builder = factory.newDocumentBuilder();
-		System.out.println("getDocument = " + xmlText);
+		//System.out.println("getDocument = " + xmlText);
 		Document document = builder.parse(new InputSource(new StringReader(xmlText)));
-		System.out.println("document parsed = " + document);
+		//System.out.println("document parsed = " + document);
 		return document;
 	}
 
