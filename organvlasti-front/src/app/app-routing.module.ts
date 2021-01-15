@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'add-request', component: AddRequestComponent },
   { path: 'add-decision-appeal', component: AddDecisionAppealComponent },
   { path: 'add-silence-appeal', component: AddSilenceAppealComponent },
-  { path: 'add-notice', component: AddNoticeComponent },
+  { path: 'add-notice/:id', component: AddNoticeComponent },
 ];
 
 @NgModule({

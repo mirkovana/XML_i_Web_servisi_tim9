@@ -25,6 +25,7 @@ import com.xml.organvlasti.parser.XSLTransformer;
 import com.xml.organvlasti.rdf.FusekiWriter;
 import com.xml.organvlasti.rdf.MetadataExtractor;
 import com.xml.organvlasti.repository.NoticeRepository;
+import com.xml.organvlasti.repository.RequestRepository;
 
 @Service()
 public class NoticeService {
@@ -38,6 +39,9 @@ public class NoticeService {
 	@Autowired
 	private NoticeRepository repository;
 	@Autowired
+	private RequestService requestService;
+	
+	@Autowired
 	private MetadataExtractor metadataExtractor;
 	
 	public void save(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
@@ -46,11 +50,8 @@ public class NoticeService {
 //		System.out.println("got document = " + document);
 
 		NodeList br_predmeta = document.getElementsByTagName("ob:broj_predmeta");
-
 		Element el = (Element) br_predmeta.item(0);
-
 		String broj = el.getTextContent(); // broj_predmeta
-		el.setAttribute("about", "http://www.projekat.org/obavestenje/" + broj);
 
 		Document prev = null;
 		try {
@@ -78,12 +79,13 @@ public class NoticeService {
 		System.out.println("broj after = " + broj);
 		repository.save(sw.toString(), broj + ".xml");
 		
+		requestService.acceptRequest(broj);
+		
 		metadataExtractor.extractMetadata(sw.toString(), MetadataExtractor.NOTICE_RDF_FILE);
 		FusekiWriter.saveRDF(FusekiWriter.NOTICE_RDF_FILEPATH, FusekiWriter.NOTICE_METADATA_GRAPH_URI);
 	}
 	
 	public String getHTML(String broj) {
-		System.out.println("USAO DJE TREBA >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 		Document xml = repository.findRequestById(broj);
 		return xslTransformer.getHTMLfromXML(requestXSL, xml);
 	}

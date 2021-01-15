@@ -145,6 +145,7 @@ public class DbManager {
 
 		Collection col = null;
 		try {
+			System.out.println("db manager deleteDocument = " + (authUtil.getUri() + collectionId));
 			col = DatabaseManager.getCollection(authUtil.getUri() + collectionId, authUtil.getUser(),
 					authUtil.getPassword());
 			Resource foundFile = col.getResource(documentId);

@@ -3,6 +3,7 @@
         <thead>
             <tr class="text-center">
                 <th>Broj</th>
+                <th *ngIf="isAdmin()">Username</th>
                 <th>Datum</th>
                 <th>Institucija</th>
                 <th>Status</th>
@@ -13,25 +14,28 @@
         <tbody>
             <tr class="text-center" *ngFor="let c of requests">
                 <td>{{c.broj}}</td>
-                <td>{{c.datum}}</td>
+                <td *ngIf="isAdmin()">{{c.username}}</td>
+                <td>{{convertTimestamp(c.time)}}</td>
                 <td>{{c.institucija}}</td>
-                <td>{{c.status}}</td>
+                <td>
+                    <a *ngIf="c.status=='accepted'" href="http://localhost:8080/api/notice/html/{{c.broj}}" target="_blank">Accepted</a>
+                    <div *ngIf="c.status!='accepted'">{{c.status}}</div>
+                </td>
                 <td><a href="http://localhost:8080/api/request/html/{{c.broj}}" target="_blank">file</a></td>
                 <td>
-                    <button *ngIf="isUser()" mat-mini-fab color="warn" class="mr-2 mb-2" (click)="deleteRequest(c)"
+                    <button *ngIf="isUser() && c.status!='accepted'" mat-mini-fab color="warn" class="mr-2 mb-2" (click)="deleteRequest(c)"
                         style="outline: none">
                         <mat-icon>delete</mat-icon>
                     </button>
-                    <button *ngIf="isAdmin()" mat-mini-fab color="warn" class="mr-2 mb-2" (click)="replyRequest(c)"
+                    <button *ngIf="isAdmin() && c.status!='accepted'" mat-mini-fab color="warn" class="mr-2 mb-2" (click)="replyRequest(c)"
                         style="outline: none">
                         <mat-icon>reply</mat-icon>
                     </button>
-                    <button *ngIf="isAdmin()" mat-mini-fab color="warn" class="mr-2 mb-2" (click)="denyRequest(c)"
+                    <!-- && c.status=='sent' -->
+                    <button *ngIf="isAdmin() && c.status!='accepted'" mat-mini-fab color="warn" class="mr-2 mb-2" (click)="denyRequest(c)"
                         style="outline: none">
                         <mat-icon>cancel</mat-icon>
                     </button>
-                    
-                    
                 </td>
             </tr>
         </tbody>

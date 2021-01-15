@@ -6,6 +6,24 @@
     <xs:element name="zahtev">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="status">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="broj">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element ref="za:institucija"/>
                 <xs:element ref="za:naslov" minOccurs="0"/>
                 <xs:element ref="za:tekst_zahteva" minOccurs="1"/>

@@ -1,20 +1,20 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/NOTICE3">
-    <pred:nazivOrgana xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">NOTICE1</pred:nazivOrgana>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/9845c54b89b9-2021">
+    <pred:nazivOrgana xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdsads</pred:nazivOrgana>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/NOTICE3">
-    <pred:sedisteOrgana xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">NOTICE2</pred:sedisteOrgana>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/9845c54b89b9-2021">
+    <pred:sedisteOrgana xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asasddsa</pred:sedisteOrgana>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/NOTICE3">
-    <pred:brojPredmeta xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">NOTICE3</pred:brojPredmeta>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/9845c54b89b9-2021">
+    <pred:brojPredmeta xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">9845c54b89b9-2021</pred:brojPredmeta>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/NOTICE3">
-    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">NOTICE4</pred:datum>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/9845c54b89b9-2021">
+    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">sadasd</pred:datum>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/NOTICE3">
-    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">NOTICE5</pred:ime>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/9845c54b89b9-2021">
+    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdasd</pred:ime>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/NOTICE3">
-    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">NOTICE6</pred:prezime>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/9845c54b89b9-2021">
+    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdasd</pred:prezime>
   </rdf:Description>
 </rdf:RDF>

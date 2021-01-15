@@ -23,7 +23,7 @@ export class RequestService {
 
   denyRequest(requestBroj: string): Observable<string>{
     const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
-    return this.http.delete<any>(this.path + "deny/" + requestBroj, { headers: headers });
+    return this.http.put<string>(this.path + "deny/" + requestBroj, { headers: headers });
   }
 
   getRequestsForUser(username: string){

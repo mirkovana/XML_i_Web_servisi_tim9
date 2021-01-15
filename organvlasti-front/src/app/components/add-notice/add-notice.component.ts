@@ -13,7 +13,7 @@ declare const Xonomy: any;
 export class AddNoticeComponent implements OnInit {
   appeal = '';
   textArea: string;
-
+  
   nazivOrgana: string;
   sedisteOrgana: string;
   broj: string;
@@ -43,6 +43,7 @@ export class AddNoticeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.broj = this.route.snapshot.paramMap.get('id')
   }
 
   sendFile() {

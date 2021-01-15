@@ -106,6 +106,8 @@ export class AddRequestComponent implements OnInit {
       institucija="`+this.nazivOrgana+`"
       time="0"
       status="sent">
+      <za:status xmlns:za ="http://www.projekat.org/zahtev" property="pred:status">sent</za:status>
+      <za:broj xmlns:za ="http://www.projekat.org/zahtev" property="pred:broj">insert_broj_here</za:broj>
       <za:institucija>
           <za:naziv xmlns:za ="http://www.projekat.org/zahtev" property="pred:nazivInstitucije">`+this.nazivOrgana+`</za:naziv> u <za:mesto>`+this.sedisteOrgana+`</za:mesto>
       </za:institucija>
