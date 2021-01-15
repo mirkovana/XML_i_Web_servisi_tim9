@@ -21,21 +21,22 @@ export class RequestService {
 
   constructor(private http: HttpClient) { }
 
+  denyRequest(requestBroj: string): Observable<string>{
+    const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
+    return this.http.delete<any>(this.path + "deny/" + requestBroj, { headers: headers });
+  }
+
+  getRequestsForUser(username: string){
+    console.log("getforuser = ", username);
+    const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
+    return this.http.get<Array<RequestItem>>(this.path + username + "/all", { headers: headers })
+      .pipe(map(response => response));
+  }
+
   getRequests() {
     const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
     return this.http.get<Array<RequestItem>>(this.pathGetAll, { headers: headers })
       .pipe(map(response => response));
-
-    /*this.http.get<string>(this.path + '/api/request/all', {headers: this.headers})
-    .subscribe(response => {
-      console.log("reponse = ");
-      console.log(response);
-      return true;
-    }, error => {
-      console.log("error = ");
-      console.log(error);
-      return false;
-    })*/
   }
 
   deleteRequest(broj: string, updateTable: Function) {

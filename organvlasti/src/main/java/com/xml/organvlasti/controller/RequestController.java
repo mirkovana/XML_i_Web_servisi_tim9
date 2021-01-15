@@ -56,6 +56,21 @@ public class RequestController {
 		System.out.println("controller = ");
 		return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/{username}/all")
+	@CrossOrigin
+	public ResponseEntity<ArrayList<RequestItem>> getAllForUser(@PathVariable("username") String username) throws XMLDBException, ParserConfigurationException, SAXException, IOException {
+		System.out.println("controller = ");
+		return new ResponseEntity<>(service.getAllForUser(username), HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "deny/{broj}")
+	@CrossOrigin
+	public ResponseEntity<String> denyRequest(@PathVariable("broj") String broj){
+		System.out.println("deny request = " + broj);
+		service.denyRequest(broj);
+		return new ResponseEntity<>("OK", HttpStatus.OK);
+	}
 	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
 	public ResponseEntity<Zahtev> saveRequestJax(@RequestBody Zahtev dto) throws Exception {

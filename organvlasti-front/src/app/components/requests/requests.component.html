@@ -18,10 +18,20 @@
                 <td>{{c.status}}</td>
                 <td><a href="http://localhost:8080/api/request/html/{{c.broj}}" target="_blank">file</a></td>
                 <td>
-                    <button mat-mini-fab color="warn" class="mr-2 mb-2" (click)="deleteRequest(c)"
+                    <button *ngIf="isUser()" mat-mini-fab color="warn" class="mr-2 mb-2" (click)="deleteRequest(c)"
                         style="outline: none">
                         <mat-icon>delete</mat-icon>
                     </button>
+                    <button *ngIf="isAdmin()" mat-mini-fab color="warn" class="mr-2 mb-2" (click)="replyRequest(c)"
+                        style="outline: none">
+                        <mat-icon>reply</mat-icon>
+                    </button>
+                    <button *ngIf="isAdmin()" mat-mini-fab color="warn" class="mr-2 mb-2" (click)="denyRequest(c)"
+                        style="outline: none">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                    
+                    
                 </td>
             </tr>
         </tbody>

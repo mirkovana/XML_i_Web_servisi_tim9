@@ -84,6 +84,10 @@ public class RequestService {
 		return repository.getAll();
 	}
 	
+	public ArrayList<RequestItem> getAllForUser(String username) throws XMLDBException, ParserConfigurationException, SAXException, IOException {
+		return repository.getAllForUser(username);
+	}
+	
 	public void save(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("save service = " + dto);
 		Document document = domParser.getDocument(dto);
@@ -150,6 +154,10 @@ public class RequestService {
 	public String getHTML(String broj) {
 		Document xml = repository.findRequestById(broj);
 		return xslTransformer.getHTMLfromXML(requestXSL, xml);
+	}
+
+	public void denyRequest(String broj) {
+		repository.denyRequest(broj);
 	}
 	
 }
