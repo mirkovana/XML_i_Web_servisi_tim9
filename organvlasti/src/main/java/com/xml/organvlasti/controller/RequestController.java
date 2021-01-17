@@ -3,6 +3,7 @@ package com.xml.organvlasti.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +19,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
-import com.xml.organvlasti.dto.RequestDTO;
-import com.xml.organvlasti.dto.RequestItem;
 import com.xml.organvlasti.model.request.Zahtev;
+import com.xml.organvlasti.model.zahtevResponse.RequestListResponse;
 import com.xml.organvlasti.service.RequestService;
 
 @RestController()
@@ -51,16 +50,16 @@ public class RequestController {
 		return new ResponseEntity(HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/all")
+	@GetMapping(value = "/all", produces = MediaType.TEXT_XML_VALUE)
 	@CrossOrigin
-	public ResponseEntity<ArrayList<RequestItem>> getAll() throws XMLDBException, ParserConfigurationException, SAXException, IOException {
+	public ResponseEntity<RequestListResponse> getAll() throws XMLDBException, ParserConfigurationException, SAXException, IOException, JAXBException {
 		System.out.println("controller = ");
 		return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
 	}
-	
-	@GetMapping(value = "/{username}/all")
+
+	@GetMapping(value = "/{username}/all",  produces = MediaType.TEXT_XML_VALUE)
 	@CrossOrigin
-	public ResponseEntity<ArrayList<RequestItem>> getAllForUser(@PathVariable("username") String username) throws XMLDBException, ParserConfigurationException, SAXException, IOException {
+	public ResponseEntity<RequestListResponse> getAllForUser(@PathVariable("username") String username) throws XMLDBException, ParserConfigurationException, SAXException, IOException, JAXBException {
 		System.out.println("controller = ");
 		return new ResponseEntity<>(service.getAllForUser(username), HttpStatus.OK);
 	}
@@ -72,17 +71,9 @@ public class RequestController {
 		service.denyRequest(broj);
 		return new ResponseEntity<>("OK", HttpStatus.OK);
 	}
-	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
-	@CrossOrigin
-	public ResponseEntity<Zahtev> saveRequestJax(@RequestBody Zahtev dto) throws Exception {
-		System.out.println("controller saveRequest xml = ");
-		System.out.println("Zahtev dto = " + dto);
-		Zahtev zahtev = service.saveJax(dto);
-		return new ResponseEntity<>(zahtev, HttpStatus.OK);
-	}*/
 	
 	@DeleteMapping(value = "/{broj}")
-	public ResponseEntity<Void> deletePaper(@PathVariable("broj") String broj) {
+	public ResponseEntity<Void> deleteRequest(@PathVariable("broj") String broj) {
 		service.deleteRequest(broj);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
@@ -94,4 +85,29 @@ public class RequestController {
 		System.out.println("constroller result = " + result);
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
+	
+	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<String> saveRequestJax(@RequestBody Zahtev dto) throws Exception {
+		System.out.println("controller saveRequest xml = ");
+		System.out.println("Zahtev dto = " + dto);
+		Zahtev zahtev = service.saveJax(dto);
+		return new ResponseEntity<>("OK", HttpStatus.OK);
+	}*/
 }
+
+/*@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+@CrossOrigin
+public ResponseEntity<Zahtev> saveRequestJax(@RequestBody Zahtev dto) throws Exception {
+	System.out.println("controller saveRequest xml = ");
+	System.out.println("Zahtev dto = " + dto);
+	Zahtev zahtev = service.saveJax(dto);
+	return new ResponseEntity<>(zahtev, HttpStatus.OK);
+}*/
+
+/*@GetMapping(value = "/{username}/all")
+@CrossOrigin
+public ResponseEntity<ArrayList<RequestItem>> getAllForUser(@PathVariable("username") String username) throws XMLDBException, ParserConfigurationException, SAXException, IOException, JAXBException {
+	System.out.println("controller = ");
+	return new ResponseEntity<>(service.getAllForUser(username), HttpStatus.OK);
+}*/

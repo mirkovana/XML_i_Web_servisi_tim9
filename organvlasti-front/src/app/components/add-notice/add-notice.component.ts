@@ -13,7 +13,8 @@ declare const Xonomy: any;
 export class AddNoticeComponent implements OnInit {
   appeal = '';
   textArea: string;
-  
+  podnosiocUsername: string;
+
   nazivOrgana: string;
   sedisteOrgana: string;
   broj: string;
@@ -21,9 +22,9 @@ export class AddNoticeComponent implements OnInit {
   ime: string;
   prezime: string;
   ulica: string;
-  br: string;
+  //br: string;
   grad: string;
-  postanskiBroj: string;
+  //postanskiBroj: string;
   odDatum: string;
   opisInformacije: string;
   danaDatum: string;
@@ -44,6 +45,7 @@ export class AddNoticeComponent implements OnInit {
 
   ngOnInit(): void {
     this.broj = this.route.snapshot.paramMap.get('id')
+    this.podnosiocUsername = this.route.snapshot.paramMap.get('podnosiocUsername')
   }
 
   sendFile() {
@@ -58,9 +60,9 @@ export class AddNoticeComponent implements OnInit {
       about="http://www.projekat.org/obavestenje/`+this.broj+`"
       xsi:schemaLocation="http://www.projekat.org/obavestenje Obavestenje.xsd"
       broj="`+this.broj+`"
-      username="`+localStorage.getItem('username')+`"  
+      username="`+this.podnosiocUsername+`"  
       datum="`+this.datum+`"
-      poverenikUsername="poverenikUsername">
+      organVlastiUsername="`+localStorage.getItem('username')+`">
       <ob:opste_informacije>
         <ob:podaci_o_organu>
           <ob:naziv xmlns:ob="http://www.projekat.org/obavestenje" property="pred:nazivOrgana">`+this.nazivOrgana+`</ob:naziv>
@@ -73,9 +75,7 @@ export class AddNoticeComponent implements OnInit {
           <ob:prezime xmlns:ob="http://www.projekat.org/obavestenje" property="pred:prezime">`+this.prezime+`</ob:prezime>
           <ob:adresa>
             <ob:naziv_ulice>`+this.ulica+`</ob:naziv_ulice>
-            <ob:broj_ulice>`+this.br+`</ob:broj_ulice>
             <ob:grad>`+this.grad+`</ob:grad>
-            <ob:postanski_broj>`+this.postanskiBroj+`</ob:postanski_broj>
           </ob:adresa>
         </ob:podaci_o_podnosiocu>
       </ob:opste_informacije>

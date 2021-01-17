@@ -25,7 +25,8 @@ export class RequestsComponent implements OnInit {
   getRequests(){
     if(this.userService.isUser()){
       console.log("isUser");
-      this.service.getRequestsForUser(this.getUsername()).subscribe((data: any)  => {
+      this.service.getRequestsForUser(this.getUsername()).subscribe((data: RequestItem[])  => {
+        console.log("success");
         console.log(data);
         this.requests = data;
       }, error => {
@@ -33,7 +34,7 @@ export class RequestsComponent implements OnInit {
       });
     }else if(this.userService.isAdmin()){
       console.log("isAdmin");
-      this.service.getRequests().subscribe((data: any)  => {
+      this.service.getRequests().subscribe((data: RequestItem[])  => {
         console.log(data);
         this.requests = data;
       }, error => {
@@ -48,7 +49,7 @@ export class RequestsComponent implements OnInit {
 
   replyRequest(request: RequestItem){
     console.log("reply = ", request);
-    this.router.navigate(['/add-notice/'+request.broj]);
+    this.router.navigate(['/add-notice/'+request.username+"/"+request.broj]);
   }
 
   denyRequest(request: RequestItem){

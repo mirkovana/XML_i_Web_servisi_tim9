@@ -26,19 +26,44 @@ export class RequestService {
     return this.http.put<string>(this.path + "deny/" + requestBroj, { headers: headers });
   }
 
-  getRequestsForUser(username: string){
+  getRequestsForUser(username: string): Observable<RequestItem[]>{
     console.log("getforuser = ", username);
-    const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
-    return this.http.get<Array<RequestItem>>(this.path + username + "/all", { headers: headers })
-      .pipe(map(response => response));
+    const headers = new HttpHeaders({ 
+      'Authorization': 'Bearer ' + localStorage.getItem("token"),
+    });
+    return this.http.get<string>(this.path + username + "/all", { headers: headers,
+                                                                 responseType: 'text' as 'json' })
+      .pipe(map((xml: string) => this.xmlToRequests(xml)));
   }
 
-  getRequests() {
+  getRequests(): Observable<RequestItem[]> {
     const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
-    return this.http.get<Array<RequestItem>>(this.pathGetAll, { headers: headers })
-      .pipe(map(response => response));
+    return this.http.get<string>(this.pathGetAll, { headers: headers, responseType: 'text' as 'json' })
+    .pipe(map((xml: string) => this.xmlToRequests(xml)));
   }
 
+
+  private xmlToRequests(xml: string): RequestItem[] {
+    //console.log("parse = ", xml);
+    let requestItems: RequestItem[] = [];
+    const parser = new DOMParser();
+    let requestsList = parser.parseFromString(xml,"text/xml").getElementsByTagName('requestItem'); 
+    //console.log(requestsList);
+    for (let i = 0; i < requestsList.length; ++i){
+      //console.log(requestsList.item(i).getElementsByTagName('broj')[0].textContent);
+      //console.log(requestsList.item(i).getElementsByTagName('status')[0].textContent);
+      requestItems.push({
+        'broj': requestsList.item(i).getElementsByTagName('broj')[0].textContent,
+        'datum': requestsList.item(i).getElementsByTagName('datum')[0].textContent,
+        'institucija': requestsList.item(i).getElementsByTagName('institucija')[0].textContent,
+        'username': requestsList.item(i).getElementsByTagName('username')[0].textContent,
+        'time': requestsList.item(i).getElementsByTagName('time')[0].textContent,
+        'status': requestsList.item(i).getElementsByTagName('status')[0].textContent
+      }) 
+    }
+    return requestItems;
+  }
+  
   deleteRequest(broj: string, updateTable: Function) {
     const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
     this.http.delete(this.path + broj, { headers: headers })

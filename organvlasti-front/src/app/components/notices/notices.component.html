@@ -1,0 +1,38 @@
+<div id="homeDiv">
+    <div class="col-md-12 pl-0 pr-0">
+        <app-navigation-bar></app-navigation-bar>
+    </div>
+    <div class="row col-md-12">
+        <div class="jumbotron col-md-10 ml-auto mr-auto bg-light shadow mt-2 float-left pt-3">
+            <div class="row col-md-12 pl-5 pr-0">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Broj</th>
+                            <th>Username</th>
+                            <th>Datum</th>
+                            <th>Institucija</th>
+                            <th>ImePodnosioca</th>
+                            <th>PrezimePodnosioca</th>
+                            <th>HTML</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center" *ngFor="let n of notices">
+                            <td>{{n.broj}}</td>
+                            <td>{{n.username}}</td>
+                            <td>{{n.datum}}</td>
+                            <td>{{n.nazivOrgana}}</td>
+                            <td>{{n.imePodnosioca}}</td>
+                            <td>{{n.prezimePodnosioca}}</td>
+                            <td><a href="http://localhost:8080/api/notice/html/{{n.broj}}" target="_blank">file</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="notices.length === 0">
+                    <h4>No notices in the database</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

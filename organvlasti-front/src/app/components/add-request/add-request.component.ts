@@ -103,13 +103,14 @@ export class AddRequestComponent implements OnInit {
       broj="0" 
       username="`+localStorage.getItem('username')+`"
       datum="`+this.datum+`"
-      institucija="`+this.nazivOrgana+`"
+      institucijaNaziv="`+this.nazivOrgana+`"
       time="0"
       status="sent">
-      <za:status xmlns:za ="http://www.projekat.org/zahtev" property="pred:status">sent</za:status>
-      <za:broj xmlns:za ="http://www.projekat.org/zahtev" property="pred:broj">insert_broj_here</za:broj>
+      <za:zahtev_status xmlns:za ="http://www.projekat.org/zahtev" property="pred:status">sent</za:zahtev_status>
+      <za:zahtev_broj xmlns:za ="http://www.projekat.org/zahtev" property="pred:broj">insert_broj_here</za:zahtev_broj>
       <za:institucija>
-          <za:naziv xmlns:za ="http://www.projekat.org/zahtev" property="pred:nazivInstitucije">`+this.nazivOrgana+`</za:naziv> u <za:mesto>`+this.sedisteOrgana+`</za:mesto>
+          <za:naziv xmlns:za ="http://www.projekat.org/zahtev" property="pred:nazivInstitucije">`+this.nazivOrgana+`</za:naziv>
+          <za:mesto xmlns:za ="http://www.projekat.org/zahtev" property="pred:sedisteInstitucije">`+this.sedisteOrgana+`</za:mesto>
       </za:institucija>
       <za:tekst_zahteva>
           <za:lista>
@@ -131,8 +132,8 @@ export class AddRequestComponent implements OnInit {
           <za:informacije xmlns:za ="http://www.projekat.org/zahtev" property="pred:informacije">`+this.informacije+`</za:informacije>
       </za:tekst_zahteva>
       <za:mesto_datum>
-          U <za:mesto>`+this.mesto+`</za:mesto> dana
-          <za:datum xmlns:za ="http://www.projekat.org/zahtev" property="pred:datum">`+this.datum+`</za:datum> godine
+          <za:mesto>`+this.mesto+`</za:mesto>
+          <za:datum xmlns:za ="http://www.projekat.org/zahtev" property="pred:datum">`+this.datum+`</za:datum>
       </za:mesto_datum>
       <za:podnosilac>
           <za:osoba>

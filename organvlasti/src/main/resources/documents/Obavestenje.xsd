@@ -35,7 +35,7 @@
 			<xs:attribute name="broj" type="ob:TBroj"/>
 			<xs:attribute name="username" type="xs:string"/>
 			<xs:attribute name="datum" type="ob:Tdatum"/>
-			<xs:attribute name="poverenikUsername" type="xs:string"/>
+			<xs:attribute name="organVlastiUsername" type="xs:string"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:complexType abstract="true" name="Tadresa">
@@ -48,7 +48,7 @@
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:element>
-			<xs:element name="broj_ulice">
+			<xs:element name="broj_ulice" minOccurs="0">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
 						<xs:minLength value="1"/>
@@ -85,7 +85,7 @@
 							</xs:restriction>
 						</xs:simpleType>
 					</xs:element>
-					<xs:element name="postanski_broj">
+					<xs:element name="postanski_broj" minOccurs="0">
 						<xs:simpleType>
 							<xs:restriction base="xs:int">
 								<xs:minInclusive value="11000"/>

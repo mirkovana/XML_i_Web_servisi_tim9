@@ -8,14 +8,15 @@
     xsi:schemaLocation="http://www.projekat.org/zahtev zahtev.xsd"
     broj="aa54057c188c-2021"
     username="username"
-    datum="00.00.0000."
+    datum="00.00.0000."  
     institucijaNaziv="nazivinstitucije"
     time="1564132"
-    status="sent">
-    <za:status xmlns:za ="http://www.projekat.org/zahtev" property="pred:status">sent</za:status>
-    <za:broj xmlns:za ="http://www.projekat.org/zahtev" property="pred:broj">aa54057c188c-2021</za:broj>
-    <za:institucija>
-        <za:naziv xmlns:za ="http://www.projekat.org/zahtev" property="pred:nazivInstitucije">naziv0</za:naziv> u <za:mesto>mesto0</za:mesto>
+    status="sent"> 
+    <za:zahtev_status xmlns:za ="http://www.projekat.org/zahtev" property="pred:status">sent</za:zahtev_status>
+    <za:zahtev_broj xmlns:za ="http://www.projekat.org/zahtev" property="pred:broj">aa54057c188c-2021</za:zahtev_broj>
+    <za:institucija> 
+        <za:naziv xmlns:za ="http://www.projekat.org/zahtev" property="pred:nazivInstitucije">naziv0</za:naziv> 
+        u <za:mesto  xmlns:za ="http://www.projekat.org/zahtev" property="pred:sedisteInstitucije">mesto0</za:mesto>
     </za:institucija>
     <za:tekst_zahteva>
         <za:lista>

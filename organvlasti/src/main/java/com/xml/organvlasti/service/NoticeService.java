@@ -3,6 +3,7 @@ package com.xml.organvlasti.service;
 import java.io.IOException;
 import java.io.StringWriter;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -20,6 +21,7 @@ import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 import com.xml.organvlasti.dto.NoticeDTO;
+import com.xml.organvlasti.model.noticeResponse.NoticeListResponse;
 import com.xml.organvlasti.parser.DOMParser;
 import com.xml.organvlasti.parser.XSLTransformer;
 import com.xml.organvlasti.rdf.FusekiWriter;
@@ -55,8 +57,8 @@ public class NoticeService {
 
 		Document prev = null;
 		try {
-			System.out.println("findResponseByBroj call");
-			prev = repository.findRequestById(broj);
+			System.out.println("findNoticeById call");
+			prev = repository.findNoticeById(broj);
 		} catch (Exception e) {
 			System.out.println("exception = " + e.getMessage());
 		}
@@ -85,8 +87,34 @@ public class NoticeService {
 		FusekiWriter.saveRDF(FusekiWriter.NOTICE_RDF_FILEPATH, FusekiWriter.NOTICE_METADATA_GRAPH_URI);
 	}
 	
+	public NoticeListResponse getAll() throws XMLDBException, JAXBException, SAXException {
+		return repository.getAll();
+	}
+	
+	public NoticeListResponse getAllForOrganVlastiUsername(String username) throws XMLDBException, JAXBException, SAXException {
+		return repository.getAllForUsername(username, NoticeRepository.X_QUERY_FIND_ALL_BY_ORGANVLASTI_USERNAME);
+	}
+
+	public NoticeListResponse getAllForUserUsername(String username) throws XMLDBException, JAXBException, SAXException {
+		return repository.getAllForUsername(username, NoticeRepository.X_QUERY_FIND_ALL_BY_USER_USERNAME);
+	}
+	
+	public void deleteNotice(String broj) {
+		try {
+			repository.deleteRequest(broj);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (XMLDBException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public String getHTML(String broj) {
-		Document xml = repository.findRequestById(broj);
+		Document xml = repository.findNoticeById(broj);
 		return xslTransformer.getHTMLfromXML(requestXSL, xml);
 	}
 }

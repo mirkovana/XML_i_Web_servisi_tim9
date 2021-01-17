@@ -8,9 +8,9 @@
                     <li class="nav-item" *ngIf="isUser()">
                         <a class="nav-link" routerLink="/add-request">Create request</a>
                     </li>
-                    <!--<li class="nav-item" *ngIf="isUserAdmin()">
-                        <a class="nav-link" routerLink="/add-offer">Add offer</a>
-                    </li>-->
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/notices">Notices</a>
+                    </li>
                 </ul>
             </div>
             <span class="float-right" *ngIf="!getUser()">

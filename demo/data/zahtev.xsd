@@ -6,6 +6,24 @@
     <xs:element name="zahtev">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="zahtev_status">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="zahtev_broj">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element ref="za:institucija"/>
                 <xs:element ref="za:naslov" minOccurs="0"/>
                 <xs:element ref="za:tekst_zahteva" minOccurs="1"/>
@@ -32,11 +50,9 @@
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
-            <xs:attribute name="id" use="required">
+            <xs:attribute name="broj" use="required">
                 <xs:simpleType>
-                    <xs:restriction base="xs:int">
-                        <xs:minInclusive value="0"/>
-                    </xs:restriction>
+                    <xs:restriction base="xs:string"> </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="username" use="required">
@@ -55,6 +71,9 @@
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="about" type="xs:string"/>
+            <xs:attribute name="time" type="xs:string" use="required"/>
+            <xs:attribute name="status" type="xs:string" use="required"/>
+            <xs:attribute name="vocab" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="institucija">
@@ -72,7 +91,15 @@
                         </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
-                <xs:element ref="za:mesto"/>
+                <xs:element name="mesto">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string" use="required"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -144,13 +171,7 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="mesto">
-        <xs:simpleType>
-            <xs:restriction base="xs:string">
-                <xs:minLength value="2"/>
-            </xs:restriction>
-        </xs:simpleType>
-    </xs:element>
+    <xs:element name="mesto" type="xs:string"> </xs:element>
     <xs:element name="datum">
         <xs:annotation>
             <xs:documentation>Datum formata dd.mm.yyyy.</xs:documentation>

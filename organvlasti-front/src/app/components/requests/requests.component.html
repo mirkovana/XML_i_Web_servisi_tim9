@@ -32,7 +32,7 @@
                         <mat-icon>reply</mat-icon>
                     </button>
                     <!-- && c.status=='sent' -->
-                    <button *ngIf="isAdmin() && c.status!='accepted'" mat-mini-fab color="warn" class="mr-2 mb-2" (click)="denyRequest(c)"
+                    <button *ngIf="isAdmin() && c.status=='sent'" mat-mini-fab color="warn" class="mr-2 mb-2" (click)="denyRequest(c)"
                         style="outline: none">
                         <mat-icon>cancel</mat-icon>
                     </button>

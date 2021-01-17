@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.UUID;
 
@@ -37,6 +38,7 @@ import org.xmldb.api.base.XMLDBException;
 import com.xml.organvlasti.dto.RequestDTO;
 import com.xml.organvlasti.dto.RequestItem;
 import com.xml.organvlasti.model.request.Zahtev;
+import com.xml.organvlasti.model.zahtevResponse.RequestListResponse;
 import com.xml.organvlasti.parser.DOMParser;
 import com.xml.organvlasti.parser.JAXParser;
 import com.xml.organvlasti.parser.XSLTransformer;
@@ -62,9 +64,8 @@ public class RequestService {
 	
 	/*public Zahtev saveJax(Zahtev dto) throws JAXBException, SAXException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException, TransformerException, IOException {
 		String brojZalbe = UUID.randomUUID().toString().split("-")[4] + "-2021";
-		dto.setId(brojZalbe);
+		dto.setBroj(brojZalbe);
 		dto.setAbout("http://www.projekat.org/zahtev/" + brojZalbe);
-		
 		Document prev = null;
 		try {
 			System.out.println("findRequestById call");
@@ -81,6 +82,7 @@ public class RequestService {
 		StringWriter sw = new StringWriter();
 		marshaller.marshal(dto, sw);
 		String xmlString = sw.toString();
+		//xmlString = xmlString.replaceAll("ns1", "za");
 		System.out.println("sw.tostring = " + xmlString);
 		repository.save(xmlString, brojZalbe);
 		metadataExtractor.extractMetadata(xmlString, MetadataExtractor.REQUEST_RDF_FILE);
@@ -88,12 +90,14 @@ public class RequestService {
 		return dto;
 	}*/
 	
-	public ArrayList<RequestItem> getAll() throws XMLDBException, ParserConfigurationException, SAXException, IOException {
-		return repository.getAll(false, "");
+	public RequestListResponse getAll() throws XMLDBException, ParserConfigurationException, SAXException, IOException, JAXBException {
+		return repository.getAll();
+		//return null;
 	}
 	
-	public ArrayList<RequestItem> getAllForUser(String username) throws XMLDBException, ParserConfigurationException, SAXException, IOException {
-		return repository.getAll(true, username);
+	public RequestListResponse getAllForUser(String username) throws XMLDBException, ParserConfigurationException, SAXException, IOException, JAXBException {
+		//return repository.getAll(true, username);
+		return repository.getAllForUser(username);
 	}
 	
 	public void save(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
@@ -140,7 +144,6 @@ public class RequestService {
 		
 		metadataExtractor.extractMetadata(xmlString, MetadataExtractor.REQUEST_RDF_FILE);
 		FusekiWriter.saveRDF(FusekiWriter.REQUEST_RDF_FILEPATH, FusekiWriter.REQUEST_METADATA_GRAPH_URI);
-
 	}
 	
 	public void deleteRequest(String broj) {
@@ -213,6 +216,8 @@ public class RequestService {
 			String xmlString = getStringFromDocument(document);
 			xmlString = xmlString.replace("sent", "denied");
 			
+		    //repository.denyRequest(xmlFragment, broj);
+		    
 			repository.deleteRequest(broj);
 			repository.save(xmlString, broj);
 			

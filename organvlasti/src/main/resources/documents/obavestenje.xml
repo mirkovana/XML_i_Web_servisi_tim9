@@ -9,7 +9,7 @@
   broj="aa54057c188c-2021" 
   username="username"  
   datum="00.00.0000."
-  poverenikUsername="poverenikUsername">
+  organVlastiUsername="organVlastiUsername">
   <ob:opste_informacije>
     <ob:podaci_o_organu>
       <ob:naziv xmlns:ob="http://www.projekat.org/obavestenje" property="pred:nazivOrgana">Naziv organa</ob:naziv>
@@ -22,10 +22,8 @@
       <ob:prezime xmlns:ob="http://www.projekat.org/obavestenje" property="pred:prezime">Prezimenko</ob:prezime>
       <ob:adresa>
         <ob:naziv_ulice>Bul Despota Stefana</ob:naziv_ulice>
-        <ob:broj_ulice>7</ob:broj_ulice>
         <ob:grad>Novi Sad</ob:grad>
-        <ob:postanski_broj>21000</ob:postanski_broj>
-      </ob:adresa>
+      </ob:adresa> 
     </ob:podaci_o_podnosiocu>
   </ob:opste_informacije>
   <ob:telo>

@@ -36,6 +36,7 @@ import { AddSilenceAppealComponent } from './components/add-silence-appeal/add-s
 import { AddNoticeComponent } from './components/add-notice/add-notice.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { RequestsComponent } from './components/requests/requests.component';
+import { NoticesComponent } from './components/notices/notices.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { RequestsComponent } from './components/requests/requests.component';
     AddNoticeComponent,
     NavigationBarComponent,
     RequestsComponent,
+    NoticesComponent,
   ],
   imports: [
     BrowserModule,

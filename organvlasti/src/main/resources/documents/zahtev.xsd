@@ -6,7 +6,7 @@
     <xs:element name="zahtev">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="status">
+                <xs:element name="zahtev_status">
                     <xs:complexType>
                         <xs:simpleContent>
                             <xs:extension base="xs:string">
@@ -15,7 +15,7 @@
                         </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="broj">
+                <xs:element name="zahtev_broj">
                     <xs:complexType>
                         <xs:simpleContent>
                             <xs:extension base="xs:string">
@@ -90,7 +90,15 @@
                         </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
-                <xs:element ref="za:mesto"/>
+                <xs:element name="mesto">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string" use="required"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -162,13 +170,7 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="mesto">
-        <xs:simpleType>
-            <xs:restriction base="xs:string">
-                <xs:minLength value="2"/>
-            </xs:restriction>
-        </xs:simpleType>
-    </xs:element>
+    <xs:element name="mesto" type="xs:string"> </xs:element>
     <xs:element name="datum">
         <xs:annotation>
             <xs:documentation>Datum formata dd.mm.yyyy.</xs:documentation>
