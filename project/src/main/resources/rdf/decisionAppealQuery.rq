@@ -1,4 +1,4 @@
-SELECT * FROM <http://localhost:8081/fuseki/Project/data/decisionAppealMetadata> WHERE {
+SELECT * FROM <http://localhost:8081/fuseki/OrganVlasti/data/decisionAppealMetadata> WHERE {
   ?organVlasti <http://www.projekat.org/zalbanaodluku/predicate/organVlasti> ?organVlasti .
   ?broj <http://www.projekat.org/zalbanaodluku/predicate/broj> ?broj .
   ?ime <http://www.projekat.org/zalbanaodluku/predicate/ime> ?ime .

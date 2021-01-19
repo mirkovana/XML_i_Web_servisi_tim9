@@ -30,10 +30,11 @@ import { SilenceAppealService } from './service/silence-appeal.service';
 
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AddResponseComponent } from './components/add-response/add-response.component';
-import { AddRequestComponent } from './components/add-request/add-request.component';
 import { AddDecisionAppealComponent } from './components/add-decision-appeal/add-decision-appeal.component';
 import { AddSilenceAppealComponent } from './components/add-silence-appeal/add-silence-appeal.component';
-import { AddNoticeComponent } from './components/add-notice/add-notice.component';
+import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import { DecisionAppealsComponent } from './components/decision-appeals/decision-appeals.component';
+import { SilenceAppealsComponent } from './components/silence-appeals/silence-appeals.component';
 
 @NgModule({
   declarations: [
@@ -42,10 +43,11 @@ import { AddNoticeComponent } from './components/add-notice/add-notice.component
     HomeComponent,
     SignUpComponent,
     AddResponseComponent,
-    AddRequestComponent,
     AddDecisionAppealComponent,
     AddSilenceAppealComponent,
-    AddNoticeComponent,
+    NavigationBarComponent,
+    DecisionAppealsComponent,
+    SilenceAppealsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-SELECT * FROM <http://localhost:8081/fuseki/Project/data/responseMetadata> WHERE {
+SELECT * FROM <http://localhost:8081/fuseki/OrganVlasti/data/responseMetadata> WHERE {
   ?broj <http://www.projekat.org/resenje/predicate/broj> ?broj .
   ?status <http://www.projekat.org/resenje/predicate/status> ?status .
   ?osobaIme <http://www.projekat.org/resenje/predicate/osobaIme> ?osobaIme .

@@ -26,15 +26,16 @@ export class LoginComponent implements OnInit {
       (response => {
         console.log(response);
         if (response != null) {
-          console.log(localStorage.getItem('token'));
+          //console.log(localStorage.getItem('token'));
           localStorage.setItem('token', response.token);
           const jwt: JwtHelperService = new JwtHelperService();
           const info = jwt.decodeToken(response.token);
-          console.log(info);
+          //console.log(info);
           const role = info.role[0].authority;
           localStorage.setItem('role', info.role[0].authority);
-          console.log('Logged In successfully.');
-          console.log(localStorage.getItem('token'));
+          localStorage.setItem('username', info.sub);
+          //console.log('Logged In successfully.');
+          //console.log(localStorage.getItem('token'));
           this.router.navigateByUrl('/home');
         }
       }),

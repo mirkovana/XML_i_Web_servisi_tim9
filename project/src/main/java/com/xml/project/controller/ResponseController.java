@@ -30,12 +30,20 @@ public class ResponseController {
 	@Autowired
 	private ResponseService service;
 	
-	@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin
 	public ResponseEntity<ResponseDTO> saveResponse(@RequestBody ResponseDTO dto) throws Exception {
 		System.out.println("controller saveresponse = ");
 		service.save(dto);
 		return new ResponseEntity<>(dto, HttpStatus.OK);
+	}*/
+	
+	@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity saveResponse(@RequestBody String dto) throws Exception {
+		System.out.println("controller saveresponse = ");
+		service.save(dto);
+		return new ResponseEntity(HttpStatus.OK);
 	}
 	
 	@GetMapping("/search")

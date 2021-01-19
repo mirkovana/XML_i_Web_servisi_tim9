@@ -47,7 +47,14 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	</div>
 	<p>Broj: <xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_zalbi/zo:broj_zalbe/."/> od <xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_zalbi/zo:datum/."/> godine.</p>
 	<p class="indent">
-		<xsl:value-of select="zo:zalba_na_odluku/zo:sadrzaj_zalbe/."/>
+		Navedenom odlukom organa vlasti (rešenjem, zaključkom, obaveštenjem u pisanoj formi sa 
+        elementima odluke) , suprotno zakonu, odbijen-odbačen je moj zahtev koji sam podneo/la-uputio/la
+        dana <xsl:value-of select="zo:zalba_na_odluku/zo:sadrzaj_zalbe/zo:datum/."/>  godine i tako mi uskraćeno-onemogućeno ostvarivanje ustavnog i zakonskog 
+        prava na slobodan pristup informacijama od javnog značaja. Odluku pobijam u celosti, odnosno u 
+        delu kojim <xsl:value-of select="zo:zalba_na_odluku/zo:sadrzaj_zalbe/zo:zbog_cega_se_pobija_odluka/."/> jer nije zasnovana na Zakonu o slobodnom pristupu informacijama od javnog značaja.
+        Na osnovu iznetih razloga, predlažem da Poverenik uvaži moju žalbu, poništi odluka prvostepenog organa i omogući mi pristup traženoj/im informaciji/ma.
+        Žalbu podnosim blagovremeno, u zakonskom roku utvrđenom u 
+        članu 22. st. 1. Zakona o slobodnom pristupu informacijama od javnog značaja.
 	</p>
 	<p style="text-align:left;">
 	  U <u><xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_mestu_i_datumu_podnosenja_zalbe/zo:mesto/."/></u><br></br> 
@@ -61,11 +68,17 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	</p>
 	<br></br><br></br>
 	<p class="indent"><b>Napomena:</b></p>
-	<xsl:for-each select="zo:zalba_na_odluku/zo:napomena/zo:tacka">
- 	  <ul>
-	    <p><li> <xsl:value-of select="."/> </li></p>
-      </ul>
-	</xsl:for-each>
+	<ul>
+		<p><li>U žalbi se mora navesti odluka koja se pobija (rešenje, zaključak, obaveštenje), 
+          naziv organa koji je odluku doneo, kao i broj i datum odluke. 
+          Dovoljno je da žalilac navede u žalbi u kom pogledu je nezadovoljan odlukom,
+          s tim da žalbu ne mora posebno obrazložiti. 
+          Ako žalbu izjavljuje na ovom obrascu, dodatno obrazloženje može posebno priložiti.</li></p>
+	</ul>
+	<ul>
+		<p><li>Uz žalbu obavezno priložiti kopiju podnetog zahteva i dokaz o njegovoj 
+          predaji-upućivanju organu kao i kopiju odluke organa koja se osporava žalbom.</li></p>
+	</ul>
   </body>
   </html>
 </xsl:template>

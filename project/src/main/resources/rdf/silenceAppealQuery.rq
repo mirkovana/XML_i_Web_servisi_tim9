@@ -1,4 +1,4 @@
-SELECT * FROM <http://localhost:8081/fuseki/Project/data/silenceAppealMetadata> WHERE {
+SELECT * FROM <http://localhost:8081/fuseki/OrganVlasti/data/silenceAppealMetadata> WHERE {
   ?broj <http://www.projekat.org/zalbazbogcutanja/predicate/broj> ?broj .
   ?organVlasti <http://www.projekat.org/zalbazbogcutanja/predicate/organVlasti> ?organVlasti .
   ?ime <http://www.projekat.org/zalbazbogcutanja/predicate/ime> ?ime .

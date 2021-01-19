@@ -3,6 +3,7 @@ package com.xml.project.service;
 import java.io.IOException;
 import java.io.StringWriter;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -20,6 +21,8 @@ import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 import com.xml.project.dto.DecisionAppealDTO;
+import com.xml.project.model.decisionAppealResponse.DAppealListResponse;
+import com.xml.project.model.zahtevResponse.RequestListResponse;
 import com.xml.project.parser.DOMParser;
 import com.xml.project.parser.XSLTransformer;
 import com.xml.project.rdf.FusekiWriter;
@@ -40,15 +43,15 @@ public class DecisionAppealService {
 	@Autowired
 	private MetadataExtractor metadataExtractor;
 	
-	public void save(DecisionAppealDTO dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+	public void save(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("save service = " + dto);
-		Document document = domParser.getDocument(dto.getText());
+		Document document = domParser.getDocument(dto);
 		System.out.println("got document = " + document);
 		NodeList nodeList = document.getElementsByTagName("zo:zalba_na_odluku");
 		Element sp = (Element) nodeList.item(0);
 		String broj = sp.getAttribute("broj");
 		System.out.println("node broj = " + broj);
-		broj = broj.replace("/", "_");
+		//broj = broj.replace("/", "_");
 		Document prev = null;
 		try {
 			System.out.println("findDecisionAppealById call");
@@ -76,6 +79,10 @@ public class DecisionAppealService {
 		
 		metadataExtractor.extractMetadata(sw.toString(), MetadataExtractor.DECISION_APPEAL_RDF_FILE);
 		FusekiWriter.saveRDF(FusekiWriter.DECISION_APPEAL_RDF_FILEPATH, FusekiWriter.DECISION_APPEAL_METADATA_GRAPH_URI);
+	}
+	
+	public DAppealListResponse getAll() {
+		return repository.getAll();
 	}
 	
 	public String getHTML(String id) {

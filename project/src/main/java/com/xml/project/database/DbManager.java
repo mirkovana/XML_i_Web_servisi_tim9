@@ -145,6 +145,7 @@ public class DbManager {
 
 		Collection col = null;
 		try {
+			System.out.println("db manager deleteDocument = " + (authUtil.getUri() + collectionId));
 			col = DatabaseManager.getCollection(authUtil.getUri() + collectionId, authUtil.getUser(),
 					authUtil.getPassword());
 			Resource foundFile = col.getResource(documentId);
@@ -199,6 +200,10 @@ public class DbManager {
 		}
 	}
 
+	public Collection getCollection(String collectionUri) throws XMLDBException {
+		return getOrCreateCollection(collectionUri, 0);
+	}
+	 
 	private Collection getOrCreateCollection(String collectionUri, int pathSegmentOffset) throws XMLDBException {
 		Collection col = DatabaseManager.getCollection(authUtil.getUri() + collectionUri, authUtil.getUser(),
 				authUtil.getPassword());

@@ -14,6 +14,15 @@
                         </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
+                <xs:element name="datum">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="res:TDatum">
+                                <xs:attribute name="property" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element name="status">
                     <xs:complexType>
                         <xs:simpleContent>
@@ -164,20 +173,18 @@
     </xs:complexType>
     <xs:complexType name="TResenje">
         <xs:sequence>
-            <xs:element ref="res:naslov"/>
+            <xs:element ref="res:naslov" minOccurs="0"/>
             <xs:element maxOccurs="unbounded" name="paragraf" type="res:TParagraf"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="TObrazlozenje">
         <xs:sequence>
-            <xs:element ref="res:naslov"/>
+            <xs:element ref="res:naslov" minOccurs="0"/>
             <xs:element maxOccurs="unbounded" name="paragraf" type="res:TParagraf"/>
         </xs:sequence>
     </xs:complexType>
     <xs:simpleType name="TBroj">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="[0-9]{3}-[0-9]{2}-[0-9]{4}/[0-9]{4}-[0-9]{2}"/>
-        </xs:restriction>
+        <xs:restriction base="xs:string"> </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="TDatum">
         <xs:restriction base="xs:string">

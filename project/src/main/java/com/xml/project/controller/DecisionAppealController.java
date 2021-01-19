@@ -1,5 +1,10 @@
 package com.xml.project.controller;
 
+import java.io.IOException;
+
+import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,8 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.xml.sax.SAXException;
+import org.xmldb.api.base.XMLDBException;
 
 import com.xml.project.dto.DecisionAppealDTO;
+import com.xml.project.model.decisionAppealResponse.DAppealListResponse;
+import com.xml.project.model.zahtevResponse.RequestListResponse;
 import com.xml.project.service.DecisionAppealService;
 
 @RestController()
@@ -23,12 +32,34 @@ public class DecisionAppealController {
 	@Autowired
 	private DecisionAppealService service;
 	
-	@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@CrossOrigin
 	public ResponseEntity<DecisionAppealDTO> saveDecisionAppeal(@RequestBody DecisionAppealDTO dto) throws Exception {
 		System.out.println("controller saveDecisionAppeal = ");
 		service.save(dto);
 		return new ResponseEntity<>(dto, HttpStatus.OK);
+	}*/
+	
+	@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity saveDecisionAppeal(@RequestBody String xmlString) throws Exception {
+		System.out.println("controller saveDecisionAppeal = ");
+		service.save(xmlString);
+		return new ResponseEntity(HttpStatus.OK);
+	}
+	
+	/*@GetMapping(value = "/all", produces = MediaType.TEXT_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<RequestListResponse> getAll() throws XMLDBException, ParserConfigurationException, SAXException, IOException, JAXBException {
+		System.out.println("controller = ");
+		return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+	}*/
+	
+	@GetMapping(value = "/all", produces = MediaType.TEXT_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<DAppealListResponse> getAll(){
+		System.out.println("controller get all= ");
+		return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/html/{id}", produces = MediaType.TEXT_HTML_VALUE)
