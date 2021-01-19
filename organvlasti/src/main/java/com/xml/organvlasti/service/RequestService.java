@@ -169,6 +169,11 @@ public class RequestService {
 		return xslTransformer.getHTMLfromXML(requestXSL, xml);
 	}
 
+	public String getFileDownload(String broj) throws TransformerException {
+		Document xml = repository.findRequestById(broj);
+		return getStringFromDocument(xml);
+	}
+	
 	public void acceptRequest(String broj) {
 		Document document = repository.findRequestById(broj);
 		System.out.println("getTextcontnet" + document.toString());

@@ -26,6 +26,12 @@ export class RequestService {
     return this.http.put<string>(this.path + "deny/" + requestBroj, { headers: headers });
   }
 
+  /*downloadRequestFile(broj: string): Observable<any> {
+    const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
+    //@ts-ignore
+    return this.http.get<any>(this.path + "download/file/" + broj, { headers: headers, responseType: 'text' });
+  }*/
+
   getRequestsForUser(username: string): Observable<RequestItem[]>{
     console.log("getforuser = ", username);
     const headers = new HttpHeaders({ 

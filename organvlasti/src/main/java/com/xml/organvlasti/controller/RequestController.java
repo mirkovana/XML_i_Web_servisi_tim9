@@ -5,8 +5,10 @@ import java.util.ArrayList;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -86,6 +88,40 @@ public class RequestController {
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
 	
+	/*@GetMapping(value = "/download/{id}", produces = MediaType.TEXT_XML_VALUE)
+	public ResponseEntity<String> getRequestFile(@PathVariable("id") String id) {
+		System.out.println("controller download id = " + id);
+		String result;
+		try {
+			result = service.getFileDownload(id);
+			System.out.println("constroller download result = " + result);
+			return new ResponseEntity<String>(result, HttpStatus.OK);
+		} catch (TransformerException e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>("BAD_REQUEST", HttpStatus.BAD_REQUEST);
+		}
+	}*/
+	
+	@GetMapping(value = "/download/file/{id}")
+	public ResponseEntity<byte[]> downloadFile(@PathVariable("id") String id) throws Exception {
+		System.out.println("download/file = " + id);
+		String result;
+		try {
+			result = service.getFileDownload(id);
+			System.out.println("constroller download result = " + result);
+			byte[] isr = result.getBytes();
+			String fileName = id+".xml";
+			HttpHeaders respHeaders = new HttpHeaders();
+			respHeaders.setContentLength(isr.length);
+			respHeaders.setContentType(new MediaType("text", "xml"));
+			respHeaders.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+			respHeaders.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName);
+			return new ResponseEntity<byte[]>(isr, respHeaders, HttpStatus.OK);
+		} catch (TransformerException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
 	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
 	public ResponseEntity<String> saveRequestJax(@RequestBody Zahtev dto) throws Exception {
