@@ -7,13 +7,13 @@
   about="http://www.projekat.org/zalbazbogcutanja/aa54057c188c-2021"
   xsi:schemaLocation="http://www.projekat.org/zalbazbogcutanja zalbazbogcutanja.xsd" 
   broj="aa54057c188c-2021" 
-  username="username"
+  username="username" 
   status="sent"
   poverenikUsername="poverenikUsername"
   nazivOrgana="nazivOrgana">
-  <zc:status xmlns:zc="http://www.projekat.org/zalbazbogcutanja" property="pred:status">sent</zc:status>
-  <zc:broj xmlns:zc="http://www.projekat.org/zalbazbogcutanja" property="pred:broj">aa54057c188c-2021</zc:broj>
-  <zc:telo_zalbe> 
+  <zc:zalba_status xmlns:zc="http://www.projekat.org/zalbazbogcutanja" property="pred:status">sent</zc:zalba_status>
+  <zc:zalba_broj xmlns:zc="http://www.projekat.org/zalbazbogcutanja" property="pred:broj">aa54057c188c-2021</zc:zalba_broj>
+  <zc:telo_zalbe>
     <zc:naziv_organa xmlns:zc ="http://www.projekat.org/zalbazbogcutanja" property="pred:organVlasti">
       naziv organa
     </zc:naziv_organa>

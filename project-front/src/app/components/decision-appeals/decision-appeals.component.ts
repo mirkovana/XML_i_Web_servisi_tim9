@@ -20,6 +20,7 @@ export class DecisionAppealsComponent implements OnInit {
   ngOnInit(): void {
     this.getDecisionAppeals();
   }
+
   getDecisionAppeals() {
     if (this.isUser()) {
       console.log("getappealsforuser");
@@ -39,6 +40,14 @@ export class DecisionAppealsComponent implements OnInit {
       });
     }
   }
+
+  deleteAppeal(appeal: DAppealItem){
+    console.log("deleteappeal = ", appeal);
+    this.service.deleteAppeal(appeal.broj, ()=>{
+      this.appeals = this.appeals.filter(item => item.broj != appeal.broj);
+    });
+  }
+  
 
   isUser() {
     return this.userService.isUser();

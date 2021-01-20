@@ -81,8 +81,8 @@ export class AddSilenceAppealComponent implements OnInit {
       status="sent"
       poverenikUsername="poverenikUsername"
       nazivOrgana="`+this.nazivOrgana+`">
-      <zc:status xmlns:zc="http://www.projekat.org/zalbazbogcutanja" property="pred:status">sent</zc:status>
-      <zc:broj xmlns:zc="http://www.projekat.org/zalbazbogcutanja" property="pred:broj">`+this.broj+`</zc:broj>
+      <zc:zalba_status xmlns:zc="http://www.projekat.org/zalbazbogcutanja" property="pred:status">sent</zc:zalba_status>
+      <zc:zalba_broj xmlns:zc="http://www.projekat.org/zalbazbogcutanja" property="pred:broj">`+this.broj+`</zc:zalba_broj>
       <zc:telo_zalbe> 
         <zc:naziv_organa xmlns:zc ="http://www.projekat.org/zalbazbogcutanja" property="pred:organVlasti">`+this.nazivOrgana+`</zc:naziv_organa>
         <zc:razlozi>

@@ -88,4 +88,30 @@ export class DecisionAppealService {
     }
     return appealItems;
   }
+
+  deleteAppeal(broj: string, updateTable: Function) {
+    const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
+    this.http.delete(this.path + broj, { headers: headers })
+      .pipe(map(response => response))
+      .subscribe(response => {
+        updateTable();
+        Swal.fire({
+          title: 'Success!',
+          text: 'Appeal successfully deleted!',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
+        return true;
+      }, error => {
+        console.log(error);
+        Swal.fire({
+          title: 'Error!',
+          text: 'Something went wrong! ' + error.error,
+          icon: 'error',
+          confirmButtonColor: '#DC143C',
+          confirmButtonText: 'OK'
+        });
+        return false;
+      })
+  }
 }

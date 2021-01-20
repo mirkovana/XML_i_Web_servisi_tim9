@@ -122,6 +122,13 @@ public class DecisionAppealRepository {
         return response;
 	}
 	
+	public void deleteAppeal(String broj) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+		if (!broj.endsWith(".xml")) {
+			broj = broj + ".xml";
+		}
+		dbManager.deleteDocument(collectionId, broj);
+	}
+	
 	public Document findDecisionAppealByBroj(String id) {
 		Document document = null;
 		System.out.println("in repository finding id = " + id);

@@ -28,6 +28,7 @@ import com.xml.project.parser.XSLTransformer;
 import com.xml.project.rdf.FusekiWriter;
 import com.xml.project.rdf.MetadataExtractor;
 import com.xml.project.repository.DecisionAppealRepository;
+import com.xml.project.repository.RequestRepository;
 
 @Service()
 public class DecisionAppealService {
@@ -40,6 +41,8 @@ public class DecisionAppealService {
 	private XSLTransformer xslTransformer;
 	@Autowired
 	private DecisionAppealRepository repository;
+	@Autowired
+	private RequestRepository requestRepository;
 	@Autowired
 	private MetadataExtractor metadataExtractor;
 	
@@ -87,6 +90,11 @@ public class DecisionAppealService {
 	
 	public DAppealListResponse getAllForUsername(String username) throws XMLDBException, JAXBException, SAXException {
 		return repository.getAllForUsername(username);
+	}
+	
+	public void deleteAppeal(String broj) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+		repository.deleteAppeal(broj);
+		requestRepository.deleteRequest(broj);
 	}
 	
 	public String getHTML(String id) {

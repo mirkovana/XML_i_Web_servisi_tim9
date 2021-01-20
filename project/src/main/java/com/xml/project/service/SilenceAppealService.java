@@ -3,6 +3,7 @@ package com.xml.project.service;
 import java.io.IOException;
 import java.io.StringWriter;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -20,10 +21,12 @@ import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 import com.xml.project.dto.SilenceAppealDTO;
+import com.xml.project.model.silenceAppealResponse.SAppealListResponse;
 import com.xml.project.parser.DOMParser;
 import com.xml.project.parser.XSLTransformer;
 import com.xml.project.rdf.FusekiWriter;
 import com.xml.project.rdf.MetadataExtractor;
+import com.xml.project.repository.RequestRepository;
 import com.xml.project.repository.SilenceAppealRepository;
 
 @Service()
@@ -37,6 +40,8 @@ public class SilenceAppealService {
 	private XSLTransformer xslTransformer;
 	@Autowired
 	private SilenceAppealRepository repository;
+	@Autowired
+	private RequestRepository requestRepository;
 	@Autowired
 	private MetadataExtractor metadataExtractor;
 
@@ -78,6 +83,19 @@ public class SilenceAppealService {
 		
 		metadataExtractor.extractMetadata(sw.toString(), MetadataExtractor.SILENCE_APPEAL_RDF_FILE);
 		FusekiWriter.saveRDF(FusekiWriter.SILENCE_APPEAL_RDF_FILEPATH, FusekiWriter.SILENCE_APPEAL_METADATA_GRAPH_URI);
+	}
+	
+	public SAppealListResponse getAll() throws XMLDBException, JAXBException, SAXException {
+		return repository.getAll();
+	}
+	
+	public SAppealListResponse getAllForUsername(String username) throws XMLDBException, JAXBException, SAXException {
+		return repository.getAllForUsername(username);
+	}
+	
+	public void deleteAppeal(String broj) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+		repository.deleteAppeal(broj);
+		requestRepository.deleteRequest(broj);
 	}
 	
 	public String getHTML(String id) {

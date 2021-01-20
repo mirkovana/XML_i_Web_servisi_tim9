@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -69,8 +70,8 @@ public class DecisionAppealController {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);	
 		}
-
 	}
+	
 	@GetMapping(value = "/all", produces = MediaType.TEXT_XML_VALUE)
 	@CrossOrigin
 	public ResponseEntity<DAppealListResponse> getAll(){
@@ -86,6 +87,26 @@ public class DecisionAppealController {
 		} catch (SAXException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@DeleteMapping(value = "/{broj}")
+	public ResponseEntity<Void> deleteAppeal(@PathVariable("broj") String broj) {
+		try {
+			service.deleteAppeal(broj);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} catch (XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
 	
