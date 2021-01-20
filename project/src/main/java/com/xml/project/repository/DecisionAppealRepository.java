@@ -33,7 +33,7 @@ public class DecisionAppealRepository {
 	private String collectionId = "/db/XmlProject/decisionAppeals";
 	
 	private static String schemaPath = "src/main/resources/documents/zalbanaodluku.xsd";
-	private static String contextPath = "com.xml.project.model.decisionAppealResponse";
+	private static String contextPath = "com.xml.project.model.decisionAppeal";
 										
 	public static final String X_QUERY_FIND_ALL_DECISION_APPEALS = "xquery version \"3.1\";\n" +
             "declare default element namespace \"http://www.projekat.org/zalbanaodluku\";\n" +
@@ -51,6 +51,42 @@ public class DecisionAppealRepository {
 		System.out.println("save in repository entity = " + xmlEntity + " broj = " + broj);
 		dbManager.storeXMLFromText(collectionId, broj, xmlEntity);
 		return "SAVED";
+	}
+	
+	public DAppealListResponse getAllForUsername(String username) throws XMLDBException, JAXBException, SAXException {
+		System.out.println("getallforunsername = " + username);
+		org.xmldb.api.base.Collection collection = dbManager.getCollection(collectionId);
+        XQueryService xQueryService = (XQueryService) collection.getService("XQueryService", "1.0");
+        String xqueryString = String.format(X_QUERY_FIND_ALL_BY_USERNAME, username);
+        System.out.println("xquery string = " + xqueryString);
+        
+        CompiledExpression compiledExpression = xQueryService.compile(xqueryString);
+        ResourceSet resourceSet = xQueryService.execute(compiledExpression);
+        ResourceIterator resourceIterator = resourceSet.getIterator();
+        DAppealListResponse response = new DAppealListResponse();
+        List<DAppealItem> itemsList = new ArrayList<>();
+        while (resourceIterator.hasMoreResources()){
+        	XMLResource xmlResource = (XMLResource) resourceIterator.nextResource();
+    		Unmarshaller unmarshaller = JAXParser.createUnmarshaller(contextPath, schemaPath);
+    		ZalbaNaOdluku zalba = (ZalbaNaOdluku) unmarshaller.unmarshal(xmlResource.getContentAsDOM());
+    		
+    		DAppealItem item = new DAppealItem();
+    		item.setBroj(zalba.getBroj());
+    		item.setDatumSlanja(zalba.getPodaciOMestuIDatumuPodnosenjaZalbe().getDatum().getValue());
+    		item.setMestoSlanja(zalba.getPodaciOMestuIDatumuPodnosenjaZalbe().getMesto().getValue());
+    		item.setOrganVlasti(zalba.getPodaciOZalbi().getOrganKojiJeDoneoOdluku().getValue());
+    		item.setPodnosiocGrad(zalba.getPodaciOZalbi().getPodnosilacZalbe().getAdresa().getGrad());
+    		item.setPodnosiocIme(zalba.getPodaciOZalbi().getPodnosilacZalbe().getIme().getValue());
+    		item.setPodnosiocPrezime(zalba.getPodaciOZalbi().getPodnosilacZalbe().getPrezime().getValue());
+    		item.setPodnosiocUlica(zalba.getPodaciOZalbi().getPodnosilacZalbe().getAdresa().getUlica());
+    		item.setPodnosiocUsername(zalba.getUsername());
+    		item.setPoverenikUsername(zalba.getPoverenikUsername());
+    		item.setStatus(zalba.getZalbaStatus().getValue());
+    		itemsList.add(item);
+        }
+        response.setdAppealItem(itemsList);
+        System.out.println("find all decsisionappeals byusername = " + response);
+        return response;
 	}
 	
 	public DAppealListResponse getAll() throws XMLDBException, JAXBException, SAXException {
@@ -71,8 +107,19 @@ public class DecisionAppealRepository {
     		item.setBroj(zalba.getBroj());
     		item.setDatumSlanja(zalba.getPodaciOMestuIDatumuPodnosenjaZalbe().getDatum().getValue());
     		item.setMestoSlanja(zalba.getPodaciOMestuIDatumuPodnosenjaZalbe().getMesto().getValue());
-    		item.setOrganVlasti(zalba.getPodaciOZalbi().getContent());
+    		item.setOrganVlasti(zalba.getPodaciOZalbi().getOrganKojiJeDoneoOdluku().getValue());
+    		item.setPodnosiocGrad(zalba.getPodaciOZalbi().getPodnosilacZalbe().getAdresa().getGrad());
+    		item.setPodnosiocIme(zalba.getPodaciOZalbi().getPodnosilacZalbe().getIme().getValue());
+    		item.setPodnosiocPrezime(zalba.getPodaciOZalbi().getPodnosilacZalbe().getPrezime().getValue());
+    		item.setPodnosiocUlica(zalba.getPodaciOZalbi().getPodnosilacZalbe().getAdresa().getUlica());
+    		item.setPodnosiocUsername(zalba.getUsername());
+    		item.setPoverenikUsername(zalba.getPoverenikUsername());
+    		item.setStatus(zalba.getZalbaStatus().getValue());
+    		itemsList.add(item);
         }
+        response.setdAppealItem(itemsList);
+        System.out.println("find all decsisionappeals = " + response);
+        return response;
 	}
 	
 	public Document findDecisionAppealByBroj(String id) {

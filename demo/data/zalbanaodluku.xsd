@@ -129,7 +129,7 @@
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
-    <xs:complexType mixed="true" name="Tpodaci_o_zalbi">
+    <xs:complexType mixed="false" name="Tpodaci_o_zalbi">
         <xs:sequence>
             <xs:element name="naslov" minOccurs="0">
                 <xs:simpleType>

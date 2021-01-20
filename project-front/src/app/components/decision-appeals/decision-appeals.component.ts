@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../service/user.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { DecisionAppealService } from '../../service/decision-appeal.service';
+import { DAppealItem } from '../../model/decision-appeal.model';
 
 @Component({
   selector: 'app-decision-appeals',
@@ -7,9 +11,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DecisionAppealsComponent implements OnInit {
 
-  constructor() { }
+  appeals: DAppealItem[] = [];
+
+  constructor(private service: DecisionAppealService,
+    private userService: UserService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.getDecisionAppeals();
+  }
+  getDecisionAppeals() {
+    if (this.isUser()) {
+      console.log("getappealsforuser");
+      this.service.getAppealsForUsername(this.getUsername()).subscribe((data: DAppealItem[]) => {
+        console.log("component subscribe = ", data);
+        this.appeals = data;
+      }, error => {
+        console.log("error = ", error);
+      });
+    }else{
+      console.log("getappealsforadmin");
+      this.service.getAppeals().subscribe((data: DAppealItem[]) => {
+        console.log("component subscribe = ", data);
+        this.appeals = data;
+      }, error => {
+        console.log("error = ", error);
+      });
+    }
   }
 
+  isUser() {
+    return this.userService.isUser();
+  }
+
+  isAdmin() {
+    return this.userService.isAdmin();
+  }
+
+  getUsername() {
+    return this.userService.getUsername();
+  }
 }

@@ -81,8 +81,12 @@ public class DecisionAppealService {
 		FusekiWriter.saveRDF(FusekiWriter.DECISION_APPEAL_RDF_FILEPATH, FusekiWriter.DECISION_APPEAL_METADATA_GRAPH_URI);
 	}
 	
-	public DAppealListResponse getAll() {
+	public DAppealListResponse getAll() throws XMLDBException, JAXBException, SAXException {
 		return repository.getAll();
+	}
+	
+	public DAppealListResponse getAllForUsername(String username) throws XMLDBException, JAXBException, SAXException {
+		return repository.getAllForUsername(username);
 	}
 	
 	public String getHTML(String id) {

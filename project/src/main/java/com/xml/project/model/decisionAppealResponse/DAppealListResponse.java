@@ -88,6 +88,7 @@ public class DAppealListResponse {
      * 
      * 
      */
+    
     public List<DAppealListResponse.DAppealItem> getDAppealItem() {
         if (dAppealItem == null) {
             dAppealItem = new ArrayList<DAppealListResponse.DAppealItem>();
@@ -95,8 +96,26 @@ public class DAppealListResponse {
         return this.dAppealItem;
     }
 
+    
 
-    /**
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for(DAppealListResponse.DAppealItem d : dAppealItem) {
+			sb.append("item = " + d);
+		}
+		return "DAppealListResponse = " + sb.toString();
+	}
+
+
+
+	public void setdAppealItem(List<DAppealListResponse.DAppealItem> dAppealItem) {
+		this.dAppealItem = dAppealItem;
+	}
+
+
+
+	/**
      * <p>Java class for anonymous complex type.
      * 
      * <p>The following schema fragment specifies the expected content contained within this class.
@@ -164,7 +183,17 @@ public class DAppealListResponse {
         @XmlElement(required = true)
         protected String poverenikUsername;
 
-        /**
+        
+        @Override
+		public String toString() {
+			return "DAppealItem [status=" + status + ", podnosiocUlica=" + podnosiocUlica + ", podnosiocGrad="
+					+ podnosiocGrad + ", podnosiocIme=" + podnosiocIme + ", podnosiocPrezime=" + podnosiocPrezime
+					+ ", podnosiocUsername=" + podnosiocUsername + ", organVlasti=" + organVlasti + ", broj=" + broj
+					+ ", mestoSlanja=" + mestoSlanja + ", datumSlanja=" + datumSlanja + ", poverenikUsername="
+					+ poverenikUsername + "]";
+		}
+
+		/**
          * Gets the value of the status property.
          * 
          * @return

@@ -19,9 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
-import com.xml.project.dto.DecisionAppealDTO;
 import com.xml.project.model.decisionAppealResponse.DAppealListResponse;
-import com.xml.project.model.zahtevResponse.RequestListResponse;
 import com.xml.project.service.DecisionAppealService;
 
 @RestController()
@@ -55,11 +53,40 @@ public class DecisionAppealController {
 		return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
 	}*/
 	
+	@GetMapping(value = "/{username}/all",  produces = MediaType.TEXT_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<DAppealListResponse> getAllForUsername(@PathVariable("username") String username){
+		System.out.println("controller getallforusername = " + username);
+		try {
+			return new ResponseEntity<>(service.getAllForUsername(username), HttpStatus.OK);
+		} catch (XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);	
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);	
+		} catch (SAXException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);	
+		}
+
+	}
 	@GetMapping(value = "/all", produces = MediaType.TEXT_XML_VALUE)
 	@CrossOrigin
 	public ResponseEntity<DAppealListResponse> getAll(){
-		System.out.println("controller get all= ");
-		return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+		System.out.println("controller get all = ");
+		try {
+			return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+		} catch (XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);	
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		} catch (SAXException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@GetMapping(value = "/html/{id}", produces = MediaType.TEXT_HTML_VALUE)

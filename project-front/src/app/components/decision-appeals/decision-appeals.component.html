@@ -2,7 +2,44 @@
     <div class="col-md-12 pl-0 pr-0">
         <app-navigation-bar></app-navigation-bar>
     </div>
-    <div class="jumbotron bg-light col-md-10 ml-auto mr-auto mt-3 pt-5">
-        <p>decision-appeals works!</p>
+
+    <div class="row col-md-12">
+        <div class="jumbotron col-md-10 ml-auto mr-auto bg-light shadow mt-2 float-left pt-3">
+            <div class="row col-md-12 pl-5 pr-0">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Broj</th>
+                            <th>Podnosioc</th>
+                            <th>Grad</th>
+                            <th>Datum</th>
+                            <th>Organ vlasti</th>
+                            <th>Status</th>
+                            <th>HTML</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center" *ngFor="let a of appeals">
+                            <td>{{a.broj}}</td>
+                            <td>{{a.podnosiocIme}}  {{a.podnosiocPrezime}}</td>
+                            <td>{{a.podnosiocGrad}}</td>
+                            <td>{{a.datumSlanja}}</td>
+                            <td>{{a.organVlasti}}</td>
+                            <td>{{a.status}}</td>
+                            <td><a href="http://localhost:8080/api/decision-appeals/html/{{a.broj}}" target="_blank">file</a></td>
+                            <td>
+                                <button mat-mini-fab color="warn"class="mr-2 mb-2"  style="outline: none">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="appeals.length === 0">
+                    <h4>No appeals in the database</h4>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
