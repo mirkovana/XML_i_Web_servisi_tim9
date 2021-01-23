@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { NoticesComponent } from './components/notices/notices.component';
+import { RequestsComponent } from './components/requests/requests.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AddResponseComponent } from './components/add-response/add-response.component';
 import { AddRequestComponent } from './components/add-request/add-request.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent},
   { path: 'home', component: HomeComponent },
   { path: 'notices', component: NoticesComponent },  
+  { path: 'requests', component: RequestsComponent },  
   { path: 'add-response', component: AddResponseComponent },
   { path: 'add-request', component: AddRequestComponent },
   { path: 'add-decision-appeal', component: AddDecisionAppealComponent },

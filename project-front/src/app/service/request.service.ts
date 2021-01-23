@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
   providedIn: 'root'
 })
 export class RequestService {
-  path = 'http://localhost:8080/api/request/';
+  path = 'http://localhost:8070/api/request/';
   pathGetAll = this.path + "all";
 
   /*headers: HttpHeaders = new HttpHeaders({

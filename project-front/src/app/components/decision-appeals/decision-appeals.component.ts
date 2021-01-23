@@ -48,7 +48,6 @@ export class DecisionAppealsComponent implements OnInit {
     });
   }
   
-
   isUser() {
     return this.userService.isUser();
   }

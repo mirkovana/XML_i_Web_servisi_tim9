@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 })
 export class SilenceAppealService {
 
-  path = 'http://localhost:8080/api/silence-appeals/';
+  path = 'http://localhost:8070/api/silence-appeals/';
   pathGetAll = this.path + 'all';
 
   /*headers: HttpHeaders = new HttpHeaders({

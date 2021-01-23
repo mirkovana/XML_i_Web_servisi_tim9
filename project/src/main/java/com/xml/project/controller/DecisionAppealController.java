@@ -1,9 +1,13 @@
 package com.xml.project.controller;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.namespace.QName;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.ws.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -74,7 +78,7 @@ public class DecisionAppealController {
 	
 	@GetMapping(value = "/all", produces = MediaType.TEXT_XML_VALUE)
 	@CrossOrigin
-	public ResponseEntity<DAppealListResponse> getAll(){
+	public ResponseEntity<DAppealListResponse> getAll() throws MalformedURLException{
 		System.out.println("controller get all = ");
 		try {
 			return new ResponseEntity<>(service.getAll(), HttpStatus.OK);

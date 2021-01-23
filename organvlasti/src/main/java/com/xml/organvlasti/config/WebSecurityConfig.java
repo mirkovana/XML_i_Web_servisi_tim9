@@ -60,7 +60,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.GET, "/api/request/**").permitAll()
 			.antMatchers(HttpMethod.GET, "/api/decision-appeals/**").permitAll()
 			.antMatchers(HttpMethod.GET, "/api/silence-appeals/**").permitAll()
-
+			.antMatchers(HttpMethod.GET, "/ws/**").permitAll()
+			
 			.anyRequest().authenticated().and()
 			.cors().and();
 		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
@@ -69,6 +70,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) {
+		web.ignoring().antMatchers(HttpMethod.GET, "/ws/**");
+
 		web.ignoring().antMatchers(HttpMethod.POST, "/api/user/login");
 		web.ignoring().antMatchers(HttpMethod.POST, "/api/user/register");
 		

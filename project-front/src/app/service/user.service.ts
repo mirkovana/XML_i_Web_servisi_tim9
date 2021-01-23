@@ -14,7 +14,7 @@ export class UserService {
   constructor(private http: HttpClient,
               private route: Router) { }
   
-  private path = 'http://localhost:8080';
+  private path = 'http://localhost:8070';
 
   signUp(user: User): Observable<User> {
     return this.http.post<User>(this.path + '/api/user/register', user);

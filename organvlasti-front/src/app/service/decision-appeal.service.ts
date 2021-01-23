@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
   providedIn: 'root'
 })
 export class DecisionAppealService {
-  path = 'http://localhost:8080';
+  path = 'http://localhost:8000';
   headers: HttpHeaders = new HttpHeaders({
     Authorization: 'Bearer ' + localStorage.getItem('token'),
     'Content-Type': 'application/xml', //<- To SEND XML

@@ -118,7 +118,7 @@ public class RequestRepository {
     		item.setStatus(zahtev.getStatus());
     		if(item.getStatus().contentEquals("sent") && System.currentTimeMillis() - Long.parseLong(item.getTime()) > 120000) { 
     			//request expired
-    			item.setStatus("expierd");
+    			item.setStatus("expired");
     		}
     		//System.out.println("zahtevresponse = " + item);
     		itemsList.add(item);   			
@@ -151,7 +151,7 @@ public class RequestRepository {
     		item.setStatus(zahtev.getStatus());
     		if(item.getStatus().contentEquals("sent") && System.currentTimeMillis() - Long.parseLong(item.getTime()) > 120000) { 
     			//request expired
-    			item.setStatus("expierd");
+    			item.setStatus("expired");
     		}
     		//System.out.println("zahtevresponse = " + item);
     		itemsList.add(item); 
