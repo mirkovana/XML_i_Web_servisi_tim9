@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 export class DecisionAppealService {
   path = 'http://localhost:8070/api/decision-appeals/';
   pathGetAll = this.path + "all";
+  pathRequestExplanation = this.path + 'requestExplanation/'
   /*headers: HttpHeaders = new HttpHeaders({
     Authorization: 'Bearer ' + localStorage.getItem('token'),
     'Content-Type': 'application/xml', //<- To SEND XML
@@ -87,6 +88,11 @@ export class DecisionAppealService {
       }) 
     }
     return appealItems;
+  }
+
+  requestExplanation(broj: string): Observable<string>{
+    const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
+    return this.http.get<string>(this.pathRequestExplanation + broj, { headers: headers });
   }
 
   deleteAppeal(broj: string, updateTable: Function) {

@@ -32,6 +32,9 @@
                                 <button *ngIf="isUser() && a.status=='sent'" (click)="deleteAppeal(a)" mat-mini-fab color="warn"class="mr-2 mb-2"  style="outline: none">
                                     <mat-icon>delete</mat-icon>
                                 </button>
+                                <button *ngIf="isAdmin() && a.status=='sent'" (click)="requestExplanation(a)" mat-mini-fab color="warn"class="mr-2 mb-2"  style="outline: none">
+                                    <mat-icon>message</mat-icon>
+                                </button>
                             </td>
                         </tr>
                     </tbody>

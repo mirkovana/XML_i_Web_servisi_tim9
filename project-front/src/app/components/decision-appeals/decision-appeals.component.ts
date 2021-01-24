@@ -48,6 +48,24 @@ export class DecisionAppealsComponent implements OnInit {
     });
   }
   
+  /*requestExplanation(appeal: DAppealItem){
+    console.log("requestExplanation = ", appeal);
+    this.service.requestExplanation(appeal.broj);
+  }*/
+
+  
+  requestExplanation(appeal: DAppealItem){
+    console.log("requestExplanation = ", appeal);
+    this.service.requestExplanation(appeal.broj).subscribe((data: any)  => {
+      console.log("requestExplanation success = ", data);
+      this.getDecisionAppeals();
+    }, error => {
+      //TODO ovde vraca gresku bez razloga
+      console.log("error = ", error);
+      this.getDecisionAppeals();
+    });
+  }
+
   isUser() {
     return this.userService.isUser();
   }

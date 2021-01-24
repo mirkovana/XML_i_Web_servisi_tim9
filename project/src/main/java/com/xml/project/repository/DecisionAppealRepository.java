@@ -1,14 +1,25 @@
 package com.xml.project.repository;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xmldb.api.base.CompiledExpression;
 import org.xmldb.api.base.ResourceIterator;
@@ -23,6 +34,8 @@ import com.xml.project.model.decisionAppealResponse.DAppealListResponse;
 import com.xml.project.model.decisionAppealResponse.DAppealListResponse.DAppealItem;
 import com.xml.project.model.request.Zahtev;
 import com.xml.project.parser.JAXParser;
+import com.xml.project.rdf.FusekiWriter;
+import com.xml.project.rdf.MetadataExtractor;
 
 @Repository
 public class DecisionAppealRepository {
@@ -142,5 +155,18 @@ public class DecisionAppealRepository {
 			e.printStackTrace();
 		}
 		return document;
+	}
+	
+	public String getStringFromDocument(Document document) throws TransformerException {
+		StringWriter sw = new StringWriter();
+		TransformerFactory tf = TransformerFactory.newInstance();
+		Transformer transformer = tf.newTransformer();
+		transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+		
+		transformer.transform(new DOMSource(document), new StreamResult(sw));	
+		return sw.toString();
 	}
 }
