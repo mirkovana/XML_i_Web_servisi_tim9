@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<za:zahtev 
+    xmlns ="http://www.projekat.org/zahtev"
+    xmlns:za="http://www.projekat.org/zahtev"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:pred="http://www.projekat.org/predicate/"
+    about="http://www.projekat.org/zahtev/aa54057c188c-2021"
+    xsi:schemaLocation="http://www.projekat.org/zahtev zahtev.xsd"
+    broj="aa54057c188c-2021"
+    username="username"
+    datum="00.00.0000."  
+    institucijaNaziv="nazivinstitucije"
+    time="1564132"
+    status="sent"> 
+    <za:zahtev_status xmlns:za ="http://www.projekat.org/zahtev" property="pred:status">sent</za:zahtev_status>
+    <za:zahtev_broj xmlns:za ="http://www.projekat.org/zahtev" property="pred:broj">aa54057c188c-2021</za:zahtev_broj>
+    <za:institucija> 
+        <za:naziv xmlns:za ="http://www.projekat.org/zahtev" property="pred:nazivInstitucije">naziv0</za:naziv> 
+        u <za:mesto  xmlns:za ="http://www.projekat.org/zahtev" property="pred:sedisteInstitucije">mesto0</za:mesto>
+    </za:institucija>
+    <za:tekst_zahteva>
+        <za:lista>
+            <za:stavka za:checked="false" za:id="1">obaveštenje da li poseduje traženu informaciju;</za:stavka>
+            <za:stavka za:checked="false" za:id="2">uvid u dokument koji sadrži traženu informaciju;</za:stavka>
+            <za:stavka za:checked="false" za:id="3">kopiju dokumenta koji sadrži traženu informaciju;</za:stavka>
+            <za:stavka za:checked="false" za:id="4">
+                dostavljanje kopije dokumenta koji sadrži traženu informaciju:**
+                <za:lista>
+                    <za:stavka za:checked="false" za:id="5">поштом</za:stavka>
+                    <za:stavka za:checked="false" za:id="6">elektronskom postom</za:stavka>
+                    <za:stavka za:checked="false" za:id="7">faksom</za:stavka>
+                    <za:stavka  za:checked="false" za:id="8">na drugi nacin***: 
+                        <za:drugi_nacin>dajshkdandaskla</za:drugi_nacin>
+                    </za:stavka>
+                </za:lista>
+            </za:stavka>
+        </za:lista>
+        <za:informacije xmlns:za ="http://www.projekat.org/zahtev" property="pred:informacije">
+            ahda hahd ua dhajdh ah dlakhdah alsh dka 
+        </za:informacije>
+    </za:tekst_zahteva>
+    <za:mesto_datum>
+        <za:mesto>mesto1</za:mesto>
+        <za:datum xmlns:za ="http://www.projekat.org/zahtev" property="pred:datum">10.10.2020.</za:datum> godine
+    </za:mesto_datum>
+    <za:podnosilac>
+        <za:osoba> 
+            <za:ime xmlns:za ="http://www.projekat.org/zahtev" property="pred:ime">ime0</za:ime>
+            <za:prezime xmlns:za ="http://www.projekat.org/zahtev" property="pred:prezime">prezime0</za:prezime>
+            <za:username xmlns:za ="http://www.projekat.org/zahtev" property="pred:username">username</za:username>
+        </za:osoba>
+        <za:adresa>adresa0</za:adresa>
+        <za:drugi_podaci>drugiPodaci0</za:drugi_podaci>
+        <za:potpis>potpis0</za:potpis>
+    </za:podnosilac>
+</za:zahtev>

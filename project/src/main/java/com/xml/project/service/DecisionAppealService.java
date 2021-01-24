@@ -117,6 +117,12 @@ public class DecisionAppealService {
 		requestRepository.deleteRequest(broj);
 	}
 	
+	public String getAppealXml(String broj) throws TransformerException {
+		Document document = repository.findDecisionAppealByBroj(broj);
+		String xml = repository.getStringFromDocument(document);
+		return xml;
+	}
+	
 	public String getHTML(String id) {
 		Document xml = repository.findDecisionAppealByBroj(id);
 		return xslTransformer.getHTMLfromXML(responseXSL, xml);

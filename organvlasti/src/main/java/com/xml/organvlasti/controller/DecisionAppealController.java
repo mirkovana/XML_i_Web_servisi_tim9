@@ -1,5 +1,7 @@
 package com.xml.organvlasti.controller;
 
+import javax.xml.bind.JAXBException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,8 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.xml.sax.SAXException;
+import org.xmldb.api.base.XMLDBException;
 
 import com.xml.organvlasti.dto.DecisionAppealDTO;
+import com.xml.organvlasti.model.decisionAppealResponse.DAppealListResponse;
 import com.xml.organvlasti.service.DecisionAppealService;
 
 @RestController()
@@ -37,6 +42,24 @@ public class DecisionAppealController {
 		System.out.println("controller saveDecisionAppeal = ");
 		service.save(xmlString);
 		return new ResponseEntity(HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/all", produces = MediaType.TEXT_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<DAppealListResponse> getAll() {
+		System.out.println("controller get all = ");
+		try {
+			return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+		} catch (XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);	
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		} catch (SAXException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@GetMapping(value = "/html/{id}", produces = MediaType.TEXT_HTML_VALUE)

@@ -41,6 +41,18 @@ export class SilenceAppealsComponent implements OnInit {
     }
   }
 
+  requestExplanation(appeal: SAppealItem){
+    console.log("requestExplanation = ", appeal);
+    this.service.requestExplanation(appeal.broj).subscribe((data: any)  => {
+      console.log("requestExplanation success = ", data);
+      this.getSilenceAppeals();
+    }, error => {
+      //TODO ovde vraca gresku bez razloga
+      console.log("error = ", error);
+      this.getSilenceAppeals();
+    });
+  }
+
   deleteAppeal(appeal: SAppealItem){
     console.log("deleteappeal = ", appeal);
     this.service.deleteAppeal(appeal.broj, ()=>{

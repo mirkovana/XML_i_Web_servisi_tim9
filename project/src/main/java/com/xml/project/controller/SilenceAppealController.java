@@ -1,6 +1,13 @@
 package com.xml.project.controller;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import javax.xml.bind.JAXBException;
+import javax.xml.namespace.QName;
+import javax.xml.transform.TransformerException;
+import javax.xml.ws.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +26,7 @@ import org.xmldb.api.base.XMLDBException;
 
 import com.xml.project.model.silenceAppealResponse.SAppealListResponse;
 import com.xml.project.service.SilenceAppealService;
+import com.xml.project.soap.Sluzbenik;
 
 @RestController()
 @RequestMapping(value = "api/silence-appeals")
@@ -80,6 +88,36 @@ public class SilenceAppealController {
 		}
 	}
 	
+	@GetMapping(value = "/requestExplanation/{broj}", produces = MediaType.TEXT_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<String> requestExplanation(@PathVariable("broj") String broj){
+		System.out.println("controller requestExplanation = " + broj);
+		try {
+			service.updateState(broj);
+			String appealXml = service.getAppealXml(broj);
+			sendAppeal(appealXml);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("ERROR", HttpStatus.BAD_REQUEST);
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("ERROR", HttpStatus.BAD_REQUEST);
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("ERROR", HttpStatus.BAD_REQUEST);
+		} catch (TransformerException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("ERROR", HttpStatus.BAD_REQUEST);
+		} catch (XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("ERROR", HttpStatus.BAD_REQUEST);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>("ERROR", HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<>("OK", HttpStatus.OK);
+	}
+	
 	@DeleteMapping(value = "/{broj}")
 	public ResponseEntity<Void> deleteAppeal(@PathVariable("broj") String broj) {
 		try {
@@ -107,5 +145,24 @@ public class SilenceAppealController {
 		String result = service.getHTML(id);
 		System.out.println("constroller result = " + result);
 		return new ResponseEntity<String>(result, HttpStatus.OK);
+	}
+	
+	private void sendAppeal(String xml) {
+		System.out.println("sendAppeal");
+		try {
+			URL wsdlLocation = new URL("http://localhost:8050/ws/sluzbenik?wsdl");
+			QName serviceName = new QName("http://soap.spring.com/ws/sluzbenik", "SluzbenikService");
+			QName portName = new QName("http://soap.spring.com/ws/sluzbenik", "SluzbenikPort");
+
+			Service service2 = Service.create(wsdlLocation, serviceName);
+			
+			Sluzbenik sluzbenik = service2.getPort(portName, Sluzbenik.class); 
+			
+			//poziv web servisa
+			String response = sluzbenik.saveSilenceAppeal(xml);
+			System.out.println("Response from WS: " + response);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 	}
 }

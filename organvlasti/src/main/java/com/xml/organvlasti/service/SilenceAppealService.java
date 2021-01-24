@@ -3,6 +3,7 @@ package com.xml.organvlasti.service;
 import java.io.IOException;
 import java.io.StringWriter;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -20,6 +21,7 @@ import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 import com.xml.organvlasti.dto.SilenceAppealDTO;
+import com.xml.organvlasti.model.silenceAppealResponse.SAppealListResponse;
 import com.xml.organvlasti.parser.DOMParser;
 import com.xml.organvlasti.parser.XSLTransformer;
 import com.xml.organvlasti.rdf.FusekiWriter;
@@ -80,6 +82,10 @@ public class SilenceAppealService {
 		
 		metadataExtractor.extractMetadata(sw.toString(), MetadataExtractor.SILENCE_APPEAL_RDF_FILE);
 		FusekiWriter.saveRDF(FusekiWriter.SILENCE_APPEAL_RDF_FILEPATH, FusekiWriter.SILENCE_APPEAL_METADATA_GRAPH_URI);
+	}
+	
+	public SAppealListResponse getAll() throws XMLDBException, JAXBException, SAXException {
+		return repository.getAll();
 	}
 	
 	public String getHTML(String id) {

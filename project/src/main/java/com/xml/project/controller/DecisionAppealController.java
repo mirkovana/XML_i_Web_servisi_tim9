@@ -28,6 +28,7 @@ import org.xmldb.api.base.XMLDBException;
 
 import com.xml.project.model.decisionAppealResponse.DAppealListResponse;
 import com.xml.project.service.DecisionAppealService;
+import com.xml.project.soap.Sluzbenik;
 
 @RestController()
 @RequestMapping(value = "api/decision-appeals")
@@ -102,6 +103,8 @@ public class DecisionAppealController {
 		System.out.println("controller requestExplanation = " + broj);
 		try {
 			service.updateState(broj);
+			String appealXml = service.getAppealXml(broj);
+			sendAppeal(appealXml);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>("ERROR", HttpStatus.BAD_REQUEST);
@@ -150,5 +153,24 @@ public class DecisionAppealController {
 		String result = service.getHTML(id);
 		System.out.println("constroller result = " + result);
 		return new ResponseEntity<String>(result, HttpStatus.OK);
+	}
+	
+	private void sendAppeal(String xml) {
+		System.out.println("sendAppeal");
+		try {
+			URL wsdlLocation = new URL("http://localhost:8050/ws/sluzbenik?wsdl");
+			QName serviceName = new QName("http://soap.spring.com/ws/sluzbenik", "SluzbenikService");
+			QName portName = new QName("http://soap.spring.com/ws/sluzbenik", "SluzbenikPort");
+
+			Service service2 = Service.create(wsdlLocation, serviceName);
+			
+			Sluzbenik sluzbenik = service2.getPort(portName, Sluzbenik.class); 
+			
+			//poziv web servisa
+			String response = sluzbenik.saveDecisionAppeal(xml);
+			System.out.println("Response from WS: " + response);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 	}
 }

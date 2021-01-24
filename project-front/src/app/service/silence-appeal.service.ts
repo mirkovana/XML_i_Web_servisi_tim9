@@ -13,6 +13,7 @@ export class SilenceAppealService {
 
   path = 'http://localhost:8070/api/silence-appeals/';
   pathGetAll = this.path + 'all';
+  pathRequestExplanation = this.path + 'requestExplanation/'
 
   /*headers: HttpHeaders = new HttpHeaders({
     Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -60,6 +61,11 @@ export class SilenceAppealService {
     const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
     return this.http.get<string>(this.pathGetAll, { headers: headers, responseType: 'text' as 'json' })
     .pipe(map((xml: string) => this.xmlToAppeal(xml)));
+  }
+
+  requestExplanation(broj: string): Observable<string>{
+    const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
+    return this.http.get<string>(this.pathRequestExplanation + broj, { headers: headers });
   }
 
   getAppealsForUsername(username: string): Observable<SAppealItem[]> {

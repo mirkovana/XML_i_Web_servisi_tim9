@@ -98,6 +98,32 @@ public class SilenceAppealService {
 		requestRepository.deleteRequest(broj);
 	}
 	
+	public void updateState(String broj) throws TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException, IOException {
+		if (!broj.endsWith(".xml")) {
+			broj = broj + ".xml";
+		}
+		Document document = repository.findSilenceAppealByBroj(broj);
+		NodeList nodeList = document.getElementsByTagName("zc:zalba_cutanje");
+		Element sp = (Element) nodeList.item(0);
+		sp.setAttribute("status", "pending");
+		String xmlString;
+		
+		xmlString = repository.getStringFromDocument(document);
+		xmlString = xmlString.replace("sent", "pending");
+		System.out.println("updatedstate = " + xmlString);
+		repository.deleteAppeal(broj);
+		repository.save(xmlString, broj);
+	
+		metadataExtractor.extractMetadata(xmlString, MetadataExtractor.SILENCE_APPEAL_RDF_FILE);
+		FusekiWriter.saveRDF(FusekiWriter.SILENCE_APPEAL_RDF_FILEPATH, FusekiWriter.SILENCE_APPEAL_METADATA_GRAPH_URI);
+	}
+	
+	public String getAppealXml(String broj) throws TransformerException {
+		Document document = repository.findSilenceAppealByBroj(broj);
+		String xml = repository.getStringFromDocument(document);
+		return xml;
+	}
+	
 	public String getHTML(String id) {
 		Document xml = repository.findSilenceAppealByBroj(id);
 		return xslTransformer.getHTMLfromXML(requestXSL, xml);

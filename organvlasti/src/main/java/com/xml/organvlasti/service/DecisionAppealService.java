@@ -3,6 +3,7 @@ package com.xml.organvlasti.service;
 import java.io.IOException;
 import java.io.StringWriter;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -20,6 +21,7 @@ import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 import com.xml.organvlasti.dto.DecisionAppealDTO;
+import com.xml.organvlasti.model.decisionAppealResponse.DAppealListResponse;
 import com.xml.organvlasti.parser.DOMParser;
 import com.xml.organvlasti.parser.XSLTransformer;
 import com.xml.organvlasti.rdf.FusekiWriter;
@@ -76,6 +78,10 @@ public class DecisionAppealService {
 		
 		metadataExtractor.extractMetadata(sw.toString(), MetadataExtractor.DECISION_APPEAL_RDF_FILE);
 		FusekiWriter.saveRDF(FusekiWriter.DECISION_APPEAL_RDF_FILEPATH, FusekiWriter.DECISION_APPEAL_METADATA_GRAPH_URI);
+	}
+	
+	public DAppealListResponse getAll() throws XMLDBException, JAXBException, SAXException {
+		return repository.getAll();
 	}
 	
 	public String getHTML(String id) {

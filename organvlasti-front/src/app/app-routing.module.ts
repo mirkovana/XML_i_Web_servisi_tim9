@@ -10,6 +10,8 @@ import { AddRequestComponent } from './components/add-request/add-request.compon
 import { AddDecisionAppealComponent } from './components/add-decision-appeal/add-decision-appeal.component';
 import { AddSilenceAppealComponent } from './components/add-silence-appeal/add-silence-appeal.component';
 import { AddNoticeComponent } from './components/add-notice/add-notice.component';
+import { SilenceAppealsComponent } from './components/silence-appeals/silence-appeals.component';
+import { DecisionAppealsComponent } from './components/decision-appeals/decision-appeals.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -18,10 +20,12 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'notices', component: NoticesComponent },  
   { path: 'requests', component: RequestsComponent },  
-  { path: 'add-response', component: AddResponseComponent },
+  { path: 'decision-appeals', component: DecisionAppealsComponent },
+  { path: 'silence-appeals', component: SilenceAppealsComponent },
+//  { path: 'add-response', component: AddResponseComponent },
   { path: 'add-request', component: AddRequestComponent },
-  { path: 'add-decision-appeal', component: AddDecisionAppealComponent },
-  { path: 'add-silence-appeal', component: AddSilenceAppealComponent },
+//  { path: 'add-decision-appeal', component: AddDecisionAppealComponent },
+//  { path: 'add-silence-appeal', component: AddSilenceAppealComponent },
   { path: 'add-notice/:podnosiocUsername/:id', component: AddNoticeComponent },
 ];
 

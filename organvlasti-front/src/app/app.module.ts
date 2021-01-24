@@ -37,6 +37,8 @@ import { AddNoticeComponent } from './components/add-notice/add-notice.component
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { RequestsComponent } from './components/requests/requests.component';
 import { NoticesComponent } from './components/notices/notices.component';
+import { SilenceAppealsComponent } from './components/silence-appeals/silence-appeals.component';
+import { DecisionAppealsComponent } from './components/decision-appeals/decision-appeals.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { NoticesComponent } from './components/notices/notices.component';
     NavigationBarComponent,
     RequestsComponent,
     NoticesComponent,
+    SilenceAppealsComponent,
+    DecisionAppealsComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,6 @@ import { NoticesComponent } from './components/notices/notices.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-
     MatDialogModule,
     MatCardModule,
     MatIconModule,

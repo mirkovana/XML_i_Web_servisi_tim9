@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zo:zalba_na_odluku 
+  xmlns="http://www.projekat.org/zalbanaodluku"
+  xmlns:zo="http://www.projekat.org/zalbanaodluku"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:pred="http://www.projekat.org/predicate/"
+  about="http://www.projekat.org/zalbanaodluku/aa54057c188c-2021"
+  xsi:schemaLocation="http://www.projekat.org/zalbanaodluku zalbanaodluku.xsd"
+  username="username"
+  datum="10.10.2010."
+  broj="aa54057c188c-2021">
+  <zo:podaci_o_zalbi>
+    <zo:podnosilac_zalbe>
+      <zo:adresa>
+        <zo:grad>Novi Sad</zo:grad>
+        <zo:ulica>ulicaneka</zo:ulica>
+        <zo:broj>15</zo:broj>
+      </zo:adresa>
+      <zo:ime>Ime1</zo:ime>
+      <zo:prezime>Prezime1</zo:prezime>
+      <zo:potpis>Potpis1</zo:potpis>
+    </zo:podnosilac_zalbe>
+    <zo:organ_koji_je_doneo_odluku xmlns:zo ="http://www.projekat.org/zalbanaodluku" property="pred:organVlasti">
+      orgaan koji je doneo odluku 
+    </zo:organ_koji_je_doneo_odluku>
+    <zo:broj_zalbe xmlns:zo ="http://www.projekat.org/zalbanaodluku" property="pred:broj">aa54057c188c-2021</zo:broj_zalbe>
+    <zo:datum>10.10.2010.</zo:datum>
+  </zo:podaci_o_zalbi>
+  <zo:sadrzaj_zalbe>
+    <zo:datum>10.10.2010.</zo:datum> 
+    <zo:zbog_cega_se_pobija_odluka>razlog</zo:zbog_cega_se_pobija_odluka> 
+  </zo:sadrzaj_zalbe>
+  <zo:podaci_o_podnosiocu_zalbe>
+    <zo:adresa>
+      <zo:grad>grad2</zo:grad>
+      <zo:ulica>ulica2</zo:ulica>
+      <zo:broj>10</zo:broj>
+    </zo:adresa>
+    <zo:ime xmlns:zo ="http://www.projekat.org/zalbanaodluku" property="pred:ime">Ime1</zo:ime>
+    <zo:prezime xmlns:zo ="http://www.projekat.org/zalbanaodluku" property="pred:prezime">Prezime1</zo:prezime>
+    <zo:potpis>Potpis1</zo:potpis>
+    <zo:drugi_podaci_za_kontakt>Drugipodaci</zo:drugi_podaci_za_kontakt>
+  </zo:podaci_o_podnosiocu_zalbe>
+  <zo:podaci_o_mestu_i_datumu_podnosenja_zalbe>
+    <zo:mesto xmlns:zo ="http://www.projekat.org/zalbanaodluku" property="pred:mesto">Novi Sad</zo:mesto>
+    <zo:datum xmlns:zo ="http://www.projekat.org/zalbanaodluku" property="pred:datum">10.10.2010.</zo:datum>
+  </zo:podaci_o_mestu_i_datumu_podnosenja_zalbe>
+</zo:zalba_na_odluku>
