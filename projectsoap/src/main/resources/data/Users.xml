@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Users
+    xmlns="http://www.projekat.org" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <user> 
+        <username>user</username>
+        <password>$2a$10$tdenzJW8FI0yqNwt25laD.4xD5B.znHkiIBsAQFQNXJZPJzA5wS0.</password>
+        <email>user@gmail.com</email>
+        <firstName>UserFirstName</firstName>
+        <lastName>UserLastName</lastName>
+        <role>ROLE_USER</role> 
+    </user>
+    <user>
+        <username>sluzbenik</username>
+        <password>$2a$10$tdenzJW8FI0yqNwt25laD.4xD5B.znHkiIBsAQFQNXJZPJzA5wS0.</password>
+        <email>sluzbenik@gmail.com</email>
+        <firstName>SluzbenikFirstName</firstName>
+        <lastName>SluzbenikLastName</lastName>
+        <role>ROLE_ORGAN_VLASTI</role>
+    </user>
+</Users>

@@ -1,0 +1,33 @@
+<div>
+    <div class="col-md-12 pl-0 pr-0">
+        <app-navigation-bar></app-navigation-bar>
+    </div>
+    <div style="margin-left: 100px; margin-right: 100px; margin-top: 50px;">
+        <p class="center"><b>OBRAŽLOŽENJE ORGANA VLASTI POVODOM ŽALBE ZBOG ODBIJANJA ZAHTEVA ZA PRISTUP INFORMACIJAMA OD JAVNOG ZNACAJA</b></p>
+        <p><b>Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti</b></p>
+        <p>Adesa za postu: Beograd, Bulevara kralja Aleksandra br.15</p>
+        <p>Obrazlozenje za zalbu br.: {{broj}}</p>
+        <textarea [(ngModel)]="obrazlozenje" placeholder="Obrazlozenje o odbijanju zahteva"></textarea>
+        <br><br>
+        <table style="text-align:left; margin-left: 20px;">
+            <tr>
+                <td>Sluzbenik:</td>
+                <td>
+                    <input [(ngModel)]="ime" type="text" placeholder="Ime"/>
+                    <input [(ngModel)]="prezime" type="text" placeholder="Prezime"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Potpis:</td>
+                <td><input [(ngModel)]="potpis" type="text"/></td>
+            </tr>
+            <tr>
+                <td>U</td>
+                <td><input [(ngModel)]="mesto" type="text"/> Dana <input [(ngModel)]="dana" type="text"/></td>
+            </tr>
+        </table>
+        <div>
+            <button mat-raised-button color="primary" (click)="sendFile()">Save file</button>
+        </div>
+    </div>
+</div>

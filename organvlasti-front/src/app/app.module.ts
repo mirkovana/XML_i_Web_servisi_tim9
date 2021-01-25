@@ -39,6 +39,7 @@ import { RequestsComponent } from './components/requests/requests.component';
 import { NoticesComponent } from './components/notices/notices.component';
 import { SilenceAppealsComponent } from './components/silence-appeals/silence-appeals.component';
 import { DecisionAppealsComponent } from './components/decision-appeals/decision-appeals.component';
+import { AddExplanationComponent } from './components/add-explanation/add-explanation.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { DecisionAppealsComponent } from './components/decision-appeals/decision
     NoticesComponent,
     SilenceAppealsComponent,
     DecisionAppealsComponent,
+    AddExplanationComponent,
   ],
   imports: [
     BrowserModule,

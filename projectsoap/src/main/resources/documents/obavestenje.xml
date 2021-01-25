@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ob:obavestenje 
+  xmlns="http://www.projekat.org/obavestenje" 
+  xmlns:ob="http://www.projekat.org/obavestenje" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:pred="http://www.projekat.org/predicate/"
+  about="http://www.projekat.org/obavestenje/aa54057c188c-2021"
+  xsi:schemaLocation="http://www.projekat.org/obavestenje Obavestenje.xsd"
+  broj="aa54057c188c-2021" 
+  username="username"  
+  datum="00.00.0000."
+  organVlastiUsername="organVlastiUsername">
+  <ob:opste_informacije>
+    <ob:podaci_o_organu>
+      <ob:naziv xmlns:ob="http://www.projekat.org/obavestenje" property="pred:nazivOrgana">Naziv organa</ob:naziv>
+      <ob:sediste xmlns:ob="http://www.projekat.org/obavestenje" property="pred:sedisteOrgana">Novi Sad</ob:sediste>
+    </ob:podaci_o_organu>  
+    <ob:broj_predmeta xmlns:ob="http://www.projekat.org/obavestenje" property="pred:brojPredmeta">aa54057c188c-2021</ob:broj_predmeta>
+    <ob:datum xmlns:ob="http://www.projekat.org/obavestenje" property="pred:datum">10.10.2020.</ob:datum>
+    <ob:podaci_o_podnosiocu>
+      <ob:ime xmlns:ob="http://www.projekat.org/obavestenje" property="pred:ime">Imenko</ob:ime>
+      <ob:prezime xmlns:ob="http://www.projekat.org/obavestenje" property="pred:prezime">Prezimenko</ob:prezime>
+      <ob:adresa>
+        <ob:naziv_ulice>Bul Despota Stefana</ob:naziv_ulice>
+        <ob:grad>Novi Sad</ob:grad>
+      </ob:adresa> 
+    </ob:podaci_o_podnosiocu>
+  </ob:opste_informacije>
+  <ob:telo>
+    <ob:godina>2001</ob:godina>
+    <ob:opis>Neki opis</ob:opis>
+     <ob:datum>10.10.2020.</ob:datum>
+    <ob:vreme>12:00:00</ob:vreme>
+    <ob:od>12:00:00</ob:od>
+    <ob:do>12:00:00</ob:do>
+    <ob:adresa_organa>
+      <ob:naziv_ulice>Mire Popare</ob:naziv_ulice>
+      <ob:broj_ulice>25</ob:broj_ulice>
+      <ob:broj_kancelarije>12</ob:broj_kancelarije>
+    </ob:adresa_organa>
+    <ob:iznos>1200.00</ob:iznos>
+  </ob:telo>
+  <ob:potpis>Potpis</ob:potpis>
+</ob:obavestenje>

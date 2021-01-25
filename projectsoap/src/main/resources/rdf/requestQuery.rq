@@ -1,0 +1,13 @@
+SELECT * FROM <http://localhost:8081/fuseki/OrganVlasti/data/requestMetadata> WHERE {
+  ?nazivInstitucije <http://www.projekat.org/zahtev/predicate/nazivInstitucije> ?nazivInstitucije .
+  ?informacije <http://www.projekat.org/zahtev/predicate/informacije> ?informacije .
+  ?datum <http://www.projekat.org/zahtev/predicate/datum> ?datum .
+  ?ime <http://www.projekat.org/zahtev/predicate/ime> ?ime .
+  ?prezime <http://www.projekat.org/zahtev/predicate/prezime> ?prezime .
+  FILTER( CONTAINS(UCASE(str(?nazivInstitucije)), UCASE("{{nazivInstitucije}}"))
+    && CONTAINS(UCASE(str(?informacije)), UCASE("{{informacije}}"))
+    && CONTAINS(UCASE(str(?datum)), UCASE("{{datum}}"))
+    && CONTAINS(UCASE(str(?ime)), UCASE("{{ime}}"))
+    && CONTAINS(UCASE(str(?prezime)), UCASE("{{prezime}}"))
+  ) .
+} 

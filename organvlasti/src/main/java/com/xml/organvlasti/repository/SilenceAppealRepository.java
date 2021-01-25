@@ -1,11 +1,18 @@
 package com.xml.organvlasti.repository;
 
 
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,7 +45,7 @@ public class SilenceAppealRepository {
 	
 	public static final String X_QUERY_FIND_ALL_SILENCE_APPEALS = "xquery version \"3.1\";\n" +
             "declare default element namespace \"http://www.projekat.org/zalbazbogcutanja\";\n" +
-            "for $x in collection(\"/db/XmlProject/silenceAppeals\")\n" +
+            "for $x in collection(\"/db/OrganVlasti/silenceAppeals\")\n" +
             "return $x";	
 	
 	public String save(String xmlEntity, String broj)
@@ -61,7 +68,7 @@ public class SilenceAppealRepository {
         	XMLResource xmlResource = (XMLResource) resourceIterator.nextResource();
     		Unmarshaller unmarshaller = JAXParser.createUnmarshaller(contextPath, schemaPath);
     		ZalbaCutanje zalba = (ZalbaCutanje) unmarshaller.unmarshal(xmlResource.getContentAsDOM());
-    		
+
     		SAppealItem item = new SAppealItem();
     		item.setBroj(zalba.getBroj());
     		item.setDatumSlanja(zalba.getPodaciOMestuIDatumuPodnosenjaZalbe().getDatum().getValue());
@@ -101,5 +108,25 @@ public class SilenceAppealRepository {
 			e.printStackTrace();
 		}
 		return document;
+	}
+
+	public String getStringFromDocument(Document document) throws TransformerException {
+		StringWriter sw = new StringWriter();
+		TransformerFactory tf = TransformerFactory.newInstance();
+		Transformer transformer = tf.newTransformer();
+		transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+		
+		transformer.transform(new DOMSource(document), new StreamResult(sw));	
+		return sw.toString();
+	}
+
+	public void deleteAppeal(String broj) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+		if (!broj.endsWith(".xml")) {
+			broj = broj + ".xml";
+		}
+		dbManager.deleteDocument(collectionId, broj);
 	}
 }

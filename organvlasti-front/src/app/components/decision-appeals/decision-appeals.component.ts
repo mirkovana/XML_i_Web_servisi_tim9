@@ -32,6 +32,11 @@ export class DecisionAppealsComponent implements OnInit {
     }
   }
 
+  sendExplanation(appeal: DAppealItem){
+    console.log("sendExplanation = ", appeal);
+    this.router.navigate(['/add-explanation/'+appeal.broj+"/decision/"+appeal.podnosiocUsername]);
+  }
+
   isUser() {
     return this.userService.isUser();
   }

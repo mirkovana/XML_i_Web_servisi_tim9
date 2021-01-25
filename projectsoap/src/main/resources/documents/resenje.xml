@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<res:zalba
+    xmlns ="http://www.projekat.org/resenje"
+    xmlns:res="http://www.projekat.org/resenje"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:pred="http://www.projekat.org/predicate/"
+    about="http://www.projekat.org/resenje/aa54057c188c-2021"
+    xsi:schemaLocation="http://www.projekat.org/resenje resenje.xsd"
+    status="osnovana"
+    broj="aa54057c188c-2021"
+    username="username"
+    datum="00.00.0000."
+    poverenikUsername="poverenikUsername">
+    <res:broj xmlns:res ="http://www.projekat.org/resenje" property="pred:broj">aa54057c188c-2021</res:broj>
+    <res:datum xmlns:res ="http://www.projekat.org/resenje" property="pred:datum">10.10.2010.</res:datum>
+    <res:status xmlns:res ="http://www.projekat.org/resenje" property="pred:status">osnovana</res:status>
+    <res:uvod>
+        <res:paragraf>
+        </res:paragraf>
+    </res:uvod>
+    <res:sadrzaj>
+        <res:resenje>
+            <res:paragraf>
+            </res:paragraf>
+        </res:resenje>
+        <res:obrazlozenje>
+            <res:paragraf> 
+            </res:paragraf>
+        </res:obrazlozenje>
+        <res:poverenik>
+            <res:ime xmlns:res ="http://www.projekat.org/resenje" property="pred:poverenikIme">IME</res:ime>
+            <res:prezime xmlns:res ="http://www.projekat.org/resenje" property="pred:poverenikPrezime">PREZIME</res:prezime>
+        </res:poverenik>
+    </res:sadrzaj>
+</res:zalba>

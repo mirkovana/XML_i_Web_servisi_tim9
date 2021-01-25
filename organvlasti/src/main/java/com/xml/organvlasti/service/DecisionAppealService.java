@@ -84,6 +84,26 @@ public class DecisionAppealService {
 		return repository.getAll();
 	}
 	
+	public void updateState(String broj) throws TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+		System.out.println("updatestate = " + broj);
+		if (!broj.endsWith(".xml")) {
+			broj = broj + ".xml";
+		}
+		Document document = repository.findDecisionAppealByBroj(broj);
+		NodeList nodeList = document.getElementsByTagName("zo:zalba_na_odluku");
+		Element sp = (Element) nodeList.item(0);
+		sp.setAttribute("status", "answered");
+		String xmlString;
+		
+		xmlString = repository.getStringFromDocument(document);
+		xmlString = xmlString.replace("sent", "answered");
+		xmlString = xmlString.replace("pending", "answered");
+		System.out.println("updatedstate = " + xmlString);
+		repository.deleteAppeal(broj);
+		System.out.println("updatedfile = " + xmlString);
+		repository.save(xmlString, broj);
+	}
+	
 	public String getHTML(String id) {
 		Document xml = repository.findDecisionAppealByBroj(id);
 		return xslTransformer.getHTMLfromXML(responseXSL, xml);

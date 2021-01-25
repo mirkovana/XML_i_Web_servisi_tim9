@@ -33,6 +33,11 @@ export class SilenceAppealsComponent implements OnInit {
     } 
   }
 
+  sendExplanation(appeal: SAppealItem){
+    console.log("sendExplanation = ", appeal);
+    this.router.navigate(['/add-explanation/'+appeal.broj+"/silence/"+appeal.podnosiocUsername]);
+  }
+
   isUser() {
     return this.userService.isUser();
   }

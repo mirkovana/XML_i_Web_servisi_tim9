@@ -92,4 +92,23 @@ public class SilenceAppealService {
 		Document xml = repository.findSilenceAppealByBroj(id);
 		return xslTransformer.getHTMLfromXML(requestXSL, xml);
 	}
+
+	public void updateState(String broj) throws TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+		System.out.println("updatestate = " + broj);
+		if (!broj.endsWith(".xml")) {
+			broj = broj + ".xml";
+		}
+		Document document = repository.findSilenceAppealByBroj(broj);
+		NodeList nodeList = document.getElementsByTagName("zc:zalba_cutanje");
+		Element sp = (Element) nodeList.item(0);
+		sp.setAttribute("status", "answered");
+		String xmlString;
+		
+		xmlString = repository.getStringFromDocument(document);
+		xmlString = xmlString.replace("sent", "answered");
+		xmlString = xmlString.replace("pending", "answered");
+		repository.deleteAppeal(broj);
+		System.out.println("updatedfile = " + xmlString);
+		repository.save(xmlString, broj);		
+	}
 }

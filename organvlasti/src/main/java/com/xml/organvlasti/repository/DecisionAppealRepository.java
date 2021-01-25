@@ -1,5 +1,6 @@
 package com.xml.organvlasti.repository;
 
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class DecisionAppealRepository {
 	
 	public static final String X_QUERY_FIND_ALL_DECISION_APPEALS = "xquery version \"3.1\";\n" +
             "declare default element namespace \"http://www.projekat.org/zalbanaodluku\";\n" +
-            "for $x in collection(\"/db/XmlProject/decisionAppeals\")\n" +
+            "for $x in collection(\"/db/OrganVlasti/decisionAppeals\")\n" +
             "return $x";	
 	
 	private String collectionId = "/db/OrganVlasti/decisionAppeals";
@@ -87,6 +88,13 @@ public class DecisionAppealRepository {
         return response;
 	}
 	
+	public void deleteAppeal(String broj) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+		if (!broj.endsWith(".xml")) {
+			broj = broj + ".xml";
+		}
+		dbManager.deleteDocument(collectionId, broj);
+	}
+	
 	public Document findDecisionAppealByBroj(String id) {
 		Document document = null;
 		System.out.println("in repository finding id = " + id);
@@ -100,5 +108,18 @@ public class DecisionAppealRepository {
 			e.printStackTrace();
 		}
 		return document;
+	}
+	
+	public String getStringFromDocument(Document document) throws TransformerException {
+		StringWriter sw = new StringWriter();
+		TransformerFactory tf = TransformerFactory.newInstance();
+		Transformer transformer = tf.newTransformer();
+		transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+		
+		transformer.transform(new DOMSource(document), new StreamResult(sw));	
+		return sw.toString();
 	}
 }
