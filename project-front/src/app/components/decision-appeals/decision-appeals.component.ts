@@ -66,6 +66,11 @@ export class DecisionAppealsComponent implements OnInit {
     });
   }
 
+  sendResponse(appeal:DAppealItem){
+    console.log("sendresponse = ", appeal);
+    this.router.navigate(['/add-response/'+appeal.broj+'/'+appeal.podnosiocUsername+'/decision']);
+  }
+
   isUser() {
     return this.userService.isUser();
   }

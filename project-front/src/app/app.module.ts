@@ -35,6 +35,7 @@ import { AddSilenceAppealComponent } from './components/add-silence-appeal/add-s
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { DecisionAppealsComponent } from './components/decision-appeals/decision-appeals.component';
 import { SilenceAppealsComponent } from './components/silence-appeals/silence-appeals.component';
+import { ResponsesComponent } from './components/responses/responses.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { SilenceAppealsComponent } from './components/silence-appeals/silence-ap
     NavigationBarComponent,
     DecisionAppealsComponent,
     SilenceAppealsComponent,
+    ResponsesComponent,
   ],
   imports: [
     BrowserModule,

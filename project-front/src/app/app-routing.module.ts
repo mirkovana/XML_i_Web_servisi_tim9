@@ -8,17 +8,19 @@ import { AddDecisionAppealComponent } from './components/add-decision-appeal/add
 import { AddSilenceAppealComponent } from './components/add-silence-appeal/add-silence-appeal.component';
 import { SilenceAppealsComponent } from './components/silence-appeals/silence-appeals.component';
 import { DecisionAppealsComponent } from './components/decision-appeals/decision-appeals.component';
+import { ResponsesComponent } from './components/responses/responses.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: SignUpComponent},
   { path: 'home', component: HomeComponent },
-  { path: 'add-response', component: AddResponseComponent },
+  { path: 'add-response/:broj/:username/:tip', component: AddResponseComponent },
   { path: 'add-decision-appeal', component: AddDecisionAppealComponent },
   { path: 'add-silence-appeal', component: AddSilenceAppealComponent },
   { path: 'decision-appeals', component: DecisionAppealsComponent },
   { path: 'silence-appeals', component: SilenceAppealsComponent },
+  { path: 'responses', component: ResponsesComponent },
 ];
 
 @NgModule({

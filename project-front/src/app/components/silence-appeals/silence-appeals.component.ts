@@ -60,6 +60,11 @@ export class SilenceAppealsComponent implements OnInit {
     });
   }
 
+  sendResponse(appeal:SAppealItem){
+    console.log("sendresponse = ", appeal);
+    this.router.navigate(['/add-response/'+appeal.broj+'/'+appeal.podnosiocUsername+'/silence']);
+  }
+
   isUser() {
     return this.userService.isUser();
   }

@@ -1,43 +1,55 @@
-<div style="margin: 100px;">
-    <!--<div id="response"></div>
-    <div>
-        <textarea [(ngModel)]="textArea"></textarea>
-    </div>-->
-
-    Status:
-    <select [(ngModel)]="status" class="custom-select" style="width: 25%;">
-        <option selected>Status zalbe</option>
-        <option value="osnovana">Osnovana</option>
-        <option value="neosnovana">Odbija se kao neosnovana</option>
-        <option value="odbijena">Odbija se zahtev</option>
-        <option value="ponistena">Ponistava se</option>
-    </select>
-    <br>
-    Broj: <input [(ngModel)]="broj" type="text" />
-    <br>
-    Datum: <input [(ngModel)]="datum" type="text" />,
-    <br>
-    <textarea [(ngModel)]="uvod"></textarea>
-    <h3 class="headertekst">RESENJE</h3>
-    <textarea [(ngModel)]="resenje"></textarea>
-    <h3 class="headertekst">OBRAZLOZENJE</h3>
-    <textarea [(ngModel)]="obrazlozenje"></textarea>
-
-    <table>
-        <tr>
-            <td>POVERENIK:</td>
-        </tr>
-        <tr>
-            <td>IME: </td>
-            <td><input [(ngModel)]="poverenikIme" type="text" /></td>
-        </tr>
-        <tr>
-            <td>PREZIME: </td>
-            <td><input [(ngModel)]="poverenikPrezime" type="text" /></td>
-        </tr>
-    </table>
+<div class="backgroundImg">
+    <div class="col-md-12 pl-0 pr-0">
+        <app-navigation-bar></app-navigation-bar>
+    </div>
+    <div class="jumbotron bg-light col-md-10 ml-auto mr-auto mt-3 pt-5">
+        <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px">
+            <table>
+                <tr>
+                    <td>Status:</td>
+                    <td>
+                        <select [(ngModel)]="status" class="custom-select" >
+                            <option selected>Status zalbe</option>
+                            <option value="osnovana">Osnovana</option>
+                            <option value="neosnovana">Odbija se kao neosnovana</option>
+                            <option value="odbijena">Odbija se zahtev</option>
+                            <option value="ponistena">Ponistava se</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Broj:</td>
+                    <td><input [(ngModel)]="broj" type="text" disabled /></td>
+                </tr>
+                <tr>
+                    <td>Datum:</td>
+                    <td><input [(ngModel)]="datum" type="text" /></td>
+                </tr>
+            </table>
+            
+            <textarea style="margin-top: 20px;" [(ngModel)]="uvod"></textarea>
+            <h3 class="headertekst">RESENJE</h3>
+            <textarea [(ngModel)]="resenje"></textarea>
+            <h3 class="headertekst">OBRAZLOZENJE</h3>
+            <textarea [(ngModel)]="obrazlozenje"></textarea>
     
-    <div>
-        <button mat-raised-button color="primary" (click)="sendFile()">Save file</button>
+            <table>
+                <tr>
+                    <td>POVERENIK:</td>
+                </tr>
+                <tr>
+                    <td>IME: </td>
+                    <td><input [(ngModel)]="poverenikIme" type="text" /></td>
+                </tr>
+                <tr>
+                    <td>PREZIME: </td>
+                    <td><input [(ngModel)]="poverenikPrezime" type="text" /></td>
+                </tr>
+            </table>
+    
+            <div>
+                <button mat-raised-button color="primary" (click)="sendFile()">Save file</button>
+            </div>
+        </div>        
     </div>
 </div>

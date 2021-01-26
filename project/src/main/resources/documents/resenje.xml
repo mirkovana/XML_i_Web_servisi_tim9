@@ -11,13 +11,13 @@
     username="username"
     datum="00.00.0000."
     poverenikUsername="poverenikUsername">
-    <res:broj xmlns:res ="http://www.projekat.org/resenje" property="pred:broj">aa54057c188c-2021</res:broj>
-    <res:datum xmlns:res ="http://www.projekat.org/resenje" property="pred:datum">10.10.2010.</res:datum>
-    <res:status xmlns:res ="http://www.projekat.org/resenje" property="pred:status">osnovana</res:status>
-    <res:uvod>
+    <res:zalba_broj xmlns:res ="http://www.projekat.org/resenje" property="pred:broj">aa54057c188c-2021</res:zalba_broj>
+    <res:datum_slanja xmlns:res ="http://www.projekat.org/resenje" property="pred:datum">10.10.2010.</res:datum_slanja>
+    <res:zalba_status xmlns:res ="http://www.projekat.org/resenje" property="pred:status">osnovana</res:zalba_status>
+    <res:uvod> 
         <res:paragraf>
         </res:paragraf>
-    </res:uvod>
+    </res:uvod> 
     <res:sadrzaj>
         <res:resenje>
             <res:paragraf>

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -28,9 +29,12 @@ import com.xml.project.rdf.MetadataExtractor;
 import com.xml.project.rdf.FusekiWriter;
 import com.xml.project.rdf.FusekiReader;
 import com.xml.project.dto.ResponseDTO;
+import com.xml.project.model.responseList.ResponseList;
 import com.xml.project.parser.DOMParser;
 import com.xml.project.parser.XSLTransformer;
+import com.xml.project.repository.DecisionAppealRepository;
 import com.xml.project.repository.ResponseRepository;
+import com.xml.project.repository.SilenceAppealRepository;
 
 @Service()
 public class ResponseService {
@@ -44,16 +48,20 @@ public class ResponseService {
 	@Autowired
 	private ResponseRepository repository;
 	@Autowired
+	private DecisionAppealService dAppealService;
+	@Autowired
+	private SilenceAppealService sAppealService;
+	@Autowired
 	private MetadataExtractor metadataExtractor;
 
-	public void save(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+	public void save(String dto, String tip) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("save service = " + dto);
 		Document document = domParser.getDocument(dto);
 		System.out.println("got document = " + document);
 		NodeList nodeList = document.getElementsByTagName("res:zalba");
 		Element sp = (Element) nodeList.item(0);
 		String broj = sp.getAttribute("broj");
-		sp.setAttribute("about", "http://www.projekat.org/resenje/" + broj);
+		//sp.setAttribute("about", "http://www.projekat.org/resenje/" + broj);
 		System.out.println("node broj = " + broj);
 		//broj = broj.replace("/", "_");
 		Document prev = null;
@@ -84,6 +92,12 @@ public class ResponseService {
 		
 		metadataExtractor.extractMetadata(sw.toString(), MetadataExtractor.RESPONSE_RDF_FILE);
 		FusekiWriter.saveRDF(FusekiWriter.RESPONSE_RDF_FILEPATH, FusekiWriter.RESPONSE_METADATA_GRAPH_URI);
+	
+		if(tip.contentEquals("decision")) {
+			dAppealService.updateStateResolved(broj);
+		}else if(tip.contentEquals("silence")) {
+			sAppealService.updateStateResolved(broj);			
+		}
 	}
 	
 	public ArrayList<String> searchByMetadata(Map<String, String> params) throws IOException {
@@ -96,6 +110,14 @@ public class ResponseService {
 	public String getHTML(String broj) {
 		Document xml = repository.findResponseByBroj(broj);
 		return xslTransformer.getHTMLfromXML(responseXSL, xml);
+	}
+
+	public ResponseList getAll() throws XMLDBException, JAXBException, SAXException {
+		return repository.getAll();
+	}
+	
+	public ResponseList getAllForUsername(String username) throws XMLDBException, JAXBException, SAXException {
+		return repository.getAllForUsername(username);
 	}
 	
 	/*public Resource getPdf(String name) throws Exception {

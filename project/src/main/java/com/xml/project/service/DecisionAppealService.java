@@ -112,6 +112,25 @@ public class DecisionAppealService {
 		FusekiWriter.saveRDF(FusekiWriter.DECISION_APPEAL_RDF_FILEPATH, FusekiWriter.DECISION_APPEAL_METADATA_GRAPH_URI);
 	}
 	
+	public void updateStateResolved(String broj) throws TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException, IOException {
+		if (!broj.endsWith(".xml")) {
+			broj = broj + ".xml";
+		}
+		Document document = repository.findDecisionAppealByBroj(broj);
+		NodeList nodeList = document.getElementsByTagName("zo:zalba_na_odluku");
+		Element sp = (Element) nodeList.item(0);
+		sp.setAttribute("status", "resolved");
+		String xmlString;
+		
+		xmlString = repository.getStringFromDocument(document);
+		xmlString = xmlString.replace("answered", "resolved");
+		System.out.println("updatedstate = " + xmlString);
+		repository.deleteAppeal(broj);
+		repository.save(xmlString, broj);
+		metadataExtractor.extractMetadata(xmlString, MetadataExtractor.DECISION_APPEAL_RDF_FILE);
+		FusekiWriter.saveRDF(FusekiWriter.DECISION_APPEAL_RDF_FILEPATH, FusekiWriter.DECISION_APPEAL_METADATA_GRAPH_URI);
+	}
+	
 	public void deleteAppeal(String broj) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		repository.deleteAppeal(broj);
 		requestRepository.deleteRequest(broj);

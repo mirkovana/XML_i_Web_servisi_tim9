@@ -5,3 +5,12 @@ export class ResponseModel {
 export interface ResponseDTO {
     text: string;
 }
+
+export interface ResponseItem {
+    broj: string;
+    podnosiocUsername: string;    
+    poverenikIme: string;
+    poverenikPrezime: string;
+    status: string;
+    datum: string;
+}

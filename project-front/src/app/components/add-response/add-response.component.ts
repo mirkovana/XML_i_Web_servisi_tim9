@@ -13,9 +13,11 @@ import { ResponseDTO } from "../../model/response.model";
 export class AddResponseComponent implements OnInit {
   zalbaSpec = '';
   textArea: string;
+  username: string = "";
+  broj: string = "";
+  tip:string = "";
 
   status: string = "";
-  broj: string = "";
   datum: string = "";
   uvod: string = "";
   resenje: string = "";
@@ -27,8 +29,11 @@ export class AddResponseComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+      this.broj = this.route.snapshot.paramMap.get('broj')
+      this.username = this.route.snapshot.paramMap.get('username');
+      this.tip = this.route.snapshot.paramMap.get('tip');
+    }
 
   /*ngAfterViewInit() {
     this.zalbaSpec = '<res:zalba xmlns="http://www.projekat.org/resenje"'
@@ -62,7 +67,7 @@ export class AddResponseComponent implements OnInit {
         xsi:schemaLocation="http://www.projekat.org/resenje resenje.xsd"
         status="`+this.status+`"
         broj="`+this.broj+`"
-        username="username"
+        username="`+this.username+`"
         datum="`+this.datum+`"
         poverenikUsername="`+localStorage.getItem('username')+`">
         <res:broj xmlns:res ="http://www.projekat.org/resenje" property="pred:broj">`+this.broj+`</res:broj>
@@ -84,7 +89,7 @@ export class AddResponseComponent implements OnInit {
             </res:poverenik>
         </res:sadrzaj>
     </res:zalba>`
-    this.responseService.addResponse(xmlString, () => {
+    this.responseService.addResponse(xmlString, this.tip, () => {
       this.router.navigateByUrl('/home');
     });
     

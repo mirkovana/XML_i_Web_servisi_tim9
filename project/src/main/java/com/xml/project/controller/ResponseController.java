@@ -1,9 +1,12 @@
 package com.xml.project.controller;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.xml.bind.JAXBException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -18,8 +21,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.xml.sax.SAXException;
+import org.xmldb.api.base.XMLDBException;
 
 import com.xml.project.dto.ResponseDTO;
+import com.xml.project.model.responseList.ResponseList;
 import com.xml.project.service.ResponseService;
 
 @RestController()
@@ -38,12 +44,56 @@ public class ResponseController {
 		return new ResponseEntity<>(dto, HttpStatus.OK);
 	}*/
 	
-	@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@PostMapping(value = "/decision", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
-	public ResponseEntity saveResponse(@RequestBody String dto) throws Exception {
-		System.out.println("controller saveresponse = ");
-		service.save(dto);
+	public ResponseEntity saveResponseDecision(@RequestBody String dto) throws Exception {
+		System.out.println("controller saveresponse for decision appeal = ");
+		service.save(dto, "decision");
 		return new ResponseEntity(HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/silence", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity saveResponseSilence(@RequestBody String dto) throws Exception {
+		System.out.println("controller saveresponse for silence appeals= ");
+		service.save(dto, "silence");
+		return new ResponseEntity(HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/{username}/all",  produces = MediaType.TEXT_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<ResponseList> getAllForUsername(@PathVariable("username") String username){
+		System.out.println("controller getallforusername = " + username);
+		try {
+			return new ResponseEntity<>(service.getAllForUsername(username), HttpStatus.OK);
+		} catch (XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);	
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);	
+		} catch (SAXException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);	
+		}
+	}
+	
+	@GetMapping(value = "/all", produces = MediaType.TEXT_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<ResponseList> getAll() throws MalformedURLException{
+		System.out.println("controller get all = ");
+		try {
+			return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+		} catch (XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);	
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		} catch (SAXException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@GetMapping("/search")
