@@ -6,6 +6,7 @@ poverenikSOAP     port-8071
 
 poverenik-front   port-4201
 
+
 organvlasti       port=8080
 
 organvlastiSOAP   port=8050
