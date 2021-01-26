@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ResponseDTO } from "../model/response.model";
 import { map } from 'rxjs/operators';
 import Swal from "sweetalert2";
+import { ResponseItem } from "../model/response.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResponseService {
-  path = 'http://localhost:8080';
+  path = 'http://localhost:8080/api/response/';
+  pathGetAll = this.path + "all";
+  
   headers: HttpHeaders = new HttpHeaders({
     Authorization: 'Bearer ' + localStorage.getItem('token'),
     'Content-Type': 'application/xml', //<- To SEND XML
@@ -44,5 +46,36 @@ export class ResponseService {
         });
         return false;
       })
+  }
+  
+  getResponses(): Observable<ResponseItem[]> {
+    const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
+    return this.http.get<string>(this.pathGetAll, { headers: headers, responseType: 'text' as 'json' })
+    .pipe(map((xml: string) => this.xmlToResponse(xml)));
+  }
+
+  getResponsesForUsername(username: string): Observable<ResponseItem[]> {
+    const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
+    return this.http.get<string>(this.path + username + "/all", { headers: headers, responseType: 'text' as 'json' })
+    .pipe(map((xml: string) => this.xmlToResponse(xml)));
+  }
+
+  private xmlToResponse(xml: string): ResponseItem[] {
+    console.log("parse = ", xml);
+    let appealItems: ResponseItem[] = [];
+    const parser = new DOMParser();
+    let responseList = parser.parseFromString(xml,"text/xml").getElementsByTagName('responseItem'); 
+    console.log("responseList = ", responseList);
+    for (let i = 0; i < responseList.length; ++i){
+      appealItems.push({
+        'broj': responseList.item(i).getElementsByTagName('broj')[0].textContent,
+        'podnosiocUsername': responseList.item(i).getElementsByTagName('podnosiocUsername')[0].textContent,
+        'poverenikIme': responseList.item(i).getElementsByTagName('poverenikIme')[0].textContent,
+        'poverenikPrezime': responseList.item(i).getElementsByTagName('poverenikPrezime')[0].textContent,
+        'status': responseList.item(i).getElementsByTagName('status')[0].textContent,
+        'datum': responseList.item(i).getElementsByTagName('datum')[0].textContent,
+      }) 
+    }
+    return appealItems;
   }
 }

@@ -15,6 +15,7 @@ import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 import com.xml.project.service.DecisionAppealService;
+import com.xml.project.service.ResponseService;
 import com.xml.project.service.SilenceAppealService;
 
 /**
@@ -34,10 +35,12 @@ public class SluzbenikPortImpl implements Sluzbenik {
 
     DecisionAppealService dService;
     SilenceAppealService sService;
+    ResponseService responseService;
     
 	public SluzbenikPortImpl() {
 		dService = new DecisionAppealService();
 		sService = new SilenceAppealService();
+		responseService = new ResponseService();
 	}
 	
     public String sayHi(String text) { 
@@ -113,6 +116,30 @@ public class SluzbenikPortImpl implements Sluzbenik {
 			return "error";
 		}
 		return "ok";
+	}
+
+	@Override
+	public String saveDecisionResponse(String xml) {
+		try {
+			responseService.saveDecisionResponse(xml);
+			return "OK";
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ParserConfigurationException
+				| SAXException | IOException | TransformerException | XMLDBException e) {
+			e.printStackTrace();
+			return "ERROR";
+		}
+	}
+
+	@Override
+	public String saveSilenceResponse(String xml) {
+		try {
+			responseService.saveSilenceResponse(xml);
+			return "OK";
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ParserConfigurationException
+				| SAXException | IOException | TransformerException | XMLDBException e) {
+			e.printStackTrace();
+			return "ERROR";
+		}
 	}
 	
 }

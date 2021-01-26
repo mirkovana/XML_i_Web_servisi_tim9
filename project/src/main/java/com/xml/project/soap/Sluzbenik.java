@@ -36,4 +36,18 @@ public interface Sluzbenik {
         @WebParam(partName = "xml", name = "xml")
         String xml
     );
+    
+    @WebMethod
+    @WebResult(name = "return", targetNamespace = "http://soap.spring.com/ws/sluzbenik", partName = "return")
+    public String saveDecisionResponse(
+        @WebParam(partName = "xml", name = "xml")
+        String xml
+    );
+    
+    @WebMethod
+    @WebResult(name = "return", targetNamespace = "http://soap.spring.com/ws/sluzbenik", partName = "return")
+    public String saveSilenceResponse(
+        @WebParam(partName = "xml", name = "xml")
+        String xml
+    );
 }

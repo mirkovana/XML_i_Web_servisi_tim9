@@ -3,15 +3,15 @@
     <pred:broj xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">f43786584d34-2021</pred:broj>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.projekat.org/resenje/f43786584d34-2021">
-    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">n2</pred:datum>
+    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">10.10.2010.</pred:datum>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.projekat.org/resenje/f43786584d34-2021">
-    <pred:status xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">osnovana</pred:status>
+    <pred:status xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">neosnovana</pred:status>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.projekat.org/resenje/f43786584d34-2021">
-    <pred:poverenikIme xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">n2</pred:poverenikIme>
+    <pred:poverenikIme xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">response2</pred:poverenikIme>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.projekat.org/resenje/f43786584d34-2021">
-    <pred:poverenikPrezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">n2</pred:poverenikPrezime>
+    <pred:poverenikPrezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">response2</pred:poverenikPrezime>
   </rdf:Description>
 </rdf:RDF>

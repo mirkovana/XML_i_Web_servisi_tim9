@@ -2,15 +2,16 @@ package com.xml.project.controller;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,7 @@ import org.xmldb.api.base.XMLDBException;
 import com.xml.project.dto.ResponseDTO;
 import com.xml.project.model.responseList.ResponseList;
 import com.xml.project.service.ResponseService;
+import com.xml.project.soap.Sluzbenik;
 
 @RestController()
 @RequestMapping(value = "api/response")
@@ -49,6 +51,7 @@ public class ResponseController {
 	public ResponseEntity saveResponseDecision(@RequestBody String dto) throws Exception {
 		System.out.println("controller saveresponse for decision appeal = ");
 		service.save(dto, "decision");
+		saveDecisionResponseSoap(dto);
 		return new ResponseEntity(HttpStatus.OK);
 	}
 	
@@ -57,6 +60,7 @@ public class ResponseController {
 	public ResponseEntity saveResponseSilence(@RequestBody String dto) throws Exception {
 		System.out.println("controller saveresponse for silence appeals= ");
 		service.save(dto, "silence");
+		saveSilenceResponseSoap(dto);
 		return new ResponseEntity(HttpStatus.OK);
 	}
 	
@@ -137,6 +141,42 @@ public class ResponseController {
 		String result = service.getHTML(id);
 		System.out.println("constroller result = " + result);
 		return new ResponseEntity<String>(result, HttpStatus.OK);
+	}
+
+	private void saveDecisionResponseSoap(String xml) {
+		System.out.println("sendAppeal");
+		try {
+			URL wsdlLocation = new URL("http://localhost:8050/ws/sluzbenik?wsdl");
+			QName serviceName = new QName("http://soap.spring.com/ws/sluzbenik", "SluzbenikService");
+			QName portName = new QName("http://soap.spring.com/ws/sluzbenik", "SluzbenikPort");
+
+			Service service2 = Service.create(wsdlLocation, serviceName);
+				
+			Sluzbenik sluzbenik = service2.getPort(portName, Sluzbenik.class); 
+				
+			String response = sluzbenik.saveDecisionResponse(xml);
+			System.out.println("Response from WS: " + response);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void saveSilenceResponseSoap(String xml) {
+		System.out.println("sendAppeal");
+		try {
+			URL wsdlLocation = new URL("http://localhost:8050/ws/sluzbenik?wsdl");
+			QName serviceName = new QName("http://soap.spring.com/ws/sluzbenik", "SluzbenikService");
+			QName portName = new QName("http://soap.spring.com/ws/sluzbenik", "SluzbenikPort");
+
+			Service service2 = Service.create(wsdlLocation, serviceName);
+				
+			Sluzbenik sluzbenik = service2.getPort(portName, Sluzbenik.class); 
+				
+			String response = sluzbenik.saveSilenceResponse(xml);
+			System.out.println("Response from WS: " + response);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/*@GetMapping(value = "/pdf/{id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)

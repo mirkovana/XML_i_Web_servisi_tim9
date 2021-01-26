@@ -4,6 +4,10 @@
     <wsdl:part name="return" type="xsd:string">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="saveSilenceResponseResponse">
+    <wsdl:part name="return" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="sayHiResponse">
     <wsdl:part name="return" type="xsd:string">
     </wsdl:part>
@@ -20,8 +24,20 @@
     <wsdl:part name="xml" type="xsd:string">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="saveDecisionResponseResponse">
+    <wsdl:part name="return" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveDecisionResponse">
+    <wsdl:part name="xml" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:message name="saveDecisionAppealResponse">
     <wsdl:part name="return" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveSilenceResponse">
+    <wsdl:part name="xml" type="xsd:string">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="Sluzbenik">
@@ -41,6 +57,18 @@
       <wsdl:input name="saveDecisionAppeal" message="tns:saveDecisionAppeal">
     </wsdl:input>
       <wsdl:output name="saveDecisionAppealResponse" message="tns:saveDecisionAppealResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveDecisionResponse">
+      <wsdl:input name="saveDecisionResponse" message="tns:saveDecisionResponse">
+    </wsdl:input>
+      <wsdl:output name="saveDecisionResponseResponse" message="tns:saveDecisionResponseResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveSilenceResponse">
+      <wsdl:input name="saveSilenceResponse" message="tns:saveSilenceResponse">
+    </wsdl:input>
+      <wsdl:output name="saveSilenceResponseResponse" message="tns:saveSilenceResponseResponse">
     </wsdl:output>
     </wsdl:operation>
   </wsdl:portType>
@@ -70,6 +98,24 @@
         <soap:body use="literal" namespace="http://soap.spring.com/ws/sluzbenik"/>
       </wsdl:input>
       <wsdl:output name="saveDecisionAppealResponse">
+        <soap:body use="literal" namespace="http://soap.spring.com/ws/sluzbenik"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveDecisionResponse">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="saveDecisionResponse">
+        <soap:body use="literal" namespace="http://soap.spring.com/ws/sluzbenik"/>
+      </wsdl:input>
+      <wsdl:output name="saveDecisionResponseResponse">
+        <soap:body use="literal" namespace="http://soap.spring.com/ws/sluzbenik"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveSilenceResponse">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="saveSilenceResponse">
+        <soap:body use="literal" namespace="http://soap.spring.com/ws/sluzbenik"/>
+      </wsdl:input>
+      <wsdl:output name="saveSilenceResponseResponse">
         <soap:body use="literal" namespace="http://soap.spring.com/ws/sluzbenik"/>
       </wsdl:output>
     </wsdl:operation>

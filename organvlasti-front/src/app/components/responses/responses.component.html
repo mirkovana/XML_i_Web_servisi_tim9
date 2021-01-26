@@ -1,0 +1,44 @@
+<div class="backgroundImg">
+    <div class="col-md-12 pl-0 pr-0">
+        <app-navigation-bar></app-navigation-bar>
+    </div>
+
+    <div class="row col-md-12">
+        <div class="jumbotron col-md-10 ml-auto mr-auto bg-light shadow mt-2 float-left pt-3">
+            <div class="row col-md-12 pl-5 pr-0">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Broj</th>
+                            <th>Podnosioc</th>
+                            <th>Poverenik</th>
+                            <th>Datum</th>
+                            <th>Status</th>
+                            <th>HTML</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center" *ngFor="let a of responses">
+                            <td><a href="http://localhost:8080/api/request/html/{{a.broj}}" target="_blank">{{a.broj}}</a></td>
+                            <td>{{a.podnosiocUsername}}</td>
+                            <td>{{a.poverenikIme}} {{a.poverenikPrezime}}</td>
+                            <td>{{a.datum}}</td>
+                            <td>{{a.status}}</td>
+                            <td><a href="http://localhost:8080/api/response/html/{{a.broj}}" target="_blank">file</a></td>
+                            <td>
+                                <button *ngIf="isAdmin() && a.status=='osnovana'" mat-mini-fab color="warn" class="mr-2 mb-2"
+                                    (click)="replyRequest(a)" style="outline: none">
+                                    <mat-icon>reply</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="responses.length === 0">
+                    <h4>No responses in the database</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

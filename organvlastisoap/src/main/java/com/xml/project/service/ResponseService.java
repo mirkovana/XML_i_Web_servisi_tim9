@@ -1,4 +1,4 @@
-package com.xml.organvlasti.service;
+package com.xml.project.service;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -25,36 +25,44 @@ import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
-import com.xml.organvlasti.rdf.MetadataExtractor;
-import com.xml.organvlasti.rdf.FusekiWriter;
-import com.xml.organvlasti.rdf.FusekiReader;
-import com.xml.organvlasti.model.responseList.ResponseList;
 import com.xml.organvlasti.parser.DOMParser;
-import com.xml.organvlasti.parser.XSLTransformer;
+import com.xml.organvlasti.rdf.FusekiWriter;
+import com.xml.organvlasti.rdf.MetadataExtractor;
+import com.xml.organvlasti.repository.DecisionAppealRepository;
+import com.xml.organvlasti.repository.RequestRepository;
 import com.xml.organvlasti.repository.ResponseRepository;
 
-@Service()
 public class ResponseService {
 
-	private final String responseXSL = "src/main/resources/xsl/resenje.xsl";
-
-	@Autowired
 	private DOMParser domParser;
-	@Autowired
-	private XSLTransformer xslTransformer;
-	@Autowired
 	private ResponseRepository repository;
-	@Autowired
+	private DecisionAppealService dAppealService;
+	private SilenceAppealService sAppealService;
 	private MetadataExtractor metadataExtractor;
 
-	public void save(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+	public ResponseService() {
+		domParser = new DOMParser();
+		repository = new ResponseRepository();
+		dAppealService = new DecisionAppealService();
+		sAppealService = new SilenceAppealService();
+
+		try {
+			metadataExtractor = new MetadataExtractor();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void saveDecisionResponse(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("save service = " + dto);
 		Document document = domParser.getDocument(dto);
 		System.out.println("got document = " + document);
 		NodeList nodeList = document.getElementsByTagName("res:zalba");
 		Element sp = (Element) nodeList.item(0);
 		String broj = sp.getAttribute("broj");
-		sp.setAttribute("about", "http://www.projekat.org/resenje/" + broj);
+		//sp.setAttribute("about", "http://www.projekat.org/resenje/" + broj);
 		System.out.println("node broj = " + broj);
 		//broj = broj.replace("/", "_");
 		Document prev = null;
@@ -85,30 +93,33 @@ public class ResponseService {
 		
 		metadataExtractor.extractMetadata(sw.toString(), MetadataExtractor.RESPONSE_RDF_FILE);
 		FusekiWriter.saveRDF(FusekiWriter.RESPONSE_RDF_FILEPATH, FusekiWriter.RESPONSE_METADATA_GRAPH_URI);
-	}
 	
-	public ArrayList<String> searchByMetadata(Map<String, String> params) throws IOException {
-        System.out.println("service executeQuerry!");
-        ArrayList<String> result = FusekiReader.executeQuery(params, FusekiReader.RESPONSE_QUERY_FILEPATH);
-        System.out.println("return result querry!");
-        return result;
-    }
+		dAppealService.updateStateResolved(broj);
+	}
 
-	public ResponseList getAll() throws XMLDBException, JAXBException, SAXException {
-		return repository.getAll();
-	}
-	
-	public ResponseList getAllForUsername(String username) throws XMLDBException, JAXBException, SAXException {
-		return repository.getAllForUsername(username);
-	}
-	
-	public String getHTML(String broj) {
-		Document xml = repository.findResponseByBroj(broj);
-		return xslTransformer.getHTMLfromXML(responseXSL, xml);
-	}
-	
-	/*public Resource getPdf(String name) throws Exception {
-		Document document = repository.findResponseByBroj(name);
+	public void saveSilenceResponse(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+		System.out.println("save service = " + dto);
+		Document document = domParser.getDocument(dto);
+		System.out.println("got document = " + document);
+		NodeList nodeList = document.getElementsByTagName("res:zalba");
+		Element sp = (Element) nodeList.item(0);
+		String broj = sp.getAttribute("broj");
+		//sp.setAttribute("about", "http://www.projekat.org/resenje/" + broj);
+		System.out.println("node broj = " + broj);
+		//broj = broj.replace("/", "_");
+		Document prev = null;
+		try {
+			System.out.println("findResponseByBroj call");
+			prev = repository.findResponseByBroj(broj);
+		} catch (Exception e) {
+			System.out.println("exception = " + e.getMessage());
+		}
+		if (prev != null) {
+			System.out.println("response already exist");
+			return;
+		}
+		System.out.println("found response = " + prev);
+		
 		StringWriter sw = new StringWriter();
 		TransformerFactory tf = TransformerFactory.newInstance();
 		Transformer transformer = tf.newTransformer();
@@ -116,13 +127,16 @@ public class ResponseService {
 		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
 		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 		transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-
+		
 		transformer.transform(new DOMSource(document), new StreamResult(sw));
-		ByteArrayOutputStream outputStream = xslTransformer.generatePDf(sw.toString(), xslFOPath);
-
-		Path file = Paths.get(name + ".pdf");
-		Files.write(file, outputStream.toByteArray());
-
-		return new UrlResource(file.toUri());
-	}*/
+		
+		System.out.println("broj after = " + broj);
+		repository.save(sw.toString(), broj + ".xml");
+		
+		metadataExtractor.extractMetadata(sw.toString(), MetadataExtractor.RESPONSE_RDF_FILE);
+		FusekiWriter.saveRDF(FusekiWriter.RESPONSE_RDF_FILEPATH, FusekiWriter.RESPONSE_METADATA_GRAPH_URI);
+	
+		sAppealService.updateStateResolved(broj);
+	}
+	
 }

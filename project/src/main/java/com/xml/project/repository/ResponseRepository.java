@@ -68,17 +68,6 @@ public class ResponseRepository {
 		return document;
 	}
 	
-	public ResourceSet findPapers(String xPathExpression) {
-		ResourceSet result = null;
-		try {
-			result = dbManager.retrieve(collectionId, xPathExpression);
-			return result;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-
 	public ResponseList getAllForUsername(String username) throws XMLDBException, JAXBException, SAXException {
 		System.out.println("getallforunsername = " + username);
 		org.xmldb.api.base.Collection collection = dbManager.getCollection(collectionId);
