@@ -3,6 +3,8 @@ package com.xml.organvlasti.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -23,7 +25,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
+import org.springframework.core.io.Resource;
 
+import com.itextpdf.html2pdf.HtmlConverter;
+import com.itextpdf.html2pdf.ConverterProperties;
+import java.io.ByteArrayOutputStream;
 import com.xml.organvlasti.model.request.Zahtev;
 import com.xml.organvlasti.model.zahtevResponse.RequestListResponse;
 import com.xml.organvlasti.service.RequestService;
@@ -88,6 +94,34 @@ public class RequestController {
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
 	
+	/*@GetMapping(value = "/pdf/{broj}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	public ResponseEntity<Object> getPdf(@PathVariable("broj") String broj) throws Exception {
+		Resource resource = service.getPdf(broj);
+		return ResponseEntity.ok().contentType(MediaType.APPLICATION_OCTET_STREAM)
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+				.body(resource);
+	}*/
+	
+	@RequestMapping(path = "/pdf/{broj}")
+    public ResponseEntity<?> getPDF(@PathVariable("broj") String broj, HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        String html = service.getHTML(broj);
+        /* Setup Source and target I/O streams */
+        ByteArrayOutputStream target = new ByteArrayOutputStream();
+        /*Setup converter properties. */
+        ConverterProperties converterProperties = new ConverterProperties();
+        converterProperties.setBaseUri("http://localhost:8080");
+        /* Call convert method */
+        HtmlConverter.convertToPdf(html, target, converterProperties);  
+        /* extract output as bytes */
+        byte[] bytes = target.toByteArray();
+        /* Send the response as downloadable PDF */
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + broj + ".pdf") 
+                .contentType(MediaType.APPLICATION_PDF) 
+                .body(bytes);       
+    }
+	
 	/*@GetMapping(value = "/download/{id}", produces = MediaType.TEXT_XML_VALUE)
 	public ResponseEntity<String> getRequestFile(@PathVariable("id") String id) {
 		System.out.println("controller download id = " + id);
@@ -102,7 +136,7 @@ public class RequestController {
 		}
 	}*/
 	
-	@GetMapping(value = "/download/file/{id}")
+	/*@GetMapping(value = "/download/file/{id}")
 	public ResponseEntity<byte[]> downloadFile(@PathVariable("id") String id) throws Exception {
 		System.out.println("download/file = " + id);
 		String result;
@@ -121,7 +155,7 @@ public class RequestController {
 			e.printStackTrace();
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
-	}
+	}*/
 	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
 	public ResponseEntity<String> saveRequestJax(@RequestBody Zahtev dto) throws Exception {

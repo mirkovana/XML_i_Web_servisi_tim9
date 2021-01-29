@@ -25,7 +25,10 @@
                             <td>{{n.nazivOrgana}}</td>
                             <td>{{n.imePodnosioca}}</td>
                             <td>{{n.prezimePodnosioca}}</td>
-                            <td><a href="http://localhost:8080/api/notice/html/{{n.broj}}" target="_blank">file</a></td>
+                            <td>
+                                <a href="http://localhost:8080/api/notice/html/{{n.broj}}" target="_blank">html</a><br>
+                                <a href="http://localhost:8080/api/notice/pdf/{{n.broj}}">pdf</a><br>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

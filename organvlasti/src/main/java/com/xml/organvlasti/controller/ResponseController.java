@@ -1,10 +1,13 @@
 package com.xml.organvlasti.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
+import com.itextpdf.html2pdf.ConverterProperties;
+import com.itextpdf.html2pdf.HtmlConverter;
 import com.xml.organvlasti.dto.ResponseDTO;
 import com.xml.organvlasti.model.responseList.ResponseList;
 import com.xml.organvlasti.service.ResponseService;
@@ -122,6 +127,25 @@ public class ResponseController {
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
 
+	@RequestMapping(path = "/pdf/{broj}")
+    public ResponseEntity<?> getPDF(@PathVariable("broj") String broj, HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        String html = service.getHTML(broj);
+        /* Setup Source and target I/O streams */
+        ByteArrayOutputStream target = new ByteArrayOutputStream();
+        /*Setup converter properties. */
+        ConverterProperties converterProperties = new ConverterProperties();
+        converterProperties.setBaseUri("http://localhost:8080");
+        /* Call convert method */
+        HtmlConverter.convertToPdf(html, target, converterProperties);  
+        /* extract output as bytes */
+        byte[] bytes = target.toByteArray();
+        /* Send the response as downloadable PDF */
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + broj + ".pdf") 
+                .contentType(MediaType.APPLICATION_PDF) 
+                .body(bytes);       
+    }
 	/*@GetMapping(value = "/pdf/{id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
 	public ResponseEntity<Object> getPdf(@PathVariable("id") String id) throws Exception {
 		Resource resource = service.getPdf(id);

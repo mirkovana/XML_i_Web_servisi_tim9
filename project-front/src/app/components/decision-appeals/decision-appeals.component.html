@@ -30,7 +30,10 @@
                                 <div *ngIf="a.status!='answered'">{{a.status}}</div>
                                 <a *ngIf="a.status=='answered'" href="http://localhost:8070/api/explanation/html/{{a.broj}}" target="_blank">answered</a>
                             </td>
-                            <td><a href="http://localhost:8070/api/decision-appeals/html/{{a.broj}}" target="_blank">file</a></td>
+                            <td>
+                                <a href="http://localhost:8070/api/decision-appeals/html/{{a.broj}}" target="_blank">html</a><br>
+                                <a href="http://localhost:8070/api/decision-appeals/pdf/{{a.broj}}">pdf</a>
+                            </td>
                             <td>
                                 <button *ngIf="isUser() && a.status=='sent'" (click)="deleteAppeal(a)" mat-mini-fab color="warn"class="mr-2 mb-2"  style="outline: none">
                                     <mat-icon>delete</mat-icon>
