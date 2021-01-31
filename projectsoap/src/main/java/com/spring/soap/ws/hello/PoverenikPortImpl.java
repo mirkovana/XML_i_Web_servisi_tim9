@@ -8,14 +8,17 @@ package com.spring.soap.ws.hello;
 
 import java.io.IOException;
 
+import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
+import com.xml.project.model.report.Izvestaj;
 import com.xml.project.service.DecisionAppealService;
 import com.xml.project.service.ExplanationService;
+import com.xml.project.service.ReportService;
 import com.xml.project.service.SilenceAppealService;
 
 /**
@@ -33,13 +36,12 @@ import com.xml.project.service.SilenceAppealService;
                       endpointInterface = "com.spring.soap.ws.hello.Poverenik")
 public class PoverenikPortImpl implements Poverenik {
 
-    /*DecisionAppealService dService;
-    SilenceAppealService sService;*/
     ExplanationService service;
+    ReportService reportService;
     
 	public PoverenikPortImpl() {
 		service = new ExplanationService();
-		//sService = new SilenceAppealService();
+		reportService = new ReportService();
 	}
 	
 	@Override
@@ -64,6 +66,25 @@ public class PoverenikPortImpl implements Poverenik {
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ParserConfigurationException
 				| SAXException | IOException | TransformerException | XMLDBException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "error";
+		}
+	}
+
+	@Override
+	public String saveReport(String izvestaj) {
+		System.out.println("savereportsoap = " + izvestaj);
+		try {
+			reportService.saveReport(izvestaj);
+			return "ok";
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | JAXBException | SAXException
+				| XMLDBException e) {
+			e.printStackTrace();
+			return "error";
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+			return "error";
+		} catch (IOException e) {
 			e.printStackTrace();
 			return "error";
 		}

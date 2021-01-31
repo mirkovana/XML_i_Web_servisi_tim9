@@ -9,6 +9,7 @@ import { AddSilenceAppealComponent } from './components/add-silence-appeal/add-s
 import { SilenceAppealsComponent } from './components/silence-appeals/silence-appeals.component';
 import { DecisionAppealsComponent } from './components/decision-appeals/decision-appeals.component';
 import { ResponsesComponent } from './components/responses/responses.component';
+import { ReportsComponent } from './components/reports/reports.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'decision-appeals', component: DecisionAppealsComponent },
   { path: 'silence-appeals', component: SilenceAppealsComponent },
   { path: 'responses', component: ResponsesComponent },
+  { path: 'reports', component: ReportsComponent },
 ];
 
 @NgModule({

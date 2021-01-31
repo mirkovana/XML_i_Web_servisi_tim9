@@ -36,6 +36,7 @@ import { NavigationBarComponent } from './components/navigation-bar/navigation-b
 import { DecisionAppealsComponent } from './components/decision-appeals/decision-appeals.component';
 import { SilenceAppealsComponent } from './components/silence-appeals/silence-appeals.component';
 import { ResponsesComponent } from './components/responses/responses.component';
+import { ReportsComponent } from './components/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { ResponsesComponent } from './components/responses/responses.component';
     DecisionAppealsComponent,
     SilenceAppealsComponent,
     ResponsesComponent,
+    ReportsComponent,
   ],
   imports: [
     BrowserModule,

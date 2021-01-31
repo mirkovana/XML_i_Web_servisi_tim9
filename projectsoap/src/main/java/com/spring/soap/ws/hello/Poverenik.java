@@ -30,4 +30,10 @@ public interface Poverenik {
         String xml
     );
     
+    @WebMethod
+    @WebResult(name = "return", targetNamespace = "http://soap.spring.com/ws/poverenik", partName = "return")
+    public String saveReport(
+        @WebParam(partName = "izvestaj", name = "izvestaj")
+        String izvestaj
+    );
 }

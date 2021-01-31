@@ -49,7 +49,7 @@ public class ReportService {
 	@Autowired
 	private XSLTransformer xslTransformer;
 	
-	public Izvestaj generateReport() throws XMLDBException, ParserConfigurationException, SAXException, IOException, JAXBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public String generateReport() throws XMLDBException, ParserConfigurationException, SAXException, IOException, JAXBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 		System.out.println("generatereport service");
 
 		RequestListResponse requests = requestService.getAll();
@@ -83,11 +83,11 @@ public class ReportService {
 		izvestaj.setZahtevi(zahtevi);
 		izvestaj.setZalbe(zalbe);
 		
-		saveReport(izvestaj);
-		return izvestaj;
+		//saveReport(izvestaj);
+		return saveReport(izvestaj);
 	}
 	
-	public void saveReport(Izvestaj izvestaj) throws JAXBException, SAXException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+	public String saveReport(Izvestaj izvestaj) throws JAXBException, SAXException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("save izvestaj = " + izvestaj);
 		String id = UUID.randomUUID().toString().split("-")[4];
 		izvestaj.setId(id);
@@ -101,6 +101,7 @@ public class ReportService {
 		String xmlString = sw.toString();
 		System.out.println("xmlstirng = " + xmlString);
 		repository.save(xmlString, id);
+		return xmlString;
 	}
 
 	public String getHTML(String id) {

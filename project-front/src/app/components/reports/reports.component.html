@@ -1,0 +1,47 @@
+<div id="homeDiv">
+    <div class="col-md-12 pl-0 pr-0">
+        <app-navigation-bar></app-navigation-bar>
+    </div>
+    <div class="row col-md-12">
+        <div class="jumbotron col-md-10 ml-auto mr-auto bg-light shadow mt-2 float-left pt-3">
+            <div class="row col-md-12 pl-5 pr-0">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Broj</th>
+                            <th>Datum</th>
+                            <th>Podneti Z.</th>
+                            <th>Usvojeni Z.</th>
+                            <th>Odbaceni Z.</th>
+                            <th>Odbijeni Z></th>
+                            <th>Podnete Za.</th>
+                            <th>Nepostupanja Za.</th>
+                            <th>Odbijanja Za.</th>
+                            <th>Files</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center" *ngFor="let a of reports">
+                            <td>{{a.id}}</td>
+                            <td>{{a.datum}}</td>
+                            <td>{{a.zahtevBrojPodnetih}}</td>
+                            <td>{{a.zahtevBrojUsvojenih}}</td>
+                            <td>{{a.zahtevBrojOdbacenih}}</td>
+                            <td>{{a.zahtevBrojOdbijenih}}</td>
+                            <td>{{a.zalbaBrojPodnetih}}</td>
+                            <td>{{a.zalbaBrojZbogNepostupanja}}</td>
+                            <td>{{a.zalbaBrojZbogOdbijanja}}</td>
+                            <td>
+                                <a href="http://localhost:8070/api/report/html/{{a.id}}" target="_blank">html</a><br>
+                                <a href="http://localhost:8070/api/report/pdf/{{a.id}}">pdf</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="reports.length === 0">
+                    <h4>No reports in the database</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
