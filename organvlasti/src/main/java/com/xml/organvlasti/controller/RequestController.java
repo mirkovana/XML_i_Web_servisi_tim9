@@ -118,6 +118,27 @@ public class RequestController {
                 .body(bytes);       
     }
 	
+	@GetMapping(value = "/download/file/{id}")
+	public ResponseEntity<byte[]> downloadFile(@PathVariable("id") String id) throws Exception {
+		System.out.println("download/file = " + id);
+		String result;
+		try {
+			result = service.getFileDownload(id);
+			System.out.println("constroller download result = " + result);
+			byte[] isr = result.getBytes();
+			String fileName = id+".xml";
+			HttpHeaders respHeaders = new HttpHeaders();
+			respHeaders.setContentLength(isr.length);
+			respHeaders.setContentType(new MediaType("text", "xml"));
+			respHeaders.setCacheControl("must-revalidate, post-check=0, pre-check=0");
+			respHeaders.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName);
+			return new ResponseEntity<byte[]>(isr, respHeaders, HttpStatus.OK);
+		} catch (TransformerException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
 	/*private void sendEmail(byte[] pdf) {
 		System.out.println("sendemailcontroller");
 		String fooResourceUrl = "http://localhost:5000/email";
@@ -147,26 +168,6 @@ public class RequestController {
 		}
 	}*/
 	
-	/*@GetMapping(value = "/download/file/{id}")
-	public ResponseEntity<byte[]> downloadFile(@PathVariable("id") String id) throws Exception {
-		System.out.println("download/file = " + id);
-		String result;
-		try {
-			result = service.getFileDownload(id);
-			System.out.println("constroller download result = " + result);
-			byte[] isr = result.getBytes();
-			String fileName = id+".xml";
-			HttpHeaders respHeaders = new HttpHeaders();
-			respHeaders.setContentLength(isr.length);
-			respHeaders.setContentType(new MediaType("text", "xml"));
-			respHeaders.setCacheControl("must-revalidate, post-check=0, pre-check=0");
-			respHeaders.set(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName);
-			return new ResponseEntity<byte[]>(isr, respHeaders, HttpStatus.OK);
-		} catch (TransformerException e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-		}
-	}*/
 	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
 	public ResponseEntity<String> saveRequestJax(@RequestBody Zahtev dto) throws Exception {
