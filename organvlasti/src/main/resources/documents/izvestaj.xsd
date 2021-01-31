@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:element name="izvestaj">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="zahtevi">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="brojPodnetih" type="xs:int"/>
+                            <xs:element name="brojUsvojenih" type="xs:int"/>
+                            <xs:element name="brojOdbacenih" type="xs:int"/>
+                            <xs:element name="brojOdbijenih" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="zalbe">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="brojPodnetih" type="xs:int"/>
+                            <xs:element name="brojZbogNepostupanja" type="xs:int"/>
+                            <xs:element name="brojZbogOdbijanja" type="xs:int"/>
+                            <xs:element name="brojNaZakljucakOdbacivanju" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:string" use="required"/>
+            <xs:attribute name="datum" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

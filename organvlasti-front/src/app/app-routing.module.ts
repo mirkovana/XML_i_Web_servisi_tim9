@@ -14,6 +14,7 @@ import { SilenceAppealsComponent } from './components/silence-appeals/silence-ap
 import { DecisionAppealsComponent } from './components/decision-appeals/decision-appeals.component';
 import { AddExplanationComponent } from './components/add-explanation/add-explanation.component';
 import { ResponsesComponent } from './components/responses/responses.component';
+import { ReportsComponent } from './components/reports/reports.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'add-notice/:podnosiocUsername/:id', component: AddNoticeComponent },
   { path: 'add-explanation/:broj/:tip/:username', component: AddExplanationComponent },
   { path: 'responses', component: ResponsesComponent },
+  { path: 'reports', component: ReportsComponent },
 ];
 
 @NgModule({

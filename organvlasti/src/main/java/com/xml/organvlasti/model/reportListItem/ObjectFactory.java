@@ -6,7 +6,7 @@
 //
 
 
-package generated;
+package com.xml.organvlasti.model.reportListItem;
 
 import javax.xml.bind.annotation.XmlRegistry;
 

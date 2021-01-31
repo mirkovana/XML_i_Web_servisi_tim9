@@ -61,6 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.GET, "/api/explanation/**").permitAll()
 			.antMatchers(HttpMethod.GET, "/api/decision-appeals/**").permitAll()
 			.antMatchers(HttpMethod.GET, "/api/silence-appeals/**").permitAll()
+			.antMatchers(HttpMethod.GET, "/api/report/**").permitAll()
 			.antMatchers(HttpMethod.GET, "/ws/**").permitAll()
 			
 			.anyRequest().authenticated().and()
@@ -93,6 +94,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		web.ignoring().antMatchers(HttpMethod.GET, "/api/explanation/**");
 		web.ignoring().antMatchers(HttpMethod.POST, "/api/explanation/**");
+		
+		web.ignoring().antMatchers(HttpMethod.GET, "/api/report/**");
+		web.ignoring().antMatchers(HttpMethod.POST, "/api/report/**");
 		
 		web.ignoring().antMatchers(HttpMethod.GET, "/api/db/init");
 		
