@@ -1,8 +1,10 @@
 package com.xml.project.service;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +17,9 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -28,7 +32,10 @@ import org.xmldb.api.modules.XMLResource;
 import com.xml.project.rdf.MetadataExtractor;
 import com.xml.project.rdf.FusekiWriter;
 import com.xml.project.rdf.FusekiReader;
+import com.itextpdf.html2pdf.ConverterProperties;
+import com.itextpdf.html2pdf.HtmlConverter;
 import com.xml.project.dto.ResponseDTO;
+import com.xml.project.model.email.EmailModel;
 import com.xml.project.model.responseList.ResponseList;
 import com.xml.project.parser.DOMParser;
 import com.xml.project.parser.XSLTransformer;
@@ -51,6 +58,8 @@ public class ResponseService {
 	private DecisionAppealService dAppealService;
 	@Autowired
 	private SilenceAppealService sAppealService;
+	@Autowired
+	private UserService userService;
 	@Autowired
 	private MetadataExtractor metadataExtractor;
 
@@ -98,6 +107,8 @@ public class ResponseService {
 		}else if(tip.contentEquals("silence")) {
 			sAppealService.updateStateResolved(broj);			
 		}
+		
+		sendEmail(broj, sp.getAttribute("status"), sp.getAttribute("username"), sp.getAttribute("poverenikUsername"));
 	}
 	
 	public ArrayList<String> searchByMetadata(Map<String, String> params) throws IOException {
@@ -118,6 +129,48 @@ public class ResponseService {
 	
 	public ResponseList getAllForUsername(String username) throws XMLDBException, JAXBException, SAXException {
 		return repository.getAllForUsername(username);
+	}
+	
+	public byte[] getPdfBytes(String broj) throws IOException {
+		String html = getHTML(broj);
+        /* Setup Source and target I/O streams */
+        ByteArrayOutputStream target = new ByteArrayOutputStream();
+        /*Setup converter properties. */
+        ConverterProperties converterProperties = new ConverterProperties();
+        converterProperties.setBaseUri("http://localhost:8070");
+        /* Call convert method */
+        HtmlConverter.convertToPdf(html, target, converterProperties);  
+        /* extract output as bytes */
+        byte[] bytes = target.toByteArray();
+
+        return bytes;
+	}
+	
+	private void sendEmail(String broj, String status, String to, String from) {
+		try {
+			System.out.println("to = " + to + " from = " + from);
+			String toEmail = userService.getUserEmailByUsername(to);
+			String fromEmail = userService.getUserEmailByUsername(from);
+			byte[] pdfBytes = getPdfBytes(broj);
+			
+			System.out.println("sendemailnoticeservice");
+			String fooResourceUrl = "http://localhost:5000/email";
+			RestTemplate restTemplate = new RestTemplate();
+			EmailModel email = new EmailModel(); 
+			email.setFrom(fromEmail);
+			email.setPdf(Base64.getEncoder().encodeToString(pdfBytes));
+			email.setSubject("Resenje zalbe na organa vlasti.");
+			email.setText("Vasa zalba na organ vlasti br." + broj + " je: " + status + "\n"
+					+ "html: http://localhost:8070/api/response/html/" + broj + " \n"
+					+ "pdf: http://localhost:8070/api/response/pdf/" + broj + " \n");
+			email.setTo(toEmail);
+			System.out.println("emailmodel = " + email);
+			HttpEntity<EmailModel> request = new HttpEntity<>(email);
+			restTemplate.postForObject(fooResourceUrl, request, EmailModel.class);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/*public Resource getPdf(String name) throws Exception {
