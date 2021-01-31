@@ -2,6 +2,7 @@ package com.xml.organvlasti.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +11,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 import org.springframework.core.io.Resource;
@@ -30,6 +33,8 @@ import org.springframework.core.io.Resource;
 import com.itextpdf.html2pdf.HtmlConverter;
 import com.itextpdf.html2pdf.ConverterProperties;
 import java.io.ByteArrayOutputStream;
+
+import com.xml.organvlasti.model.email.EmailModel;
 import com.xml.organvlasti.model.request.Zahtev;
 import com.xml.organvlasti.model.zahtevResponse.RequestListResponse;
 import com.xml.organvlasti.service.RequestService;
@@ -104,23 +109,29 @@ public class RequestController {
 	
 	@RequestMapping(path = "/pdf/{broj}")
     public ResponseEntity<?> getPDF(@PathVariable("broj") String broj, HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        String html = service.getHTML(broj);
-        /* Setup Source and target I/O streams */
-        ByteArrayOutputStream target = new ByteArrayOutputStream();
-        /*Setup converter properties. */
-        ConverterProperties converterProperties = new ConverterProperties();
-        converterProperties.setBaseUri("http://localhost:8080");
-        /* Call convert method */
-        HtmlConverter.convertToPdf(html, target, converterProperties);  
         /* extract output as bytes */
-        byte[] bytes = target.toByteArray();
+        byte[] bytes = service.getPdfBytes(broj);
         /* Send the response as downloadable PDF */
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + broj + ".pdf") 
                 .contentType(MediaType.APPLICATION_PDF) 
                 .body(bytes);       
     }
+	
+	/*private void sendEmail(byte[] pdf) {
+		System.out.println("sendemailcontroller");
+		String fooResourceUrl = "http://localhost:5000/email";
+		RestTemplate restTemplate = new RestTemplate();
+		EmailModel email = new EmailModel();
+		email.setFrom("alen@maildrop.cc");
+		email.setPdf(Base64.getEncoder().encodeToString(pdf));
+		email.setSubject("Subject");
+		email.setText("text");
+		email.setTo("alenmujo10@gmail.com");
+		System.out.println("emailmodel = " + email);
+		HttpEntity<EmailModel> request = new HttpEntity<>(email);
+		restTemplate.postForObject(fooResourceUrl, request, EmailModel.class);
+	}*/
 	
 	/*@GetMapping(value = "/download/{id}", produces = MediaType.TEXT_XML_VALUE)
 	public ResponseEntity<String> getRequestFile(@PathVariable("id") String id) {

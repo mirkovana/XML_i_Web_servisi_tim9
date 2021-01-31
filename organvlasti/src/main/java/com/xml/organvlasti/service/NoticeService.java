@@ -1,7 +1,9 @@
 package com.xml.organvlasti.service;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.Base64;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
@@ -13,14 +15,19 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
+import com.itextpdf.html2pdf.ConverterProperties;
+import com.itextpdf.html2pdf.HtmlConverter;
 import com.xml.organvlasti.dto.NoticeDTO;
+import com.xml.organvlasti.model.email.EmailModel;
 import com.xml.organvlasti.model.noticeResponse.NoticeListResponse;
 import com.xml.organvlasti.parser.DOMParser;
 import com.xml.organvlasti.parser.XSLTransformer;
@@ -42,15 +49,14 @@ public class NoticeService {
 	private NoticeRepository repository;
 	@Autowired
 	private RequestService requestService;
+	@Autowired 
+	private UserService userService;
 	
 	@Autowired
 	private MetadataExtractor metadataExtractor;
 	
 	public void save(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
-//		System.out.println("save service = " + dto);
 		Document document = domParser.getDocument(dto);
-//		System.out.println("got document = " + document);
-
 		NodeList br_predmeta = document.getElementsByTagName("ob:broj_predmeta");
 		Element el = (Element) br_predmeta.item(0);
 		String broj = el.getTextContent(); // broj_predmeta
@@ -85,6 +91,10 @@ public class NoticeService {
 		
 		metadataExtractor.extractMetadata(sw.toString(), MetadataExtractor.NOTICE_RDF_FILE);
 		FusekiWriter.saveRDF(FusekiWriter.NOTICE_RDF_FILEPATH, FusekiWriter.NOTICE_METADATA_GRAPH_URI);
+		
+		NodeList root = document.getElementsByTagName("ob:obavestenje");
+		el = (Element) root.item(0);
+		sendEmail(broj, el.getAttribute("username"), el.getAttribute("organVlastiUsername"));
 	}
 	
 	public NoticeListResponse getAll() throws XMLDBException, JAXBException, SAXException {
@@ -116,5 +126,45 @@ public class NoticeService {
 	public String getHTML(String broj) {
 		Document xml = repository.findNoticeById(broj);
 		return xslTransformer.getHTMLfromXML(requestXSL, xml);
+	}
+
+	public byte[] getPdfBytes(String broj) throws IOException {
+		String html = getHTML(broj);
+        /* Setup Source and target I/O streams */
+        ByteArrayOutputStream target = new ByteArrayOutputStream();
+        /*Setup converter properties. */
+        ConverterProperties converterProperties = new ConverterProperties();
+        converterProperties.setBaseUri("http://localhost:8080");
+        /* Call convert method */
+        HtmlConverter.convertToPdf(html, target, converterProperties);  
+        /* extract output as bytes */
+        byte[] bytes = target.toByteArray();
+
+        return bytes;
+	}
+	
+	public void sendEmail(String broj, String to, String from) {
+		try {
+			System.out.println("to = " + to + " from = " + from);
+			String toEmail = userService.getUserEmailByUsername(to);
+			String fromEmail = userService.getUserEmailByUsername(from);
+			byte[] pdfBytes = getPdfBytes(broj);
+			
+			System.out.println("sendemailnoticeservice");
+			String fooResourceUrl = "http://localhost:5000/email";
+			RestTemplate restTemplate = new RestTemplate();
+			EmailModel email = new EmailModel();
+			email.setFrom(fromEmail);
+			email.setPdf(Base64.getEncoder().encodeToString(pdfBytes));
+			email.setSubject("Obavestenje o zahtevu za pristup informacijama");
+			email.setText("Vas zahtev br." + broj + " je prihvacen. U prilogu je dokument sa podacima o datum i vremenu preuzimanja trazenih informaicja");
+			email.setTo(toEmail);
+			System.out.println("emailmodel = " + email);
+			HttpEntity<EmailModel> request = new HttpEntity<>(email);
+			restTemplate.postForObject(fooResourceUrl, request, EmailModel.class);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

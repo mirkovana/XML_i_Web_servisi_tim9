@@ -1,11 +1,13 @@
 package com.xml.organvlasti.service;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Date;
 import java.util.UUID;
 
@@ -20,7 +22,9 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.w3c.dom.Attr;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Comment;
@@ -35,8 +39,11 @@ import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
+import com.itextpdf.html2pdf.ConverterProperties;
+import com.itextpdf.html2pdf.HtmlConverter;
 import com.xml.organvlasti.dto.RequestDTO;
 import com.xml.organvlasti.dto.RequestItem;
+import com.xml.organvlasti.model.email.EmailModel;
 import com.xml.organvlasti.model.request.Zahtev;
 import com.xml.organvlasti.model.zahtevResponse.RequestListResponse;
 import com.xml.organvlasti.parser.DOMParser;
@@ -59,6 +66,8 @@ public class RequestService {
 	private XSLTransformer xslTransformer;
 	@Autowired
 	private RequestRepository repository;
+	@Autowired
+	private UserService userService;
 	@Autowired
 	private MetadataExtractor metadataExtractor;
 	
@@ -228,6 +237,8 @@ public class RequestService {
 			
 			metadataExtractor.extractMetadata(xmlString, MetadataExtractor.REQUEST_RDF_FILE);
 			FusekiWriter.saveRDF(FusekiWriter.REQUEST_RDF_FILEPATH, FusekiWriter.REQUEST_METADATA_GRAPH_URI);
+			
+			sendEmail(broj, sp.getAttribute("username"));
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {
@@ -258,6 +269,45 @@ public class RequestService {
 		return sw.toString();
 	}
 	
+	public byte[] getPdfBytes(String broj) throws IOException {
+		String html = getHTML(broj);
+        /* Setup Source and target I/O streams */
+        ByteArrayOutputStream target = new ByteArrayOutputStream();
+        /*Setup converter properties. */
+        ConverterProperties converterProperties = new ConverterProperties();
+        converterProperties.setBaseUri("http://localhost:8080");
+        /* Call convert method */
+        HtmlConverter.convertToPdf(html, target, converterProperties);  
+        /* extract output as bytes */
+        byte[] bytes = target.toByteArray();
+
+        return bytes;
+	}
+	
+	public void sendEmail(String broj, String to) {
+		try {
+			String toEmail = userService.getUserEmailByUsername(to);
+			String fromEmail = "sluzbenik@gmail.com";
+			byte[] pdfBytes = getPdfBytes(broj);
+			
+			System.out.println("sendemailrequestservice");
+			String fooResourceUrl = "http://localhost:5000/email";
+			RestTemplate restTemplate = new RestTemplate();
+			EmailModel email = new EmailModel();
+			email.setFrom(fromEmail);
+			email.setPdf(Base64.getEncoder().encodeToString(pdfBytes));
+			email.setSubject("Obavestenje o odbijanju zahteva za pristup informacijama");
+			email.setText("Vas zahtev br." + broj + " je odbijen. Mozete uloziti zalbu povereniku.");
+			email.setTo(toEmail);
+			System.out.println("emailmodel = " + email);
+			HttpEntity<EmailModel> request = new HttpEntity<>(email);
+			restTemplate.postForObject(fooResourceUrl, request, EmailModel.class);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	/*private void printNode(Node node) {
 		if (node == null)
 			return;

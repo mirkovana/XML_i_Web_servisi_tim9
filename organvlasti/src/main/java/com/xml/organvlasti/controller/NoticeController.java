@@ -41,9 +41,9 @@ public class NoticeController {
 
 	@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
-	public ResponseEntity saveNotice(@RequestBody String dto) throws Exception {
+	public ResponseEntity saveNotice(@RequestBody String xml) throws Exception {
 		System.out.println("controller saveNotice = ");
-		service.save(dto);
+		service.save(xml);
 		return new ResponseEntity(HttpStatus.OK);
 	}
 	
@@ -84,21 +84,11 @@ public class NoticeController {
 	
 	@RequestMapping(path = "/pdf/{broj}")
     public ResponseEntity<?> getPDF(@PathVariable("broj") String broj, HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        String html = service.getHTML(broj);
-        /* Setup Source and target I/O streams */
-        ByteArrayOutputStream target = new ByteArrayOutputStream();
-        /*Setup converter properties. */
-        ConverterProperties converterProperties = new ConverterProperties();
-        converterProperties.setBaseUri("http://localhost:8080");
-        /* Call convert method */
-        HtmlConverter.convertToPdf(html, target, converterProperties);  
-        /* extract output as bytes */
-        byte[] bytes = target.toByteArray();
-        /* Send the response as downloadable PDF */
+		byte[] bytes = service.getPdfBytes(broj);	        
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + broj + ".pdf") 
                 .contentType(MediaType.APPLICATION_PDF) 
                 .body(bytes);       
     }
+	
 }
