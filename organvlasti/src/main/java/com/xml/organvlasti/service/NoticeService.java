@@ -157,7 +157,10 @@ public class NoticeService {
 			email.setFrom(fromEmail);
 			email.setPdf(Base64.getEncoder().encodeToString(pdfBytes));
 			email.setSubject("Obavestenje o zahtevu za pristup informacijama");
-			email.setText("Vas zahtev br." + broj + " je prihvacen. U prilogu je dokument sa podacima o datum i vremenu preuzimanja trazenih informaicja");
+			email.setText("Vas zahtev br." + broj + " je prihvacen. U prilogu je dokument sa podacima o datum"
+					+ " i vremenu preuzimanja trazenih informaicja.\n"
+					+ "html: http://localhost:8080/api/notice/html/" + broj + " \n"
+					+ "pdf: http://localhost:8080/api/notice/pdf/" + broj + " \n");
 			email.setTo(toEmail);
 			System.out.println("emailmodel = " + email);
 			HttpEntity<EmailModel> request = new HttpEntity<>(email);
