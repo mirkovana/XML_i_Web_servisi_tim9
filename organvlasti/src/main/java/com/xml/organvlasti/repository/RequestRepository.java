@@ -223,6 +223,7 @@ public class RequestRepository {
 			zahtev = (Zahtev) unmarshaller.unmarshal(xmlResource.getContentAsDOM());
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
 		return zahtev;
 	}

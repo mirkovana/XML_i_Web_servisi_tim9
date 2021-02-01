@@ -6,7 +6,7 @@
 //
 
 
-package generated;
+package com.xml.organvlasti.model.zahtevSearch;
 
 import javax.xml.bind.annotation.XmlRegistry;
 

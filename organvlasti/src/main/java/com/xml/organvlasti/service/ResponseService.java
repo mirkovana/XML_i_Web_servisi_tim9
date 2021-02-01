@@ -89,9 +89,9 @@ public class ResponseService {
 	
 	public ArrayList<String> searchByMetadata(Map<String, String> params) throws IOException {
         System.out.println("service executeQuerry!");
-        ArrayList<String> result = FusekiReader.executeQuery(params, FusekiReader.RESPONSE_QUERY_FILEPATH);
+        ArrayList<Map<String, String>> result = FusekiReader.executeQuery(params, FusekiReader.RESPONSE_QUERY_FILEPATH);
         System.out.println("return result querry!");
-        return result;
+        return new ArrayList<>();
     }
 
 	public ResponseList getAll() throws XMLDBException, JAXBException, SAXException {
