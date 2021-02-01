@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ResponseItem } from '../../model/response.model';
 import { ResponseService } from '../../service/response.service';
 import { UserService } from '../../service/user.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-responses',
@@ -13,6 +14,12 @@ export class ResponsesComponent implements OnInit {
 
   responses: ResponseItem[] = [];
 
+  myForm = new FormGroup({
+    broj: new FormControl(''),
+    datum: new FormControl(''),
+    status: new FormControl(''),
+  });
+  
   constructor(private service: ResponseService,
     private userService: UserService,
     private router: Router) { }
@@ -39,6 +46,29 @@ export class ResponsesComponent implements OnInit {
           console.log("error = ", error);
         });
       }
+    }
+
+    submit() {
+      console.log("form = ",  this.myForm.value);
+      if(this.myForm.value.broj=="" 
+      && this.myForm.value.datum==""
+      && this.myForm.value.status==""){
+        this.getResponses();
+        return;
+      }
+      let xml = `<?xml version="1.0" encoding="UTF-8"?>
+      <resenjeSearch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <broj>`+this.myForm.value.broj+`</broj>
+          <datum>`+this.myForm.value.datum+`</datum>
+          <status>`+this.myForm.value.status+`</status>
+      </resenjeSearch>`;
+  
+      this.service.searchByMetadata(xml).subscribe((data: any)  => {
+        console.log("data = ", data);
+        this.responses = data;
+      }, error => {
+        console.log(error);
+      });
     }
 
     isUser() {

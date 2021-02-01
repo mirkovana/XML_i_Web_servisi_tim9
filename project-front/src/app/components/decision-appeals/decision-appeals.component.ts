@@ -3,6 +3,7 @@ import { UserService } from '../../service/user.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { DecisionAppealService } from '../../service/decision-appeal.service';
 import { DAppealItem } from '../../model/decision-appeal.model';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-decision-appeals',
@@ -13,6 +14,16 @@ export class DecisionAppealsComponent implements OnInit {
 
   appeals: DAppealItem[] = [];
 
+  myForm = new FormGroup({
+    broj: new FormControl(''),
+    datum: new FormControl(''),
+    status: new FormControl(''),
+    ime: new FormControl(''),
+    prezime: new FormControl(''),
+    nazivOrgana: new FormControl(''),
+    mesto: new FormControl(''),
+  });
+  
   constructor(private service: DecisionAppealService,
     private userService: UserService,
     private router: Router) { }
@@ -48,11 +59,36 @@ export class DecisionAppealsComponent implements OnInit {
     });
   }
   
-  /*requestExplanation(appeal: DAppealItem){
-    console.log("requestExplanation = ", appeal);
-    this.service.requestExplanation(appeal.broj);
-  }*/
+  submit() {
+    console.log("form = ",  this.myForm.value);
+    if(this.myForm.value.broj=="" 
+      && this.myForm.value.datum==""
+      && this.myForm.value.ime==""
+      && this.myForm.value.prezime==""
+      && this.myForm.value.mesto==""
+      && this.myForm.value.nazivOrgana==""
+      && this.myForm.value.status==""){
+      this.getDecisionAppeals();
+      return;
+    }
+    let xml = `<?xml version="1.0" encoding="UTF-8"?>
+    <dAppealSearch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <broj>`+this.myForm.value.broj+`</broj>
+        <datum>`+this.myForm.value.datum+`</datum>
+        <mesto>`+this.myForm.value.mesto+`</mesto>
+        <ime>`+this.myForm.value.ime+`</ime>
+        <prezime>`+this.myForm.value.prezime+`</prezime>
+        <organVlasti>`+this.myForm.value.nazivOrgana+`</organVlasti>
+        <status>`+this.myForm.value.status+`</status>
+    </dAppealSearch>`;
 
+    this.service.searchByMetadata(xml).subscribe((data: any)  => {
+      console.log("data = ", data);
+      this.appeals = data;
+    }, error => {
+      console.log(error);
+    });
+  }
   
   requestExplanation(appeal: DAppealItem){
     console.log("requestExplanation = ", appeal);

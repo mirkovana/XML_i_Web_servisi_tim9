@@ -26,6 +26,7 @@ import org.xmldb.api.modules.XQueryService;
 
 import com.xml.project.database.DbManager;
 import com.xml.project.model.silenceAppeal.Trazlozi.Razlog;
+import com.xml.project.model.decisionAppeal.ZalbaNaOdluku;
 import com.xml.project.model.silenceAppeal.ZalbaCutanje;
 import com.xml.project.model.silenceAppealResponse.SAppealListResponse;
 import com.xml.project.model.silenceAppealResponse.SAppealListResponse.SAppealItem;
@@ -176,5 +177,21 @@ public class SilenceAppealRepository {
 			e.printStackTrace();
 		}
 		return document;
+	}
+
+	public ZalbaCutanje findAppealByIdMarshall(String id) {
+		ZalbaCutanje zalba = null;
+		if (!id.endsWith(".xml")) {
+			id = id + ".xml";
+		}
+		try {
+			XMLResource xmlResource = dbManager.getDocument(collectionId, id);
+			Unmarshaller unmarshaller = JAXParser.createUnmarshaller(contextPath, schemaPath);
+			zalba = (ZalbaCutanje) unmarshaller.unmarshal(xmlResource.getContentAsDOM());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return zalba;
 	}
 }

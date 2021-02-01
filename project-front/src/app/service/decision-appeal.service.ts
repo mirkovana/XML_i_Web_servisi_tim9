@@ -12,6 +12,7 @@ export class DecisionAppealService {
   path = 'http://localhost:8070/api/decision-appeals/';
   pathGetAll = this.path + "all";
   pathRequestExplanation = this.path + 'requestExplanation/'
+  pathSearch = this.path + "search";
   /*headers: HttpHeaders = new HttpHeaders({
     Authorization: 'Bearer ' + localStorage.getItem('token'),
     'Content-Type': 'application/xml', //<- To SEND XML
@@ -88,6 +89,17 @@ export class DecisionAppealService {
       }) 
     }
     return appealItems;
+  }
+
+  searchByMetadata(xml: string){
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      'Content-Type': 'application/xml', //<- To SEND XML
+      'Accept': 'application/xml',       //<- To ask for XML
+      'Response-Type': 'text'
+    });
+    return this.http.post<string>(this.pathSearch, xml, { headers: headers, responseType: 'text' as 'json' })
+    .pipe(map((xml: string) => this.xmlToAppeal(xml)));
   }
 
   requestExplanation(broj: string): Observable<string>{

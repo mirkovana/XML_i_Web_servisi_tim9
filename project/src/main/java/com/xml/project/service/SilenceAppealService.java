@@ -2,6 +2,9 @@ package com.xml.project.service;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
@@ -21,9 +24,14 @@ import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 import com.xml.project.dto.SilenceAppealDTO;
+import com.xml.project.model.decisionAppeal.ZalbaNaOdluku;
+import com.xml.project.model.silenceAppeal.Trazlozi.Razlog;
+import com.xml.project.model.silenceAppeal.ZalbaCutanje;
 import com.xml.project.model.silenceAppealResponse.SAppealListResponse;
+import com.xml.project.model.silenceAppealResponse.SAppealListResponse.SAppealItem;
 import com.xml.project.parser.DOMParser;
 import com.xml.project.parser.XSLTransformer;
+import com.xml.project.rdf.FusekiReader;
 import com.xml.project.rdf.FusekiWriter;
 import com.xml.project.rdf.MetadataExtractor;
 import com.xml.project.repository.RequestRepository;
@@ -147,5 +155,51 @@ public class SilenceAppealService {
 	public String getHTML(String id) {
 		Document xml = repository.findSilenceAppealByBroj(id);
 		return xslTransformer.getHTMLfromXML(requestXSL, xml);
+	}
+
+	public SAppealListResponse searchByMetadata(Map<String, String> params) throws IOException {
+		System.out.println("service executeQuerry!");
+        ArrayList<Map<String, String>> result = FusekiReader.executeQuery(params, FusekiReader.SILENCE_APPEAL_QUERY_FILEPATH);
+        System.out.println("return result querry!");
+        ArrayList<String> brojList = new ArrayList<>();
+        for(Map<String, String> map : result) {
+        	String zalbaNaCutanje = map.get("zalba_cutanje");
+        	String[] split = zalbaNaCutanje.split("\\/");
+        	brojList.add(split[split.length-1]);
+        	System.out.println("map = ");
+        	for(String key : map.keySet()) {
+            	System.out.println("ket = " + key + " value = " + map.get(key));        		
+        	}
+        	System.out.println();
+        }
+        SAppealListResponse response = new SAppealListResponse();
+        List<SAppealItem> itemsList = new ArrayList<>();
+        for(String broj : brojList) {
+        	ZalbaCutanje zalba = repository.findAppealByIdMarshall(broj);
+    		
+        	SAppealItem item = new SAppealItem();
+    		item.setBroj(zalba.getBroj());
+    		item.setDatumSlanja(zalba.getPodaciOMestuIDatumuPodnosenjaZalbe().getDatum().getValue());
+    		item.setMestoSlanja(zalba.getPodaciOMestuIDatumuPodnosenjaZalbe().getMesto().getValue());
+    		item.setOrganVlasti(zalba.getTeloZalbe().getNazivOrgana().getValue());
+    		item.setPodnosiocGrad(zalba.getPodaciOPodnosiocuZalbe().getAdresa().getGrad());
+    		item.setPodnosiocIme(zalba.getPodaciOPodnosiocuZalbe().getIme().getValue());
+    		item.setPodnosiocPrezime(zalba.getPodaciOPodnosiocuZalbe().getPrezime().getValue());
+    		item.setPodnosiocUlica(zalba.getPodaciOPodnosiocuZalbe().getAdresa().getUlica());
+    		item.setPodnosiocUsername(zalba.getUsername());
+    		item.setPoverenikUsername(zalba.getPoverenikUsername());
+    		String razlog = "";
+    		for(Razlog s : zalba.getTeloZalbe().getRazlozi().getRazlog()) {
+    			if(s.isPodvuceno()) {
+    				razlog = s.getValue();
+    			}
+    		}
+    		item.setRazlog(razlog);
+    		item.setStatus(zalba.getZalbaStatus().getValue());
+    		itemsList.add(item);
+        }
+        response.setsAppealItem(itemsList);
+        System.out.println("find all silenceappeals = " + response);
+        return response;
 	}
 }

@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +32,7 @@ import org.xmldb.api.base.XMLDBException;
 
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
+import com.xml.project.model.sAppealSearch.SAppealSearch;
 import com.xml.project.model.silenceAppealResponse.SAppealListResponse;
 import com.xml.project.service.SilenceAppealService;
 import com.xml.project.soap.Sluzbenik;
@@ -144,6 +147,31 @@ public class SilenceAppealController {
 		}
 	}
 	
+	@PostMapping(value = "/search", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<SAppealListResponse> searchMetadata(@RequestBody SAppealSearch s) throws Exception {
+		System.out.println("controller searchMetadata xml = " + s);
+		String broj = s.getBroj();
+        String datum = s.getDatum();
+        String status = s.getStatus();
+        String mesto = s.getMesto();
+        String ime = s.getIme();
+        String prezime = s.getPrezime();
+        String organVlasti = s.getNazivOrgana();
+        Map<String, String> params = new HashMap<>();
+        params.put("broj", broj);
+        params.put("datum", datum);
+        params.put("status", status);
+        params.put("mesto", mesto);
+        params.put("ime", ime);
+        params.put("prezime", prezime);
+        params.put("organVlasti", organVlasti);
+        
+        SAppealListResponse result = service.searchByMetadata(params);
+        
+        System.out.println("OUTPUT: " + result);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
 	
 	@GetMapping(value = "/html/{id}", produces = MediaType.TEXT_HTML_VALUE)
 	public ResponseEntity<String> getSilenceAppealHTML(@PathVariable("id") String id) {

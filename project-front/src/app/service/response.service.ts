@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 export class ResponseService {
   path = 'http://localhost:8070/api/response/';
   pathGetAll = this.path + "all";
+  pathSearch = this.path + "search";
 
   /*headers: HttpHeaders = new HttpHeaders({
     Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -67,6 +68,17 @@ export class ResponseService {
     .pipe(map((xml: string) => this.xmlToResponse(xml)));
   }
 
+  searchByMetadata(xml: string){
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      'Content-Type': 'application/xml', //<- To SEND XML
+      'Accept': 'application/xml',       //<- To ask for XML
+      'Response-Type': 'text'
+    });
+    return this.http.post<string>(this.pathSearch, xml, { headers: headers, responseType: 'text' as 'json' })
+    .pipe(map((xml: string) => this.xmlToResponse(xml)));
+  }
+  
   private xmlToResponse(xml: string): ResponseItem[] {
     console.log("parse = ", xml);
     let appealItems: ResponseItem[] = [];

@@ -33,6 +33,7 @@ import com.xml.project.model.decisionAppeal.ZalbaNaOdluku;
 import com.xml.project.model.decisionAppealResponse.DAppealListResponse;
 import com.xml.project.model.decisionAppealResponse.DAppealListResponse.DAppealItem;
 import com.xml.project.model.request.Zahtev;
+import com.xml.project.model.resenje.Zalba;
 import com.xml.project.parser.JAXParser;
 import com.xml.project.rdf.FusekiWriter;
 import com.xml.project.rdf.MetadataExtractor;
@@ -168,5 +169,21 @@ public class DecisionAppealRepository {
 		
 		transformer.transform(new DOMSource(document), new StreamResult(sw));	
 		return sw.toString();
+	}
+
+	public ZalbaNaOdluku findAppealByIdMarshall(String id) {
+		ZalbaNaOdluku zalba = null;
+		if (!id.endsWith(".xml")) {
+			id = id + ".xml";
+		}
+		try {
+			XMLResource xmlResource = dbManager.getDocument(collectionId, id);
+			Unmarshaller unmarshaller = JAXParser.createUnmarshaller(contextPath, schemaPath);
+			zalba = (ZalbaNaOdluku) unmarshaller.unmarshal(xmlResource.getContentAsDOM());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return zalba;
 	}
 }

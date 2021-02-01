@@ -31,7 +31,7 @@ import org.xmldb.api.base.XMLDBException;
 
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
-import com.xml.project.dto.ResponseDTO;
+import com.xml.project.model.resenjeSearch.ResenjeSearch;
 import com.xml.project.model.responseList.ResponseList;
 import com.xml.project.service.ResponseService;
 import com.xml.project.soap.Sluzbenik;
@@ -106,12 +106,27 @@ public class ResponseController {
 		}
 	}
 	
-	@GetMapping("/search")
+	@PostMapping(value = "/search", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<ResponseList> searchMetadata(@RequestBody ResenjeSearch s) throws Exception {
+		System.out.println("controller searchMetadata xml = " + s);
+		String broj = s.getBroj();
+        String datum = s.getDatum();
+        String status = s.getStatus();
+        Map<String, String> params = new HashMap<>();
+        params.put("broj", broj);
+        params.put("datum", datum);
+        params.put("status", status);
+        
+        ResponseList result = service.searchByMetadata(params);
+        
+        System.out.println("OUTPUT: " + result);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
+	/*@GetMapping("/search")
 	public ResponseEntity<String> searchFromRDF() throws IOException{
-	//public ResponseEntity<String> searchFromRDF(@PathVariable("broj") String broj,
-    //										@PathVariable("osobaIme") String osobaIme,
-	//							    		@PathVariable("osobaPrezime") String osobaPrezime) throws IOException {
-        String broj = "000-00-0000/0000-00";
+	    String broj = "000-00-0000/0000-00";
         String status = "osnovana";
         String osobaIme = "A";
         String osobaPrezime = "A";
@@ -139,7 +154,7 @@ public class ResponseController {
         }
         System.out.println("OUTPUT: " + output);
         return new ResponseEntity<>(output, HttpStatus.OK);
-    }
+    }*/
 	
 	@GetMapping(value = "/html/{id}", produces = MediaType.TEXT_HTML_VALUE)
 	public ResponseEntity<String> getResponseHTML(@PathVariable("id") String id) {

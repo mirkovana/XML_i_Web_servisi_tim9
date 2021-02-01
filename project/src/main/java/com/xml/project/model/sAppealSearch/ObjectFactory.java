@@ -6,7 +6,7 @@
 //
 
 
-package generated;
+package com.xml.project.model.sAppealSearch;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
@@ -37,11 +37,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SAppealSearc }
+     * Create an instance of {@link SAppealSearch }
      * 
      */
-    public SAppealSearc createSAppealSearc() {
-        return new SAppealSearc();
+    public SAppealSearch createSAppealSearc() {
+        return new SAppealSearch();
     }
 
 }

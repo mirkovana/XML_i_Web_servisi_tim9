@@ -128,5 +128,21 @@ public class ResponseRepository {
         System.out.println("find all responses = " + response);
         return response;
 	}
+
+	public Zalba findResponseByIdMarshall(String id) {
+		Zalba zalba = null;
+		if (!id.endsWith(".xml")) {
+			id = id + ".xml";
+		}
+		try {
+			XMLResource xmlResource = dbManager.getDocument(collectionId, id);
+			Unmarshaller unmarshaller = JAXParser.createUnmarshaller(contextPath, schemaPath);
+			zalba = (Zalba) unmarshaller.unmarshal(xmlResource.getContentAsDOM());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return zalba;
+	}
 	
 }

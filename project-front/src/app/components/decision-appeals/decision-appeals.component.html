@@ -6,6 +6,47 @@
     <div class="row col-md-12">
         <div class="jumbotron col-md-10 ml-auto mr-auto bg-light shadow mt-2 float-left pt-3">
             <div class="row col-md-12 pl-5 pr-0">
+                <p *ngIf="isAdmin()">
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
+                        aria-expanded="false" aria-controls="collapseExample">
+                        Napredna pretraga
+                    </a>
+                </p>
+                <div *ngIf="isAdmin()" class="collapse" id="collapseExample" style="margin-bottom: 10px;">
+                    <form [formGroup]="myForm" (ngSubmit)="submit()">
+                        <div class="row">
+                            <div class="col">
+                                <input formControlName="broj" type="text" class="form-control" placeholder="Broj zahteva">
+                            </div>
+                            <div class="col">
+                                <input formControlName="datum" type="text" class="form-control" placeholder="Datum">
+                            </div>
+                            <div class="col">
+                                <input formControlName="mesto" type="text" class="form-control" placeholder="Mesto">
+                            </div>
+                            <div class="col">
+                                <input formControlName="nazivOrgana" type="text" class="form-control" placeholder="Naziv organa">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input formControlName="ime" type="text" class="form-control" placeholder="Ime">
+                            </div>
+                            <div class="col">
+                                <input formControlName="prezime" type="text" class="form-control" placeholder="Prezime">
+                            </div>
+                            <div class="col">
+                                <input formControlName="status" type="text" class="form-control" placeholder="Status">
+                            </div>
+                            <div class="col">
+                                <div class="form-group float-right mt-3">
+                                    <button mat-raised-button color="primary" id="submit" type="submit"
+                                        class="btn-block">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr class="text-center">
