@@ -39,7 +39,13 @@
                 <br />
 
                 <b>Broj predmeta: </b>
-                <xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:broj_predmeta" />
+                <a>
+         			<xsl:attribute name="href">
+           				<xsl:text>http://localhost:8080/api/request/html/</xsl:text>
+          	   			<xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:broj_predmeta" />
+              		</xsl:attribute>
+  					<xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:broj_predmeta" />
+				</a>
                 <br />
 
                 <b>Datum: </b>

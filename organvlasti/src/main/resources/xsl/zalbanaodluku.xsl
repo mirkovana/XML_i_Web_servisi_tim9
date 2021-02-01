@@ -45,7 +45,14 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	    <hr></hr>
 	    (Naziv organa koji je doneo odluku)
 	</div>
-	<p>Broj: <xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_zalbi/zo:broj_zalbe/."/> od <xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_zalbi/zo:datum/."/> godine.</p>
+	<p>Broj: 
+	  <a><xsl:attribute name="href">
+          <xsl:text>http://localhost:8080/api/request/html/</xsl:text>
+		  <xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_zalbi/zo:broj_zalbe/."/> 
+        </xsl:attribute>
+		<xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_zalbi/zo:broj_zalbe/."/> 
+      </a>
+	od <xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_zalbi/zo:datum/."/> godine.</p>
 	<p class="indent">
 		Navedenom odlukom organa vlasti (rešenjem, zaključkom, obaveštenjem u pisanoj formi sa 
         elementima odluke) , suprotno zakonu, odbijen-odbačen je moj zahtev koji sam podneo/la-uputio/la
