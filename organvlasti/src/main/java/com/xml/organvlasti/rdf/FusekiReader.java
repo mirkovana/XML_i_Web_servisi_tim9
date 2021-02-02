@@ -27,7 +27,8 @@ public class FusekiReader {
 	public static final String REQUEST_QUERY_FILEPATH = "src/main/resources/rdf/requestQuery.rq";
 	public static final String DECISION_APPEAL_QUERY_FILEPATH = "src/main/resources/rdf/decisionAppealQuery.rq";
 	public static final String SILENCE_APPEAL_QUERY_FILEPATH = "src/main/resources/rdf/silenceAppealQuery.rq";
-	
+	public static final String NOTICE_QUERY_FILEPATH = "src/main/resources/rdf/noticeQuery.rq";
+
 	private FusekiReader() {}
 
 	public static ArrayList<Map<String, String>> executeQuery(Map<String, String> params, String QUERY_FILEPATH) throws IOException {

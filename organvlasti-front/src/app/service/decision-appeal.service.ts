@@ -12,7 +12,8 @@ import { DAppealItem } from "../model/decision-appeal.model";
 export class DecisionAppealService {
   path = 'http://localhost:8080/api/decision-appeals/';
   pathGetAll = this.path + "all";
-  
+  pathSearchKeywords = this.path + "keywords";
+
   /*headers: HttpHeaders = new HttpHeaders({
     Authorization: 'Bearer ' + localStorage.getItem('token'),
     'Content-Type': 'application/xml', //<- To SEND XML
@@ -61,6 +62,17 @@ export class DecisionAppealService {
     .pipe(map((xml: string) => this.xmlToAppeal(xml)));
   }
 
+  searchByKeywords(xml: string): Observable<DAppealItem[]> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',      
+      'Response-Type': 'text'
+    });
+    return this.http.post<string>(this.pathSearchKeywords, xml, { headers: headers, responseType: 'text' as 'json' })
+    .pipe(map((xml: string) => this.xmlToAppeal(xml)));
+  }
+  
   private xmlToAppeal(xml: string): DAppealItem[] {
     console.log("parse = ", xml);
     let appealItems: DAppealItem[] = [];

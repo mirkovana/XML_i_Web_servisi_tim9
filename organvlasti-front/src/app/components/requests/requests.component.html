@@ -8,7 +8,7 @@
                 <p *ngIf="isAdmin()">
                     <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
                         aria-expanded="false" aria-controls="collapseExample">
-                        Napredna pretraga
+                        Pretraga
                     </a>
                 </p>
                 <div *ngIf="isAdmin()" class="collapse" id="collapseExample" style="margin-bottom: 10px;">
@@ -49,7 +49,7 @@
                     </form>
                     <form [formGroup]="myForm1" (ngSubmit)="submit1()">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Keywords</label>
+                            <label for="exampleInputEmail1">Kljucne reci:</label>
                             <input formControlName="keywords" type="text" class="form-control"
                                 placeholder="Kljucne reci odvojene razmakom">
                             <button type="submit" class="btn btn-primary">Submit</button>

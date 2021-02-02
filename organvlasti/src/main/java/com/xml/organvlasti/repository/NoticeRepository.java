@@ -18,6 +18,7 @@ import org.xmldb.api.modules.XMLResource;
 import org.xmldb.api.modules.XQueryService;
 
 import com.xml.organvlasti.database.DbManager;
+import com.xml.organvlasti.model.keywordSearch.KeywordSearch;
 import com.xml.organvlasti.model.notice.Obavestenje;
 import com.xml.organvlasti.model.noticeResponse.NoticeListResponse;
 import com.xml.organvlasti.model.noticeResponse.NoticeListResponse.NoticeItem;
@@ -52,6 +53,12 @@ public class NoticeRepository  {
 			"for $x in collection(\"/db/OrganVlasti/notices\")\n" + 
 			"where $x/obavestenje/@username='%s'\n" + 
 			"return $x\n";
+	
+	public static final String X_QUERY_FIND_ALL_BY_CONTENT = "xquery version \"3.1\";\n" + 
+			"declare default element namespace \"http://www.projekat.org/obavestenje\";\n" + 
+			"for $x in collection(\"/db/OrganVlasti/notices\")\n" + 
+			"where $x/obavestenje[%s]\n" + 
+			"return $x";
 	
 	public String save(String xmlEntity, String broj)
 			throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
@@ -168,5 +175,49 @@ public class NoticeRepository  {
 			e.printStackTrace();
 		}
 		return notice;
+	}
+
+	public NoticeListResponse searchByKeywords(KeywordSearch s) throws XMLDBException, JAXBException, SAXException {
+		String[] keywords = s.getKeywords().split(" ");
+		//contains(.,'inform')
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < keywords.length-1; i++) {
+			sb.append("contains(.,'"+keywords[i]+"') and ");
+		}
+		sb.append("contains(.,'"+keywords[keywords.length-1]+"')");
+		System.out.println("keywords = " + sb.toString());
+		//String QUERY = X_QUERY_FIND_ALL_BY_INFROMATION.replace("_", sb.toString());
+		String QUERY = String.format(X_QUERY_FIND_ALL_BY_CONTENT, sb.toString());
+        System.out.println("xquery string = " + QUERY);
+        
+        org.xmldb.api.base.Collection collection = dbManager.getCollection(collectionId);
+        XQueryService xQueryService = (XQueryService) collection.getService("XQueryService", "1.0");
+                
+        CompiledExpression compiledExpression = xQueryService.compile(QUERY);
+        ResourceSet resourceSet = xQueryService.execute(compiledExpression);
+        ResourceIterator resourceIterator = resourceSet.getIterator();
+        NoticeListResponse response = new NoticeListResponse();
+        List<NoticeItem> itemsList = new ArrayList<>();
+        while (resourceIterator.hasMoreResources()){
+            XMLResource xmlResource = (XMLResource) resourceIterator.nextResource();
+    		Unmarshaller unmarshaller = JAXParser.createUnmarshaller(contextPath, schemaPath);
+    		Obavestenje notice = (Obavestenje) unmarshaller.unmarshal(xmlResource.getContentAsDOM());
+    		System.out.println("notice = " + notice);
+    		
+    		NoticeItem item = new NoticeItem();
+    		item.setBroj(notice.getBroj());
+    		item.setDatum(notice.getDatum());
+    		item.setImePodnosioca(notice.getOpsteInformacije().getPodaciOPodnosiocu().getIme().getValue());
+    		item.setPrezimePodnosioca(notice.getOpsteInformacije().getPodaciOPodnosiocu().getPrezime().getValue());
+    		item.setIznos(Double.toString(notice.getTelo().getIznos()));
+    		item.setNazivOrgana(notice.getOpsteInformacije().getPodaciOOrganu().getNaziv().getValue());
+    		item.setOrganVlastiUsername(notice.getOrganVlastiUsername());
+    		item.setSedisteOrgana(notice.getOpsteInformacije().getPodaciOOrganu().getSediste().getValue());
+    		item.setUsername(notice.getUsername());
+    		itemsList.add(item);
+        }
+        response.setNoticeItem(itemsList);
+        System.out.println("find all notice response = " + response);
+        return response;
 	}
 }

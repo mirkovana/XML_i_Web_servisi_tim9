@@ -12,7 +12,8 @@ import { SAppealItem } from "../model/silence-appeal.model";
 export class SilenceAppealService {
   path = 'http://localhost:8080/api/silence-appeals/';
   pathGetAll = this.path + 'all';
- 
+  pathSearchKeywords = this.path + "keywords";
+
   /*headers: HttpHeaders = new HttpHeaders({
     Authorization: 'Bearer ' + localStorage.getItem('token'),
     'Content-Type': 'application/xml', //<- To SEND XML
@@ -61,6 +62,17 @@ export class SilenceAppealService {
     .pipe(map((xml: string) => this.xmlToAppeal(xml)));
   }
 
+  searchByKeywords(xml: string): Observable<SAppealItem[]> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',      
+      'Response-Type': 'text'
+    });
+    return this.http.post<string>(this.pathSearchKeywords, xml, { headers: headers, responseType: 'text' as 'json' })
+    .pipe(map((xml: string) => this.xmlToAppeal(xml)));
+  }
+  
   private xmlToAppeal(xml: string): SAppealItem[] {
     console.log("parse = ", xml);
     let appealItems: SAppealItem[] = [];

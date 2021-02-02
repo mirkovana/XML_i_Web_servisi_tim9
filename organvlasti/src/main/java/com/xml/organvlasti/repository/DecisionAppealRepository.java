@@ -30,6 +30,7 @@ import com.xml.organvlasti.database.DbManager;
 import com.xml.organvlasti.model.decisionAppeal.ZalbaNaOdluku;
 import com.xml.organvlasti.model.decisionAppealResponse.DAppealListResponse;
 import com.xml.organvlasti.model.decisionAppealResponse.DAppealListResponse.DAppealItem;
+import com.xml.organvlasti.model.keywordSearch.KeywordSearch;
 import com.xml.organvlasti.parser.JAXParser;
 
 @Repository
@@ -38,6 +39,8 @@ public class DecisionAppealRepository {
 	@Autowired
 	private DbManager dbManager;
 	
+	private String collectionId = "/db/OrganVlasti/decisionAppeals";
+
 	private static String schemaPath = "src/main/resources/documents/zalbanaodluku.xsd";
 	private static String contextPath = "com.xml.organvlasti.model.decisionAppeal";
 	
@@ -45,8 +48,12 @@ public class DecisionAppealRepository {
             "declare default element namespace \"http://www.projekat.org/zalbanaodluku\";\n" +
             "for $x in collection(\"/db/OrganVlasti/decisionAppeals\")\n" +
             "return $x";	
-	
-	private String collectionId = "/db/OrganVlasti/decisionAppeals";
+		
+	public static final String X_QUERY_FIND_ALL_BY_CONTENT = "xquery version \"3.1\";\n" + 
+			"declare default element namespace \"http://www.projekat.org/zalbanaodluku\";\n" + 
+            "for $x in collection(\"/db/OrganVlasti/decisionAppeals\")\n" +
+			"where $x/zalba_na_odluku[%s]\n" + 
+			"return $x";
 	
 	public String save(String xmlEntity, String broj)
 			throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
@@ -121,5 +128,49 @@ public class DecisionAppealRepository {
 		
 		transformer.transform(new DOMSource(document), new StreamResult(sw));	
 		return sw.toString();
+	}
+	
+	public DAppealListResponse searchByKeywords(KeywordSearch s) throws XMLDBException, JAXBException, SAXException {
+		String[] keywords = s.getKeywords().split(" ");
+		//contains(.,'inform')
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < keywords.length-1; i++) {
+			sb.append("contains(.,'"+keywords[i]+"') and ");
+		}
+		sb.append("contains(.,'"+keywords[keywords.length-1]+"')");
+		System.out.println("keywords = " + sb.toString());
+		//String QUERY = X_QUERY_FIND_ALL_BY_INFROMATION.replace("_", sb.toString());
+		String QUERY = String.format(X_QUERY_FIND_ALL_BY_CONTENT, sb.toString());
+        System.out.println("xquery string = " + QUERY);
+        
+        org.xmldb.api.base.Collection collection = dbManager.getCollection(collectionId);
+        XQueryService xQueryService = (XQueryService) collection.getService("XQueryService", "1.0");
+        CompiledExpression compiledExpression = xQueryService.compile(QUERY);
+        ResourceSet resourceSet = xQueryService.execute(compiledExpression);
+        ResourceIterator resourceIterator = resourceSet.getIterator();
+        DAppealListResponse response = new DAppealListResponse();
+        List<DAppealItem> itemsList = new ArrayList<>();
+        while (resourceIterator.hasMoreResources()){
+        	XMLResource xmlResource = (XMLResource) resourceIterator.nextResource();
+    		Unmarshaller unmarshaller = JAXParser.createUnmarshaller(contextPath, schemaPath);
+    		ZalbaNaOdluku zalba = (ZalbaNaOdluku) unmarshaller.unmarshal(xmlResource.getContentAsDOM());
+    		
+    		DAppealItem item = new DAppealItem();
+    		item.setBroj(zalba.getBroj());
+    		item.setDatumSlanja(zalba.getPodaciOMestuIDatumuPodnosenjaZalbe().getDatum().getValue());
+    		item.setMestoSlanja(zalba.getPodaciOMestuIDatumuPodnosenjaZalbe().getMesto().getValue());
+    		item.setOrganVlasti(zalba.getPodaciOZalbi().getOrganKojiJeDoneoOdluku().getValue());
+    		item.setPodnosiocGrad(zalba.getPodaciOZalbi().getPodnosilacZalbe().getAdresa().getGrad());
+    		item.setPodnosiocIme(zalba.getPodaciOZalbi().getPodnosilacZalbe().getIme().getValue());
+    		item.setPodnosiocPrezime(zalba.getPodaciOZalbi().getPodnosilacZalbe().getPrezime().getValue());
+    		item.setPodnosiocUlica(zalba.getPodaciOZalbi().getPodnosilacZalbe().getAdresa().getUlica());
+    		item.setPodnosiocUsername(zalba.getUsername());
+    		item.setPoverenikUsername(zalba.getPoverenikUsername());
+    		item.setStatus(zalba.getZalbaStatus().getValue());
+    		itemsList.add(item);
+        }
+        response.setdAppealItem(itemsList);
+        System.out.println("find all decsisionappeals = " + response);
+        return response;
 	}
 }

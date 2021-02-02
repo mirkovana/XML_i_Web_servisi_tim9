@@ -12,6 +12,9 @@ import Swal from "sweetalert2";
 export class NoticeService {
   path = 'http://localhost:8080/api/notice/';
   pathAll = this.path+ "all"
+  pathSearch = this.path + "search";
+  pathSearchKeywords = this.path + "keywords";
+
   /*headers: HttpHeaders = new HttpHeaders({
     Authorization: 'Bearer ' + localStorage.getItem('token'),
     'Content-Type': 'application/xml', //<- To SEND XML
@@ -77,6 +80,28 @@ export class NoticeService {
   getNotices(): Observable<NoticeItem[]> {
     const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
     return this.http.get<string>(this.pathAll, { headers: headers, responseType: 'text' as 'json' })
+    .pipe(map((xml: string) => this.xmlToNotice(xml)));
+  }
+
+  searchByKeywords(xml: string): Observable<NoticeItem[]>{
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',      
+      'Response-Type': 'text'
+    });
+    return this.http.post<string>(this.pathSearchKeywords, xml, { headers: headers, responseType: 'text' as 'json' })
+    .pipe(map((xml: string) => this.xmlToNotice(xml)));
+  }
+
+  searchByMetadata(xml: string): Observable<NoticeItem[]>{
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      'Content-Type': 'application/xml', 
+      'Accept': 'application/xml',       
+      'Response-Type': 'text'
+    });
+    return this.http.post<string>(this.pathSearch, xml, { headers: headers, responseType: 'text' as 'json' })
     .pipe(map((xml: string) => this.xmlToNotice(xml)));
   }
 

@@ -21,6 +21,7 @@ import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 import com.xml.organvlasti.dto.SilenceAppealDTO;
+import com.xml.organvlasti.model.keywordSearch.KeywordSearch;
 import com.xml.organvlasti.model.silenceAppealResponse.SAppealListResponse;
 import com.xml.organvlasti.parser.DOMParser;
 import com.xml.organvlasti.parser.XSLTransformer;
@@ -93,6 +94,10 @@ public class SilenceAppealService {
 		return xslTransformer.getHTMLfromXML(requestXSL, xml);
 	}
 
+	public SAppealListResponse searchByKeywords(KeywordSearch s) throws XMLDBException, JAXBException, SAXException {
+		return repository.searchByKeywords(s);
+	}
+	
 	public void updateState(String broj) throws TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("updatestate = " + broj);
 		if (!broj.endsWith(".xml")) {
