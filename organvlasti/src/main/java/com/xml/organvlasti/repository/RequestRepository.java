@@ -67,10 +67,10 @@ public class RequestRepository {
 			"where $x/zahtev/@username='%s'\n" + 
 			"return $x\n";
 
-	public static final String X_QUERY_FIND_ALL_BY_INFROMATION = "xquery version \"3.1\";\n" + 
+	public static final String X_QUERY_FIND_ALL_BY_CONTENT = "xquery version \"3.1\";\n" + 
 			"declare default element namespace \"http://www.projekat.org/zahtev\";\n" + 
 			"for $x in collection(\"/db/OrganVlasti/requests\")\n" + 
-			"where $x/zahtev/tekst_zahteva/informacije/text()[%s]\n" + 
+			"where $x/zahtev[%s]\n" + 
 			"return $x";
 	
 	public static final String X_UPDATE_UPDATE_REQUEST_BY_ID_EXPRESSION = "xquery version \"3.1\";\n" +
@@ -179,7 +179,7 @@ public class RequestRepository {
 		sb.append("contains(.,'"+keywords[keywords.length-1]+"')");
 		System.out.println("keywords = " + sb.toString());
 		//String QUERY = X_QUERY_FIND_ALL_BY_INFROMATION.replace("_", sb.toString());
-		String QUERY = String.format(X_QUERY_FIND_ALL_BY_INFROMATION, sb.toString());
+		String QUERY = String.format(X_QUERY_FIND_ALL_BY_CONTENT, sb.toString());
         System.out.println("xquery string = " + QUERY);
         
 		org.xmldb.api.base.Collection collection = dbManager.getCollection(collectionId);

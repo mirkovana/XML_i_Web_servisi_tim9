@@ -11,6 +11,8 @@ import { ResponseItem } from "../model/response.model";
 export class ResponseService {
   path = 'http://localhost:8080/api/response/';
   pathGetAll = this.path + "all";
+  pathSearch = this.path + "search";
+  pathSearchKeywords = this.path + "keywords";
   
   headers: HttpHeaders = new HttpHeaders({
     Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -60,6 +62,28 @@ export class ResponseService {
     .pipe(map((xml: string) => this.xmlToResponse(xml)));
   }
 
+  searchByMetadata(xml: string): Observable<ResponseItem[]>{
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      'Content-Type': 'application/xml', 
+      'Accept': 'application/xml',       
+      'Response-Type': 'text'
+    });
+    return this.http.post<string>(this.pathSearch, xml, { headers: headers, responseType: 'text' as 'json' })
+    .pipe(map((xml: string) => this.xmlToResponse(xml)));
+  }
+  
+  searchByKeywords(xml: string): Observable<ResponseItem[]>{
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',      
+      'Response-Type': 'text'
+    });
+    return this.http.post<string>(this.pathSearchKeywords, xml, { headers: headers, responseType: 'text' as 'json' })
+    .pipe(map((xml: string) => this.xmlToResponse(xml)));
+  }
+  
   private xmlToResponse(xml: string): ResponseItem[] {
     console.log("parse = ", xml);
     let appealItems: ResponseItem[] = [];
