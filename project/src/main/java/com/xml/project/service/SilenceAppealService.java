@@ -25,6 +25,7 @@ import org.xmldb.api.base.XMLDBException;
 
 import com.xml.project.dto.SilenceAppealDTO;
 import com.xml.project.model.decisionAppeal.ZalbaNaOdluku;
+import com.xml.project.model.keywordSearch.KeywordSearch;
 import com.xml.project.model.silenceAppeal.Trazlozi.Razlog;
 import com.xml.project.model.silenceAppeal.ZalbaCutanje;
 import com.xml.project.model.silenceAppealResponse.SAppealListResponse;
@@ -201,5 +202,9 @@ public class SilenceAppealService {
         response.setsAppealItem(itemsList);
         System.out.println("find all silenceappeals = " + response);
         return response;
+	}
+
+	public SAppealListResponse searchByKeywords(KeywordSearch s) throws XMLDBException, JAXBException, SAXException {
+		return repository.searchByKeywords(s);
 	}
 }

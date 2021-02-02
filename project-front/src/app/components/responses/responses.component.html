@@ -6,10 +6,10 @@
     <div class="row col-md-12">
         <div class="jumbotron col-md-10 ml-auto mr-auto bg-light shadow mt-2 float-left pt-3">
             <div class="row col-md-12 pl-5 pr-0">
-                <p *ngIf="isAdmin()">
+                <p *ngIf="isAdmin()" style="margin-right: 10px;">
                     <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
                         aria-expanded="false" aria-controls="collapseExample">
-                        Napredna pretraga
+                        Pretraga
                     </a>
                 </p>
                 <div *ngIf="isAdmin()" class="collapse" id="collapseExample" style="margin-bottom: 10px;">
@@ -30,6 +30,14 @@
                                         class="btn-block">Submit</button>
                                 </div>
                             </div>
+                        </div>
+                    </form>
+                    <form [formGroup]="myForm1" (ngSubmit)="submit1()">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Kljucne reci:</label>
+                            <input formControlName="keywords" type="text" class="form-control"
+                                placeholder="Kljucne reci odvojene razmakom">
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
                 </div>

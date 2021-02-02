@@ -35,6 +35,7 @@ import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
 import com.xml.project.model.dAppealSearch.DAppealSearch;
 import com.xml.project.model.decisionAppealResponse.DAppealListResponse;
+import com.xml.project.model.keywordSearch.KeywordSearch;
 import com.xml.project.service.DecisionAppealService;
 import com.xml.project.soap.Sluzbenik;
 
@@ -137,6 +138,30 @@ public class DecisionAppealController {
 		} catch (XMLDBException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@PostMapping(value = "/keywords", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<DAppealListResponse> searchKeywords(@RequestBody KeywordSearch s){
+		System.out.println("controller searchKeywords xml = " + s);
+		DAppealListResponse result;
+		try {
+			result = service.searchByKeywords(s);
+	        System.out.println("OUTPUT: " + result);
+			return new ResponseEntity<>(result, HttpStatus.OK);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (SAXException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
 	

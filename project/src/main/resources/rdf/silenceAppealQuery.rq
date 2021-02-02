@@ -7,11 +7,11 @@ SELECT * FROM <http://localhost:8081/fuseki/Project/data/silenceAppealMetadata> 
   ?zalbazbogcutanja <http://www.projekat.org/predicate/datum> ?datum .
   ?zalbazbogcutanja <http://www.projekat.org/predicate/status> ?status . 
   FILTER( CONTAINS(UCASE(str(?broj)), UCASE("{{broj}}"))
-    && CONTAINS(UCASE(str(?organVlasti)), UCASE("{{organVlasti}}"))
-    && CONTAINS(UCASE(str(?ime)), UCASE("{{ime}}"))
-    && CONTAINS(UCASE(str(?prezime)), UCASE("{{prezime}}"))
-    && CONTAINS(UCASE(str(?mesto)), UCASE("{{mesto}}"))
-    && CONTAINS(UCASE(str(?datum)), UCASE("{{datum}}"))
-    && CONTAINS(UCASE(str(?status)), UCASE("{{status}}"))
+    || CONTAINS(UCASE(str(?organVlasti)), UCASE("{{organVlasti}}"))
+    || CONTAINS(UCASE(str(?ime)), UCASE("{{ime}}"))
+    || CONTAINS(UCASE(str(?prezime)), UCASE("{{prezime}}"))
+    || CONTAINS(UCASE(str(?mesto)), UCASE("{{mesto}}"))
+    || CONTAINS(UCASE(str(?datum)), UCASE("{{datum}}"))
+    || CONTAINS(UCASE(str(?status)), UCASE("{{status}}"))
   ) .
 } 

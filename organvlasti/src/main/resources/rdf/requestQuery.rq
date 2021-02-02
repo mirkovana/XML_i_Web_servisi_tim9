@@ -9,8 +9,10 @@ SELECT * FROM <http://localhost:8081/fuseki/OrganVlasti/data/requestMetadata> WH
 
   FILTER( CONTAINS(UCASE(str(?broj)), UCASE("{{broj}}"))
     || CONTAINS(UCASE(str(?datum)), UCASE("{{datum}}"))
-    || (CONTAINS(UCASE(str(?ime)), UCASE("{{ime}}")) && CONTAINS(UCASE(str(?prezime)), UCASE("{{prezime}}")))
-    || (CONTAINS(UCASE(str(?nazivInstitucije)), UCASE("{{nazivInstitucije}}")) && CONTAINS(UCASE(str(?sedisteInstitucije)), UCASE("{{sedisteInstitucije}}")))
+    || CONTAINS(UCASE(str(?ime)), UCASE("{{ime}}")) 
+    || CONTAINS(UCASE(str(?prezime)), UCASE("{{prezime}}"))
+    || CONTAINS(UCASE(str(?nazivInstitucije)), UCASE("{{nazivInstitucije}}")) 
+    || CONTAINS(UCASE(str(?sedisteInstitucije)), UCASE("{{sedisteInstitucije}}"))
     || CONTAINS(UCASE(str(?status)), UCASE("{{status}}"))
     ) .
 } 

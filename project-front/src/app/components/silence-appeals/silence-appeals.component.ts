@@ -24,6 +24,10 @@ export class SilenceAppealsComponent implements OnInit {
     mesto: new FormControl(''),
   });
 
+  myForm1 = new FormGroup({
+    keywords: new FormControl(''),
+  });
+
   constructor(private service: SilenceAppealService,
     private userService: UserService,
     private router: Router) { }
@@ -74,6 +78,25 @@ export class SilenceAppealsComponent implements OnInit {
   sendResponse(appeal:SAppealItem){
     console.log("sendresponse = ", appeal);
     this.router.navigate(['/add-response/'+appeal.broj+'/'+appeal.podnosiocUsername+'/silence']);
+  }
+
+  submit1() {
+    console.log("form = ", this.myForm1.value);
+    if (this.myForm1.value.keywords == "") {
+      this.getSilenceAppeals();
+      return;
+    }
+    let xml = `<?xml version="1.0" encoding="UTF-8"?>
+    <keywordSearch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <keywords>`+ this.myForm1.value.keywords + `</keywords>
+    </keywordSearch>`;
+
+    this.service.searchByKeywords(xml).subscribe((data: any) => {
+      console.log("data = ", data);
+      this.appeals = data;
+    }, error => {
+      console.log(error);
+    });
   }
 
   submit() {

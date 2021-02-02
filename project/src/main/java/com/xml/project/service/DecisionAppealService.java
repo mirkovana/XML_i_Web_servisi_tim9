@@ -28,6 +28,7 @@ import com.xml.project.dto.DecisionAppealDTO;
 import com.xml.project.model.decisionAppeal.ZalbaNaOdluku;
 import com.xml.project.model.decisionAppealResponse.DAppealListResponse;
 import com.xml.project.model.decisionAppealResponse.DAppealListResponse.DAppealItem;
+import com.xml.project.model.keywordSearch.KeywordSearch;
 import com.xml.project.model.responseList.ResponseList;
 import com.xml.project.model.responseList.ResponseList.ResponseItem;
 import com.xml.project.model.zahtevResponse.RequestListResponse;
@@ -192,5 +193,9 @@ public class DecisionAppealService {
         response.setdAppealItem(itemsList);
         System.out.println("find all decsisionappeals = " + response);
         return response;
+	}
+
+	public DAppealListResponse searchByKeywords(KeywordSearch s) throws XMLDBException, JAXBException, SAXException {
+		return repository.searchByKeywords(s);
 	}
 }

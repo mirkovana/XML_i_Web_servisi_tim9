@@ -37,6 +37,7 @@ import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
 import com.xml.project.dto.ResponseDTO;
 import com.xml.project.model.email.EmailModel;
+import com.xml.project.model.keywordSearch.KeywordSearch;
 import com.xml.project.model.resenje.Zalba;
 import com.xml.project.model.responseList.ResponseList;
 import com.xml.project.model.responseList.ResponseList.ResponseItem;
@@ -204,6 +205,11 @@ public class ResponseService {
 			e.printStackTrace();
 		}
 	}
+
+	public ResponseList searchByKeywords(KeywordSearch s) throws XMLDBException, JAXBException, SAXException {
+		return repository.searchByKeywords(s);
+	}
+	
 	
 	/*public Resource getPdf(String name) throws Exception {
 		Document document = repository.findResponseByBroj(name);

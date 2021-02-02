@@ -3,7 +3,7 @@ SELECT * FROM <http://localhost:8081/fuseki/OrganVlasti/data/responseMetadata> W
   ?resenje <http://www.projekat.org/predicate/status> ?status .
   ?resenje <http://www.projekat.org/predicate/datum> ?datum .
   FILTER( CONTAINS(UCASE(str(?broj)), UCASE("{{broj}}"))
-    && CONTAINS(UCASE(str(?status)), UCASE("{{status}}"))
-    && CONTAINS(UCASE(str(?datum)), UCASE("{{datum}}"))
+    || CONTAINS(UCASE(str(?status)), UCASE("{{status}}"))
+    || CONTAINS(UCASE(str(?datum)), UCASE("{{datum}}"))
   ) .
 }
