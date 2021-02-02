@@ -37,6 +37,7 @@ import com.itextpdf.html2pdf.ConverterProperties;
 import java.io.ByteArrayOutputStream;
 
 import com.xml.organvlasti.model.email.EmailModel;
+import com.xml.organvlasti.model.keywordSearch.KeywordSearch;
 import com.xml.organvlasti.model.request.Zahtev;
 import com.xml.organvlasti.model.zahtevResponse.RequestListResponse;
 import com.xml.organvlasti.model.zahtevSearch.ZahtevSearch;
@@ -134,17 +135,41 @@ public class RequestController {
 		}
 	}
 	
+	@PostMapping(value = "/keywords", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<RequestListResponse> searchKeywords(@RequestBody KeywordSearch s){
+		System.out.println("controller searchKeywords xml = " + s);
+		RequestListResponse result;
+		try {
+			result = service.searchByKeywords(s);
+	        System.out.println("OUTPUT: " + result);
+			return new ResponseEntity<>(result, HttpStatus.OK);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (SAXException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+        
+	}
 	@PostMapping(value = "/search", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
 	public ResponseEntity<RequestListResponse> searchMetadata(@RequestBody ZahtevSearch s) throws Exception {
 		System.out.println("controller searchMetadata xml = " + s);
-		String broj = s.getBroj();
-        String datum = s.getDatum();
-        String ime = s.getIme();
-        String prezime = s.getPrezime();
-        String nazivInstitucije = s.getNazivOrgana();
-        String sedisteInstitucije = s.getSediste();
-        String status = s.getStatus();
+		String broj = isEmpty(s.getBroj()); 
+        String datum = isEmpty(s.getDatum());
+        String ime = isEmpty(s.getIme());
+        String prezime = isEmpty(s.getPrezime());
+        String nazivInstitucije = isEmpty(s.getNazivOrgana());
+        String sedisteInstitucije = isEmpty(s.getSediste());
+        String status = isEmpty(s.getStatus());
         Map<String, String> params = new HashMap<>();
         params.put("broj", broj);
         params.put("datum", datum);
@@ -160,6 +185,13 @@ public class RequestController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	private String isEmpty(String s) {
+		if(s.contentEquals("")) {
+			return "_";
+		}else {
+			return s;
+		}
+	}
 	/*@GetMapping("/search")
 	public ResponseEntity<String> searchFromRDF() throws IOException{
 		String broj = "a6c577fb1e33-2021";

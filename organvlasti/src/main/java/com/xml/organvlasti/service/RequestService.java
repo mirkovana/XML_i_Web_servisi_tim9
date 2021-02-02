@@ -44,6 +44,7 @@ import org.xmldb.api.base.XMLDBException;
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
 import com.xml.organvlasti.model.email.EmailModel;
+import com.xml.organvlasti.model.keywordSearch.KeywordSearch;
 import com.xml.organvlasti.model.request.Zahtev;
 import com.xml.organvlasti.model.zahtevResponse.RequestListResponse;
 import com.xml.organvlasti.model.zahtevResponse.RequestListResponse.RequestItem;
@@ -370,5 +371,9 @@ public class RequestService {
         System.out.println("search response = " + response);
         return response;
     }
+
+	public RequestListResponse searchByKeywords(KeywordSearch s) throws NumberFormatException, XMLDBException, JAXBException, SAXException {
+		return repository.searchByKeywords(s);
+	}
 
 }

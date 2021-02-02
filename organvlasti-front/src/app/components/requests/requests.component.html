@@ -42,12 +42,21 @@
                             <div class="col">
                                 <div class="form-group float-right mt-3">
                                     <button mat-raised-button color="primary" id="submit" type="submit"
-                                        class="btn-block">Submit</button>
+                                        class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         </div>
                     </form>
+                    <form [formGroup]="myForm1" (ngSubmit)="submit1()">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Keywords</label>
+                            <input formControlName="keywords" type="text" class="form-control"
+                                placeholder="Kljucne reci odvojene razmakom">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
                 </div>
+
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr class="text-center">

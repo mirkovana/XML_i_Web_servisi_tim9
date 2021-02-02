@@ -40,6 +40,8 @@ import com.xml.organvlasti.dto.*;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import com.xml.organvlasti.model.keywordSearch.KeywordSearch;
 import com.xml.organvlasti.model.request.Zahtev;
 @Repository
 public class RequestRepository {
@@ -65,6 +67,12 @@ public class RequestRepository {
 			"where $x/zahtev/@username='%s'\n" + 
 			"return $x\n";
 
+	public static final String X_QUERY_FIND_ALL_BY_INFROMATION = "xquery version \"3.1\";\n" + 
+			"declare default element namespace \"http://www.projekat.org/zahtev\";\n" + 
+			"for $x in collection(\"/db/OrganVlasti/requests\")\n" + 
+			"where $x/zahtev/tekst_zahteva/informacije/text()[%s]\n" + 
+			"return $x";
+	
 	public static final String X_UPDATE_UPDATE_REQUEST_BY_ID_EXPRESSION = "xquery version \"3.1\";\n" +
 	            "xmldb:update(\"/db/sample/zalbe_na_odluku\",\n" +
 	            "    <xu:modifications version=\"1.0\"\n" +
@@ -161,6 +169,49 @@ public class RequestRepository {
         return response;
 	}
 	
+	public RequestListResponse searchByKeywords(KeywordSearch s) throws NumberFormatException, XMLDBException, JAXBException, SAXException {
+		String[] keywords = s.getKeywords().split(" ");
+		//contains(.,'inform')
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < keywords.length-1; i++) {
+			sb.append("contains(.,'"+keywords[i]+"') and ");
+		}
+		sb.append("contains(.,'"+keywords[keywords.length-1]+"')");
+		System.out.println("keywords = " + sb.toString());
+		//String QUERY = X_QUERY_FIND_ALL_BY_INFROMATION.replace("_", sb.toString());
+		String QUERY = String.format(X_QUERY_FIND_ALL_BY_INFROMATION, sb.toString());
+        System.out.println("xquery string = " + QUERY);
+        
+		org.xmldb.api.base.Collection collection = dbManager.getCollection(collectionId);
+        XQueryService xQueryService = (XQueryService) collection.getService("XQueryService", "1.0");
+        CompiledExpression compiledExpression = xQueryService.compile(QUERY);
+        ResourceSet resourceSet = xQueryService.execute(compiledExpression);
+        ResourceIterator resourceIterator = resourceSet.getIterator();
+        RequestListResponse response = new RequestListResponse();
+        List<RequestItem> itemsList = new ArrayList<>();
+        while (resourceIterator.hasMoreResources()){
+        	XMLResource xmlResource = (XMLResource) resourceIterator.nextResource();
+    		Unmarshaller unmarshaller = JAXParser.createUnmarshaller(contextPath, schemaPath);
+    		Zahtev zahtev = (Zahtev) unmarshaller.unmarshal(xmlResource.getContentAsDOM());
+    		
+    		RequestItem item = new RequestItem();
+    		item.setBroj(zahtev.getBroj());
+    		item.setDatum(zahtev.getDatum());
+    		item.setInstitucija(zahtev.getInstitucijaNaziv());
+    		item.setUsername(zahtev.getUsername());
+    		item.setTime(zahtev.getTime());
+    		item.setStatus(zahtev.getStatus());
+    		if(item.getStatus().contentEquals("sent") && System.currentTimeMillis() - Long.parseLong(item.getTime()) > 120000) { 
+    			//request expired
+    			item.setStatus("expired");
+    		}
+    		itemsList.add(item); 
+        }
+        response.setRequestItem(itemsList);
+        System.out.println("find all for query = " + response);
+        return response;
+	}
+	
 	public void deleteRequest(String broj) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		if (!broj.endsWith(".xml")) {
 			broj = broj + ".xml";
@@ -242,6 +293,7 @@ public class RequestRepository {
 		}
 		return document;
 	}
+
 }
 
 /*public ArrayList<RequestItem> getAllForUser(String username) throws XMLDBException, ParserConfigurationException, SAXException, IOException {

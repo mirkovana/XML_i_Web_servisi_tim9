@@ -110,9 +110,9 @@ public class ResponseController {
 	@CrossOrigin
 	public ResponseEntity<ResponseList> searchMetadata(@RequestBody ResenjeSearch s) throws Exception {
 		System.out.println("controller searchMetadata xml = " + s);
-		String broj = s.getBroj();
-        String datum = s.getDatum();
-        String status = s.getStatus();
+		String broj = isEmpty(s.getBroj());
+        String datum = isEmpty(s.getDatum());
+        String status = isEmpty(s.getStatus());
         Map<String, String> params = new HashMap<>();
         params.put("broj", broj);
         params.put("datum", datum);
@@ -123,6 +123,15 @@ public class ResponseController {
         System.out.println("OUTPUT: " + result);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
+	
+	private String isEmpty(String s) {
+		if(s.contentEquals("")) {
+			return "_";
+		}else {
+			return s;
+		}
+	}
+	
 	
 	/*@GetMapping("/search")
 	public ResponseEntity<String> searchFromRDF() throws IOException{

@@ -144,13 +144,13 @@ public class DecisionAppealController {
 	@CrossOrigin
 	public ResponseEntity<DAppealListResponse> searchMetadata(@RequestBody DAppealSearch s) throws Exception {
 		System.out.println("controller searchMetadata xml = " + s);
-		String broj = s.getBroj();
-        String datum = s.getDatum();
-        String status = s.getStatus();
-        String mesto = s.getMesto();
-        String ime = s.getIme();
-        String prezime = s.getPrezime();
-        String organVlasti = s.getNazivOrgana();
+		String broj = isEmpty(s.getBroj());
+        String datum = isEmpty(s.getDatum());
+        String status = isEmpty(s.getStatus());
+        String mesto = isEmpty(s.getMesto());
+        String ime = isEmpty(s.getIme());
+        String prezime = isEmpty(s.getPrezime());
+        String organVlasti = isEmpty(s.getNazivOrgana());
         Map<String, String> params = new HashMap<>();
         params.put("broj", broj);
         params.put("datum", datum);
@@ -164,6 +164,14 @@ public class DecisionAppealController {
         
         System.out.println("OUTPUT: " + result);
 		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
+	private String isEmpty(String s) {
+		if(s.contentEquals("")) {
+			return "_";
+		}else {
+			return s;
+		}
 	}
 	
 	@GetMapping(value = "/html/{id}", produces = MediaType.TEXT_HTML_VALUE)
