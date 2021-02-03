@@ -8,6 +8,54 @@
     <div class="row col-md-12">
         <div class="jumbotron col-md-10 ml-auto mr-auto bg-light shadow mt-2 float-left pt-3">
             <div class="row col-md-12 pl-5 pr-0">
+                <p *ngIf="isAdmin()" style="margin-right: 10px;">
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
+                        aria-expanded="false" aria-controls="collapseExample">
+                        Pretraga
+                    </a>
+                </p>
+                <div *ngIf="isAdmin()" class="collapse" id="collapseExample" style="margin-bottom: 10px;">
+                    <form [formGroup]="myForm" (ngSubmit)="submit()">
+                        <div class="row">
+                            <div class="col">
+                                <input formControlName="broj" type="text" class="form-control"
+                                    placeholder="Broj zahteva">
+                            </div>
+                            <div class="col">
+                                <input formControlName="datum" type="text" class="form-control" placeholder="Datum">
+                            </div>
+                            <div class="col">
+                                <input formControlName="ime" type="text" class="form-control" placeholder="Ime">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input formControlName="prezime" type="text" class="form-control" placeholder="Prezime">
+                            </div>
+                            <div class="col">
+                                <input formControlName="nazivOrgana" type="text" class="form-control"
+                                    placeholder="Naziv organa vlasti">
+                            </div>
+                            <div class="col">
+                                <input formControlName="sediste" type="text" class="form-control" placeholder="Sediste">
+                            </div>
+                            <div class="col">
+                                <div class="form-group float-right mt-3">
+                                    <button mat-raised-button color="primary" id="submit" type="submit"
+                                        class="btn btn-primary">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form [formGroup]="myForm1" (ngSubmit)="submit1()">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Kljucne reci:</label>
+                            <input formControlName="keywords" type="text" class="form-control"
+                                placeholder="Kljucne reci odvojene razmakom">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </form>
+                </div>
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr class="text-center">
@@ -22,7 +70,9 @@
                     </thead>
                     <tbody>
                         <tr class="text-center" *ngFor="let n of notices">
-                            <td>{{n.broj}}</td>
+                            <td>
+                                <a href="http://localhost:8080/api/request/html/{{n.broj}}" target="_blank">{{n.broj}}</a><br>
+                            </td>
                             <td>{{n.username}}</td>
                             <td>{{n.datum}}</td>
                             <td>{{n.nazivOrgana}}</td>

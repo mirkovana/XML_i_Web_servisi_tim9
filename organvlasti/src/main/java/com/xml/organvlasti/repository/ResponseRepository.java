@@ -26,6 +26,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import com.xml.organvlasti.database.DbManager;
+import com.xml.organvlasti.model.keywordSearch.KeywordSearch;
 import com.xml.organvlasti.model.resenje.Zalba;
 import com.xml.organvlasti.model.responseList.ResponseList;
 import com.xml.organvlasti.model.responseList.ResponseList.ResponseItem;
@@ -52,6 +53,12 @@ public class ResponseRepository {
 			"for $x in collection(\"/db/OrganVlasti/responses\")\n" + 
 			"where $x/zalba/@username='%s'\n" + 
 			"return $x\n";
+	
+	public static final String X_QUERY_FIND_ALL_BY_CONTENT = "xquery version \"3.1\";\n" + 
+			"declare default element namespace \"http://www.projekat.org/resenje\";\n" + 
+			"for $x in collection(\"/db/OrganVlasti/responses\")\n" + 
+			"where $x/zalba[%s]\n" + 
+			"return $x";
 	
 	public String save(String xmlEntity, String broj)
 			throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
@@ -135,5 +142,60 @@ public class ResponseRepository {
 		}
 		return document;
 	}
-	
+
+	public Zalba findResponseByIdMarshall(String id) {
+		Zalba zalba = null;
+		if (!id.endsWith(".xml")) {
+			id = id + ".xml";
+		}
+		try {
+			XMLResource xmlResource = dbManager.getDocument(collectionId, id);
+			Unmarshaller unmarshaller = JAXParser.createUnmarshaller(contextPath, schemaPath);
+			zalba = (Zalba) unmarshaller.unmarshal(xmlResource.getContentAsDOM());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return zalba;
+	}
+
+	public ResponseList searchByKeywords(KeywordSearch s) throws XMLDBException, JAXBException, SAXException {
+		String[] keywords = s.getKeywords().split(" ");
+		//contains(.,'inform')
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < keywords.length-1; i++) {
+			sb.append("contains(.,'"+keywords[i]+"') and ");
+		}
+		sb.append("contains(.,'"+keywords[keywords.length-1]+"')");
+		System.out.println("keywords = " + sb.toString());
+		//String QUERY = X_QUERY_FIND_ALL_BY_INFROMATION.replace("_", sb.toString());
+		String QUERY = String.format(X_QUERY_FIND_ALL_BY_CONTENT, sb.toString());
+        System.out.println("xquery string = " + QUERY);
+        
+        org.xmldb.api.base.Collection collection = dbManager.getCollection(collectionId);
+        XQueryService xQueryService = (XQueryService) collection.getService("XQueryService", "1.0");
+        CompiledExpression compiledExpression = xQueryService.compile(QUERY);
+        ResourceSet resourceSet = xQueryService.execute(compiledExpression);
+        ResourceIterator resourceIterator = resourceSet.getIterator();
+        ResponseList response = new ResponseList();
+        List<ResponseItem> itemsList = new ArrayList<>();
+        while (resourceIterator.hasMoreResources()){
+        	XMLResource xmlResource = (XMLResource) resourceIterator.nextResource();
+    		Unmarshaller unmarshaller = JAXParser.createUnmarshaller(contextPath, schemaPath);
+    		Zalba zalba = (Zalba) unmarshaller.unmarshal(xmlResource.getContentAsDOM());
+    		
+    		ResponseItem item = new ResponseItem();
+    		item.setBroj(zalba.getBroj());
+    		item.setDatum(zalba.getDatum());
+    		item.setPodnosiocUsername(zalba.getUsername());
+    		item.setPoverenikIme(zalba.getSadrzaj().getPoverenik().getIme().getValue());
+    		item.setPoverenikPrezime(zalba.getSadrzaj().getPoverenik().getPrezime().getValue());
+    		item.setStatus(zalba.getStatus());
+    		
+    		itemsList.add(item);
+        }
+        response.setResponseItem(itemsList);
+        System.out.println("find all responses = " + response);
+        return response;
+	}
 }

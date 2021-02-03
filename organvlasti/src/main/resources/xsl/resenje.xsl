@@ -33,7 +33,14 @@
         </xsl:if> 
         
         <p style="text-align:left;">
-          Broj: <xsl:value-of select="res:zalba/@broj"/>
+          Broj:
+          <a>
+         	<xsl:attribute name="href">
+           		<xsl:text>http://localhost:8080/api/request/html/</xsl:text>
+          	 	<xsl:value-of select="res:zalba/@broj"/>
+          	</xsl:attribute>
+          	<xsl:value-of select="res:zalba/@broj"/>
+          </a>
           <span style="float:right;">
             Datum: <xsl:value-of select="res:zalba/@datum"/>
           </span>

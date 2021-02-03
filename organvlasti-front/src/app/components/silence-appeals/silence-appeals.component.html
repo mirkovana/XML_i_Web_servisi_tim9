@@ -5,6 +5,14 @@
     <div class="row col-md-12">
         <div class="jumbotron col-md-10 ml-auto mr-auto bg-light shadow mt-2 float-left pt-3">
             <div class="row col-md-12 pl-5 pr-0">
+                <form [formGroup]="myForm1" (ngSubmit)="submit1()">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Kljucne reci:</label>
+                        <input formControlName="keywords" type="text" class="form-control"
+                            placeholder="Kljucne reci odvojene razmakom">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr class="text-center">

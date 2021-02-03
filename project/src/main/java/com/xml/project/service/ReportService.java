@@ -19,6 +19,7 @@ import org.xmldb.api.base.XMLDBException;
 
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
+import com.xml.project.model.keywordSearch.KeywordSearch;
 import com.xml.project.model.reportListItem.ReportListResponse;
 import com.xml.project.parser.XSLTransformer;
 import com.xml.project.repository.ReportRepository;
@@ -55,5 +56,9 @@ public class ReportService {
         byte[] bytes = target.toByteArray();
 
         return bytes;
+	}
+
+	public ReportListResponse searchByKeywords(KeywordSearch s)  throws XMLDBException, JAXBException, SAXException {
+		return repository.searchByKeywords(s);
 	}
 }

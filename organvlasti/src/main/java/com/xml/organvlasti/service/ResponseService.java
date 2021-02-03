@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.bind.JAXBException;
@@ -28,7 +29,10 @@ import org.xmldb.api.modules.XMLResource;
 import com.xml.organvlasti.rdf.MetadataExtractor;
 import com.xml.organvlasti.rdf.FusekiWriter;
 import com.xml.organvlasti.rdf.FusekiReader;
+import com.xml.organvlasti.model.keywordSearch.KeywordSearch;
+import com.xml.organvlasti.model.resenje.Zalba;
 import com.xml.organvlasti.model.responseList.ResponseList;
+import com.xml.organvlasti.model.responseList.ResponseList.ResponseItem;
 import com.xml.organvlasti.parser.DOMParser;
 import com.xml.organvlasti.parser.XSLTransformer;
 import com.xml.organvlasti.repository.ResponseRepository;
@@ -87,11 +91,40 @@ public class ResponseService {
 		FusekiWriter.saveRDF(FusekiWriter.RESPONSE_RDF_FILEPATH, FusekiWriter.RESPONSE_METADATA_GRAPH_URI);
 	}
 	
-	public ArrayList<String> searchByMetadata(Map<String, String> params) throws IOException {
+	public ResponseList searchByMetadata(Map<String, String> params) throws IOException {
         System.out.println("service executeQuerry!");
-        ArrayList<String> result = FusekiReader.executeQuery(params, FusekiReader.RESPONSE_QUERY_FILEPATH);
+        ArrayList<Map<String, String>> result = FusekiReader.executeQuery(params, FusekiReader.RESPONSE_QUERY_FILEPATH);
         System.out.println("return result querry!");
-        return result;
+        ArrayList<String> brojList = new ArrayList<>();
+        for(Map<String, String> map : result) {
+        	String zalba = map.get("zalba");
+        	String[] split = zalba.split("\\/");
+        	brojList.add(split[split.length-1]);
+        	System.out.println("map = ");
+        	for(String key : map.keySet()) {
+            	System.out.println("ket = " + key + " value = " + map.get(key));        		
+        	}
+        	System.out.println();
+        }
+        ResponseList response = new ResponseList();
+        List<ResponseItem> itemsList = new ArrayList<>();
+        
+        for(String broj : brojList) {
+        	Zalba zalba = repository.findResponseByIdMarshall(broj);
+
+        	ResponseItem item = new ResponseItem();
+    		item.setBroj(zalba.getBroj());
+    		item.setDatum(zalba.getDatum());
+    		item.setPodnosiocUsername(zalba.getUsername());
+    		item.setPoverenikIme(zalba.getSadrzaj().getPoverenik().getIme().getValue());
+    		item.setPoverenikPrezime(zalba.getSadrzaj().getPoverenik().getPrezime().getValue());
+    		item.setStatus(zalba.getStatus());
+    		
+    		itemsList.add(item);
+        }
+        response.setResponseItem(itemsList);
+        System.out.println("find all responses = " + response);
+        return response;
     }
 
 	public ResponseList getAll() throws XMLDBException, JAXBException, SAXException {
@@ -105,6 +138,10 @@ public class ResponseService {
 	public String getHTML(String broj) {
 		Document xml = repository.findResponseByBroj(broj);
 		return xslTransformer.getHTMLfromXML(responseXSL, xml);
+	}
+
+	public ResponseList searchByKeywords(KeywordSearch s) throws XMLDBException, JAXBException, SAXException {
+		return repository.searchByKeywords(s);
 	}
 	
 	/*public Resource getPdf(String name) throws Exception {

@@ -19,11 +19,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
+import com.xml.project.model.keywordSearch.KeywordSearch;
 import com.xml.project.model.reportListItem.ReportListResponse;
 import com.xml.project.service.ReportService;
 
@@ -42,6 +45,30 @@ public class ReportController {
 		return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
 	}
 
+	@PostMapping(value = "/keywords", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<ReportListResponse> searchKeywords(@RequestBody KeywordSearch s){
+		System.out.println("controller searchKeywords xml = " + s);
+		ReportListResponse result;
+		try {
+			result = service.searchByKeywords(s);
+	        System.out.println("OUTPUT: " + result);
+			return new ResponseEntity<>(result, HttpStatus.OK);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (SAXException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	@GetMapping(value = "/html/{id}", produces = MediaType.TEXT_HTML_VALUE)
 	public ResponseEntity<String> getRequestHTML(@PathVariable("id") String id) {
 		System.out.println("controller html id = " + id);

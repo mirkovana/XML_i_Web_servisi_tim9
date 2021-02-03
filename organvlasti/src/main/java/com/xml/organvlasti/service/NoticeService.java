@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.bind.JAXBException;
@@ -29,7 +30,13 @@ import org.xmldb.api.base.XMLDBException;
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
 import com.xml.organvlasti.model.email.EmailModel;
+import com.xml.organvlasti.model.keywordSearch.KeywordSearch;
+import com.xml.organvlasti.model.notice.Obavestenje;
 import com.xml.organvlasti.model.noticeResponse.NoticeListResponse;
+import com.xml.organvlasti.model.noticeResponse.NoticeListResponse.NoticeItem;
+import com.xml.organvlasti.model.request.Zahtev;
+import com.xml.organvlasti.model.zahtevResponse.RequestListResponse;
+import com.xml.organvlasti.model.zahtevResponse.RequestListResponse.RequestItem;
 import com.xml.organvlasti.parser.DOMParser;
 import com.xml.organvlasti.parser.XSLTransformer;
 import com.xml.organvlasti.rdf.FusekiReader;
@@ -177,5 +184,49 @@ public class NoticeService {
 //	        params.put("ime", "asd");
 //	        params.put("prezime", "asd");
 		return FusekiReader.executeQuery(params, "src/main/resources/rdf/noticeQuery.rq");
-	}
+
+	// public NoticeListResponse searchByMetadata(Map<String, String> params) throws IOException {
+	// 	System.out.println("service executeQuerry!");
+    //     ArrayList<Map<String, String>> result = FusekiReader.executeQuery(params, FusekiReader.NOTICE_QUERY_FILEPATH);
+    //     System.out.println("return result querry!");
+    //     ArrayList<String> brojList = new ArrayList<>();
+    //     for(Map<String, String> map : result) {
+    //     	String obavestenje = map.get("obavestenje");
+    //     	String[] split = obavestenje.split("\\/");
+    //     	brojList.add(split[split.length-1]);
+    //     	/*System.out.println("map = ");
+    //     	for(String key : map.keySet()) {
+    //         	System.out.println("ket = " + key + " value = " + map.get(key));        		
+    //     	}
+    //     	System.out.println();*/
+    //     }
+    //     NoticeListResponse response = new NoticeListResponse();
+    //     List<NoticeItem> itemsList = new ArrayList<>();
+        
+    //     for(String broj : brojList) {
+    //     	Obavestenje notice = repository.findNoticeByIdMarshall(broj);
+    //     	if(notice == null) {
+    //     		continue;
+    //     	}
+    		
+    // 		NoticeItem item = new NoticeItem();
+    // 		item.setBroj(notice.getBroj());
+    // 		item.setDatum(notice.getDatum());
+    // 		item.setImePodnosioca(notice.getOpsteInformacije().getPodaciOPodnosiocu().getIme().getValue());
+    // 		item.setPrezimePodnosioca(notice.getOpsteInformacije().getPodaciOPodnosiocu().getPrezime().getValue());
+    // 		item.setIznos(Double.toString(notice.getTelo().getIznos()));
+    // 		item.setNazivOrgana(notice.getOpsteInformacije().getPodaciOOrganu().getNaziv().getValue());
+    // 		item.setOrganVlastiUsername(notice.getOrganVlastiUsername());
+    // 		item.setSedisteOrgana(notice.getOpsteInformacije().getPodaciOOrganu().getSediste().getValue());
+    // 		item.setUsername(notice.getUsername());
+    // 		itemsList.add(item);
+    //     }
+    //     response.setNoticeItem(itemsList);
+    //     System.out.println("find all notice response = " + response);
+    //     return response;
+	// }
+
+	// public NoticeListResponse searchByKeywords(KeywordSearch s) throws NumberFormatException, XMLDBException, JAXBException, SAXException {
+	// 	return repository.searchByKeywords(s);
+	// }
 }

@@ -11,6 +11,8 @@ import Swal from "sweetalert2";
 export class RequestService {
   path = 'http://localhost:8080/api/request/';
   pathGetAll = this.path + "all";
+  pathSearch = this.path + "search";
+  pathSearchKeywords = this.path + "keywords";
 
   /*headers: HttpHeaders = new HttpHeaders({
     Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -94,6 +96,28 @@ export class RequestService {
         });
         return false;
       })
+  }
+  
+  searchByKeywords(xml: string): Observable<RequestItem[]>{
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',      
+      'Response-Type': 'text'
+    });
+    return this.http.post<string>(this.pathSearchKeywords, xml, { headers: headers, responseType: 'text' as 'json' })
+    .pipe(map((xml: string) => this.xmlToRequests(xml)));
+  }
+
+  searchByMetadata(xml: string): Observable<RequestItem[]>{
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      'Content-Type': 'application/xml', //<- To SEND XML
+      'Accept': 'application/xml',       //<- To ask for XML
+      'Response-Type': 'text'
+    });
+    return this.http.post<string>(this.pathSearch, xml, { headers: headers, responseType: 'text' as 'json' })
+    .pipe(map((xml: string) => this.xmlToRequests(xml)));
   }
 
   addRequest(response: string, success: Function) {

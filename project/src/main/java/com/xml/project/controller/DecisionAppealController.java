@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +25,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +33,9 @@ import org.xmldb.api.base.XMLDBException;
 
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
+import com.xml.project.model.dAppealSearch.DAppealSearch;
 import com.xml.project.model.decisionAppealResponse.DAppealListResponse;
+import com.xml.project.model.keywordSearch.KeywordSearch;
 import com.xml.project.service.DecisionAppealService;
 import com.xml.project.soap.Sluzbenik;
 
@@ -44,14 +47,6 @@ public class DecisionAppealController {
 	@Autowired
 	private DecisionAppealService service;
 	
-	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@CrossOrigin
-	public ResponseEntity<DecisionAppealDTO> saveDecisionAppeal(@RequestBody DecisionAppealDTO dto) throws Exception {
-		System.out.println("controller saveDecisionAppeal = ");
-		service.save(dto);
-		return new ResponseEntity<>(dto, HttpStatus.OK);
-	}*/
-	
 	@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
 	public ResponseEntity saveDecisionAppeal(@RequestBody String xmlString) throws Exception {
@@ -59,13 +54,6 @@ public class DecisionAppealController {
 		service.save(xmlString);
 		return new ResponseEntity(HttpStatus.OK);
 	}
-	
-	/*@GetMapping(value = "/all", produces = MediaType.TEXT_XML_VALUE)
-	@CrossOrigin
-	public ResponseEntity<RequestListResponse> getAll() throws XMLDBException, ParserConfigurationException, SAXException, IOException, JAXBException {
-		System.out.println("controller = ");
-		return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
-	}*/
 	
 	@GetMapping(value = "/{username}/all",  produces = MediaType.TEXT_XML_VALUE)
 	@CrossOrigin
@@ -150,6 +138,64 @@ public class DecisionAppealController {
 		} catch (XMLDBException e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@PostMapping(value = "/keywords", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<DAppealListResponse> searchKeywords(@RequestBody KeywordSearch s){
+		System.out.println("controller searchKeywords xml = " + s);
+		DAppealListResponse result;
+		try {
+			result = service.searchByKeywords(s);
+	        System.out.println("OUTPUT: " + result);
+			return new ResponseEntity<>(result, HttpStatus.OK);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (SAXException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@PostMapping(value = "/search", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<DAppealListResponse> searchMetadata(@RequestBody DAppealSearch s) throws Exception {
+		System.out.println("controller searchMetadata xml = " + s);
+		String broj = isEmpty(s.getBroj());
+        String datum = isEmpty(s.getDatum());
+        String status = isEmpty(s.getStatus());
+        String mesto = isEmpty(s.getMesto());
+        String ime = isEmpty(s.getIme());
+        String prezime = isEmpty(s.getPrezime());
+        String organVlasti = isEmpty(s.getNazivOrgana());
+        Map<String, String> params = new HashMap<>();
+        params.put("broj", broj);
+        params.put("datum", datum);
+        params.put("status", status);
+        params.put("mesto", mesto);
+        params.put("ime", ime);
+        params.put("prezime", prezime);
+        params.put("organVlasti", organVlasti);
+        
+        DAppealListResponse result = service.searchByMetadata(params);
+        
+        System.out.println("OUTPUT: " + result);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
+	private String isEmpty(String s) {
+		if(s.contentEquals("")) {
+			return "_";
+		}else {
+			return s;
 		}
 	}
 	

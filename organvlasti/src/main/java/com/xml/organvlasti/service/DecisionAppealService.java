@@ -22,6 +22,7 @@ import org.xmldb.api.base.XMLDBException;
 
 import com.xml.organvlasti.dto.DecisionAppealDTO;
 import com.xml.organvlasti.model.decisionAppealResponse.DAppealListResponse;
+import com.xml.organvlasti.model.keywordSearch.KeywordSearch;
 import com.xml.organvlasti.parser.DOMParser;
 import com.xml.organvlasti.parser.XSLTransformer;
 import com.xml.organvlasti.rdf.FusekiWriter;
@@ -102,6 +103,10 @@ public class DecisionAppealService {
 		repository.deleteAppeal(broj);
 		System.out.println("updatedfile = " + xmlString);
 		repository.save(xmlString, broj);
+	}
+	
+	public DAppealListResponse searchByKeywords(KeywordSearch s) throws XMLDBException, JAXBException, SAXException {
+		return repository.searchByKeywords(s);
 	}
 	
 	public String getHTML(String id) {

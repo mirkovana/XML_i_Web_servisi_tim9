@@ -3,6 +3,7 @@ import { UserService } from '../../service/user.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { SilenceAppealService } from '../../service/silence-appeal.service';
 import { SAppealItem } from '../../model/silence-appeal.model';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-silence-appeals',
@@ -12,6 +13,20 @@ import { SAppealItem } from '../../model/silence-appeal.model';
 export class SilenceAppealsComponent implements OnInit {
 
   appeals: SAppealItem[] = [];
+
+  myForm = new FormGroup({
+    broj: new FormControl(''),
+    datum: new FormControl(''),
+    status: new FormControl(''),
+    ime: new FormControl(''),
+    prezime: new FormControl(''),
+    nazivOrgana: new FormControl(''),
+    mesto: new FormControl(''),
+  });
+
+  myForm1 = new FormGroup({
+    keywords: new FormControl(''),
+  });
 
   constructor(private service: SilenceAppealService,
     private userService: UserService,
@@ -63,6 +78,56 @@ export class SilenceAppealsComponent implements OnInit {
   sendResponse(appeal:SAppealItem){
     console.log("sendresponse = ", appeal);
     this.router.navigate(['/add-response/'+appeal.broj+'/'+appeal.podnosiocUsername+'/silence']);
+  }
+
+  submit1() {
+    console.log("form = ", this.myForm1.value);
+    if (this.myForm1.value.keywords == "") {
+      this.getSilenceAppeals();
+      return;
+    }
+    let xml = `<?xml version="1.0" encoding="UTF-8"?>
+    <keywordSearch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <keywords>`+ this.myForm1.value.keywords + `</keywords>
+    </keywordSearch>`;
+
+    this.service.searchByKeywords(xml).subscribe((data: any) => {
+      console.log("data = ", data);
+      this.appeals = data;
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  submit() {
+    console.log("form = ",  this.myForm.value);
+    if(this.myForm.value.broj=="" 
+      && this.myForm.value.datum==""
+      && this.myForm.value.ime==""
+      && this.myForm.value.prezime==""
+      && this.myForm.value.mesto==""
+      && this.myForm.value.nazivOrgana==""
+      && this.myForm.value.status==""){
+      this.getSilenceAppeals();
+      return;
+    }
+    let xml = `<?xml version="1.0" encoding="UTF-8"?>
+    <sAppealSearch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <broj>`+this.myForm.value.broj+`</broj>
+        <datum>`+this.myForm.value.datum+`</datum>
+        <mesto>`+this.myForm.value.mesto+`</mesto>
+        <ime>`+this.myForm.value.ime+`</ime>
+        <prezime>`+this.myForm.value.prezime+`</prezime>
+        <organVlasti>`+this.myForm.value.nazivOrgana+`</organVlasti>
+        <status>`+this.myForm.value.status+`</status>
+    </sAppealSearch>`;
+
+    this.service.searchByMetadata(xml).subscribe((data: any)  => {
+      console.log("data = ", data);
+      this.appeals = data;
+    }, error => {
+      console.log(error);
+    });
   }
 
   isUser() {

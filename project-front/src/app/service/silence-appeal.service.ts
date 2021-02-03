@@ -14,6 +14,8 @@ export class SilenceAppealService {
   path = 'http://localhost:8070/api/silence-appeals/';
   pathGetAll = this.path + 'all';
   pathRequestExplanation = this.path + 'requestExplanation/'
+  pathSearch = this.path + 'search';
+  pathSearchKeywords = this.path + "keywords";
 
   /*headers: HttpHeaders = new HttpHeaders({
     Authorization: 'Bearer ' + localStorage.getItem('token'),
@@ -29,8 +31,8 @@ export class SilenceAppealService {
     console.log(appeal);
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + localStorage.getItem("token"),
-      'Content-Type': 'application/xml', //<- To SEND XML
-      'Accept': 'application/xml',       //<- To ask for XML
+      'Content-Type': 'application/xml', 
+      'Accept': 'application/xml',       
       'Response-Type': 'text'
     });
     this.http.post<void>(this.path, appeal, {headers: headers})
@@ -71,6 +73,28 @@ export class SilenceAppealService {
   getAppealsForUsername(username: string): Observable<SAppealItem[]> {
     const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
     return this.http.get<string>(this.path + username + "/all", { headers: headers, responseType: 'text' as 'json' })
+    .pipe(map((xml: string) => this.xmlToAppeal(xml)));
+  }
+
+  searchByKeywords(xml: string): Observable<SAppealItem[]> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',      
+      'Response-Type': 'text'
+    });
+    return this.http.post<string>(this.pathSearchKeywords, xml, { headers: headers, responseType: 'text' as 'json' })
+    .pipe(map((xml: string) => this.xmlToAppeal(xml)));
+  }
+
+  searchByMetadata(xml: string): Observable<SAppealItem[]>{
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      'Content-Type': 'application/xml', 
+      'Accept': 'application/xml',       
+      'Response-Type': 'text'
+    });
+    return this.http.post<string>(this.pathSearch, xml, { headers: headers, responseType: 'text' as 'json' })
     .pipe(map((xml: string) => this.xmlToAppeal(xml)));
   }
 

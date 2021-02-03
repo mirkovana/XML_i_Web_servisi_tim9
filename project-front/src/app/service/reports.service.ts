@@ -12,7 +12,8 @@ export class ReportsService {
   path = 'http://localhost:8070/api/report/';
   pathGetAll = this.path + "all";
   pathGenerate = this.path + "generate";
-
+  pathSearchKeywords = this.path + "keywords";
+  
   constructor(private http: HttpClient) { }
 
   getReports(): Observable<ReportItem[]> {
@@ -21,6 +22,17 @@ export class ReportsService {
     .pipe(map((xml: string) => this.xmlToReports(xml)));
   }
 
+  searchByKeywords(xml: string): Observable<ReportItem[]> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      'Content-Type': 'application/xml',
+      'Accept': 'application/xml',      
+      'Response-Type': 'text'
+    });
+    return this.http.post<string>(this.pathSearchKeywords, xml, { headers: headers, responseType: 'text' as 'json' })
+    .pipe(map((xml: string) => this.xmlToReports(xml)));
+  }
+  
   private xmlToReports(xml: string): ReportItem[] {
     console.log("parse = ", xml);
     let reportsItems: ReportItem[] = [];

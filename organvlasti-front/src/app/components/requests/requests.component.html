@@ -5,6 +5,58 @@
     <div class="row col-md-12">
         <div class="jumbotron col-md-10 ml-auto mr-auto bg-light shadow mt-2 float-left pt-3">
             <div class="row col-md-12 pl-5 pr-0">
+                <p *ngIf="isAdmin()">
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
+                        aria-expanded="false" aria-controls="collapseExample">
+                        Pretraga
+                    </a>
+                </p>
+                <div *ngIf="isAdmin()" class="collapse" id="collapseExample" style="margin-bottom: 10px;">
+                    <form [formGroup]="myForm" (ngSubmit)="submit()">
+                        <div class="row">
+                            <div class="col">
+                                <input formControlName="broj" type="text" class="form-control"
+                                    placeholder="Broj zahteva">
+                            </div>
+                            <div class="col">
+                                <input formControlName="datum" type="text" class="form-control" placeholder="Datum">
+                            </div>
+                            <div class="col">
+                                <input formControlName="ime" type="text" class="form-control" placeholder="Ime">
+                            </div>
+                            <div class="col">
+                                <input formControlName="prezime" type="text" class="form-control" placeholder="Prezime">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input formControlName="nazivOrgana" type="text" class="form-control"
+                                    placeholder="Naziv organa vlasti">
+                            </div>
+                            <div class="col">
+                                <input formControlName="sediste" type="text" class="form-control" placeholder="Sediste">
+                            </div>
+                            <div class="col">
+                                <input formControlName="status" type="text" class="form-control" placeholder="Status">
+                            </div>
+                            <div class="col">
+                                <div class="form-group float-right mt-3">
+                                    <button mat-raised-button color="primary" id="submit" type="submit"
+                                        class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form [formGroup]="myForm1" (ngSubmit)="submit1()">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Kljucne reci:</label>
+                            <input formControlName="keywords" type="text" class="form-control"
+                                placeholder="Kljucne reci odvojene razmakom">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr class="text-center">
@@ -33,21 +85,25 @@
                                 <a href="http://localhost:8080/api/request/pdf/{{c.broj}}">pdf</a>
                             </td>
                             <td>
-                                <button *ngIf="isUser() && c.status!='accepted'" mat-mini-fab color="warn" class="mr-2 mb-2"
-                                    (click)="deleteRequest(c)" style="outline: none">
+                                <button *ngIf="isUser() && c.status!='accepted'" mat-mini-fab color="warn"
+                                    class="mr-2 mb-2" (click)="deleteRequest(c)" style="outline: none">
                                     <mat-icon>delete</mat-icon>
                                 </button>
-                                <button *ngIf="isAdmin() && c.status!='accepted'" mat-mini-fab color="warn" class="mr-2 mb-2"
-                                    (click)="replyRequest(c)" style="outline: none">
+                                <button *ngIf="isAdmin() && c.status!='accepted'" mat-mini-fab color="warn"
+                                    class="mr-2 mb-2" (click)="replyRequest(c)" style="outline: none">
                                     <mat-icon>reply</mat-icon>
                                 </button>
                                 <!-- && c.status=='sent' -->
-                                <button *ngIf="isAdmin() && c.status=='sent'" mat-mini-fab color="warn" class="mr-2 mb-2"
-                                    (click)="denyRequest(c)" style="outline: none">
+                                <button *ngIf="isAdmin() && c.status=='sent'" mat-mini-fab color="warn"
+                                    class="mr-2 mb-2" (click)="denyRequest(c)" style="outline: none">
                                     <mat-icon>cancel</mat-icon>
                                 </button>
-                                <button *ngIf="isUser() && (c.status=='denied' || c.status=='expired')" mat-mini-fab color="warn" class="mr-2 mb-2" style="outline: none">
-                                    <a href="http://localhost:8080/api/request/download/file/{{c.broj}}" target="_blank"><mat-icon>download</mat-icon></a>
+                                <button *ngIf="isUser() && (c.status=='denied' || c.status=='expired')" mat-mini-fab
+                                    color="warn" class="mr-2 mb-2" style="outline: none">
+                                    <a href="http://localhost:8080/api/request/download/file/{{c.broj}}"
+                                        target="_blank">
+                                        <mat-icon>download</mat-icon>
+                                    </a>
                                 </button>
                             </td>
                         </tr>

@@ -28,6 +28,13 @@ import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 import com.xml.organvlasti.model.noticeResponse.NoticeListResponse;
+import com.itextpdf.html2pdf.ConverterProperties;
+import com.itextpdf.html2pdf.HtmlConverter;
+import com.xml.organvlasti.dto.NoticeDTO;
+import com.xml.organvlasti.model.keywordSearch.KeywordSearch;
+import com.xml.organvlasti.model.noticeResponse.NoticeListResponse;
+import com.xml.organvlasti.model.obavestenjeSearch.ObavestenjeSearch;
+import com.xml.organvlasti.model.zahtevResponse.RequestListResponse;
 import com.xml.organvlasti.service.NoticeService;
 
 @RestController()
@@ -71,6 +78,64 @@ public class NoticeController {
 	public ResponseEntity<String> deleteNotice(@PathVariable("broj") String broj) {
 		service.deleteNotice(broj);
 		return new ResponseEntity<>("OK", HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/keywords", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<NoticeListResponse> searchKeywords(@RequestBody KeywordSearch s){
+		System.out.println("controller searchKeywords xml = " + s);
+		NoticeListResponse result;
+		try {
+			result = service.searchByKeywords(s);
+	        System.out.println("OUTPUT: " + result);
+			return new ResponseEntity<>(result, HttpStatus.OK);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (SAXException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+        
+	}
+	
+	@PostMapping(value = "/search", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<NoticeListResponse> searchMetadata(@RequestBody ObavestenjeSearch s) throws Exception {
+		System.out.println("controller searchMetadata xml = " + s);
+		String broj = isEmpty(s.getBrojPredmeta()); 
+        String datum = isEmpty(s.getDatum());
+        String ime = isEmpty(s.getIme());
+        String prezime = isEmpty(s.getPrezime());
+        String nazivOrgana = isEmpty(s.getNazivOrgana());
+        String sedisteOrgana = isEmpty(s.getSedisteOrgana());
+
+        Map<String, String> params = new HashMap<>();
+        params.put("brojPredmeta", broj);
+        params.put("datum", datum);
+        params.put("ime", ime);
+        params.put("prezime", prezime);
+        params.put("nazivOrgana", nazivOrgana);
+        params.put("sedisteOrgana", sedisteOrgana);
+        
+        NoticeListResponse result = service.searchByMetadata(params);
+        
+        System.out.println("OUTPUT: " + result);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
+	private String isEmpty(String s) {
+		if(s.contentEquals("")) {
+			return "_";
+		}else {
+			return s;
+		}
 	}
 	
 	@GetMapping(value = "/html/{id}", produces = MediaType.TEXT_HTML_VALUE)

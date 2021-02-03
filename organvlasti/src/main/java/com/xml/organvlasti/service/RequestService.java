@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.xml.bind.JAXBException;
@@ -41,14 +43,15 @@ import org.xmldb.api.base.XMLDBException;
 
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
-import com.xml.organvlasti.dto.RequestDTO;
-import com.xml.organvlasti.dto.RequestItem;
 import com.xml.organvlasti.model.email.EmailModel;
+import com.xml.organvlasti.model.keywordSearch.KeywordSearch;
 import com.xml.organvlasti.model.request.Zahtev;
 import com.xml.organvlasti.model.zahtevResponse.RequestListResponse;
+import com.xml.organvlasti.model.zahtevResponse.RequestListResponse.RequestItem;
 import com.xml.organvlasti.parser.DOMParser;
 import com.xml.organvlasti.parser.JAXParser;
 import com.xml.organvlasti.parser.XSLTransformer;
+import com.xml.organvlasti.rdf.FusekiReader;
 import com.xml.organvlasti.rdf.FusekiWriter;
 import com.xml.organvlasti.rdf.MetadataExtractor;
 import com.xml.organvlasti.repository.RequestRepository;
@@ -328,4 +331,49 @@ public class RequestService {
 			}
 		} 			
 	}*/
+
+	public RequestListResponse searchByMetadata(Map<String, String> params) throws IOException {
+        System.out.println("service executeQuerry!");
+        ArrayList<Map<String, String>> result = FusekiReader.executeQuery(params, FusekiReader.REQUEST_QUERY_FILEPATH);
+        System.out.println("return result querry!");
+        ArrayList<String> brojList = new ArrayList<>();
+        for(Map<String, String> map : result) {
+        	String zahtev = map.get("zahtev");
+        	String[] split = zahtev.split("\\/");
+        	brojList.add(split[split.length-1]);
+        	/*System.out.println("map = ");
+        	for(String key : map.keySet()) {
+            	System.out.println("ket = " + key + " value = " + map.get(key));        		
+        	}
+        	System.out.println();*/
+        }
+        RequestListResponse response = new RequestListResponse();
+        List<RequestItem> itemsList = new ArrayList<>();
+        
+        for(String broj : brojList) {
+        	Zahtev zahtev = repository.findRequestByIdMarshall(broj);
+        	if(zahtev == null) {
+        		continue;
+        	}
+        	RequestItem item = new RequestItem();
+    		item.setBroj(zahtev.getBroj());
+    		item.setDatum(zahtev.getDatum());
+    		item.setInstitucija(zahtev.getInstitucijaNaziv());
+    		item.setUsername(zahtev.getUsername());
+    		item.setTime(zahtev.getTime());
+    		item.setStatus(zahtev.getStatus());
+    		if(item.getStatus().contentEquals("sent") && System.currentTimeMillis() - Long.parseLong(item.getTime()) > 120000) { 
+    			item.setStatus("expired");
+    		}
+    		itemsList.add(item); 
+        }
+        response.setRequestItem(itemsList);
+        System.out.println("search response = " + response);
+        return response;
+    }
+
+	public RequestListResponse searchByKeywords(KeywordSearch s) throws NumberFormatException, XMLDBException, JAXBException, SAXException {
+		return repository.searchByKeywords(s);
+	}
+
 }

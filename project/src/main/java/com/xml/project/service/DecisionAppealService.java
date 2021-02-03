@@ -3,6 +3,9 @@ package com.xml.project.service;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
@@ -22,10 +25,16 @@ import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
 import com.xml.project.dto.DecisionAppealDTO;
+import com.xml.project.model.decisionAppeal.ZalbaNaOdluku;
 import com.xml.project.model.decisionAppealResponse.DAppealListResponse;
+import com.xml.project.model.decisionAppealResponse.DAppealListResponse.DAppealItem;
+import com.xml.project.model.keywordSearch.KeywordSearch;
+import com.xml.project.model.responseList.ResponseList;
+import com.xml.project.model.responseList.ResponseList.ResponseItem;
 import com.xml.project.model.zahtevResponse.RequestListResponse;
 import com.xml.project.parser.DOMParser;
 import com.xml.project.parser.XSLTransformer;
+import com.xml.project.rdf.FusekiReader;
 import com.xml.project.rdf.FusekiWriter;
 import com.xml.project.rdf.MetadataExtractor;
 import com.xml.project.repository.DecisionAppealRepository;
@@ -145,5 +154,48 @@ public class DecisionAppealService {
 	public String getHTML(String id) {
 		Document xml = repository.findDecisionAppealByBroj(id);
 		return xslTransformer.getHTMLfromXML(responseXSL, xml);
+	}
+
+	public DAppealListResponse searchByMetadata(Map<String, String> params) throws IOException {
+		System.out.println("service executeQuerry!");
+        ArrayList<Map<String, String>> result = FusekiReader.executeQuery(params, FusekiReader.DECISION_APPEAL_QUERY_FILEPATH);
+        System.out.println("return result querry!");
+        ArrayList<String> brojList = new ArrayList<>();
+        for(Map<String, String> map : result) {
+        	String zalbaNaOdluku = map.get("zalba_na_odluku");
+        	String[] split = zalbaNaOdluku.split("\\/");
+        	brojList.add(split[split.length-1]);
+        	System.out.println("map = ");
+        	for(String key : map.keySet()) {
+            	System.out.println("ket = " + key + " value = " + map.get(key));        		
+        	}
+        	System.out.println();
+        }
+        DAppealListResponse response = new DAppealListResponse();
+        List<DAppealItem> itemsList = new ArrayList<>();
+        for(String broj : brojList) {
+        	ZalbaNaOdluku zalba = repository.findAppealByIdMarshall(broj);
+    		
+    		DAppealItem item = new DAppealItem();
+    		item.setBroj(zalba.getBroj());
+    		item.setDatumSlanja(zalba.getPodaciOMestuIDatumuPodnosenjaZalbe().getDatum().getValue());
+    		item.setMestoSlanja(zalba.getPodaciOMestuIDatumuPodnosenjaZalbe().getMesto().getValue());
+    		item.setOrganVlasti(zalba.getPodaciOZalbi().getOrganKojiJeDoneoOdluku().getValue());
+    		item.setPodnosiocGrad(zalba.getPodaciOZalbi().getPodnosilacZalbe().getAdresa().getGrad());
+    		item.setPodnosiocIme(zalba.getPodaciOZalbi().getPodnosilacZalbe().getIme().getValue());
+    		item.setPodnosiocPrezime(zalba.getPodaciOZalbi().getPodnosilacZalbe().getPrezime().getValue());
+    		item.setPodnosiocUlica(zalba.getPodaciOZalbi().getPodnosilacZalbe().getAdresa().getUlica());
+    		item.setPodnosiocUsername(zalba.getUsername());
+    		item.setPoverenikUsername(zalba.getPoverenikUsername());
+    		item.setStatus(zalba.getZalbaStatus().getValue());
+    		itemsList.add(item);
+        }
+        response.setdAppealItem(itemsList);
+        System.out.println("find all decsisionappeals = " + response);
+        return response;
+	}
+
+	public DAppealListResponse searchByKeywords(KeywordSearch s) throws XMLDBException, JAXBException, SAXException {
+		return repository.searchByKeywords(s);
 	}
 }

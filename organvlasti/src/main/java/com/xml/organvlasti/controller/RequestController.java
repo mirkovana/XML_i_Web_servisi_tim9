@@ -3,6 +3,8 @@ package com.xml.organvlasti.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,8 +37,10 @@ import com.itextpdf.html2pdf.ConverterProperties;
 import java.io.ByteArrayOutputStream;
 
 import com.xml.organvlasti.model.email.EmailModel;
+import com.xml.organvlasti.model.keywordSearch.KeywordSearch;
 import com.xml.organvlasti.model.request.Zahtev;
 import com.xml.organvlasti.model.zahtevResponse.RequestListResponse;
+import com.xml.organvlasti.model.zahtevSearch.ZahtevSearch;
 import com.xml.organvlasti.service.RequestService;
 
 @RestController()
@@ -46,14 +50,6 @@ public class RequestController {
 
 	@Autowired
 	private RequestService service;
-	
-	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@CrossOrigin
-	public ResponseEntity<RequestDTO> saveRequest(@RequestBody RequestDTO dto) throws Exception {
-		System.out.println("controller saveRequest = ");
-		service.save(dto);
-		return new ResponseEntity<>(dto, HttpStatus.OK);
-	}*/
 	
 	@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
@@ -138,6 +134,91 @@ public class RequestController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@PostMapping(value = "/keywords", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<RequestListResponse> searchKeywords(@RequestBody KeywordSearch s){
+		System.out.println("controller searchKeywords xml = " + s);
+		RequestListResponse result;
+		try {
+			result = service.searchByKeywords(s);
+	        System.out.println("OUTPUT: " + result);
+			return new ResponseEntity<>(result, HttpStatus.OK);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (SAXException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+        
+	}
+	@PostMapping(value = "/search", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<RequestListResponse> searchMetadata(@RequestBody ZahtevSearch s) throws Exception {
+		System.out.println("controller searchMetadata xml = " + s);
+		String broj = isEmpty(s.getBroj()); 
+        String datum = isEmpty(s.getDatum());
+        String ime = isEmpty(s.getIme());
+        String prezime = isEmpty(s.getPrezime());
+        String nazivInstitucije = isEmpty(s.getNazivOrgana());
+        String sedisteInstitucije = isEmpty(s.getSediste());
+        String status = isEmpty(s.getStatus());
+        Map<String, String> params = new HashMap<>();
+        params.put("broj", broj);
+        params.put("datum", datum);
+        params.put("ime", ime);
+        params.put("prezime", prezime);
+        params.put("nazivInstitucije", nazivInstitucije);
+        params.put("sedisteInstitucije", sedisteInstitucije);
+        params.put("status", status);
+        
+        RequestListResponse result = service.searchByMetadata(params);
+        
+        System.out.println("OUTPUT: " + result);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
+	private String isEmpty(String s) {
+		if(s.contentEquals("")) {
+			return "_";
+		}else {
+			return s;
+		}
+	}
+	/*@GetMapping("/search")
+	public ResponseEntity<String> searchFromRDF() throws IOException{
+		String broj = "a6c577fb1e33-2021";
+        String datum = "sadasdsad";
+        String ime = "assd";
+        String prezime = "asassa";
+        String nazivInstitucije = "asasdassa";
+        String sedisteInstitucije = "asasdsad";
+        String status = "sent";
+
+        Map<String, String> params = new HashMap<>();
+        params.put("broj", broj);
+        params.put("datum", datum);
+        params.put("ime", ime);
+        params.put("prezime", prezime);
+        params.put("nazivInstitucije", nazivInstitucije);
+        params.put("sedisteInstitucije", sedisteInstitucije);
+        params.put("status", status);
+        
+        ArrayList<String> result = service.searchByMetadata(params);
+        String output = "";
+        for (String r : result) {
+            output += "\n" + r;
+        }
+        System.out.println("OUTPUT: " + output);
+        return new ResponseEntity<>(output, HttpStatus.OK);
+    }*/
 	
 	/*private void sendEmail(byte[] pdf) {
 		System.out.println("sendemailcontroller");

@@ -16,6 +16,7 @@ import org.xmldb.api.modules.XMLResource;
 import org.xmldb.api.modules.XQueryService;
 
 import com.xml.project.database.DbManager;
+import com.xml.project.model.keywordSearch.KeywordSearch;
 import com.xml.project.model.report.Izvestaj;
 import com.xml.project.model.reportListItem.ReportListResponse;
 import com.xml.project.model.reportListItem.ReportListResponse.ReportItem;
@@ -38,6 +39,14 @@ public class ReportRepository {
             "for $x in collection(\"/db/XmlProject/reports\")\n" +
             "return $x";
 	
+	public static final String X_QUERY_FIND_ALL_BY_CONTENT = "xquery version \"3.1\";\n" + 
+            "for $x in collection(\"/db/XmlProject/reports\")\n" +
+			"where $x/izvestaj/@datum='%s'\n" + 
+			"return $x";
+	
+	/*where $x/zalba/@username='%s'\n" + 
+			"return $x\n";*/
+	
 	public Document findReportById(String id) {
 		Document document = null;
 		System.out.println("in repository finding id = " + id);
@@ -58,6 +67,51 @@ public class ReportRepository {
         org.xmldb.api.base.Collection collection = dbManager.getCollection(collectionId);
         XQueryService xQueryService = (XQueryService) collection.getService("XQueryService", "1.0");
         CompiledExpression compiledExpression = xQueryService.compile(X_QUERY_FIND_ALL_REPORT);
+        ResourceSet resourceSet = xQueryService.execute(compiledExpression);
+        ResourceIterator resourceIterator = resourceSet.getIterator();
+        ReportListResponse response = new ReportListResponse();
+        List<ReportItem> itemsList = new ArrayList<>();
+        while (resourceIterator.hasMoreResources()){
+        	XMLResource xmlResource = (XMLResource) resourceIterator.nextResource();
+    		Unmarshaller unmarshaller = JAXParser.createUnmarshaller(contextPath, schemaPath);
+    		Izvestaj izvestaj = (Izvestaj) unmarshaller.unmarshal(xmlResource.getContentAsDOM());
+    		
+    		ReportItem item = new ReportItem();
+    		item.setDatum(izvestaj.getDatum());
+    		item.setId(izvestaj.getId());
+    		
+    		item.setZahtevBrojOdbacenih(izvestaj.getZahtevi().getBrojOdbacenih());
+    		item.setZahtevBrojOdbijenih(izvestaj.getZahtevi().getBrojOdbijenih());
+    		item.setZahtevBrojPodnetih(izvestaj.getZahtevi().getBrojPodnetih());
+    		item.setZahtevBrojUsvojenih(izvestaj.getZahtevi().getBrojUsvojenih());
+    		
+    		item.setZalbaBrojPodnetih(izvestaj.getZalbe().getBrojPodnetih());
+    		item.setZalbaBrojZbogNepostupanja(izvestaj.getZalbe().getBrojZbogNepostupanja());
+    		item.setZalbaBrojZbogOdbijanja(izvestaj.getZalbe().getBrojZbogOdbijanja());
+    		
+    		itemsList.add(item); 
+        }
+        response.setReportItem(itemsList);
+        System.out.println("find all response = " + response);
+        return response;
+	}
+
+	public ReportListResponse searchByKeywords(KeywordSearch s) throws XMLDBException, JAXBException, SAXException {
+		/*String[] keywords = s.getKeywords().split(" ");
+		//contains(.,'inform')
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i < keywords.length-1; i++) {
+			sb.append("contains(.,'"+keywords[i]+"') and ");
+		}
+		sb.append("contains(.,'"+keywords[keywords.length-1]+"')");
+		System.out.println("keywords = " + sb.toString());*/
+		//String QUERY = X_QUERY_FIND_ALL_BY_INFROMATION.replace("_", sb.toString());
+		String QUERY = String.format(X_QUERY_FIND_ALL_BY_CONTENT, s.getKeywords());
+        System.out.println("xquery string = " + QUERY);
+        
+        org.xmldb.api.base.Collection collection = dbManager.getCollection(collectionId);
+        XQueryService xQueryService = (XQueryService) collection.getService("XQueryService", "1.0");
+        CompiledExpression compiledExpression = xQueryService.compile(QUERY);
         ResourceSet resourceSet = xQueryService.execute(compiledExpression);
         ResourceIterator resourceIterator = resourceSet.getIterator();
         ReportListResponse response = new ReportListResponse();
