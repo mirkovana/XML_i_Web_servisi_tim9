@@ -8,7 +8,7 @@
         <head>
             <style>
                 body {
-	              margin:100px;
+	              margin:25px;
 	            }
                 h1 {
                     text-align: center;
@@ -28,44 +28,48 @@
         </head>
 
         <body>
-            <table class="opste_informacije">
-
-                <b> Naziv organa: </b>
-                <xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:podaci_o_organu/ob:naziv" />
-                <br />
-
-                <b>Sediste organa: </b>
-                <xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:podaci_o_organu/ob:sediste" />
-                <br />
-
-                <b>Broj predmeta: </b>
-                <a>
-         			<xsl:attribute name="href">
-           				<xsl:text>http://localhost:8080/api/request/html/</xsl:text>
-          	   			<xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:broj_predmeta" />
-              		</xsl:attribute>
-  					<xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:broj_predmeta" />
-				</a>
-                <br />
-
-                <b>Datum: </b>
-                <xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:datum" />
-                <br />
-                <br />
-
-                <b>Ime podnosioca: </b>
-                <xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:podaci_o_podnosiocu/ob:ime" />
-                <br />
-
-                <b>Prezime podnosioca: </b>
-                <xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:podaci_o_podnosiocu/ob:prezime" />
-                <br />
-
-                <b>Adresa: </b>
-                <xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:podaci_o_podnosiocu/ob:adresa/ob:naziv_ulice" />
-                &#160;
-                <xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:podaci_o_podnosiocu/ob:adresa/ob:grad" />
-                <br />
+            <table>
+				<tr>
+					<td><b> Naziv organa: </b></td>
+					<td><xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:podaci_o_organu/ob:naziv/." /></td>
+				</tr>
+				<tr>
+					<td><b>Sediste organa: </b></td>
+					<td><xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:podaci_o_organu/ob:sediste/."/></td>
+				</tr>
+				<tr>
+					<td><b>Broj predmeta: </b></td>
+					<td>
+						<a>
+		         			<xsl:attribute name="href">
+		           				<xsl:text>http://localhost:8080/api/request/html/</xsl:text>
+		          	   			<xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:broj_predmeta" />
+		              		</xsl:attribute>
+		  					<xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:broj_predmeta" />
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<td><b>Datum: </b></td>
+					<td><xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:datum/."/></td>
+				</tr>
+				<tr>
+					<td><b>Ime podnosioca: </b></td>
+					<td><xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:podaci_o_podnosiocu/ob:ime/."/></td>
+				</tr>
+               	<tr>
+					<td><b>Prezime podnosioca: </b></td>
+					<td><xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:podaci_o_podnosiocu/ob:prezime/."/></td>
+				</tr>
+				<tr>
+					<td><b>Adresa: </b></td>
+					<td>
+						<xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:podaci_o_podnosiocu/ob:adresa/ob:naziv_ulice" />
+		                &#160;
+		                <xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:podaci_o_podnosiocu/ob:adresa/ob:grad" />
+					</td>
+				</tr>
+			</table>
 
                 <h1>
                    O B A V E S T E NJ E
@@ -122,11 +126,10 @@
                     <b><i>1. Imenovanom</i></b>
                     <br/>
                     <b><i>2. Arhivi</i></b>
-            </table>
+           
             <br/>
-            Potpis ovlascenog lica: <xsl:value-of select="ob:obavestenje/ob:potpis/." />
+            Potpis ovlascenog lica: <u><xsl:value-of select="ob:obavestenje/ob:potpis/."/></u>
         </body>
-
         </html>
     </xsl:template>
 </xsl:stylesheet>

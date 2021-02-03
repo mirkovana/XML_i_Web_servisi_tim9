@@ -8,7 +8,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <head>
         <style>
           body {
-            margin:100px;
+            margin:25px;
           }
           p.indent {
             text-indent: 24px;
@@ -24,8 +24,8 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           }
           hr {
             border-top:2px dotted #000;
-            margin-left:100px;
-            margin-right:100px;
+            margin-left:200px;
+            margin-right:200px;
           }
         </style>
       </head>
@@ -67,13 +67,31 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	  U <u><xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_mestu_i_datumu_podnosenja_zalbe/zo:mesto/."/></u><br></br> 
 	  Datuma <u><xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_mestu_i_datumu_podnosenja_zalbe/zo:datum/."/></u>
 	  <span style="float:right;">
-	    Ime: <u><xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_podnosiocu_zalbe/zo:ime"/> <xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_podnosiocu_zalbe/zo:prezime"/></u> <br></br>
-	    Adresa: <u><xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_podnosiocu_zalbe/zo:adresa"/></u> <br></br>
-	    Drugi podaci: <u><xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_podnosiocu_zalbe/zo:drugi_podaci_za_kontakt"/></u> <br></br>
-	    Potpis: <u><xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_podnosiocu_zalbe/zo:potpis"/></u>
+	  	<table>
+	  		<tr>
+	  			<td>Ime:</td>
+	  			<td><u><xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_podnosiocu_zalbe/zo:ime"/></u></td>
+	  		</tr>
+	  		<tr>
+	  			<td>Prezime:</td>
+	  			<td><u><xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_podnosiocu_zalbe/zo:prezime"/></u></td>
+	  		</tr>
+	  		<tr>
+	  			<td>Adresa:</td>
+	  			<td><u><xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_podnosiocu_zalbe/zo:adresa"/></u></td>
+	  		</tr>
+	  		<tr>
+	  			<td>Drugi podaci:</td>
+	  			<td><u><xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_podnosiocu_zalbe/zo:drugi_podaci_za_kontakt"/></u></td>
+	  		</tr>
+	  		<tr>
+	  			<td>Potpis:</td>
+	  			<td><u><xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_podnosiocu_zalbe/zo:potpis"/></u></td>
+	  		</tr>
+	  	</table>
 	  </span>
 	</p>
-	<br></br><br></br>
+	<br></br><br></br><br></br><br></br>
 	<p class="indent"><b>Napomena:</b></p>
 	<ul>
 		<p><li>U žalbi se mora navesti odluka koja se pobija (rešenje, zaključak, obaveštenje), 
@@ -90,4 +108,3 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   </html>
 </xsl:template>
 </xsl:stylesheet>
-

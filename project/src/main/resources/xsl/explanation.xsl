@@ -6,7 +6,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
             <head>
                 <style>
                     body {
-                        margin: 100px;
+                        margin: 25px;
                     }
                     p.indent {
                         text-indent: 24px;
@@ -36,30 +36,27 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
                     <tr>
                         <td>Ime:</td>
                         <td>
-                            <xsl:value-of select="ex:explanation/ex:ime/." />
+                            <u><xsl:value-of select="ex:explanation/ex:ime/." /></u>
                         </td>
                     </tr>
                     <tr>
                         <td>Prezime:</td>
                         <td>
-                            <xsl:value-of select="ex:explanation/ex:prezime/." />
+                            <u><xsl:value-of select="ex:explanation/ex:prezime/." /></u>
                         </td>
                     </tr>
                     <tr>
                         <td>Potpis:</td>
                         <td>
-                            <xsl:value-of select="ex:explanation/ex:potpis/." />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>U
-                            <xsl:value-of select="ex:explanation/ex:mesto/." />
-                        </td>
-                        <td>dana
-                            <xsl:value-of select="ex:explanation/ex:datum/." />
+                            <u><xsl:value-of select="ex:explanation/ex:potpis/." /></u>
                         </td>
                     </tr>
                 </table>
+                <br></br>
+                <div style="text-align:left; margin-left: 20px;">
+	                U <u><xsl:value-of select="ex:explanation/ex:mesto/." /></u> dana
+	                <u><xsl:value-of select="ex:explanation/ex:datum/." /></u>                
+                </div>
             </body>
         </html>
     </xsl:template>

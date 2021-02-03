@@ -8,7 +8,9 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
      <head>
         <style>
           body {
-            margin:100px;
+          	margin-top:10px;
+            margin-left:25px;
+            margin-right:25px;
           }
           p.indent {
             text-indent: 24px;
@@ -21,8 +23,8 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           }
           hr {
             border-top:2px dotted #000;
-            margin-left:100px;
-            margin-right:100px;
+            margin-left:200px;
+            margin-right:200px;
           }
         </style>
       </head>
@@ -36,27 +38,90 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <h2 class="headertekst">Zahtev za pristupanje informacijama</h2>
     <p class="indent">Na osnovu člana 15. st. 1. Zakona o slobodnom pristupu informacijama od javnog značaja („Službeni glasnik RS“, br. 120/04, 54/07, 104/09 i 36/10) od gore navedenog organa zahtevam:*</p>
     <ul>
-      <p><input type="checkbox"/>obaveštenje da li poseduje traženu informaciju;</p>
+      <p>
+        <xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[1]/@za:checked = 'true'">
+        	<span font-size="12pt">☑</span>
+    		</xsl:if>
+       	<xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[1]/@za:checked = 'false'">
+        	<span font-size="12pt">☐</span>
+    		</xsl:if>
+  			obaveštenje da li poseduje traženu informaciju;
+      </p>
     </ul>
     <ul>
-      <p><input type="checkbox"/>uvid u dokument koji sadrži traženu informaciju;</p>
+      <p>
+        <xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[2]/@za:checked = 'true'">
+        	<span font-size="12pt">☑</span>
+    		</xsl:if>
+       	<xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[2]/@za:checked = 'false'">
+        	<span font-size="12pt">☐</span>
+    		</xsl:if>
+				uvid u dokument koji sadrži traženu informaciju;
+      </p>
     </ul>
     <ul>
-      <p><input type="checkbox"/>kopiju dokumenta koji sadrži traženu informaciju;</p>
+      <p>
+        <xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[3]/@za:checked = 'true'">
+        	<span font-size="12pt">☑</span>
+    		</xsl:if>
+       	<xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[3]/@za:checked = 'false'">
+        	<span font-size="12pt">☐</span>
+    		</xsl:if>
+        kopiju dokumenta koji sadrži traženu informaciju;
+      </p>
     </ul>
     <ul>
-      <p><input type="checkbox"/>dostavljanje kopije dokumenta koji sadrži traženu informaciju:** </p>
+      <p>
+        <xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[4]/@za:checked = 'true'">
+        	<span font-size="12pt">☑</span>
+    		</xsl:if>
+       	<xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[4]/@za:checked = 'false'">
+        	<span font-size="12pt">☐</span>
+    		</xsl:if>
+        dostavljanje kopije dokumenta koji sadrži traženu informaciju:** 
+      </p>
       <ul>
-         <p><input type="checkbox"/>postom</p>
+         <p>
+          <xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[4]/za:lista/za:stavka[1]/@za:checked = 'true'">
+            <span font-size="12pt">☑</span>
+          </xsl:if>
+          <xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[4]/za:lista/za:stavka[1]/@za:checked = 'false'">
+            <span font-size="12pt">☐</span>
+          </xsl:if>
+           postom
+        </p>
       </ul>
       <ul>
-        <p><input type="checkbox"/>elektronskom postom</p>
+        <p>
+	        <xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[4]/za:lista/za:stavka[2]/@za:checked = 'true'">
+            <span font-size="12pt">☑</span>
+          </xsl:if>
+          <xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[4]/za:lista/za:stavka[2]/@za:checked = 'false'">
+            <span font-size="12pt">☐</span>
+          </xsl:if>
+          elektronskom postom
+        </p>
       </ul>
       <ul>
-        <p><input type="checkbox"/>faksom</p>
+        <p>
+          <xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[4]/za:lista/za:stavka[3]/@za:checked = 'true'">
+            <span font-size="12pt">☑</span>
+          </xsl:if>
+          <xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[4]/za:lista/za:stavka[3]/@za:checked = 'false'">
+            <span font-size="12pt">☐</span>
+          </xsl:if>
+          faksom
+        </p>
       </ul>
       <ul>
-        <p><input type="checkbox"/>na drugi nacin***:<u><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[@za:id='4']/za:lista/za:stavka[@za:id='8']/za:drugi_nacin/."/></u></p>
+        <p>
+          <xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[4]/za:lista/za:stavka[4]/@za:checked = 'true'">
+            <span font-size="12pt">☑</span>
+          </xsl:if>
+          <xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[4]/za:lista/za:stavka[4]/@za:checked = 'false'">
+            <span font-size="12pt">☐</span>
+          </xsl:if>
+          na drugi nacin***:<u><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[@za:id='4']/za:lista/za:stavka[@za:id='8']/za:drugi_nacin/."/></u></p>
       </ul>
     </ul>
     <p class="indent">Ovaj zahtev se odnosi na sledece informacije:</p>
@@ -70,10 +135,24 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
       U <u><xsl:value-of select="za:zahtev/za:mesto_datum/za:mesto/."/></u><br></br> 
       Datuma <u><xsl:value-of select="za:zahtev/za:mesto_datum/za:datum/."/></u>
       <span style="float:right;">
-        Ime: <u><xsl:value-of select="za:zahtev/za:podnosilac/za:osoba/."/></u> <br></br>
-        Adresa: <u><xsl:value-of select="za:zahtev/za:podnosilac/za:adresa/."/></u> <br></br>
-        Drugi podaci: <u><xsl:value-of select="za:zahtev/za:podnosilac/za:drugi_podaci/."/></u> <br></br>
-        Potpis: <u><xsl:value-of select="za:zahtev/za:podnosilac/za:potpis/."/> </u>
+        <table>
+          <tr>
+            <td>Ime i prezime:</td>
+            <td><u><xsl:value-of select="za:zahtev/za:podnosilac/za:osoba/."/></u> </td>
+          </tr>
+          <tr>
+          	<td>Adresa:</td>
+            <td><u><xsl:value-of select="za:zahtev/za:podnosilac/za:adresa/."/></u></td>
+          </tr>
+          <tr>
+          	<td>Drugi podaci:</td>
+          	<td><u><xsl:value-of select="za:zahtev/za:podnosilac/za:drugi_podaci/."/></u></td>
+          </tr>
+          <tr>
+          	<td>Potpis:</td>
+          	<td><u><xsl:value-of select="za:zahtev/za:podnosilac/za:potpis/."/> </u></td>
+          </tr>
+        </table>
       </span>
     </p>
     <br></br><br></br>

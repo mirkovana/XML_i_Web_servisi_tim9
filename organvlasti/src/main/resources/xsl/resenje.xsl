@@ -8,7 +8,7 @@
       <head>
         <style>
           body {
-            margin:100px;
+            margin:25px;
           }
           p.indent {
             text-indent: 24px;
