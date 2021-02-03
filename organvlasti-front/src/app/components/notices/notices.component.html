@@ -10,45 +10,15 @@
                         Pretraga
                     </a>
                 </p>
+
                 <div *ngIf="isAdmin()" class="collapse" id="collapseExample" style="margin-bottom: 10px;">
-                    <form [formGroup]="myForm" (ngSubmit)="submit()">
-                        <div class="row">
-                            <div class="col">
-                                <input formControlName="broj" type="text" class="form-control" placeholder="Broj zahteva">
-                            </div>
-                            <div class="col">
-                                <input formControlName="datum" type="text" class="form-control" placeholder="Datum">
-                            </div>
-                            <div class="col">
-                                <input formControlName="ime" type="text" class="form-control" placeholder="Ime">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <input formControlName="prezime" type="text" class="form-control" placeholder="Prezime">
-                            </div>
-                            <div class="col">
-                                <input formControlName="nazivOrgana" type="text" class="form-control" placeholder="Naziv organa vlasti">
-                            </div>
-                            <div class="col">
-                                <input formControlName="sediste" type="text" class="form-control" placeholder="Sediste">
-                            </div>
-                            <div class="col">
-                                <div class="form-group float-right mt-3">
-                                    <button mat-raised-button color="primary" id="submit" type="submit" class="btn btn-primary">Search</button>
-                                </div>
-                            </div>
+                    <form [formGroup]="myForm" (ngSubmit)="submit1()">
+                        <div class="form-group">
+                            <input formControlName="keywords" type="text" class="form-control" placeholder="keywords">
+                            <button mat-raised-button color="primary" id="submit" type="submit" class="btn btn-primary">Pretrazi</button>
                         </div>
                     </form>
-                    <!-- <form [formGroup]="myForm1" (ngSubmit)="submit1()"> -->
-                    <!-- <div class="form-group">
-                            <label for="exampleInputEmail1">Kljucne reci:</label>
-                            <input formControlName="keywords" type="text" class="form-control"
-                                placeholder="Kljucne reci odvojene razmakom">
-                            <button type="submit" class="btn btn-primary">Search</button>
-                        </div> -->
 
-                    <!-- </form> -->
                     <h4>Napredna pretraga</h4>
                     <form [formGroup]="naprednaPretraga" class="novaForma" (ngSubmit)="napredna()">
 
@@ -98,10 +68,9 @@
 
                         <div class="form-group btnDiv">
                             <button class="btn btn-primary" id="addOfferBtnnn">
-                                    <!-- [disabled]="!saveChangesEnabled()" -->
-                                    Pretrazi
-                                </button>
-                            <a routerLink="/home" class="btn btn-link">Cancel</a>
+                                <!-- [disabled]="!saveChangesEnabled()" -->
+                                Pretrazi
+                            </button>
                         </div>
 
 

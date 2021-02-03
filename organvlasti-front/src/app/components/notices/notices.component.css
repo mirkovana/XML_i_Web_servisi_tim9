@@ -8,29 +8,8 @@
     width: 50%;
 }
 
-
-/* .novaForma {
-    display: grid;
-}
-
-.error {
-    color: red;
-}
-
-.btnDiv {
-    margin: 15px;
-}
-
-.input {
-    border: 1px solid black;
-    border-radius: 2px;
-}
-
-.stanica {
-    display: flex;
-}
-
-.tabela {
+.row {
     margin: 10px;
-    width: 70%;
-} */
+    width: 100%;
+    display: inline-block;
+}

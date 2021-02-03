@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 
 export class NoticeService {
   path = 'http://localhost:8080/api/notice/';
-  pathAll = this.path+ "all"
+  pathAll = this.path + "all"
   pathSearch = this.path + "search";
   pathSearchKeywords = this.path + "keywords";
 
@@ -60,12 +60,12 @@ export class NoticeService {
   naprednaPretraga(nazivOrgana: string, sedisteOrgana: string, ime: string,
     prezime: string, datum: string, brojPredmeta: string) {
 
-      const headers = new HttpHeaders({
-        'Authorization': 'Bearer ' + localStorage.getItem("token"),
-        // 'Content-Type': 'application/xml',
-        'Accept': 'application/xml',      
-        'Response-Type': 'text'
-      });
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("token"),
+      // 'Content-Type': 'application/xml',
+      'Accept': 'application/xml',
+      'Response-Type': 'text'
+    });
     const formData = new FormData();
     formData.append('nazivOrgana', nazivOrgana);
     formData.append('sedisteOrgana', sedisteOrgana);
@@ -74,8 +74,8 @@ export class NoticeService {
     formData.append('datum', datum);
     formData.append('brojPredmeta', brojPredmeta);
     console.log(localStorage.getItem("token"))
-    return this.http.post<any>(this.path + 'napredna-pretraga', formData, {headers: headers,responseType: 'text' as 'json' })
-    .pipe(map((xml: string) => this.xmlToNotice(xml)));
+    return this.http.post<any>(this.path + 'napredna-pretraga', formData, { headers: headers, responseType: 'text' as 'json' })
+      .pipe(map((xml: string) => this.xmlToNotice(xml)));
   }
 
   getNoticesForUser(username: string): Observable<NoticeItem[]> {
@@ -106,17 +106,6 @@ export class NoticeService {
     const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
     return this.http.get<string>(this.pathAll, { headers: headers, responseType: 'text' as 'json' })
       .pipe(map((xml: string) => this.xmlToNotice(xml)));
-  }
-
-  searchByKeywords(xml: string): Observable<NoticeItem[]>{
-    const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + localStorage.getItem("token"),
-      'Content-Type': 'application/xml',
-      'Accept': 'application/xml',      
-      'Response-Type': 'text'
-    });
-    return this.http.post<string>(this.pathSearchKeywords, xml, { headers: headers, responseType: 'text' as 'json' })
-    .pipe(map((xml: string) => this.xmlToNotice(xml)));
   }
 
   private xmlToNotice(xml: string): NoticeItem[] {

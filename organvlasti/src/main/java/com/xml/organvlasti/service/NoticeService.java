@@ -187,8 +187,7 @@ public class NoticeService {
 		for (Map<String, String> map : result) {
 			String obavestenje = map.get("obavestenje");
 			String[] split = obavestenje.split("\\/");
-			brojeviPredmeta.add(split[split.length - 1]);
-			
+			brojeviPredmeta.add(split[split.length - 1]);	
 		}
 		NoticeListResponse response = new NoticeListResponse();
 		List<NoticeItem> itemsList = new ArrayList<>();
@@ -212,16 +211,11 @@ public class NoticeService {
 			itemsList.add(item);
 		}
 		response.setNoticeItem(itemsList);
-		System.out.println("find all notice response = " + response);
 		return response;
-//		return FusekiReader.executeQuery(params, "src/main/resources/rdf/noticeQuery.rq");
 		
 	}
 
 
-	public NoticeListResponse searchByKeywords(KeywordSearch s)
-			throws NumberFormatException, XMLDBException, JAXBException, SAXException {
-		return repository.searchByKeywords(s);
-	}
+	
 
 }
