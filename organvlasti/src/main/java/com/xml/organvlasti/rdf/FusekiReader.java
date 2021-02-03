@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -26,10 +27,11 @@ public class FusekiReader {
 	public static final String REQUEST_QUERY_FILEPATH = "src/main/resources/rdf/requestQuery.rq";
 	public static final String DECISION_APPEAL_QUERY_FILEPATH = "src/main/resources/rdf/decisionAppealQuery.rq";
 	public static final String SILENCE_APPEAL_QUERY_FILEPATH = "src/main/resources/rdf/silenceAppealQuery.rq";
-	
+	public static final String NOTICE_QUERY_FILEPATH = "src/main/resources/rdf/noticeQuery.rq";
+
 	private FusekiReader() {}
 
-	public static ArrayList<String> executeQuery(Map<String, String> params, String QUERY_FILEPATH) throws IOException {
+	public static ArrayList<Map<String, String>> executeQuery(Map<String, String> params, String QUERY_FILEPATH) throws IOException {
 		
 		ConnectionProperties conn = FusekiAuthenticationUtilities.loadProperties();
 		
@@ -45,8 +47,7 @@ public class FusekiReader {
 		System.out.println("results = " + results);
 		String varName;
 		RDFNode varValue;
-		ArrayList<String> items = new ArrayList<String>();
-		System.out.println("items = " + items);
+		ArrayList<Map<String, String>> returnList = new ArrayList<>();
 		
 		while(results.hasNext()){
 			System.out.println("results.hasNext()");
@@ -54,43 +55,26 @@ public class FusekiReader {
 			QuerySolution querySolution = results.next() ;
 			Iterator<String> variableBindings = querySolution.varNames();
 			
-			// Retrieve variable bindings
+			Map<String, String> itemsMap = new HashMap<>();
 		    while (variableBindings.hasNext()) {
 		   
 		    	varName = variableBindings.next();
 		    	varValue = querySolution.get(varName);
 		    	
-		    	System.out.println(varName + ": " + varValue);
-		    }
-		    System.out.println();
-        }
-		
-		/*while(results.hasNext()) {
-		    System.out.println("results.hasNext()");
-			// A single answer from a SELECT query
-			QuerySolution querySolution = results.next() ;
-			Iterator<String> variableBindings = querySolution.varNames();
-			
-			// Retrieve variable bindings
-		    while (variableBindings.hasNext()) {
-		    	varName = variableBindings.next();
-		    	varValue = querySolution.get(varName);
-		    	System.out.println(varName + ": " + varValue);
-		    	if (varName.contains("osobaIme")) {
-		    		String value = varValue.toString();
-			    	value = value.substring(0, value.lastIndexOf("^")-1);
-			    	if (!foundTitles.contains(value)) {
-			    		foundTitles.add(value);
-			    	}
+		    	String[] v = varValue.toString().split("\\^");
+		    	System.out.println(varName + ": " + varValue.toString());
+		    	if(v.length > 0) {
+			    	itemsMap.put(varName, v[0]);		    		
 		    	}
 		    }
 		    System.out.println();
-		}*/
+		    returnList.add(itemsMap);
+        }
 		
 	    ResultSetFormatter.outputAsXML(System.out, results);
 		query.close() ;
 		System.out.println("[INFO] SPARQL Query End.");
-		return items;
+		return returnList;
 	}
 	
 	public static String readFile(String path, Charset encoding) throws IOException {

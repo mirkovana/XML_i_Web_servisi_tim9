@@ -1,7 +1,9 @@
 package com.xml.organvlasti.controller;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,15 +22,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
 
-import com.itextpdf.html2pdf.ConverterProperties;
-import com.itextpdf.html2pdf.HtmlConverter;
-import com.xml.organvlasti.dto.NoticeDTO;
 import com.xml.organvlasti.model.noticeResponse.NoticeListResponse;
-import com.xml.organvlasti.model.zahtevResponse.RequestListResponse;
 import com.xml.organvlasti.service.NoticeService;
 
 @RestController()
@@ -90,5 +89,38 @@ public class NoticeController {
                 .contentType(MediaType.APPLICATION_PDF) 
                 .body(bytes);       
     }
+	
+	@CrossOrigin
+	@PostMapping(value = "/napredna-pretraga")
+	public ResponseEntity<?> naprednaPretraga(@RequestParam("nazivOrgana") String nazivOrgana,
+			@RequestParam("sedisteOrgana") String sedisteOrgana, @RequestParam("ime") String ime,
+			@RequestParam("prezime") String prezime, @RequestParam("datum") String datum,
+			@RequestParam("brojPredmeta") String brojPredmeta) {
+		System.out.println(prezime);
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("nazivOrgana", nazivOrgana);
+		params.put("sedisteOrgana", sedisteOrgana);
+	params.put("ime", ime);
+	params.put("prezime", prezime);
+	params.put("datum", datum);
+	params.put("broj_predmeta", brojPredmeta);
+	ArrayList<Map<String, String>> ret = null;
+	try {
+		ret = service.search(params);
+	} catch (IOException e) {
+		e.printStackTrace();
+		return new ResponseEntity(HttpStatus.BAD_REQUEST);
+	}
+	for (Map<String, String> map : ret) {
+		for (Map.Entry<String, String> entry : map.entrySet()) {
+			System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+		}
+		System.out.println("\n");
+	}
+	
+	
+	System.out.println(ret.size() + " OVO JE SIZE");
+	return new ResponseEntity(ret, HttpStatus.OK);
+}
 	
 }

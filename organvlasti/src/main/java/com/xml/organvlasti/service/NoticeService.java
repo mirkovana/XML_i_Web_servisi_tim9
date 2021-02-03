@@ -3,7 +3,9 @@ package com.xml.organvlasti.service;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Map;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
@@ -26,15 +28,14 @@ import org.xmldb.api.base.XMLDBException;
 
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
-import com.xml.organvlasti.dto.NoticeDTO;
 import com.xml.organvlasti.model.email.EmailModel;
 import com.xml.organvlasti.model.noticeResponse.NoticeListResponse;
 import com.xml.organvlasti.parser.DOMParser;
 import com.xml.organvlasti.parser.XSLTransformer;
+import com.xml.organvlasti.rdf.FusekiReader;
 import com.xml.organvlasti.rdf.FusekiWriter;
 import com.xml.organvlasti.rdf.MetadataExtractor;
 import com.xml.organvlasti.repository.NoticeRepository;
-import com.xml.organvlasti.repository.RequestRepository;
 
 @Service()
 public class NoticeService {
@@ -169,5 +170,12 @@ public class NoticeService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public  ArrayList<Map<String, String>> search(Map<String, String> params) throws IOException {
+//		 Map<String, String> params = new HashMap();
+//	        params.put("ime", "asd");
+//	        params.put("prezime", "asd");
+		return FusekiReader.executeQuery(params, "src/main/resources/rdf/noticeQuery.rq");
 	}
 }
