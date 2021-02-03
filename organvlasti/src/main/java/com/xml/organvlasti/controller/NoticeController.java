@@ -157,7 +157,7 @@ public class NoticeController {
 	
 	@CrossOrigin
 	@PostMapping(value = "/napredna-pretraga")
-	public ResponseEntity<?> naprednaPretraga(@RequestParam("nazivOrgana") String nazivOrgana,
+	public ResponseEntity<NoticeListResponse> naprednaPretraga(@RequestParam("nazivOrgana") String nazivOrgana,
 			@RequestParam("sedisteOrgana") String sedisteOrgana, @RequestParam("ime") String ime,
 			@RequestParam("prezime") String prezime, @RequestParam("datum") String datum,
 			@RequestParam("brojPredmeta") String brojPredmeta) {
@@ -169,22 +169,22 @@ public class NoticeController {
 	params.put("prezime", prezime);
 	params.put("datum", datum);
 	params.put("broj_predmeta", brojPredmeta);
-	ArrayList<Map<String, String>> ret = null;
+	NoticeListResponse ret = null;
 	try {
 		ret = service.search(params);
 	} catch (IOException e) {
 		e.printStackTrace();
 		return new ResponseEntity(HttpStatus.BAD_REQUEST);
 	}
-	for (Map<String, String> map : ret) {
-		for (Map.Entry<String, String> entry : map.entrySet()) {
-			System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-		}
-		System.out.println("\n");
-	}
+//	for (Map<String, String> map : ret) {
+//		for (Map.Entry<String, String> entry : map.entrySet()) {
+//			System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+//		}
+//		System.out.println("\n");
+//	}
 	
 	
-	System.out.println(ret.size() + " OVO JE SIZE");
+//	System.out.println(ret.size() + " OVO JE SIZE");
 	return new ResponseEntity(ret, HttpStatus.OK);
 }
 	

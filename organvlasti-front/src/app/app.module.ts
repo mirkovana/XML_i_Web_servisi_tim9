@@ -42,7 +42,6 @@ import { DecisionAppealsComponent } from './components/decision-appeals/decision
 import { AddExplanationComponent } from './components/add-explanation/add-explanation.component';
 import { ResponsesComponent } from './components/responses/responses.component';
 import { ReportsComponent } from './components/reports/reports.component';
-import { NaprednaPretragaComponent } from './components/napredna-pretraga/napredna-pretraga.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 
@@ -65,7 +64,6 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     AddExplanationComponent,
     ResponsesComponent,
     ReportsComponent,
-    NaprednaPretragaComponent,
   ],
   imports: [
     BrowserModule,

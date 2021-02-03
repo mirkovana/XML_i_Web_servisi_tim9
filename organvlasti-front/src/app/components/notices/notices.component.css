@@ -1,0 +1,36 @@
+.novaForma {
+    margin: auto;
+    /* display: grid; */
+    margin: 10px;
+}
+
+.form-control {
+    width: 50%;
+}
+
+
+/* .novaForma {
+    display: grid;
+}
+
+.error {
+    color: red;
+}
+
+.btnDiv {
+    margin: 15px;
+}
+
+.input {
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+.stanica {
+    display: flex;
+}
+
+.tabela {
+    margin: 10px;
+    width: 70%;
+} */

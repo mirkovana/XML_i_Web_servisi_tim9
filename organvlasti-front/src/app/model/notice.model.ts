@@ -19,11 +19,11 @@ export interface NoticeItem {
 }
 
 
-export class Notice {
-    nazivOrgana: string;
-    sedisteOrgana: string;
-    imePodnosioca: string;
-    prezimePodnosioca: string;
-    broj_predmeta: string;
-    datum: string;
-}
+// export class Notice {
+//     nazivOrgana: string;
+//     sedisteOrgana: string;
+//     imePodnosioca: string;
+//     prezimePodnosioca: string;
+//     broj_predmeta: string;
+//     datum: string;
+// }

@@ -2,15 +2,11 @@
     <div class="col-md-12 pl-0 pr-0">
         <app-navigation-bar></app-navigation-bar>
     </div>
-    <div>
-        <a href="/napredna-pretraga">Napredna pretraga</a>
-    </div>
     <div class="row col-md-12">
         <div class="jumbotron col-md-10 ml-auto mr-auto bg-light shadow mt-2 float-left pt-3">
             <div class="row col-md-12 pl-5 pr-0">
                 <p *ngIf="isAdmin()" style="margin-right: 10px;">
-                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
-                        aria-expanded="false" aria-controls="collapseExample">
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                         Pretraga
                     </a>
                 </p>
@@ -18,8 +14,7 @@
                     <form [formGroup]="myForm" (ngSubmit)="submit()">
                         <div class="row">
                             <div class="col">
-                                <input formControlName="broj" type="text" class="form-control"
-                                    placeholder="Broj zahteva">
+                                <input formControlName="broj" type="text" class="form-control" placeholder="Broj zahteva">
                             </div>
                             <div class="col">
                                 <input formControlName="datum" type="text" class="form-control" placeholder="Datum">
@@ -33,38 +28,95 @@
                                 <input formControlName="prezime" type="text" class="form-control" placeholder="Prezime">
                             </div>
                             <div class="col">
-                                <input formControlName="nazivOrgana" type="text" class="form-control"
-                                    placeholder="Naziv organa vlasti">
+                                <input formControlName="nazivOrgana" type="text" class="form-control" placeholder="Naziv organa vlasti">
                             </div>
                             <div class="col">
                                 <input formControlName="sediste" type="text" class="form-control" placeholder="Sediste">
                             </div>
                             <div class="col">
                                 <div class="form-group float-right mt-3">
-                                    <button mat-raised-button color="primary" id="submit" type="submit"
-                                        class="btn btn-primary">Search</button>
+                                    <button mat-raised-button color="primary" id="submit" type="submit" class="btn btn-primary">Search</button>
                                 </div>
                             </div>
                         </div>
                     </form>
-                    <form [formGroup]="myForm1" (ngSubmit)="submit1()">
-                        <div class="form-group">
+                    <!-- <form [formGroup]="myForm1" (ngSubmit)="submit1()"> -->
+                    <!-- <div class="form-group">
                             <label for="exampleInputEmail1">Kljucne reci:</label>
                             <input formControlName="keywords" type="text" class="form-control"
                                 placeholder="Kljucne reci odvojene razmakom">
                             <button type="submit" class="btn btn-primary">Search</button>
+                        </div> -->
+
+                    <!-- </form> -->
+                    <h4>Napredna pretraga</h4>
+                    <form [formGroup]="naprednaPretraga" class="novaForma" (ngSubmit)="napredna()">
+
+                        <div class="form-group">
+                            <input formControlName="nazivOrgana" name="nazivOrgana" required class="form-control" placeholder="Naziv organa">
+                            <!-- <mat-error *ngIf=" naprednaPretraga.controls.nazivOrgana.hasError( 'required' ) " name="nazivOrganaReq" class="error">
+                                    Unesite naziv organa
+                                </mat-error> -->
+
                         </div>
+                        <div class="form-group">
+                            <input formControlName="sedisteOrgana" name="sedisteOrgana" required class="form-control" placeholder="Sediste organa">
+                            <!-- <mat-error *ngIf=" naprednaPretraga.controls.sedisteOrgana.hasError( 'required' ) " name="sedisteOrganaReq" class="error">
+                                    Unesite sediste organa
+                                </mat-error> -->
+
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="ime" name="ime" required class="form-control" placeholder="Ime podnosioca">
+                            <!-- <mat-error *ngIf=" naprednaPretraga.controls.ime.hasError( 'required' ) " name="imeReq" class="error">
+                                    Unesite ime
+                                </mat-error> -->
+
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="prezime" name="prezime" required class="form-control" placeholder="Prezime podnosioca">
+                            <!-- <mat-error *ngIf=" naprednaPretraga.controls.prezime.hasError( 'required' ) " name="prezimeReq" class="error">
+                                    Unesite prezime
+                                </mat-error> -->
+
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="datum" name="datum" required class="input" class="form-control" placeholder="Datum">
+                            <!-- <mat-error *ngIf=" naprednaPretraga.controls.datum.hasError( 'required' ) " name="datumReq" class="error">
+                                    Unesite datum
+                                </mat-error> -->
+
+                        </div>
+                        <div class="form-group">
+                            <input formControlName="brojPredmeta" name="brojPredmeta" required class="input" class="form-control" placeholder="Broj predmeta">
+                            <!-- <mat-error *ngIf=" naprednaPretraga.controls.brojPredmeta.hasError( 'required' ) " name=" brojPredmetaReq" class="error">
+                                    Unesite broj predmeta
+                                </mat-error> -->
+
+                        </div>
+
+
+                        <div class="form-group btnDiv">
+                            <button class="btn btn-primary" id="addOfferBtnnn">
+                                    <!-- [disabled]="!saveChangesEnabled()" -->
+                                    Pretrazi
+                                </button>
+                            <a routerLink="/home" class="btn btn-link">Cancel</a>
+                        </div>
+
+
+
                     </form>
                 </div>
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr class="text-center">
-                            <th>Broj</th>
+                            <th>Broj predmeta</th>
                             <th>Username</th>
                             <th>Datum</th>
                             <th>Institucija</th>
-                            <th>ImePodnosioca</th>
-                            <th>PrezimePodnosioca</th>
+                            <th>Ime podnosioca</th>
+                            <th>Prezime podnosioca</th>
                             <th>HTML</th>
                         </tr>
                     </thead>
