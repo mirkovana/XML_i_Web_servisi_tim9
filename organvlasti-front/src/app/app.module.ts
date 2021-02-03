@@ -46,6 +46,7 @@ import { NaprednaPretragaComponent } from './components/napredna-pretraga/napred
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { NaprednaPretragaDaComponent } from './components/napredna-pretraga-da/napredna-pretraga-da.component';
+import { NaprednaPretragaSaComponent } from './components/napredna-pretraga-sa/napredna-pretraga-sa.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { NaprednaPretragaDaComponent } from './components/napredna-pretraga-da/n
     ReportsComponent,
     NaprednaPretragaComponent,
     NaprednaPretragaDaComponent,
+    NaprednaPretragaSaComponent,
   ],
   imports: [
     BrowserModule,

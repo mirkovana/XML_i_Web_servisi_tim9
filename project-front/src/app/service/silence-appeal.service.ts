@@ -26,6 +26,21 @@ export class SilenceAppealService {
 
   constructor(private http: HttpClient) { }
 
+  naprednaPretraga(organVlasti: string, mesto: string, ime: string,
+    prezime: string, datum: string, broj: string) {
+
+    const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
+    const formData = new FormData();
+    formData.append('organVlasti', organVlasti);
+    formData.append('mesto', mesto);
+    formData.append('ime', ime);
+    formData.append('prezime', prezime);
+    formData.append('datum', datum);
+    formData.append('broj', broj);
+    console.log(localStorage.getItem("token"))
+    return this.http.post<any>(this.path + 'napredna-pretraga', formData, {headers: headers, });
+  }
+
   addSilenceAppeal(appeal: string, success: Function) {
     console.log("service add silence appeal = ");
     console.log(appeal);

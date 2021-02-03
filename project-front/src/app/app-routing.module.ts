@@ -11,6 +11,7 @@ import { DecisionAppealsComponent } from './components/decision-appeals/decision
 import { ResponsesComponent } from './components/responses/responses.component';
 import { ReportsComponent } from './components/reports/reports.component';
 import { NaprednaPretragaDaComponent } from './components/napredna-pretraga-da/napredna-pretraga-da.component';
+import { NaprednaPretragaSaComponent } from './components/napredna-pretraga-sa/napredna-pretraga-sa.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'responses', component: ResponsesComponent },
   { path: 'reports', component: ReportsComponent },
   { path: 'napredna-pretraga-da', component: NaprednaPretragaDaComponent },
+  { path: 'napredna-pretraga-sa', component: NaprednaPretragaSaComponent },
 ];
 
 @NgModule({
