@@ -216,6 +216,9 @@ public class NoticeService {
 	}
 
 
-	
+	public NoticeListResponse searchByKeywords(KeywordSearch s)
+			throws NumberFormatException, XMLDBException, JAXBException, SAXException {
+		return repository.searchByKeywords(s);
+	}
 
 }

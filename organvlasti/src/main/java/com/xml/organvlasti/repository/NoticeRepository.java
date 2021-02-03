@@ -173,5 +173,48 @@ public class NoticeRepository {
 		return notice;
 	}
 
-	
+	public NoticeListResponse searchByKeywords(KeywordSearch s) throws XMLDBException, JAXBException, SAXException {
+		NoticeListResponse ret = new NoticeListResponse();
+		
+		String[] keywords = s.getKeywords().split(" ");
+		
+		StringBuilder sb = new StringBuilder();
+		
+		for (int i = 0; i < keywords.length - 1; i++) {
+			sb.append("contains(.,'" + keywords[i] + "') and ");
+		}
+		
+		sb.append("contains(.,'" + keywords[keywords.length - 1] + "')");
+
+		// String QUERY = X_QUERY_FIND_ALL_BY_INFROMATION.replace("_", sb.toString());
+		String QUERY = String.format(X_QUERY_FIND_ALL_BY_CONTENT, sb.toString());
+
+		org.xmldb.api.base.Collection collection = dbManager.getCollection(collectionId);
+		XQueryService xQueryService = (XQueryService) collection.getService("XQueryService", "1.0");
+
+		CompiledExpression compiledExpression = xQueryService.compile(QUERY);
+		ResourceSet resourceSet = xQueryService.execute(compiledExpression);
+		ResourceIterator resourceIterator = resourceSet.getIterator();
+		
+		List<NoticeItem> itemsList = new ArrayList<>();
+		while (resourceIterator.hasMoreResources()) {
+			XMLResource xmlResource = (XMLResource) resourceIterator.nextResource();
+			Unmarshaller unmarshaller = JAXParser.createUnmarshaller(contextPath, schemaPath);
+			Obavestenje notice = (Obavestenje) unmarshaller.unmarshal(xmlResource.getContentAsDOM());
+
+			NoticeItem item = new NoticeItem();
+			item.setBroj(notice.getBroj());
+			item.setDatum(notice.getDatum());
+			item.setImePodnosioca(notice.getOpsteInformacije().getPodaciOPodnosiocu().getIme().getValue());
+			item.setPrezimePodnosioca(notice.getOpsteInformacije().getPodaciOPodnosiocu().getPrezime().getValue());
+			item.setIznos(Double.toString(notice.getTelo().getIznos()));
+			item.setNazivOrgana(notice.getOpsteInformacije().getPodaciOOrganu().getNaziv().getValue());
+			item.setOrganVlastiUsername(notice.getOrganVlastiUsername());
+			item.setSedisteOrgana(notice.getOpsteInformacije().getPodaciOOrganu().getSediste().getValue());
+			item.setUsername(notice.getUsername());
+			itemsList.add(item);
+		}
+		ret.setNoticeItem(itemsList);
+		return ret;
+	}
 }

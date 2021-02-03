@@ -2,23 +2,24 @@
     <div class="col-md-12 pl-0 pr-0">
         <app-navigation-bar></app-navigation-bar>
     </div>
-    <div class="row col-md-12">
+    <div class="prozor col-md-12">
         <div class="jumbotron col-md-10 ml-auto mr-auto bg-light shadow mt-2 float-left pt-3">
             <div class="row col-md-12 pl-5 pr-0">
+
+                <form [formGroup]="myForm1" (ngSubmit)="submit1()">
+                    <div class="form-group">
+                        <label>Unesite kljucne reci odvojene razmakom</label>
+                        <input formControlName="keywords" type="text" class="form-control" placeholder="Pretraga">
+                        <button mat-raised-button color="primary" id="submit" type="submit" class="btn btn-primary dugme">Pretrazi</button>
+                        <button mat-raised-button color="primary" id="submit" type="submit" class="btn btn-primary dugme1" (click)="ngOnInit()">Reset</button>
+                    </div>
+                </form>
                 <p *ngIf="isAdmin()" style="margin-right: 10px;">
                     <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        Pretraga
+                        Napredna pretraga
                     </a>
                 </p>
-
                 <div *ngIf="isAdmin()" class="collapse" id="collapseExample" style="margin-bottom: 10px;">
-                    <form [formGroup]="myForm" (ngSubmit)="submit1()">
-                        <div class="form-group">
-                            <input formControlName="keywords" type="text" class="form-control" placeholder="keywords">
-                            <button mat-raised-button color="primary" id="submit" type="submit" class="btn btn-primary">Pretrazi</button>
-                        </div>
-                    </form>
-
                     <h4>Napredna pretraga</h4>
                     <form [formGroup]="naprednaPretraga" class="novaForma" (ngSubmit)="napredna()">
 
@@ -67,10 +68,11 @@
 
 
                         <div class="form-group btnDiv">
-                            <button class="btn btn-primary" id="addOfferBtnnn">
+                            <button class="btn btn-primary dugme" id="addOfferBtnnn">
                                 <!-- [disabled]="!saveChangesEnabled()" -->
                                 Pretrazi
                             </button>
+                            <button class="btn btn-primary dugme1" (click)="ngOnInit()">Reset</button>
                         </div>
 
 

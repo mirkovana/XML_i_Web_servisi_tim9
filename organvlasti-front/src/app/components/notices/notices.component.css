@@ -13,3 +13,18 @@
     width: 100%;
     display: inline-block;
 }
+
+.dugme {
+    margin: 2px;
+}
+
+.dugme1 {
+    margin: 2px;
+    background-color: crimson;
+}
+
+.prozor {
+    margin: auto;
+    width: 100%;
+    display: flex;
+}

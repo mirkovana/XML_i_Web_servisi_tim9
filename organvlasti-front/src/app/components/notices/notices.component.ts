@@ -23,14 +23,23 @@ export class NoticesComponent implements OnInit {
   brojPredmeta: string = '';
 
   myForm = new FormGroup({
+    broj: new FormControl(''),
+    datum: new FormControl(''),
+    ime: new FormControl(''),
+    prezime: new FormControl(''),
+    nazivOrgana: new FormControl(''),
+    sediste: new FormControl(''),
+  });
+
+  myForm1 = new FormGroup({
     keywords: new FormControl(''),
   });
 
   constructor(private service: NoticeService,
-    private formBuilder: FormBuilder,
-    private userService: UserService,
-    private noticeService: NoticeService,
-    private router: Router) { }
+              private formBuilder: FormBuilder,
+              private userService: UserService,
+              private noticeService: NoticeService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.naprednaPretraga = this.formBuilder.group({
@@ -43,21 +52,22 @@ export class NoticesComponent implements OnInit {
     })
     console.log("get requests");
     this.getNotices();
+    this.myForm1.get("keywords").reset();
   }
 
-  getNotices() {
-    if (this.userService.isUser()) {
+  getNotices(){
+    if(this.userService.isUser()){
       console.log("isUser");
-      this.service.getNoticesForUser(this.getUsername()).subscribe((data: NoticeItem[]) => {
+      this.service.getNoticesForUser(this.getUsername()).subscribe((data: NoticeItem[])  => {
         console.log("success");
         console.log(data);
         this.notices = data;
       }, error => {
         console.log(error);
       });
-    } else if (this.userService.isAdmin()) {
+    }else if(this.userService.isAdmin()){
       console.log("isAdmin");
-      this.service.getNotices().subscribe((data: NoticeItem[]) => {
+      this.service.getNotices().subscribe((data: NoticeItem[])  => {
         console.log(data);
         this.notices = data;
       }, error => {
@@ -67,38 +77,82 @@ export class NoticesComponent implements OnInit {
   }
 
   submit1() {
-    console.log("form = ", this.myForm.value.keywords);
+    console.log("form = ",  this.myForm1.value);
+    if(this.myForm1.value.keywords==""){
+      this.getNotices();
+      return;
+    }
+    let xml = `<?xml version="1.0" encoding="UTF-8"?>
+    <keywordSearch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <keywords>`+this.myForm1.value.keywords+`</keywords>
+    </keywordSearch>`;
 
-  }
-
-  napredna() {
-    this.noticeService.naprednaPretraga(
-      this.naprednaPretraga.get("nazivOrgana").value,
-      this.naprednaPretraga.get("sedisteOrgana").value,
-      this.naprednaPretraga.get("ime").value,
-      this.naprednaPretraga.get("prezime").value,
-      this.naprednaPretraga.get("datum").value,
-      this.naprednaPretraga.get("brojPredmeta").value
-    ).subscribe(data => {
-      console.log(data);
+    this.service.searchByKeywords(xml).subscribe((data: any)  => {
+      console.log("data = ", data);
       this.notices = data;
-      for (let index = 0; index < data.length; index++) {
-        let ob: NoticeItem = data[index];
-        console.log(ob);
-
-      }
+    }, error => {
+      console.log(error);
     });
+
   }
 
-  isUser() {
+  napredna(){
+    this.noticeService.naprednaPretraga(
+      this.naprednaPretraga.get("nazivOrgana").value, 
+      this.naprednaPretraga.get("sedisteOrgana").value,
+      this.naprednaPretraga.get("ime").value, 
+      this.naprednaPretraga.get("prezime").value, 
+      this.naprednaPretraga.get("datum").value, 
+      this.naprednaPretraga.get("brojPredmeta").value
+      ).subscribe(data=>{
+        console.log(data);
+        this.notices = data;
+        for (let index = 0; index < data.length; index++) {
+         let ob:NoticeItem = data[index];
+         console.log(ob);
+          
+        }
+      });
+  }
+  
+  // submit() {
+  //   console.log("form = ",  this.myForm.value);
+  //   if(this.myForm.value.broj=="" 
+  //   && this.myForm.value.datum==""
+  //   && this.myForm.value.ime==""
+  //   && this.myForm.value.prezime==""
+  //   && this.myForm.value.nazivOrgana==""
+  //   && this.myForm.value.sediste==""){
+  //     this.getNotices();
+  //     return;
+  //   }
+  //   let xml = `<?xml version="1.0" encoding="UTF-8"?>
+  //   <obavestenjeSearch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  //       <brojPredmeta>`+this.myForm.value.broj+`</brojPredmeta>
+  //       <datum>`+this.myForm.value.datum+`</datum>
+  //       <ime>`+this.myForm.value.ime+`</ime>
+  //       <prezime>`+this.myForm.value.prezime+`</prezime>
+  //       <nazivOrgana>`+this.myForm.value.nazivOrgana+`</nazivOrgana>
+  //       <sedisteOrgana>`+this.myForm.value.sediste+`</sedisteOrgana>
+  //   </obavestenjeSearch>`;
+
+  //   this.service.searchByMetadata(xml).subscribe((data: any)  => {
+  //     console.log("data = ", data);
+  //     this.notices = data;
+  //   }, error => {
+  //     console.log(error);
+  //   });
+  // }
+
+  isUser(){
     return this.userService.isUser();
   }
-
-  isAdmin() {
+  
+  isAdmin(){
     return this.userService.isAdmin();
   }
 
-  getUsername() {
+  getUsername(){
     return this.userService.getUsername();
   }
 }
