@@ -113,35 +113,6 @@ export class NoticesComponent implements OnInit {
         }
       });
   }
-  
-  submit() {
-    console.log("form = ",  this.myForm.value);
-    if(this.myForm.value.broj=="" 
-    && this.myForm.value.datum==""
-    && this.myForm.value.ime==""
-    && this.myForm.value.prezime==""
-    && this.myForm.value.nazivOrgana==""
-    && this.myForm.value.sediste==""){
-      this.getNotices();
-      return;
-    }
-    let xml = `<?xml version="1.0" encoding="UTF-8"?>
-    <obavestenjeSearch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <brojPredmeta>`+this.myForm.value.broj+`</brojPredmeta>
-        <datum>`+this.myForm.value.datum+`</datum>
-        <ime>`+this.myForm.value.ime+`</ime>
-        <prezime>`+this.myForm.value.prezime+`</prezime>
-        <nazivOrgana>`+this.myForm.value.nazivOrgana+`</nazivOrgana>
-        <sedisteOrgana>`+this.myForm.value.sediste+`</sedisteOrgana>
-    </obavestenjeSearch>`;
-
-    this.service.searchByMetadata(xml).subscribe((data: any)  => {
-      console.log("data = ", data);
-      this.notices = data;
-    }, error => {
-      console.log(error);
-    });
-  }
 
   isUser(){
     return this.userService.isUser();

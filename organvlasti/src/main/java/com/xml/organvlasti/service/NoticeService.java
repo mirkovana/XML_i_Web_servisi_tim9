@@ -218,46 +218,6 @@ public class NoticeService {
 		
 	}
 
-	public NoticeListResponse searchByMetadata(Map<String, String> params) throws IOException {
-		System.out.println("service executeQuerry!");
-		ArrayList<Map<String, String>> result = FusekiReader.executeQuery(params, FusekiReader.NOTICE_QUERY_FILEPATH);
-		System.out.println("return result querry!");
-		ArrayList<String> brojList = new ArrayList<>();
-		for (Map<String, String> map : result) {
-			String obavestenje = map.get("obavestenje");
-			String[] split = obavestenje.split("\\/");
-			brojList.add(split[split.length - 1]);
-			/*
-			 * System.out.println("map = "); for(String key : map.keySet()) {
-			 * System.out.println("ket = " + key + " value = " + map.get(key)); }
-			 * System.out.println();
-			 */
-		}
-		NoticeListResponse response = new NoticeListResponse();
-		List<NoticeItem> itemsList = new ArrayList<>();
-
-		for (String broj : brojList) {
-			Obavestenje notice = repository.findNoticeByIdMarshall(broj);
-			if (notice == null) {
-				continue;
-			}
-
-			NoticeItem item = new NoticeItem();
-			item.setBroj(notice.getBroj());
-			item.setDatum(notice.getDatum());
-			item.setImePodnosioca(notice.getOpsteInformacije().getPodaciOPodnosiocu().getIme().getValue());
-			item.setPrezimePodnosioca(notice.getOpsteInformacije().getPodaciOPodnosiocu().getPrezime().getValue());
-			item.setIznos(Double.toString(notice.getTelo().getIznos()));
-			item.setNazivOrgana(notice.getOpsteInformacije().getPodaciOOrganu().getNaziv().getValue());
-			item.setOrganVlastiUsername(notice.getOrganVlastiUsername());
-			item.setSedisteOrgana(notice.getOpsteInformacije().getPodaciOOrganu().getSediste().getValue());
-			item.setUsername(notice.getUsername());
-			itemsList.add(item);
-		}
-		response.setNoticeItem(itemsList);
-		System.out.println("find all notice response = " + response);
-		return response;
-	}
 
 	public NoticeListResponse searchByKeywords(KeywordSearch s)
 			throws NumberFormatException, XMLDBException, JAXBException, SAXException {
