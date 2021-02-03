@@ -10,6 +10,7 @@ import { SilenceAppealsComponent } from './components/silence-appeals/silence-ap
 import { DecisionAppealsComponent } from './components/decision-appeals/decision-appeals.component';
 import { ResponsesComponent } from './components/responses/responses.component';
 import { ReportsComponent } from './components/reports/reports.component';
+import { NaprednaPretragaDaComponent } from './components/napredna-pretraga-da/napredna-pretraga-da.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'silence-appeals', component: SilenceAppealsComponent },
   { path: 'responses', component: ResponsesComponent },
   { path: 'reports', component: ReportsComponent },
+  { path: 'napredna-pretraga-da', component: NaprednaPretragaDaComponent },
 ];
 
 @NgModule({

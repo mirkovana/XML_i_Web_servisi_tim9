@@ -1,0 +1,125 @@
+<app-navigation-bar></app-navigation-bar>
+<div class="stanica">
+    <form [formGroup]="naprednaPretraga" class="novaForma" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <mat-form-field>
+                <label>Naziv organa</label>
+                <input matInput formControlName="organVlasti" name="organVlasti" required class="input">
+                <!-- <mat-error *ngIf=" naprednaPretraga.controls.nazivOrgana.hasError( 'required' ) " name="nazivOrganaReq" class="error">
+                Unesite naziv organa
+            </mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <label>Broj predemta</label>
+                <input matInput formControlName="broj" name="broj" required class="input">
+                <!-- <mat-error *ngIf=" naprednaPretraga.controls.sedisteOrgana.hasError( 'required' ) " name="sedisteOrganaReq" class="error">
+                Unesite sediste organa
+            </mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <label>Ime</label>
+                <input matInput formControlName="ime" name="ime" required class="input">
+                <!-- <mat-error *ngIf=" naprednaPretraga.controls.ime.hasError( 'required' ) " name="imeReq" class="error">
+                Unesite ime
+            </mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <label>Prezime</label>
+                <input matInput formControlName="prezime" name="prezime" required class="input">
+                <!-- <mat-error *ngIf=" naprednaPretraga.controls.prezime.hasError( 'required' ) " name="prezimeReq" class="error">
+                Unesite prezime
+            </mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <label>Mesto</label>
+                <input matInput formControlName="mesto" name="mesto" required class="input">
+                <!-- <mat-error *ngIf=" naprednaPretraga.controls.datum.hasError( 'required' ) " name="datumReq" class="error">
+                Unesite datum
+            </mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <label>Datum</label>
+                <input matInput formControlName="datum" name="datum" required class="input">
+                <!-- <mat-error *ngIf=" naprednaPretraga.controls.brojPredmeta.hasError( 'required' ) " name=" brojPredmetaReq" class="error">
+                Unesite broj predmeta
+            </mat-error> -->
+            </mat-form-field>
+        </div>
+
+
+        <div class="form-group btnDiv">
+            <button class="btn btn-primary" id="addOfferBtnnn">
+                <!-- [disabled]="!saveChangesEnabled()" -->
+                Pretrazi
+            </button>
+            <a routerLink="/home" class="btn btn-link">Cancel</a>
+        </div>
+
+
+
+    </form>
+
+    <table class="tabela table table-bordered table-hover" border="1">
+        <tr class="text-center">
+            <td>
+                Broj predmeta
+            </td>
+            <td>
+                Ime podnosioca
+            </td>
+            <td>
+                Prezime podnosioca
+            </td>
+            <td>
+                Naziv organa
+            </td>
+           
+            <td>
+                Mesto
+            </td>
+            <td>
+                Datum
+            </td>
+            <td>
+                HTML
+            </td>
+
+        </tr>
+        <tr *ngFor="let zalba of zalbe" class="text-center">
+            <td>
+                {{zalba.broj}}
+            </td>
+            <td>
+                {{zalba.ime}}
+            </td>
+            <td>
+                {{zalba.prezime}}
+            </td>
+            <td>
+                {{zalba.organVlasti}}
+            </td>
+            <td>
+                {{zalba.mesto}}
+            </td>
+            <td>
+                {{zalba.datum}}
+            </td>
+            <td>
+                <a href="http://localhost:8070/api/decision-appeals/html/{{zalba.broj}}" target="_blank">html</a><br>
+                <a href="http://localhost:8070/api/decision-appeals/pdf/{{zalba.broj}}">pdf</a><br>
+            </td>
+        </tr>
+
+    </table>
+</div>

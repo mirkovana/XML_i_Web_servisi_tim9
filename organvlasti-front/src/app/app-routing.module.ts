@@ -16,6 +16,7 @@ import { AddExplanationComponent } from './components/add-explanation/add-explan
 import { ResponsesComponent } from './components/responses/responses.component';
 import { ReportsComponent } from './components/reports/reports.component';
 import { NaprednaPretragaComponent } from './components/napredna-pretraga/napredna-pretraga.component';
+import { NaprednaPretragaDaComponent } from './components/napredna-pretraga-da/napredna-pretraga-da.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'responses', component: ResponsesComponent },
   { path: 'reports', component: ReportsComponent },
   { path: 'napredna-pretraga', component: NaprednaPretragaComponent },
+  { path: 'napredna-pretraga-da', component: NaprednaPretragaDaComponent },
 ];
 
 @NgModule({

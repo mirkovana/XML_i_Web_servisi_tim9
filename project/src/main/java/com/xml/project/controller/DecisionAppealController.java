@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
@@ -245,4 +247,39 @@ public class DecisionAppealController {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	@CrossOrigin
+	@PostMapping(value = "/napredna-pretraga")
+	public ResponseEntity<?> naprednaPretraga(@RequestParam("organVlasti") String organVlasti,
+			@RequestParam("mesto") String mesto, @RequestParam("ime") String ime,
+			@RequestParam("prezime") String prezime, @RequestParam("datum") String datum,
+			@RequestParam("broj") String broj) {
+		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("organVlasti", organVlasti);
+		params.put("mesto", mesto);
+	params.put("ime", ime);
+	params.put("prezime", prezime);
+	params.put("datum", datum);
+	params.put("broj", broj);
+	ArrayList<Map<String, String>> ret = null;
+	try {
+		ret = service.search(params);
+	} catch (IOException e) {
+		e.printStackTrace();
+		return new ResponseEntity(HttpStatus.BAD_REQUEST);
+	}
+	for (Map<String, String> map : ret) {
+		for (Map.Entry<String, String> entry : map.entrySet()) {
+			System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+		}
+		System.out.println("\n");
+	}
+	
+	
+	System.out.println(ret.size() + " OVO JE SIZE");
+	return new ResponseEntity(ret, HttpStatus.OK);
+}
+
 }

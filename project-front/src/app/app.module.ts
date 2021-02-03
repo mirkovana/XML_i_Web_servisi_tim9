@@ -37,6 +37,9 @@ import { DecisionAppealsComponent } from './components/decision-appeals/decision
 import { SilenceAppealsComponent } from './components/silence-appeals/silence-appeals.component';
 import { ResponsesComponent } from './components/responses/responses.component';
 import { ReportsComponent } from './components/reports/reports.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { NaprednaPretragaDaComponent } from './components/napredna-pretraga-da/napredna-pretraga-da.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +55,7 @@ import { ReportsComponent } from './components/reports/reports.component';
     SilenceAppealsComponent,
     ResponsesComponent,
     ReportsComponent,
+    NaprednaPretragaDaComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,7 +83,9 @@ import { ReportsComponent } from './components/reports/reports.component';
     MatMenuModule,
     MatListModule,
     MatExpansionModule,
-    MatCardModule
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -198,4 +198,11 @@ public class DecisionAppealService {
 	public DAppealListResponse searchByKeywords(KeywordSearch s) throws XMLDBException, JAXBException, SAXException {
 		return repository.searchByKeywords(s);
 	}
+	
+	public  ArrayList<Map<String, String>> search(Map<String, String> params) throws IOException {
+//		 Map<String, String> params = new HashMap();
+//	        params.put("ime", "asd");
+//	        params.put("prezime", "asd");
+		return FusekiReader.executeQuery(params, "src/main/resources/rdf/decisionAppealQuery.rq");
+		}
 }
