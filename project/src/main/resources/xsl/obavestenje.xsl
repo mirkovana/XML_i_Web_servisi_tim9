@@ -82,16 +82,16 @@
                     po vašem zahtevu za slobodan pristup informacijama od
                     <xsl:value-of select="ob:obavestenje/ob:telo/ob:godina" /> god., kojim ste tražili uvid u dokument/e sa
                     informacijama o / u vezi sa:
-                    <xsl:value-of select="obavestenje/telo/opis" /> obaveštavamo vas da dana
+                    <xsl:value-of select="ob:obavestenje/ob:telo/ob:opis" /> obaveštavamo vas da dana
                     <xsl:value-of select="ob:obavestenje/ob:telo/ob:datum" />
                     časova, odnosno u vremenu od
                     <xsl:variable name="od"  select="ob:obavestenje/ob:telo/ob:od" />
-                    <xsl:variable name="odNovo"  select=" substring($od, 1, 5)" />
+                    <xsl:variable name="odNovo"  select="substring($od, 1, 5)" />
                     <xsl:value-of select="$odNovo"/>
                     do
                     <!-- <xsl:value-of select="obavestenje/telo/do" /> -->
                     <xsl:variable name="do"  select="ob:obavestenje/ob:telo/ob:do" />
-                    <xsl:variable name="doNovo"  select=" substring($do, 1, 5)" />
+                    <xsl:variable name="doNovo"  select="substring($do, 1, 5)" />
                     <xsl:value-of select="$doNovo"/>
                     časova, u prostorijama organa u
                     <xsl:value-of select="ob:obavestenje/ob:telo/ob:adresa_organa/ob:naziv_ulice" /> br.

@@ -97,8 +97,8 @@ public class DecisionAppealService {
 		repository.deleteAppeal(broj);
 		repository.save(xmlString, broj);
 		
-		metadataExtractor.extractMetadata(xmlString, MetadataExtractor.DECISION_APPEAL_RDF_FILE);
-		FusekiWriter.saveRDF(FusekiWriter.DECISION_APPEAL_RDF_FILEPATH, FusekiWriter.DECISION_APPEAL_METADATA_GRAPH_URI);
+		//metadataExtractor.extractMetadata(xmlString, MetadataExtractor.DECISION_APPEAL_RDF_FILE);
+		//FusekiWriter.saveRDF(FusekiWriter.DECISION_APPEAL_RDF_FILEPATH, FusekiWriter.DECISION_APPEAL_METADATA_GRAPH_URI);
 	}
 	
 }

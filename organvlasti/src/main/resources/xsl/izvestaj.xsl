@@ -45,6 +45,10 @@
                 <xsl:value-of select="izvestaj/@datum/." />
             </p>
             <p class="indent">
+                Sluzbenik:
+                <xsl:value-of select="izvestaj/@user/." />
+            </p>
+            <p class="indent">
                 <b>1.Zahtevi:</b>
                 <table class="center">
                     <thead>

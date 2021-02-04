@@ -95,14 +95,6 @@ public class RequestController {
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
 	
-	/*@GetMapping(value = "/pdf/{broj}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-	public ResponseEntity<Object> getPdf(@PathVariable("broj") String broj) throws Exception {
-		Resource resource = service.getPdf(broj);
-		return ResponseEntity.ok().contentType(MediaType.APPLICATION_OCTET_STREAM)
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-				.body(resource);
-	}*/
-	
 	@RequestMapping(path = "/pdf/{broj}")
     public ResponseEntity<?> getPDF(@PathVariable("broj") String broj, HttpServletRequest request, HttpServletResponse response) throws IOException {
         /* extract output as bytes */

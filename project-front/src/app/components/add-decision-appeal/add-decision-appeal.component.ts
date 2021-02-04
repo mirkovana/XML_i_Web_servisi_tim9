@@ -21,6 +21,7 @@ export class AddDecisionAppealComponent implements OnInit {
     if (!file) {
       return;
     }
+    this.broj = file.name.split(".")[0];
     const reader = new FileReader();
     reader.onload = (evt) => {
       const xmlData: string = (evt as any).target.result;

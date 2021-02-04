@@ -19,6 +19,7 @@ import org.xmldb.api.base.XMLDBException;
 
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
+import com.xml.organvlasti.model.TUser;
 import com.xml.organvlasti.model.decisionAppealResponse.DAppealListResponse;
 import com.xml.organvlasti.model.report.Izvestaj;
 import com.xml.organvlasti.model.report.Izvestaj.Zahtevi;
@@ -30,6 +31,7 @@ import com.xml.organvlasti.model.zahtevResponse.RequestListResponse.RequestItem;
 import com.xml.organvlasti.parser.JAXParser;
 import com.xml.organvlasti.parser.XSLTransformer;
 import com.xml.organvlasti.repository.ReportRepository;
+import com.xml.organvlasti.repository.UserRepository;
 
 @Service()
 public class ReportService {
@@ -47,16 +49,21 @@ public class ReportService {
 	@Autowired
 	private SilenceAppealService sAppealService;
 	@Autowired
+	private UserRepository userRepository;
+	@Autowired
 	private XSLTransformer xslTransformer;
 	
-	public String generateReport() throws XMLDBException, ParserConfigurationException, SAXException, IOException, JAXBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+	public String generateReport(String username) throws XMLDBException, ParserConfigurationException, SAXException, IOException, JAXBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 		System.out.println("generatereport service");
-
+		
 		RequestListResponse requests = requestService.getAll();
 		DAppealListResponse dAppeals = dAppealService.getAll();
 		SAppealListResponse sAppeals = sAppealService.getAll();
+		TUser user = userRepository.findOneByUsername(username);
 		
 		Izvestaj izvestaj = new Izvestaj();
+		
+		izvestaj.setUser(user.getFirstName() + " " + user.getLastName());
 		
 		Zahtevi zahtevi = new Zahtevi();
 		zahtevi.setBrojPodnetih(requests.getRequestItem().size());

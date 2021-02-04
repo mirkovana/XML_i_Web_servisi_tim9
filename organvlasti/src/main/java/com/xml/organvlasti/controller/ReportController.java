@@ -46,12 +46,12 @@ public class ReportController {
 		return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/generate")
+	@GetMapping(value = "/generate/{username}")
 	@CrossOrigin
-	public ResponseEntity<HttpStatus> generateReport(){
+	public ResponseEntity<HttpStatus> generateReport(@PathVariable("broj") String username){
 		System.out.println("generatereportcontroller");
 		try {
-			String izvestaj = service.generateReport();
+			String izvestaj = service.generateReport(username);
 			sendReportSoap(izvestaj);
 		} catch (XMLDBException e) {
 			e.printStackTrace();

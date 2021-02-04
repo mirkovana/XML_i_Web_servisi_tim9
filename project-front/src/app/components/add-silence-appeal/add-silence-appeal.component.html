@@ -4,7 +4,7 @@
     </div>
     <div class="jumbotron bg-light col-md-10 ml-auto mr-auto mt-3 pt-5">
         <div class="form-group">
-            <label for="file">Choose request file</label>
+            <label for="file">Upload fajl zahteva:</label>
             <input type="file" id="file-input" (change)="readFile($event)" />
         </div>
         
@@ -35,7 +35,7 @@
             <u><input [(ngModel)]="datumPodnosenja" type="text" placeholder="Datum"></u>
             godine, a kojim sam tražio/la da mi se u skladu sa Zakona o slobodnom pristupu informacijama od javnog značaja
             omogući uvid- kopija dokumenta koji sadrži informacije o /u vezi sa zahtevom broj:
-            <input [(ngModel)]="broj" type="text" />
+            <input [(ngModel)]="broj" type="text" disabled/>
             <br>
             <textarea [(ngModel)]="podaciOInformaciji" placeholder="Podaci o informaciji"></textarea>
             <p class="indent">

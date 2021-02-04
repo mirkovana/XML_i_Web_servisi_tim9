@@ -28,7 +28,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
         </style>
   </head>
   <body>
-   	  <p class="center"><b>ŽALBA KADA ORGAN VLASTI NIJE POSTUPIO/ nije postupio u celosti/ PO ZAHTEVU<br></br>TRAŽIOCA U ZAKONSKOM ROKU (ĆUTANjE UPRAVE)</b></p>
+   	  <p class="center"><b>ŽALBA KADA ORGAN VLASTI NIJE POSTUPIO/ NIJE POSTUPIO U CELOSTI / PO ZAHTEVU<br></br>TRAŽIOCA U ZAKONSKOM ROKU (ĆUTANjE UPRAVE)</b></p>
 	  <p><b>Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti</b></p>
 	  <p>Adesa za postu: Beograd, Bulevara kralja Aleksandra br.15</p>
 	  <br></br>

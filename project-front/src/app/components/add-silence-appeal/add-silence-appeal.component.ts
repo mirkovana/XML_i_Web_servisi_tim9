@@ -17,18 +17,20 @@ export class AddSilenceAppealComponent implements OnInit {
   requestXmlFile: string;
 
   readFile = (e) => {
+    console.log("e = ", e);
     const file = e.target.files[0];
     if (!file) {
       return;
     }
+    this.broj = file.name.split(".")[0];
     const reader = new FileReader();
     reader.onload = (evt) => {
       const xmlData: string = (evt as any).target.result;
-      console.log("xmldata = ", xmlData);
+      //console.log("xmldata = ", xmlData);
       this.requestXmlFile = xmlData;
     };
     reader.readAsText(file);
-    console.log("reader = ", reader.readAsText(file));
+    //console.log("reader = ", reader.readAsText(file));
   }
 
   nazivOrgana: string;
