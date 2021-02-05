@@ -35,9 +35,9 @@
             <p class="center">(navesti naziv organa)</p>
             <p class="center">zbog toga sto organ vlasti nije:</p>
             <div class="center">
-                <input value="{{option1}}" type="checkbox" />nije postupio /
-                <input value="{{option2}}" type="checkbox" />nije postupio u celosti /
-                <input value="{{option3}}" type="checkbox" />u zakonskom roku
+                <input value="nije postupio" (change)="prvi($event)" type="checkbox"  />nije postupio /
+                <input value="nije postupio u celosti" (change)="drugi($event)" type="checkbox"  />nije postupio u celosti /
+                <input value="u zakonskom roku" (change)="treci($event)" type="checkbox"  />u zakonskom roku
                 <p class="center">(podvuci zbog cega se izjavljuje zalba)</p>
             </div>
             <table>

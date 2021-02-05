@@ -35,9 +35,9 @@ export class AddSilenceAppealComponent implements OnInit {
   }
 
   nazivOrgana: string ='';
-  option1: string;
-  option2: string;
-  option3: string;
+  option1: string ='nije postupio';
+  option2:string  ='nije postupio u celosti';
+  option3:string  ='u zakonskom roku';
   datumPodnosenja: string ='';
   broj: string;
   podaciOInformaciji: string ='';
@@ -50,10 +50,12 @@ export class AddSilenceAppealComponent implements OnInit {
   drugiPodaci: string ='';
   mesto: string ='';
   dana: string ='';
-
+  checked1: boolean = false;
+  checked2: boolean = false;
+  checked3: boolean = false;
   myForm: FormGroup;
   submitted = false;
-
+ 
   constructor(private service: SilenceAppealService,
     private requestService: RequestService,
     private router: Router,
@@ -82,24 +84,48 @@ export class AddSilenceAppealComponent implements OnInit {
       dana:  new FormControl('', [Validators.required, Validators.pattern(/^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\.\s*$/)])
     });
   }
-
+  prvi(event) {
+    if ( event.target.checked ) {
+        this.checked1 = true;
+   }}
+   drugi(event) {
+    if ( event.target.checked ) {
+        this.checked2 = true;
+   }}
+   treci(event) {
+    if ( event.target.checked ) {
+        this.checked3 = true;
+   }
+}
   sendFile() {
     this.submitted = true;
-    // this.cd.detectChanges();
+    
+    // this.cd.detectChanges(); 
+
+    console.log("AAAAAA" + this.checked1 + "   " + this.checked2 + "    " + this.checked3)
     if (this.myForm.invalid) {
       return;
     }
-    console.log("sendFile");
-    if(this.option1 == undefined){
+
+    if(this.checked1 == false){
       this.option1 = 'false';
     }
-    if(this.option2 == undefined){
+    else{
+      this.option1='true';
+    }
+    if(this.checked2 == false){
       this.option2 = 'false';
     }
-    if(this.option3 == undefined){
+    else{
+      this.option2='true';
+    }
+    if(this.checked3 == false){
       this.option3 = 'false';
     }
-
+    else{
+      this.option3='true';
+    }
+    console.log("EEEEEEEEEE" + this.option1 + "   " + this.option2 + "    " + this.option3)
     let xmlSpec: string = `<?xml version="1.0" encoding="UTF-8"?>
     <zc:zalba_cutanje 
       xmlns="http://www.projekat.org/zalbazbogcutanja"
@@ -128,7 +154,7 @@ export class AddSilenceAppealComponent implements OnInit {
       <zc:podaci_o_podnosiocu_zalbe>
         <zc:adresa>
           <zc:grad>`+ this.myForm.controls.grad.value +`</zc:grad>
-          <zc:ulica>`+ this.myForm.controls.ulic.value +`</zc:ulica>
+          <zc:ulica>`+ this.myForm.controls.ulica.value +`</zc:ulica>
           <zc:broj>`+ this.myForm.controls.br.value +`</zc:broj>
         </zc:adresa>
         <zc:ime xmlns:zc ="http://www.projekat.org/zalbazbogcutanja" property="pred:ime">`+ this.myForm.controls.ime.value +`</zc:ime>
@@ -142,7 +168,7 @@ export class AddSilenceAppealComponent implements OnInit {
       </zc:podaci_o_mestu_i_datumu_podnosenja_zalbe>
     </zc:zalba_cutanje>`;
 
-    console.log(xmlSpec);
+    
    
     if (this.requestXmlFile != undefined) {
       this.requestService.addDeniedRequest(this.requestXmlFile, () => {
