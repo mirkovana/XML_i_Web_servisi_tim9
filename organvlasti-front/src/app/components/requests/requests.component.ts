@@ -125,7 +125,6 @@ export class RequestsComponent implements OnInit {
       console.log("request denied");
       this.getRequests();
     }, error => {
-      //TODO ovde nekako uvek baca gresku iako je promena zahteva u bazi uspesna
       this.getRequests();
       console.log(error);
     });

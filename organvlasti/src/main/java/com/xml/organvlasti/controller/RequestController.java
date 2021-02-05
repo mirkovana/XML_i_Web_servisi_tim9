@@ -53,10 +53,17 @@ public class RequestController {
 	
 	@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
-	public ResponseEntity saveRequestXML(@RequestBody String xmlString) throws Exception {
+	public ResponseEntity saveRequestXML(@RequestBody String xmlString) {
 		System.out.println("controller saveRequest as xml= ");
-		service.save(xmlString);
-		return new ResponseEntity(HttpStatus.OK);
+		try {
+			service.save(xmlString);
+			return new ResponseEntity(HttpStatus.OK);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| ParserConfigurationException | SAXException | IOException | TransformerException
+				| XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+		}		
 	}
 	
 	@GetMapping(value = "/all", produces = MediaType.TEXT_XML_VALUE)

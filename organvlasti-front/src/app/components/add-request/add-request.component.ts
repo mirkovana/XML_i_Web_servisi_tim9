@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { XonomyModel } from "../../model/xonomy.model";
 import { RequestService } from '../../service/request.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RequestDTO } from "../../model/request.model";
+import Swal from "sweetalert2";
 
 declare const Xonomy: any;
 @Component({
@@ -11,8 +10,8 @@ declare const Xonomy: any;
   styleUrls: ['./add-request.component.css']
 })
 export class AddRequestComponent implements OnInit {
-  nazivOrgana: string;
-  sedisteOrgana: string;
+  nazivOrgana: string = "";
+  sedisteOrgana: string = "";
   option1: string;
   option2: string;
   option3: string;
@@ -22,14 +21,14 @@ export class AddRequestComponent implements OnInit {
   option7: string;
   option8: string;
   drugiNacin: string;
-  informacije: string;
-  mesto: string;
-  datum: string;
-  ime: string;
-  prezime: string;
-  adresa: string;
-  drugiPodaci: string;  
-  potpis: string;
+  informacije: string = "";
+  mesto: string = "";
+  datum: string = "";
+  ime: string = "";
+  prezime: string = "";
+  adresa: string = "";
+  drugiPodaci: string = "";  
+  potpis: string = "";
 
   constructor(private requestService: RequestService,
     private router: Router,
@@ -37,15 +36,32 @@ export class AddRequestComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  /*ngAfterViewInit() {
-    let element = document.getElementById("request");
-    let specification = XonomyModel.zalbaXonomy;
-    let xmlString = '<za:zahtev xmlns ="http://www.projekat.org/zahtev"' + 
-    ' xmlns:za="http://www.projekat.org/zahtev"' + 
-    ' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"' +
-    ' xmlns:pred="http://www.projekat.org/predicate/"></za:zahtev>';
-    Xonomy.render(xmlString, element, specification);
-  }*/
+  
+  validate(){
+    if(this.nazivOrgana == "" || this.sedisteOrgana == "" || this.drugiNacin == "" || this.informacije == "" ||
+        this.mesto == "" || this.datum == "" || this.ime == "" || this.prezime == "" || this.adresa == "" || this.drugiPodaci == "" || this.potpis == ""){
+      Swal.fire({
+        title: 'Error!',
+        text: 'Sva polja su neophodna!',
+        icon: 'error',
+        confirmButtonColor: '#DC143C',
+        confirmButtonText: 'OK'
+      });
+      return false;
+    }
+    var date_regex = /^(0[1-9]|1\d|2\d|3[01])\.(0[1-9]|1[0-2])\.(19|20)\d{2}\.$/;
+    if(date_regex.test(this.datum) == false){
+      Swal.fire({
+        title: 'Error!',
+        text: 'Pogresan format datuma => dd.mm.yyyy.',
+        icon: 'error',
+        confirmButtonColor: '#DC143C',
+        confirmButtonText: 'OK'
+      });
+      return false;
+    }
+    return true;
+  }
 
   sendFile() {
     console.log("sendFile");
@@ -92,6 +108,11 @@ export class AddRequestComponent implements OnInit {
       if(this.option8 == undefined){
         this.option8 = 'false';
       }
+
+      if (!this.validate()) {
+        return;
+      }
+
       let xmlString: string = `<?xml version="1.0" encoding="UTF-8"?>
   <za:zahtev 
       xmlns ="http://www.projekat.org/zahtev"
@@ -148,32 +169,9 @@ export class AddRequestComponent implements OnInit {
   
     console.log(xmlString);
 
-    /*let obj: RequestDTO = {
-      "text" : xmlString
-    };
-    console.log(obj);*/
     this.requestService.addRequest(xmlString, ()=>{
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/requests');
       
     });
-    /*.subscribe(
-      response => {
-        console.log("added request");
-        this.router.navigateByUrl('/home');
-      },
-      error => {
-        console.log(error);
-      }
-    );*/
   }
 }
-/*
-    <div id="request"></div>
-    
-    <div>
-        <button mat-raised-button color="primary" (click)="sendFile()">Save file</button>
-    </div>
-
-    <div>
-        <textarea [(ngModel)]="textArea"></textarea>
-    </div> */

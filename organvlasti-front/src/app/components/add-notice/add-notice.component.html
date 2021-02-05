@@ -19,7 +19,7 @@
                 </tr>
                 <tr>
                     <td><b>Datum: </b></td>
-                    <td><input [(ngModel)]="datum" type="text" /></td>
+                    <td><input [(ngModel)]="datum" type="text" placeholder="dd.mm.yyyy."/></td>
                 </tr>
                 <tr>
                     <td><b>Ime podnosioca: </b></td>
@@ -40,16 +40,16 @@
             <p class="indent">
                 Na osnovu člana 16. st. 1. Zakona o slobodnom pristupu informacijama od javnog značaja, postupajući
                 po vašem zahtevu za slobodan pristup informacijama od
-                <input [(ngModel)]="odDatum" type="text" /> god., kojim ste tražili uvid u dokument/e sa informacijama o / u vezi sa:    
+                <input [(ngModel)]="odDatum" type="text" placeholder="yyyy"/> god., kojim ste tražili uvid u dokument/e sa informacijama o / u vezi sa:    
             </p>
             <p class="indent">
                 <textarea [(ngModel)]="opisInformacije" id="informacije"></textarea>
                 <br>obaveštavamo vas da dana
-                <input [(ngModel)]="danaDatum" type="text" />, u 
-                <input [(ngModel)]="casova" type="text" /> casova, odnosno u vremenu od
-                <input [(ngModel)]="odCasova" type="text" /> do <input [(ngModel)]="doCasova" type="text" />
+                <input [(ngModel)]="danaDatum" type="text" placeholder="dd.mm.yyyy."/>, u 
+                <input [(ngModel)]="casova" type="text" placeholder="hh:mm:ss"/> casova, odnosno u vremenu od
+                <input [(ngModel)]="odCasova" type="text" placeholder="hh:mm:ss"/> do <input [(ngModel)]="doCasova" type="text" placeholder="hh:mm:ss"/>
                 u prostorijama organa u <input [(ngModel)]="nazivUlice" type="text" placeholder="Ulica"/>, <input [(ngModel)]="brojUlice" type="text" placeholder="Br."/>
-                kancelarija br. <input [(ngModel)]="brKancelarije" type="text" /> možete <b>izvršiti uvid</b> u dokument/e u
+                kancelarija br. <input [(ngModel)]="brKancelarije" type="text" placeholder="br."/> možete <b>izvršiti uvid</b> u dokument/e u
                 kome je sadržana tražena informacija.    
             </p>
             <p class="indent">
@@ -63,7 +63,7 @@
             </p>
             <p class="indent">
                 Iznos ukupnih troškova izrade kopije dokumenta po vašem zahtevu iznosi
-                <input [(ngModel)]="iznos" type="text" /> dinara i uplaćuje se na žiro-račun Budžeta
+                <input [(ngModel)]="iznos" type="text" placeholder="00.00"/> dinara i uplaćuje se na žiro-račun Budžeta
                 Republike Srbije br. 840-742328-843-30, s pozivom na broj 97 – oznaka šifre opštine/grada gde se
                 nalazi organ vlasti (iz Pravilnika o uslovima i načinu vođenja računa – „Sl. glasnik RS“, 20/07...
                 40/10).

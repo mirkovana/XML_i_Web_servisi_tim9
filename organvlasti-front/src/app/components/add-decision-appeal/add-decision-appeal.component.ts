@@ -93,7 +93,7 @@ export class AddDecisionAppealComponent implements OnInit {
     };
     console.log(obj);*/
     this.service.addDecisionAppeal(xmlString, ()=>{
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/decision-appeals');
     })
     /*.subscribe(
       response => {

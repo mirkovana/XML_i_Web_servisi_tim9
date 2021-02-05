@@ -37,7 +37,7 @@ export class DecisionAppealService {
     .subscribe(response => {
       Swal.fire({
         title: 'Success!',
-        text: 'Add decision appeal successfully!',
+        text: 'Zalba na odluku dodata!',
         icon: 'success',
         confirmButtonText: 'OK'
       });

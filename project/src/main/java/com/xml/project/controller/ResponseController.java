@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBException;
 import javax.xml.namespace.QName;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import javax.xml.ws.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,30 +47,34 @@ public class ResponseController {
 	@Autowired
 	private ResponseService service;
 	
-	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@CrossOrigin
-	public ResponseEntity<ResponseDTO> saveResponse(@RequestBody ResponseDTO dto) throws Exception {
-		System.out.println("controller saveresponse = ");
-		service.save(dto);
-		return new ResponseEntity<>(dto, HttpStatus.OK);
-	}*/
-	
 	@PostMapping(value = "/decision", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
-	public ResponseEntity saveResponseDecision(@RequestBody String dto) throws Exception {
+	public ResponseEntity saveResponseDecision(@RequestBody String dto) {
 		System.out.println("controller saveresponse for decision appeal = ");
-		service.save(dto, "decision");
-		saveDecisionResponseSoap(dto);
-		return new ResponseEntity(HttpStatus.OK);
+		try {
+			service.save(dto, "decision");
+			saveDecisionResponseSoap(dto);
+			return new ResponseEntity(HttpStatus.OK);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ParserConfigurationException
+				| SAXException | IOException | TransformerException | XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@PostMapping(value = "/silence", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
-	public ResponseEntity saveResponseSilence(@RequestBody String dto) throws Exception {
+	public ResponseEntity saveResponseSilence(@RequestBody String dto) {
 		System.out.println("controller saveresponse for silence appeals= ");
-		service.save(dto, "silence");
-		saveSilenceResponseSoap(dto);
-		return new ResponseEntity(HttpStatus.OK);
+		try {
+			service.save(dto, "silence");
+			saveSilenceResponseSoap(dto);
+			return new ResponseEntity(HttpStatus.OK);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ParserConfigurationException
+				| SAXException | IOException | TransformerException | XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@GetMapping(value = "/{username}/all",  produces = MediaType.TEXT_XML_VALUE)

@@ -104,16 +104,15 @@ public class RequestService {
 	
 	public RequestListResponse getAll() throws XMLDBException, ParserConfigurationException, SAXException, IOException, JAXBException {
 		return repository.getAll();
-		//return null;
 	}
 	
 	public RequestListResponse getAllForUser(String username) throws XMLDBException, ParserConfigurationException, SAXException, IOException, JAXBException {
-		//return repository.getAll(true, username);
 		return repository.getAllForUser(username);
 	}
 	
 	public void save(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("save service = " + dto);
+		domParser.setSchema(schemaPath);
 		Document document = domParser.getDocument(dto);
 		System.out.println("got document = " + document);
 		NodeList nodeList = document.getElementsByTagName("za:zahtev");		

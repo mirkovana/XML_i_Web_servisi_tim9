@@ -85,7 +85,7 @@
                                 <a href="http://localhost:8080/api/request/pdf/{{c.broj}}">pdf</a>
                             </td>
                             <td>
-                                <button *ngIf="isUser() && c.status!='accepted'" mat-mini-fab color="warn"
+                                <button *ngIf="isUser() && (c.status=='denied' || c.status=='expired' || c.status=='sent')" mat-mini-fab color="warn"
                                     class="mr-2 mb-2" (click)="deleteRequest(c)" style="outline: none">
                                     <mat-icon>delete</mat-icon>
                                 </button>

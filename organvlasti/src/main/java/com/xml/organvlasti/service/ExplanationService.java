@@ -29,6 +29,7 @@ import com.xml.organvlasti.repository.ExplanationRepository;
 public class ExplanationService {
 
 	private final String explanationXSL = "src/main/resources/xsl/explanation.xsl";
+	private static String schemaPath = "src/main/resources/documents/explanation.xsd";
 
 	@Autowired
 	private DOMParser domParser;
@@ -43,6 +44,7 @@ public class ExplanationService {
 	
 	public void save(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("save service = " + dto);
+		domParser.setSchema(schemaPath);
 		Document document = domParser.getDocument(dto);
 		System.out.println("got document = " + document);
 		NodeList nodeList = document.getElementsByTagName("ex:explanation");		

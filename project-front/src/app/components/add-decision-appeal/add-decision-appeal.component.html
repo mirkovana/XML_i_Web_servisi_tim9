@@ -32,15 +32,16 @@
             <p>Broj:
                 <input [(ngModel)]="broj" type="text" id="broj" placeholder="Broj zalbe" disabled/>
                 od
-                <input [(ngModel)]="odDatum" type="text" id="odDatum" placeholder="Datum" />
+                <input [(ngModel)]="odDatum" type="text" id="odDatum" placeholder="dd.mm.yyyy." />
             </p>
             <p class="indent">
                 Navedenom odlukom organa vlasti (rešenjem, zaključkom, obaveštenjem u pisanoj formi sa
                 elementima odluke) , suprotno zakonu, odbijen-odbačen je moj zahtev koji sam podneo/la-uputio/la
-                dana <input [(ngModel)]="uputioDatum" type="text" id="uputioDatum" placeholder="Datum" /> godine i tako mi
+                dana <input [(ngModel)]="uputioDatum" type="text" id="uputioDatum" placeholder="dd.mm.yyyy." /> godine i tako mi
                 uskraćeno-onemogućeno ostvarivanje ustavnog i zakonskog
                 prava na slobodan pristup informacijama od javnog značaja. Odluku pobijam u celosti, odnosno u
-                delu kojim:<b><input [(ngModel)]="zbogCega" type="text" id="zbogCega" placeholder="Razlog" /></b>
+                delu kojim:
+                <textarea [(ngModel)]="zbogCega" id="zbogCega" placeholder="Razlog"></textarea>
                 jer nije zasnovana na Zakonu o slobodnom pristupu informacijama od javnog značaja.
             </p>
             <p class="indent">Na osnovu iznetih razloga, predlažem da Poverenik uvaži moju žalbu, poništi odluka
@@ -58,7 +59,7 @@
                         Datuma:
                     </td>
                     <td>
-                        <u><input [(ngModel)]="datum" type="text" id="datum"/></u>
+                        <u><input [(ngModel)]="datum" type="text" id="datum" placeholder="dd.mm.yyyy."/></u>
                     </td>
                 </tr>
                 <tr>
