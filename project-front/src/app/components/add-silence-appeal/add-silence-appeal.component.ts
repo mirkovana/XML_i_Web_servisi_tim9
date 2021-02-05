@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { XonomyModel } from "../../model/xonomy.model";
 import { SilenceAppealService } from '../../service/silence-appeal.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SilenceAppealDTO } from "../../model/silence-appeal.model";
 import { RequestService } from '../../service/request.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-silence-appeal',
@@ -33,32 +34,61 @@ export class AddSilenceAppealComponent implements OnInit {
     //console.log("reader = ", reader.readAsText(file));
   }
 
-  nazivOrgana: string;
+  nazivOrgana: string ='';
   option1: string;
   option2: string;
   option3: string;
-  datumPodnosenja: string;
+  datumPodnosenja: string ='';
   broj: string;
-  podaciOInformaciji: string;
-  ime: string;
-  prezime: string;
-  potpis: string;
-  grad: string;
-  ulica: string;
-  br: string;
-  drugiPodaci: string;
-  mesto: string;
-  dana: string;
+  podaciOInformaciji: string ='';
+  ime: string ='';
+  prezime: string ='';
+  potpis: string ='';
+  grad: string ='';
+  ulica: string ='';
+  br: string ='';
+  drugiPodaci: string ='';
+  mesto: string ='';
+  dana: string ='';
+
+  myForm: FormGroup;
+  submitted = false;
 
   constructor(private service: SilenceAppealService,
     private requestService: RequestService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private cd: ChangeDetectorRef) { }
+
+  get f() { return this.myForm.controls; }
 
   ngOnInit(): void {
+    this.myForm = new FormGroup({
+      option1: new FormControl(),
+      option2: new FormControl(),
+      option3: new FormControl(),
+      nazivOrgana: new FormControl('', [Validators.required, Validators.pattern(/^[A-Z]{1,40}$/i)]),
+      datumPodnosenja: new FormControl('', [Validators.required, Validators.pattern(/^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\.\s*$/)]),
+      podaciOInformaciji: new FormControl('', [Validators.required, Validators.pattern(/^[A-Z]{1,60}$/i)]),
+      ime: new FormControl('', [Validators.required, Validators.pattern(/^[A-Z]{1,20}$/i)]),
+      prezime: new FormControl('', [Validators.required, Validators.pattern(/^[A-Z]{1,30}$/i)]),
+      potpis:  new FormControl('', [Validators.required, Validators.pattern(/^[A-Z]{1,50}$/i)]),
+      grad: new FormControl('', [Validators.required,  Validators.pattern(/^[A-Z ]{1,30}$/i)]),
+      ulica: new FormControl('', [Validators.required, Validators.pattern(/^[A-Z ]{1,30}$/i)]),
+      br: new FormControl('', [Validators.required,  Validators.pattern(/^[0-9a-z]{1,6}$/i)]),
+      drugiPodaci: new FormControl('', [Validators.required, Validators.pattern(/^[A-Z]{1,50}$/i)]),
+      mesto: new FormControl('', [Validators.required, Validators.pattern(/^[A-Z]{1,35}$/i)]),
+      dana:  new FormControl('', [Validators.required, Validators.pattern(/^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\.\s*$/)])
+    });
   }
 
   sendFile() {
+    this.submitted = true;
+    // this.cd.detectChanges();
+    if (this.myForm.invalid) {
+      return;
+    }
     console.log("sendFile");
     if(this.option1 == undefined){
       this.option1 = 'false';
@@ -76,39 +106,39 @@ export class AddSilenceAppealComponent implements OnInit {
       xmlns:zc="http://www.projekat.org/zalbazbogcutanja"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xmlns:pred="http://www.projekat.org/predicate/"
-      about="http://www.projekat.org/zalbazbogcutanja/`+this.broj+`"
+      about="http://www.projekat.org/zalbazbogcutanja/`+ this.broj +`"
       xsi:schemaLocation="http://www.projekat.org/zalbazbogcutanja zalbazbogcutanja.xsd"
-      broj="`+this.broj+`"
-      username="`+localStorage.getItem('username')+`"
+      broj="`+ this.broj +`"
+      username="`+ localStorage.getItem('username') +`"
       status="sent"
       poverenikUsername="poverenikUsername"
-      nazivOrgana="`+this.nazivOrgana+`">
+      nazivOrgana="`+ this.myForm.controls.nazivOrgana.value +`">
       <zc:zalba_status xmlns:zc="http://www.projekat.org/zalbazbogcutanja" property="pred:status">sent</zc:zalba_status>
-      <zc:zalba_broj xmlns:zc="http://www.projekat.org/zalbazbogcutanja" property="pred:broj">`+this.broj+`</zc:zalba_broj>
+      <zc:zalba_broj xmlns:zc="http://www.projekat.org/zalbazbogcutanja" property="pred:broj">`+ this.broj +`</zc:zalba_broj>
       <zc:telo_zalbe> 
-        <zc:naziv_organa xmlns:zc ="http://www.projekat.org/zalbazbogcutanja" property="pred:organVlasti">`+this.nazivOrgana+`</zc:naziv_organa>
+        <zc:naziv_organa xmlns:zc ="http://www.projekat.org/zalbazbogcutanja" property="pred:organVlasti">`+ this.myForm.controls.nazivOrgana.value +`</zc:naziv_organa>
         <zc:razlozi>
-          <zc:razlog podvuceno="`+this.option1+`" id="1">nije postupio</zc:razlog>
-          <zc:razlog podvuceno="`+this.option2+`" id="2">nije postupio u celosti</zc:razlog>
-          <zc:razlog podvuceno="`+this.option3+`" id="3">u zakonskom roku</zc:razlog>
+          <zc:razlog podvuceno="`+ this.option1 +`" id="1">nije postupio</zc:razlog>
+          <zc:razlog podvuceno="`+ this.option2 +`" id="2">nije postupio u celosti</zc:razlog>
+          <zc:razlog podvuceno="`+ this.option3 +`" id="3">u zakonskom roku</zc:razlog>
         </zc:razlozi>
-        <zc:datum>`+this.datumPodnosenja+`</zc:datum> 
-        <zc:podaci_o_zahtevu_i_informaciji>`+this.podaciOInformaciji+`</zc:podaci_o_zahtevu_i_informaciji>
+        <zc:datum>`+ this.myForm.controls.datumPodnosenja.value +`</zc:datum> 
+        <zc:podaci_o_zahtevu_i_informaciji>`+ this.myForm.controls.podaciOInformaciji.value +`</zc:podaci_o_zahtevu_i_informaciji>
       </zc:telo_zalbe>
       <zc:podaci_o_podnosiocu_zalbe>
         <zc:adresa>
-          <zc:grad>`+this.grad+`</zc:grad>
-          <zc:ulica>`+this.ulica+`</zc:ulica>
-          <zc:broj>`+this.br+`</zc:broj>
+          <zc:grad>`+ this.myForm.controls.grad.value +`</zc:grad>
+          <zc:ulica>`+ this.myForm.controls.ulic.value +`</zc:ulica>
+          <zc:broj>`+ this.myForm.controls.br.value +`</zc:broj>
         </zc:adresa>
-        <zc:ime xmlns:zc ="http://www.projekat.org/zalbazbogcutanja" property="pred:ime">`+this.ime+`</zc:ime>
-        <zc:prezime xmlns:zc ="http://www.projekat.org/zalbazbogcutanja" property="pred:prezime">`+this.prezime+`</zc:prezime>
-        <zc:drugi_podaci_za_kontakt>`+this.drugiPodaci+`</zc:drugi_podaci_za_kontakt>
-        <zc:potpis>`+this.potpis+`</zc:potpis>
+        <zc:ime xmlns:zc ="http://www.projekat.org/zalbazbogcutanja" property="pred:ime">`+ this.myForm.controls.ime.value +`</zc:ime>
+        <zc:prezime xmlns:zc ="http://www.projekat.org/zalbazbogcutanja" property="pred:prezime">`+ this.myForm.controls.prezime.value +`</zc:prezime>
+        <zc:drugi_podaci_za_kontakt>`+ this.myForm.controls.drugiPodaci.value +`</zc:drugi_podaci_za_kontakt>
+        <zc:potpis>`+ this.myForm.controls.potpis.value +`</zc:potpis>
       </zc:podaci_o_podnosiocu_zalbe>
       <zc:podaci_o_mestu_i_datumu_podnosenja_zalbe>
-        <zc:mesto xmlns:zc ="http://www.projekat.org/zalbazbogcutanja" property="pred:mesto">`+this.mesto+`</zc:mesto>
-        <zc:datum xmlns:zc ="http://www.projekat.org/zalbazbogcutanja" property="pred:datum">`+this.dana+`</zc:datum>
+        <zc:mesto xmlns:zc ="http://www.projekat.org/zalbazbogcutanja" property="pred:mesto">`+ this.myForm.controls.mesto.value +`</zc:mesto>
+        <zc:datum xmlns:zc ="http://www.projekat.org/zalbazbogcutanja" property="pred:datum">`+ this.myForm.controls.dana.value +`</zc:datum>
       </zc:podaci_o_mestu_i_datumu_podnosenja_zalbe>
     </zc:zalba_cutanje>`;
 
