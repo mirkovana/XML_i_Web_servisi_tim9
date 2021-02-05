@@ -4,82 +4,116 @@
     </div>
     <div class="jumbotron bg-light col-md-10 ml-auto mr-auto mt-3 pt-5">
         <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px">
-            <table>
+            <form [formGroup]="myForm">
+                <!-- (ngSubmit)="sendFile()" -->
+                <table>
+                    <tr>
+                        <td><b> Naziv organa: </b></td>
+                        <td><input type="text" formControlName="nazivOrgana" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('nazivOrgana').errors }" /></td>
+                        <b class='error' *ngIf="submitted && myForm.get('nazivOrgana').errors">Neispravan naziv organa</b>
+                    </tr>{{submitted}}
+                    <tr>
+                        <td><b>Sediste organa: </b></td>
+                        <td><input id="sedisteOrgana" formControlName="sedisteOrgana" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('sedisteOrgana').errors }" /></td>
+                        <!-- [ngClass]="{ 'is-invalid': submitted && !myForm.get('sedisteOrgana').errors.forbiddenName }" -->
+                        <b class='error' *ngIf="submitted && myForm.get('sedisteOrgana').errors">Neispravno sediste organa</b>
+                    </tr>
+                    <tr>
+                        <td><b>Broj predmeta: </b></td>
+                        <td><input type="text" disabled formControlName="broj" class="form-control veca" /></td>
+                    </tr>
+                    <tr>
+                        <td><b>Datum: </b></td>
+                        <td><input type="text" placeholder="xx.xx.xxxx." formControlName="datum" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('datum').errors }" /></td>
+                        <b class='error' *ngIf="submitted && myForm.get('datum').errors">Neispravan datum</b>
+                    </tr>
+                    <tr>
+                        <td><b>Ime podnosioca: </b></td>
+                        <td><input type="text" formControlName="ime" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('ime').errors }" /></td>
+                        <b class='error' *ngIf="submitted && myForm.get('ime').errors">Neispravano ime</b>
+                    </tr>
+                    <tr>
+                        <td><b>Prezime podnosioca: </b></td>
+                        <td><input type="text" formControlName="prezime" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('prezime').errors }" /></td>
+                        <b class='error' *ngIf="submitted && myForm.get('prezime').errors">Neispravano prezime</b>
+                    </tr>
+                    <b>Adresa: </b>
+                    <tr>
+
+                        <td><input type="text" placeholder="Ulica" formControlName="ulica" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('ulica').errors }" /></td>
+                        <b class='error' *ngIf="submitted && myForm.get('ulica').errors">Neispravan naziv ulice</b>
+                    </tr>
+                    <tr>
+                        <td><input type="text" placeholder="Br." formControlName="brUlice" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('ulica').errors }" /></td>
+                        <b class='error' *ngIf="submitted && myForm.get('brUlice').errors">Neispravan broj ulice</b>
+                    </tr>
+                    <tr>
+                        <td><input type="text" placeholder="Grad" formControlName="grad" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('grad').errors }" /></td>
+                        <b class='error' *ngIf="submitted && myForm.get('grad').errors">Neispravan naziv grada</b>
+                    </tr>
+                    <tr>
+                        <td><input type="text" placeholder="Postanski broj" formControlName="postanskiBroj" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('ulica').errors }" /></td>
+                        <b class='error' *ngIf="submitted && myForm.get('postanskiBroj').errors">Neispravan postanski broj</b>
+                    </tr>
+                </table>
+                <h2>O B A V E S T E NJ E</h2>
+                <h3>o stavljanju na uvid dokumenta koji sadrži traženu informaciju i o izradi kopije</h3>
+                <p class="indent">
+                    Na osnovu člana 16. st. 1. Zakona o slobodnom pristupu informacijama od javnog značaja, postupajući po vašem zahtevu za slobodan pristup informacijama od
+                    <input type="text" placeholder="xx.xx.xxxx." formControlName="odDatum" class="form-control manja" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('odDatum').errors }" />
+                    <b class='error' *ngIf="submitted && myForm.get('odDatum').errors">Neispravan datum</b><br/> god., kojim ste tražili uvid u dokument/e sa informacijama o / u vezi sa:
+
+                </p>
+                <div *ngIf="submitted && myForm.get('odDatum').errors">Neispravan naziv grada</div>
+                <p class="indent">
+                    <textarea id="informacije" formControlName="opisInformacije" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('opisInformacije').errors }"></textarea>
+                    <b class='error' *ngIf="submitted && myForm.get('opisInformacije').errors">Neispravan opis informacije</b>
+                    <br>obaveštavamo vas da dana
+                    <input type="text" formControlName="danaDatum" placeholder="xx.xx.xxxx." class="form-control manja" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('danaDatum').errors }" />
+                    <b class='error' *ngIf="submitted && myForm.get('danaDatum').errors">Neispravan datum</b><br/>, u
+                    <input type="text" formControlName="casova" placeholder="xx:xx:xx" class="form-control manja" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('casova').errors }" />
+                    <b class='error' *ngIf="submitted && myForm.get('casova').errors">Neispravno vreme</b><br/> casova, odnosno u vremenu od
+                    <input type="text" formControlName="odCasova" placeholder="xx:xx:xx" class="form-control manja" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('odCasova').errors }" />
+                    <b class='error' *ngIf="submitted && myForm.get('odCasova').errors">Neispravno vreme</b> <br/>do
+                    <input type="text" formControlName="doCasova" placeholder="xx:xx:xx" class="form-control manja" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('doCasova').errors }" />
+                    <b class='error' *ngIf="submitted && myForm.get('doCasova').errors">Neispravno vreme</b> <br/>u prostorijama organa u
+                    <input type="text" placeholder="Ulica" formControlName="nazivUlice" class="form-control manja" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('nazivUlice').errors }" />,
+                    <b class='error' *ngIf="submitted && myForm.get('nazivUlice').errors">Neispravan naziv ulice</b>
+                    <input type="text" placeholder="Br." formControlName="brojUlice" class="form-control manja" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('brojUlice').errors }" />
+                    <b class='error' *ngIf="submitted && myForm.get('brojUlice').errors">Neispravan broj ulice</b> <br/>kancelarija br.
+                    <input type="text " formControlName="brKancelarije" class="form-control manja" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('brKancelarije').errors }" />
+                    <b class='error' *ngIf="submitted && myForm.get('brKancelarije').errors">Neispravan broj kancelarije</b> <br/> možete izvršiti uvid u dokument/e u kome je sadržana tražena informacija.
+                </p>
+                <p class="indent">
+                    Tom prilikom, na vaš zahtev, može vam se izdati i kopija dokumenta sa traženom informacijom.
+                </p>
+                <p class="indent">
+                    Troškovi su utvrđeni Uredbom Vlade Republike Srbije („Sl. glasnik RS“, br. 8/06), i to: kopija strane A4 formata iznosi 3 dinara, A3 formata 6 dinara, CD 35 dinara, diskete 20 dinara, DVD 40 dinara, audio-kaseta – 150 dinara, video-kaseta 300 dinara,
+                    pretvaranje jedne strane dokumenta iz fizičkog u elektronski oblik – 30 dinara.
+                </p>
+                <p class="indent">
+                    Iznos ukupnih troškova izrade kopije dokumenta po vašem zahtevu iznosi
+                    <input type="text" formControlName="iznos" placeholder="xxxx.xx" class="form-control manja" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('iznos').errors }" />
+                    <b class='error' *ngIf="submitted && myForm.get('iznos').errors">Neispravan iznos</b> <br/> dinara i uplaćuje se na žiro-račun Budžeta Republike Srbije br. 840-742328-843-30, s pozivom na broj 97 – oznaka šifre opštine/grada gde se
+                    nalazi organ vlasti (iz Pravilnika o uslovima i načinu vođenja računa – „Sl. glasnik RS“, 20/07... 40/10).
+                </p>
+                <p class="indent">
+                    <b>Dostavljeno: </b><br>
+                    <b><i>1. Imenovanom</i></b><br>
+                    <b><i>2. Arhivi</i></b>
+                </p>
                 <tr>
-                    <td><b> Naziv organa: </b></td>
-                    <td><input [(ngModel)]="nazivOrgana" type="text" /></td>
+                    <td>Potpis ovlascenog lica:</td>
+                    <td>
+                        <input type="text" formControlName="potpisLica" class="form-control" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('potpisLica').errors }" /><b class='error' *ngIf="submitted && myForm.get('potpisLica').errors">Neispravan potpis podnosioca</b>
+                    </td>
                 </tr>
-                <tr>
-                    <td><b>Sediste organa: </b></td>
-                    <td><input [(ngModel)]="sedisteOrgana" type="text" /></td>
-                </tr>
-                <tr>
-                    <td><b>Broj predmeta: </b></td>
-                    <td><input [(ngModel)]="broj" type="text" disabled/></td>
-                </tr>
-                <tr>
-                    <td><b>Datum: </b></td>
-                    <td><input [(ngModel)]="datum" type="text" /></td>
-                </tr>
-                <tr>
-                    <td><b>Ime podnosioca: </b></td>
-                    <td><input [(ngModel)]="ime" type="text" /></td>
-                </tr>
-                <tr>
-                    <td><b>Prezime podnosioca: </b></td>
-                    <td><input [(ngModel)]="prezime" type="text" /></td>
-                </tr>
-                <tr>
-                    <td><b>Adresa: </b></td>
-                    <td><input [(ngModel)]="ulica" type="text" placeholder="Ulica" /></td>,
-                    <td><input [(ngModel)]="grad" type="text" placeholder="Grad" /></td>    
-                </tr>
-            </table>
-            <h2>O B A V E S T E NJ E</h2>
-            <h3>o stavljanju na uvid dokumenta koji sadrži traženu informaciju i o izradi kopije</h3>
-            <p class="indent">
-                Na osnovu člana 16. st. 1. Zakona o slobodnom pristupu informacijama od javnog značaja, postupajući
-                po vašem zahtevu za slobodan pristup informacijama od
-                <input [(ngModel)]="odDatum" type="text" /> god., kojim ste tražili uvid u dokument/e sa informacijama o / u vezi sa:    
-            </p>
-            <p class="indent">
-                <textarea [(ngModel)]="opisInformacije" id="informacije"></textarea>
-                <br>obaveštavamo vas da dana
-                <input [(ngModel)]="danaDatum" type="text" />, u 
-                <input [(ngModel)]="casova" type="text" /> casova, odnosno u vremenu od
-                <input [(ngModel)]="odCasova" type="text" /> do <input [(ngModel)]="doCasova" type="text" />
-                u prostorijama organa u <input [(ngModel)]="nazivUlice" type="text" placeholder="Ulica"/>, <input [(ngModel)]="brojUlice" type="text" placeholder="Br."/>
-                kancelarija br. <input [(ngModel)]="brKancelarije" type="text" /> možete <b>izvršiti uvid</b> u dokument/e u
-                kome je sadržana tražena informacija.    
-            </p>
-            <p class="indent">
-                Tom prilikom, na vaš zahtev, može vam se izdati i kopija dokumenta sa traženom informacijom.
-            </p>
-            <p class="indent">
-                Troškovi su utvrđeni Uredbom Vlade Republike Srbije („Sl. glasnik RS“, br. 8/06), i to: kopija
-                strane A4 formata iznosi 3 dinara, A3 formata 6 dinara, CD 35 dinara, diskete 20 dinara, DVD 40
-                dinara, audio-kaseta – 150 dinara, video-kaseta 300 dinara, pretvaranje jedne strane dokumenta iz
-                fizičkog u elektronski oblik – 30 dinara.
-            </p>
-            <p class="indent">
-                Iznos ukupnih troškova izrade kopije dokumenta po vašem zahtevu iznosi
-                <input [(ngModel)]="iznos" type="text" /> dinara i uplaćuje se na žiro-račun Budžeta
-                Republike Srbije br. 840-742328-843-30, s pozivom na broj 97 – oznaka šifre opštine/grada gde se
-                nalazi organ vlasti (iz Pravilnika o uslovima i načinu vođenja računa – „Sl. glasnik RS“, 20/07...
-                40/10).
-            </p>
-            <p class="indent">
-                <b>Dostavljeno: </b><br>
-                <b><i>1. Imenovanom</i></b><br>
-                <b><i>2. Arhivi</i></b>  
-            </p>
-            <tr>
-                <td>Potpis ovlascenog lica:</td>
-                <td><input [(ngModel)]="potpisLica" type="text"/></td>
-            </tr>
+                <div>
+                    <button mat-raised-button color="primary" (click)="sendFile()">Save file</button>
+                </div>
+            </form>
         </div>
-        <div>
-            <button mat-raised-button color="primary" (click)="sendFile()">Save file</button>
-        </div>        
+
+
     </div>
 </div>

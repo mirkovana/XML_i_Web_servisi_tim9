@@ -45,6 +45,7 @@ import { ReportsComponent } from './components/reports/reports.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +65,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     AddExplanationComponent,
     ResponsesComponent,
     ReportsComponent,
+
   ],
   imports: [
     BrowserModule,
