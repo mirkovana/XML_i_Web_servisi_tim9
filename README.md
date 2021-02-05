@@ -1,18 +1,24 @@
 # XML_i_Web_servisi_tim9
+Pokrenuti:
+project port=8070 (portal poverenika) -> Run As -> Spring Boot App
 
-poverenik port=8070
+projectsoap port-8071 (soap portala poverenika) -> Run As -> Spring Boot App
 
-poverenikSOAP port-8071
+project-front port-4201 (front portala poverenika) -> ng serve
 
-poverenik-front port-4201
+organvlasti port=8080 -> Run As -> Spring Boot App
 
-organvlasti port=8080
+organvlastisoap port=8050 -> Run As -> Spring Boot App
 
-organvlastiSOAP port=8050
-
-organvlasti-front port-4200
+organvlasti-front port-4200 -> ng serve
 
 na http://localhost:8081/fuseki/manage.html kreirati dva dataseta -> Project (za poverenika) i OrganVlasti (za organa vlasti)
+
+inizijalizovati korisnike za portal poverenika ->  http://localhost:8070/api/db/init -> (korisnici -> username: [user, user2, poverenik], password: [123456789])
+
+inizijalizovati korisnike za portal organa vlasti ->  http://localhost:8080/api/db/init -> (korisnici -> username: [user, user2, sluzbenik], password: [123456789])
+
+pregled email poruka na https://maildrop.cc/
 
 ### 1.Kreiranje zahteva na portalu organa vlasti, pregled html-a i pdf-a podnetog zahteva
 [![](http://img.youtube.com/vi/xO_NMrr7C9E/0.jpg)](http://www.youtube.com/watch?v=xO_NMrr7C9E "v1")
