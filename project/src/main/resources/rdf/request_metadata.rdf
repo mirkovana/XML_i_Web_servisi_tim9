@@ -1,26 +1,26 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="http://www.projekat.org/zahtev/cd3fce68c6a7-2021">
-    <pred:status xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">sent</pred:status>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/7f35c336dfd0-2021">
+    <pred:status xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">denied</pred:status>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zahtev/cd3fce68c6a7-2021">
-    <pred:broj xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">cd3fce68c6a7-2021</pred:broj>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/7f35c336dfd0-2021">
+    <pred:broj xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">7f35c336dfd0-2021</pred:broj>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zahtev/cd3fce68c6a7-2021">
-    <pred:nazivInstitucije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">real madrid</pred:nazivInstitucije>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/7f35c336dfd0-2021">
+    <pred:nazivInstitucije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">jk</pred:nazivInstitucije>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zahtev/cd3fce68c6a7-2021">
-    <pred:sedisteInstitucije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">madrid</pred:sedisteInstitucije>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/7f35c336dfd0-2021">
+    <pred:sedisteInstitucije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">hkj</pred:sedisteInstitucije>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zahtev/cd3fce68c6a7-2021">
-    <pred:informacije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">i want ronaldos contract</pred:informacije>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/7f35c336dfd0-2021">
+    <pred:informacije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">sdf</pred:informacije>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zahtev/cd3fce68c6a7-2021">
-    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">07.07.2007.</pred:datum>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/7f35c336dfd0-2021">
+    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">jhg</pred:datum>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zahtev/cd3fce68c6a7-2021">
-    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">karim</pred:ime>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/7f35c336dfd0-2021">
+    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">jh</pred:ime>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zahtev/cd3fce68c6a7-2021">
-    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">benzema</pred:prezime>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/7f35c336dfd0-2021">
+    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">ghj</pred:prezime>
   </rdf:Description>
 </rdf:RDF>
