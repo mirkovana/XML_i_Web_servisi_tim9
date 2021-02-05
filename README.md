@@ -26,7 +26,7 @@ pregled email poruka na https://maildrop.cc/
 [![](http://img.youtube.com/vi/7kHdatlLd0A/0.jpg)](http://www.youtube.com/watch?v=7kHdatlLd0A "v2")
 ### 3.Pregled dobijenog obavestenja od strane gradjanina na portalu i email-u
 [![](http://img.youtube.com/vi/SAT5ZYAfLck/0.jpg)](http://www.youtube.com/watch?v=SAT5ZYAfLck "v3")
-### 4.Kreiranje zalbe na odluku (postupak za zalbu na cutanje je slican i nije priakzan) na portalu poverenika, pregled html-a i pdf-a podnetog zahteva
+### 4.Kreiranje zalbe na odluku (postupak za zalbu na cutanje je slican i nije prikazan) na portalu poverenika, pregled html-a i pdf-a podnetog zahteva
 [![](http://img.youtube.com/vi/JvS36Crm7tA/0.jpg)](http://www.youtube.com/watch?v=JvS36Crm7tA "v4")
 ### 5.Slanje zahteva za izjasnjenje organu vlasti od strane poverenika, pregled dokumenata vezanih za datu zalbu
 [![](http://img.youtube.com/vi/ZtxscgvMDTg/0.jpg)](http://www.youtube.com/watch?v=ZtxscgvMDTg "v5")
