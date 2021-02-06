@@ -19,3 +19,20 @@ hr {
     margin-left:100px;
     margin-right:100px;
 }
+
+.veca {
+    width: 100%;
+}
+
+.manja {
+    width: 22%;
+}
+
+.error {
+    color: red;
+} 
+
+.center1{
+    margin-left: auto;
+    margin-right: auto;
+}
