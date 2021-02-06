@@ -82,7 +82,9 @@
                             </td>
                             <td>
                                 <a href="http://localhost:8080/api/request/html/{{c.broj}}" target="_blank">html</a><br>
-                                <a href="http://localhost:8080/api/request/pdf/{{c.broj}}">pdf</a>
+                                <a href="http://localhost:8080/api/request/pdf/{{c.broj}}">pdf</a><br>
+                                <a href="http://localhost:8080/api/request/generateJSON/{{c.broj}}">json</a><br>
+                                <a href="http://localhost:8080/api/request/generateRDF/{{c.broj}}">rdf</a><br>
                             </td>
                             <td>
                                 <button *ngIf="isUser() && (c.status=='denied' || c.status=='expired' || c.status=='sent')" mat-mini-fab color="warn"

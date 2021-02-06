@@ -310,26 +310,6 @@ public class RequestService {
 		}
 		
 	}
-	/*private void printNode(Node node) {
-		if (node == null)
-			return;
-		if (node instanceof Element) {
-			
-			Element element = (Element) node;
-			
-			System.out.print("START_ELEMENT: " + element.getTagName());
-			System.out.println();
-			// Prikaz svakog od child nodova, rekurzivnim pozivom
-			NodeList children = element.getChildNodes();
-			
-			if (children != null) {
-				for (int i = 0; i < children.getLength(); i++) {
-					Node aChild = children.item(i);
-					printNode(aChild);
-				}
-			}
-		} 			
-	}*/
 
 	public RequestListResponse searchByMetadata(Map<String, String> params) throws IOException {
         System.out.println("service executeQuerry!");
@@ -373,6 +353,16 @@ public class RequestService {
 
 	public RequestListResponse searchByKeywords(KeywordSearch s) throws NumberFormatException, XMLDBException, JAXBException, SAXException {
 		return repository.searchByKeywords(s);
+	}
+
+	public void generateRequestJSON(String broj) throws IOException {
+		FusekiReader.generateRequestJSON(broj);
+	}
+
+	public void generateRequestRDF(String broj, String rdfPath) throws TransformerException, FileNotFoundException {
+		Document document = repository.findRequestById(broj);
+		String xmlString = getStringFromDocument(document);
+		metadataExtractor.extractMetadata(xmlString, rdfPath);
 	}
 
 }

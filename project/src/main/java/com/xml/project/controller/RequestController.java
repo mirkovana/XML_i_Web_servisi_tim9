@@ -1,6 +1,8 @@
 package com.xml.project.controller;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -10,6 +12,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -40,14 +43,6 @@ public class RequestController {
 
 	@Autowired
 	private RequestService service;
-	
-	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@CrossOrigin
-	public ResponseEntity<RequestDTO> saveRequest(@RequestBody RequestDTO dto) throws Exception {
-		System.out.println("controller saveRequest = ");
-		service.save(dto);
-		return new ResponseEntity<>(dto, HttpStatus.OK);
-	}*/
 	
 	@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
@@ -156,28 +151,46 @@ public class RequestController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
-	@CrossOrigin
-	public ResponseEntity<String> saveRequestJax(@RequestBody Zahtev dto) throws Exception {
-		System.out.println("controller saveRequest xml = ");
-		System.out.println("Zahtev dto = " + dto);
-		Zahtev zahtev = service.saveJax(dto);
-		return new ResponseEntity<>("OK", HttpStatus.OK);
-	}*/
+	
+	@GetMapping("/generateJSON/{broj}")
+	public ResponseEntity<byte[]> generateJSON(@PathVariable("broj") String broj) throws XMLDBException {
+
+		try {
+			String jsonPath = "src/main/resources/json/zahtev_" + broj + ".json";
+
+			service.generateRequestJSON(broj);
+			File file = new File(jsonPath);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			
+			return ResponseEntity.ok()
+	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + broj + ".json") 
+	                .contentType(MediaType.APPLICATION_JSON) 
+	                .body(IOUtils.toByteArray(fileInputStream));    
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	@GetMapping("/generateRDF/{broj}")
+	public ResponseEntity<byte[]> generateRDF(@PathVariable("broj") String broj) throws XMLDBException {
+
+		try {
+			String rdfPath = "src/main/resources/rdf_gen/zahtev_" + broj + ".rdf";
+
+			service.generateRequestRDF(broj, rdfPath);
+			File file = new File(rdfPath);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			
+			return ResponseEntity.ok()
+	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + broj + ".rdf") 
+	                .contentType(MediaType.APPLICATION_JSON) 
+	                .body(IOUtils.toByteArray(fileInputStream));    
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+	}
 }
-
-/*@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
-@CrossOrigin
-public ResponseEntity<Zahtev> saveRequestJax(@RequestBody Zahtev dto) throws Exception {
-	System.out.println("controller saveRequest xml = ");
-	System.out.println("Zahtev dto = " + dto);
-	Zahtev zahtev = service.saveJax(dto);
-	return new ResponseEntity<>(zahtev, HttpStatus.OK);
-}*/
-
-/*@GetMapping(value = "/{username}/all")
-@CrossOrigin
-public ResponseEntity<ArrayList<RequestItem>> getAllForUser(@PathVariable("username") String username) throws XMLDBException, ParserConfigurationException, SAXException, IOException, JAXBException {
-	System.out.println("controller = ");
-	return new ResponseEntity<>(service.getAllForUser(username), HttpStatus.OK);
-}*/
