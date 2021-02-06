@@ -1,4 +1,5 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
+
   <rdf:Description rdf:about="http://www.projekat.org/zahtev/65459158dbed-2021">
     <pred:status xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">denied</pred:status>
   </rdf:Description>
@@ -22,5 +23,6 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://www.projekat.org/zahtev/65459158dbed-2021">
     <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">sadsdasad</pred:prezime>
+
   </rdf:Description>
 </rdf:RDF>

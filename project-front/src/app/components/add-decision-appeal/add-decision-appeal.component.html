@@ -2,12 +2,15 @@
     <div class="col-md-12 pl-0 pr-0">
         <app-navigation-bar></app-navigation-bar>
     </div>
+
+
     <div class="jumbotron bg-light col-md-10 ml-auto mr-auto mt-3 pt-5">
         <div class="form-group">
             <label for="file">Choose request file</label>
             <input type="file" id="file-input" (change)="readFile($event)" />
         </div>
 
+        <form [formGroup]="myForm">
         <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px">
             <h4 class="headertekst">ZALBA PROTIV ODLUKE ORGANA VLASTI KOJOM JE <br><u>ODBIJEN ILI ODBACEN ZAHTEV</u> ZA
                 PRISTUP INFORMACIJI</h4>
@@ -15,35 +18,129 @@
             <p>Adresa za postu:Beograd, Bulevar kralja aleksandra br.15</p>
             <h3 class="headertekst">ZALBA</h3>
             <div class="center">
-                <input [(ngModel)]="ime" type="text" id="ime" placeholder="Ime" />,
-                <input [(ngModel)]="prezime" type="text" id="prezime" placeholder="Prezime" />,
+                <table class="center1">
+                <tr>
+                    
+                    <td>
+                        <input type="text"   id="ime" placeholder="Ime" formControlName="ime" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('ime').errors }" />
+                        <b class='error' *ngIf="submitted && myForm.get('ime').errors">Neispravno uneto ime</b>
+                        
+                    </td>
+               <td>
+                <input type="text"   id="prezime" placeholder="Prezime" formControlName="prezime" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('prezime').errors }" />
+                <b class='error' *ngIf="submitted && myForm.get('prezime').errors">Neispravno uneto prezime</b>
+               
+               </td>
+               
+               <td>
+
+
+                <input type="text" id="grad" placeholder="Grad" formControlName="grad" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('grad').errors }" />
+                <b class='error' *ngIf="submitted && myForm.get('grad').errors">Neispravno unet grad</b>
+               </td>
+                
+               <td>
+                <input type="text" id="ulica" placeholder="Ulica" formControlName="ulica" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('ulica').errors }" />
+                <b class='error' *ngIf="submitted && myForm.get('ulica').errors">Neispravno uneta ulica</b>
+            
+               </td>
+              
+               <td>
+
+                <input type="text" id="br" placeholder="Broj" formControlName="br" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('br').errors }" />
+                <b class='error' *ngIf="submitted && myForm.get('br').errors">Neispravan broj</b>
+               </td>
+                <!-- <input [(ngModel)]="ime" type="text" id="ime" placeholder="Ime" />, -->
+                <!-- <input [(ngModel)]="prezime" type="text" id="prezime" placeholder="Prezime" />,
                 <input [(ngModel)]="grad" type="text" placeholder="Grad"/>,
                 <input [(ngModel)]="ulica" type="text" placeholder="Ulica"/>,
-                <input [(ngModel)]="br" type="text" placeholder="Br."/>
+                <input [(ngModel)]="br" type="text" placeholder="Br."/> -->
+            </tr>
+            </table>
                 <hr>
                 (Ime, prezime, odnosno naziv, adresa i sediste zalioca)
             </div>
             <p class="center"> protiv resenja-zakljucka</p>
             <div class="center">
-                <input [(ngModel)]="nazivOrgana" type="text" id="nazivOrgana" placeholder="Naziv organa" />
+                <input type="text" id="nazivOrgana" placeholder="Naziv organa" formControlName="nazivOrgana" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('nazivOrgana').errors }" />
+                <b class='error' *ngIf="submitted && myForm.get('nazivOrgana').errors">Neispravan naziv organa vlasti </b>
+                <!-- <input [(ngModel)]="nazivOrgana" type="text" id="nazivOrgana" placeholder="Naziv organa" /> -->
                 <hr>
                 (Naziv organa koji je doneo odluku)
             </div>
-            <p>Broj:
-                <input [(ngModel)]="broj" type="text" id="broj" placeholder="Broj zalbe" disabled/>
-                od
-                <input [(ngModel)]="odDatum" type="text" id="odDatum" placeholder="dd.mm.yyyy." />
-            </p>
-            <p class="indent">
-                Navedenom odlukom organa vlasti (rešenjem, zaključkom, obaveštenjem u pisanoj formi sa
-                elementima odluke) , suprotno zakonu, odbijen-odbačen je moj zahtev koji sam podneo/la-uputio/la
-                dana <input [(ngModel)]="uputioDatum" type="text" id="uputioDatum" placeholder="dd.mm.yyyy." /> godine i tako mi
-                uskraćeno-onemogućeno ostvarivanje ustavnog i zakonskog
-                prava na slobodan pristup informacijama od javnog značaja. Odluku pobijam u celosti, odnosno u
-                delu kojim:
-                <textarea [(ngModel)]="zbogCega" id="zbogCega" placeholder="Razlog"></textarea>
-                jer nije zasnovana na Zakonu o slobodnom pristupu informacijama od javnog značaja.
-            </p>
+ 
+            <table>
+                <tr>
+                    <td>
+                        Broj:
+                    </td>
+                    <td>
+                        <input value="{{broj}}" type="text" id="broj" placeholder="Broj zalbe" disabled/>
+                    </td>
+                    <td>od</td>
+
+                    <td>
+                        <input type="text" id="odDatum" placeholder="Datum" formControlName="odDatum" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('odDatum').errors }" />
+                        <b class='error' *ngIf="submitted && myForm.get('odDatum').errors">Neispravan datum </b>
+                    </td>
+
+                </tr>
+                
+                
+                    
+                   
+                    <!-- <input [(ngModel)]="odDatum" type="text" id="odDatum" placeholder="Datum" /> -->
+               
+
+            
+                </table>
+            <table>
+                <tr>
+
+                    <td colspan="3">
+                        Navedenom odlukom organa vlasti (rešenjem, zaključkom, obaveštenjem u pisanoj formi sa
+                        elementima odluke) , suprotno zakonu, odbijen-odbačen je moj zahtev koji sam podneo/la-uputio/la
+                        dana
+                    </td>
+                    
+
+
+                </tr>
+
+                <tr>
+                   <td>
+                        <input style="width: 250px;" type="text" id="uputioDatum" placeholder="Datum" formControlName="uputioDatum" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('uputioDatum').errors }" />
+                        <b class='error' *ngIf="submitted && myForm.get('uputioDatum').errors">Neispravan datum </b> <!-- <input [(ngModel)]="uputioDatum" type="text" id="uputioDatum" placeholder="Datum" />  -->
+                      
+                     </td>
+                     <td colspan="2">
+                        godine i tako mi
+                        uskraćeno-onemogućeno ostvarivanje ustavnog i zakonskog
+                        prava na slobodan pristup informacijama od javnog značaja. Odluku pobijam u celosti, odnosno 
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        u delu kojim:</td>
+                    <td>
+                        <b><input type="text" id="zbogCega" style="width: 270px;"  placeholder="Zbog cega" formControlName="zbogCega" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('zbogCega').errors }" />
+                            <b class='error' *ngIf="submitted && myForm.get('zbogCega').errors">Neispravno uneto</b></b>
+                        
+                    </td>
+                    <td>
+                        jer nije zasnovana na Zakonu o slobodnom pristupu informacijama od javnog značaja.
+                    </td>
+                </tr>
+                 
+                    <!-- <b><input [(ngModel)]="zbogCega" type="text" id="zbogCega" placeholder="Razlog" /></b> -->
+                    
+                
+
+            </table>
+            
+ 
             <p class="indent">Na osnovu iznetih razloga, predlažem da Poverenik uvaži moju žalbu, poništi odluka
                 prvostepenog organa i omogući mi pristup traženoj/im informaciji/ma.</p>
             <p class="indent">Žalbu podnosim blagovremeno, u zakonskom roku utvrđenom u članu 22. st. 1. Zakona o slobodnom pristupu informacijama od javnog značaja.</p>
@@ -51,7 +148,9 @@
                 <tr>
                     <td>U: </td>
                     <td>
-                        <u><input [(ngModel)]="mesto" type="text" id="mesto" /></u>
+                        <u><input type="text" id="mesto" placeholder="Mesto" formControlName="mesto" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('mesto').errors }" />
+                            <b class='error' *ngIf="submitted && myForm.get('mesto').errors">Neispravno uneto mesto </b></u>
+                        <!-- <u><input [(ngModel)]="mesto" type="text" id="mesto" /></u> -->
                     </td>
                 </tr>
                 <tr>
@@ -59,12 +158,18 @@
                         Datuma:
                     </td>
                     <td>
-                        <u><input [(ngModel)]="datum" type="text" id="datum" placeholder="dd.mm.yyyy."/></u>
+ 
+                        <u><input type="text" id="datum" placeholder="datum" formControlName="datum" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('datum').errors }" />
+                            <b class='error' *ngIf="submitted && myForm.get('datum').errors">Neispravan datum </b></u>
+                        <!-- <u><input [(ngModel)]="datum" type="text" id="datum"/></u> -->
+ 
                     </td>
                 </tr>
                 <tr>
                     <td>Ime:</td>
-                    <td><u><input type="text" value="{{ime}}" disabled></u></td>
+                    <td>
+                        <u><input type="text" value="{{ime}}" disabled></u>
+                    </td>
                 </tr>
                 <tr>
                     <td>Prezime:</td>
@@ -78,16 +183,28 @@
                 </tr>
                 <tr>
                     <td>Drugi podaci:</td>
-                    <td><u><input [(ngModel)]="drugiPodaci" type="text" id="drugiPodaci"/></u></td>
+                    <td>
+                        <u><input type="text" id="drugiPodaci" placeholder="Drugi podaci" formControlName="drugiPodaci" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('drugiPodaci').errors }" />
+                            <b class='error' *ngIf="submitted && myForm.get('drugiPodaci').errors">Neispravno uneto </b></u>
+                        <!-- <u><input [(ngModel)]="drugiPodaci" type="text" id="drugiPodaci"/></u> -->
+                    </td>
                 </tr>
                 <tr>
                     <td>Potpis:</td>
-                    <td><u><input [(ngModel)]="potpis" type="text" id="potpis"/></u></td>
+                    <td>
+                        <!-- <u><input [(ngModel)]="potpis" type="text" id="potpis"/></u> -->
+                        <u><input type="text" id="potpis" placeholder="Potpis" formControlName="potpis" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('potpis').errors }" />
+                            <b class='error' *ngIf="submitted && myForm.get('potpis').errors">Neispravno uneto </b></u>
+                    </td>
                 </tr>
             </table>
         </div>
+
         <div>
             <button mat-raised-button color="primary" (click)="sendFile()">Save file</button>
         </div>
+
+    </form> 
+
     </div>
 </div>
