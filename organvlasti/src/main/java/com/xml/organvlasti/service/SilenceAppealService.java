@@ -1,5 +1,6 @@
 package com.xml.organvlasti.service;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringWriter;
 
@@ -25,6 +26,7 @@ import com.xml.organvlasti.model.keywordSearch.KeywordSearch;
 import com.xml.organvlasti.model.silenceAppealResponse.SAppealListResponse;
 import com.xml.organvlasti.parser.DOMParser;
 import com.xml.organvlasti.parser.XSLTransformer;
+import com.xml.organvlasti.rdf.FusekiReader;
 import com.xml.organvlasti.rdf.FusekiWriter;
 import com.xml.organvlasti.rdf.MetadataExtractor;
 import com.xml.organvlasti.repository.SilenceAppealRepository;
@@ -115,5 +117,28 @@ public class SilenceAppealService {
 		repository.deleteAppeal(broj);
 		System.out.println("updatedfile = " + xmlString);
 		repository.save(xmlString, broj);		
+	}
+
+	public void generateAppealJSON(String broj) throws IOException {
+		FusekiReader.generateSAppealJSON(broj);
+	}
+
+	public void generateAppealRDF(String broj, String rdfPath) throws TransformerException, FileNotFoundException {
+		Document document = repository.findSilenceAppealByBroj(broj);
+		String xmlString = getStringFromDocument(document);
+		metadataExtractor.extractMetadata(xmlString, rdfPath);
+	}
+	
+	private String getStringFromDocument(Document document) throws TransformerException {
+		StringWriter sw = new StringWriter();
+		TransformerFactory tf = TransformerFactory.newInstance();
+		Transformer transformer = tf.newTransformer();
+		transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+		
+		transformer.transform(new DOMSource(document), new StreamResult(sw));	
+		return sw.toString();
 	}
 }

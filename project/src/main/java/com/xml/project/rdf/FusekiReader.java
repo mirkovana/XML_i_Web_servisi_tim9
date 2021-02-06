@@ -1,6 +1,10 @@
 package com.xml.project.rdf;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -79,5 +83,82 @@ public class FusekiReader {
 	public static String readFile(String path, Charset encoding) throws IOException {
 		byte[] encoded = Files.readAllBytes(Paths.get(path));
 		return new String(encoded, encoding);
+	}
+	
+	public static final String RESPONSE_METADATA_GRAPH_URI = "/responseMetadata";
+	public static final String REQUEST_METADATA_GRAPH_URI = "/requestMetadata";
+	public static final String DECISION_APPEAL_METADATA_GRAPH_URI = "/decisionAppealMetadata";
+	public static final String SILENCE_APPEAL_METADATA_GRAPH_URI = "/silenceAppealMetadata";	
+	public static final String NOTICE_METADATA_GRAPH_URI = "/noticeMetadata";
+
+	public static void generateDAppealJSON(String broj) throws IOException {
+		ConnectionProperties conn = FusekiAuthenticationUtilities.loadProperties();
+
+		String sparqlQuery = SparqlUtil.selectData(conn.dataEndpoint + 
+				DECISION_APPEAL_METADATA_GRAPH_URI, "<http://www.projekat.org/zalbanaodluku/" + broj + "> ?p ?o");
+		QueryExecution query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
+		ResultSet results = query.execSelect();
+		String jsonPath = "src/main/resources/json/zalbanaodluku_" + broj + ".json";
+		File rdfFile = new File(jsonPath);
+		OutputStream out = new BufferedOutputStream(new FileOutputStream(rdfFile));
+		ResultSetFormatter.outputAsJSON(out, results);
+		query.close();
+	}
+	
+	public static void generateSAppealJSON(String broj) throws IOException {
+		ConnectionProperties conn = FusekiAuthenticationUtilities.loadProperties();
+
+		String sparqlQuery = SparqlUtil.selectData(conn.dataEndpoint + 
+				SILENCE_APPEAL_METADATA_GRAPH_URI, "<http://www.projekat.org/zalbazbogcutanja/" + broj + "> ?p ?o");
+		QueryExecution query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
+		ResultSet results = query.execSelect();
+		String jsonPath = "src/main/resources/json/zalbazbogcutanja_" + broj + ".json";
+		File rdfFile = new File(jsonPath);
+		OutputStream out = new BufferedOutputStream(new FileOutputStream(rdfFile));
+		ResultSetFormatter.outputAsJSON(out, results);
+		query.close();
+	}
+	
+	public static void generateRequestJSON(String broj) throws IOException {
+		ConnectionProperties conn = FusekiAuthenticationUtilities.loadProperties();
+
+		String sparqlQuery = SparqlUtil.selectData(conn.dataEndpoint + 
+				REQUEST_METADATA_GRAPH_URI, "<http://www.projekat.org/zahtev/" + broj + "> ?p ?o");
+		QueryExecution query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
+		ResultSet results = query.execSelect();
+		String jsonPath = "src/main/resources/json/zahtev_" + broj + ".json";
+		File rdfFile = new File(jsonPath);
+		OutputStream out = new BufferedOutputStream(new FileOutputStream(rdfFile));
+		ResultSetFormatter.outputAsJSON(out, results);
+		query.close();
+	}
+	
+	public static void generateNoticeJSON(String broj) throws IOException {
+		ConnectionProperties conn = FusekiAuthenticationUtilities.loadProperties();
+
+		String sparqlQuery = SparqlUtil.selectData(conn.dataEndpoint + 
+				NOTICE_METADATA_GRAPH_URI, "<http://www.projekat.org/obavestenje/" + broj + "> ?p ?o");
+		QueryExecution query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
+		ResultSet results = query.execSelect();
+		String jsonPath = "src/main/resources/json/obavestenje_" + broj + ".json";
+		File rdfFile = new File(jsonPath);
+		OutputStream out = new BufferedOutputStream(new FileOutputStream(rdfFile));
+		ResultSetFormatter.outputAsJSON(out, results);
+		query.close();
+	}
+	
+	public static void generateResponseJSON(String broj) throws IOException {
+		ConnectionProperties conn = FusekiAuthenticationUtilities.loadProperties();
+
+		String sparqlQuery = SparqlUtil.selectData(conn.dataEndpoint + 
+				RESPONSE_METADATA_GRAPH_URI, "<http://www.projekat.org/resenje/" + broj + "> ?p ?o");
+		QueryExecution query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
+		ResultSet results = query.execSelect();
+		String jsonPath = "src/main/resources/json/resenje_" + broj + ".json";
+		File rdfFile = new File(jsonPath);
+		OutputStream out = new BufferedOutputStream(new FileOutputStream(rdfFile));
+		ResultSetFormatter.outputAsJSON(out, results);
+		query.close();
+		
 	}
 }

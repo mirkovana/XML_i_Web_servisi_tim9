@@ -1,6 +1,8 @@
 package com.xml.organvlasti.controller;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +13,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -160,4 +163,45 @@ public class NoticeController {
                 .body(bytes);       
     }
 	
+	@GetMapping("/generateJSON/{broj}")
+	public ResponseEntity<byte[]> generateJSON(@PathVariable("broj") String broj) throws XMLDBException {
+
+		try {
+			String jsonPath = "src/main/resources/json/obavestenje_" + broj + ".json";
+
+			service.generateNoticeJSON(broj);
+			File file = new File(jsonPath);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			
+			return ResponseEntity.ok()
+	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + broj + ".json") 
+	                .contentType(MediaType.APPLICATION_JSON) 
+	                .body(IOUtils.toByteArray(fileInputStream));    
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	@GetMapping("/generateRDF/{broj}")
+	public ResponseEntity<byte[]> generateRDF(@PathVariable("broj") String broj) throws XMLDBException {
+
+		try {
+			String rdfPath = "src/main/resources/rdf_gen/obavestenje_" + broj + ".rdf";
+
+			service.generateNoticeRDF(broj, rdfPath);
+			File file = new File(rdfPath);
+			FileInputStream fileInputStream = new FileInputStream(file);
+			
+			return ResponseEntity.ok()
+	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + broj + ".rdf") 
+	                .contentType(MediaType.APPLICATION_JSON) 
+	                .body(IOUtils.toByteArray(fileInputStream));    
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+	}
 }

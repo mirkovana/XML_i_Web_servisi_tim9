@@ -40,7 +40,9 @@
                             </td>
                             <td>
                                 <a href="http://localhost:8080/api/decision-appeals/html/{{a.broj}}" target="_blank">html</a><br>
-                                <a href="http://localhost:8080/api/decision-appeals/pdf/{{a.broj}}">pdf</a>
+                                <a href="http://localhost:8080/api/decision-appeals/pdf/{{a.broj}}">pdf</a><br>
+                                <a href="http://localhost:8080/api/decision-appeals/generateJSON/{{a.broj}}">json</a><br>
+                                <a href="http://localhost:8080/api/decision-appeals/generateRDF/{{a.broj}}">rdf</a><br> 
                             </td>
                             <td>
                                 <!--<button *ngIf="isUser() && a.status=='sent'" (click)="deleteAppeal(a)" mat-mini-fab color="warn"class="mr-2 mb-2"  style="outline: none">

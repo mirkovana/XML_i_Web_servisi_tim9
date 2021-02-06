@@ -1,6 +1,7 @@
 package com.xml.organvlasti.service;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -223,4 +224,28 @@ public class NoticeService {
 	public NoticeListResponse searchByKeywords(KeywordSearch s) throws NumberFormatException, XMLDBException, JAXBException, SAXException {
 		return repository.searchByKeywords(s);
 	}
+
+	public void generateNoticeJSON(String broj) throws IOException {
+		FusekiReader.generateNoticeJSON(broj);		
+	}
+
+	public void generateNoticeRDF(String broj, String rdfPath) throws TransformerException, FileNotFoundException {
+		Document document = repository.findNoticeById(broj);
+		String xmlString = getStringFromDocument(document);
+		metadataExtractor.extractMetadata(xmlString, rdfPath);
+	}
+	
+	private String getStringFromDocument(Document document) throws TransformerException {
+		StringWriter sw = new StringWriter();
+		TransformerFactory tf = TransformerFactory.newInstance();
+		Transformer transformer = tf.newTransformer();
+		transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+		
+		transformer.transform(new DOMSource(document), new StreamResult(sw));	
+		return sw.toString();
+	}
+	
 }

@@ -1,5 +1,6 @@
 package com.xml.organvlasti.service;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringWriter;
 
@@ -25,6 +26,7 @@ import com.xml.organvlasti.model.decisionAppealResponse.DAppealListResponse;
 import com.xml.organvlasti.model.keywordSearch.KeywordSearch;
 import com.xml.organvlasti.parser.DOMParser;
 import com.xml.organvlasti.parser.XSLTransformer;
+import com.xml.organvlasti.rdf.FusekiReader;
 import com.xml.organvlasti.rdf.FusekiWriter;
 import com.xml.organvlasti.rdf.MetadataExtractor;
 import com.xml.organvlasti.repository.DecisionAppealRepository;
@@ -112,5 +114,28 @@ public class DecisionAppealService {
 	public String getHTML(String id) {
 		Document xml = repository.findDecisionAppealByBroj(id);
 		return xslTransformer.getHTMLfromXML(responseXSL, xml);
+	}
+
+	public void generateAppealJSON(String broj) throws IOException {
+		FusekiReader.generateDAppealJSON(broj);
+	}
+	
+	public void generateAppealRDF(String broj, String rdfPath) throws TransformerException, FileNotFoundException {
+		Document document = repository.findDecisionAppealByBroj(broj);
+		String xmlString = getStringFromDocument(document);
+		metadataExtractor.extractMetadata(xmlString, rdfPath);
+	}
+
+	private String getStringFromDocument(Document document) throws TransformerException {
+		StringWriter sw = new StringWriter();
+		TransformerFactory tf = TransformerFactory.newInstance();
+		Transformer transformer = tf.newTransformer();
+		transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+		
+		transformer.transform(new DOMSource(document), new StreamResult(sw));	
+		return sw.toString();
 	}
 }
