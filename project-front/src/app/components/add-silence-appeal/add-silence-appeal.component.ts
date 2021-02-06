@@ -192,9 +192,7 @@ export class AddSilenceAppealComponent implements OnInit {
     console.log("EEEEEEEEEE" + this.option1 + "   " + this.option2 + "    " + this.option3)
  
 
-    if (!this.validate()) {
-      return;
-    }
+    
 
  
     let xmlSpec: string = `<?xml version="1.0" encoding="UTF-8"?>
