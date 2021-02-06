@@ -24,7 +24,7 @@ export class NoticeService {
 
   constructor(private http: HttpClient) { }
 
-  addNotice(notice: string, success: Function){
+  addNotice(notice: string, success: Function) {
     console.log("service add notice = ");
     console.log(notice);
     const headers = new HttpHeaders({
@@ -33,7 +33,7 @@ export class NoticeService {
       'Accept': 'application/xml',       //<- To ask for XML
       'Response-Type': 'text'
     });
-    this.http.post<void>(this.path, notice, {headers: headers})
+    this.http.post<void>(this.path, notice, { headers: headers })
       .pipe(map(response => response))
       .subscribe(response => {
         Swal.fire({
@@ -57,30 +57,55 @@ export class NoticeService {
       })
   }
 
-  getNoticesForUser(username: string): Observable<NoticeItem[]>{
+  naprednaPretraga(nazivOrgana: string, sedisteOrgana: string, ime: string,
+    prezime: string, datum: string, brojPredmeta: string) {
+
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + localStorage.getItem("token"),
+        // 'Content-Type': 'application/xml',
+        'Accept': 'application/xml',      
+        'Response-Type': 'text'
+      });
+    const formData = new FormData();
+    formData.append('nazivOrgana', nazivOrgana);
+    formData.append('sedisteOrgana', sedisteOrgana);
+    formData.append('ime', ime);
+    formData.append('prezime', prezime);
+    formData.append('datum', datum);
+    formData.append('brojPredmeta', brojPredmeta);
+    console.log(localStorage.getItem("token"))
+    return this.http.post<any>(this.path + 'napredna-pretraga', formData, {headers: headers,responseType: 'text' as 'json' })
+    .pipe(map((xml: string) => this.xmlToNotice(xml)));
+  }
+
+  getNoticesForUser(username: string): Observable<NoticeItem[]> {
     console.log("getforuser = ", username);
-    const headers = new HttpHeaders({ 
+    const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + localStorage.getItem("token"),
     });
-    return this.http.get<string>(this.path + username + "/user/all", { headers: headers,
-                                                                 responseType: 'text' as 'json' })
+    return this.http.get<string>(this.path + username + "/user/all", {
+      headers: headers,
+      responseType: 'text' as 'json'
+    })
       .pipe(map((xml: string) => this.xmlToNotice(xml)));
   }
 
-  getNoticesForOrganVlasti(username: string): Observable<NoticeItem[]>{
+  getNoticesForOrganVlasti(username: string): Observable<NoticeItem[]> {
     console.log("getForOrganVlasti = ", username);
-    const headers = new HttpHeaders({ 
+    const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + localStorage.getItem("token"),
     });
-    return this.http.get<string>(this.path + username + "/organvlasti/all", { headers: headers,
-                                                                 responseType: 'text' as 'json' })
+    return this.http.get<string>(this.path + username + "/organvlasti/all", {
+      headers: headers,
+      responseType: 'text' as 'json'
+    })
       .pipe(map((xml: string) => this.xmlToNotice(xml)));
   }
 
   getNotices(): Observable<NoticeItem[]> {
     const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
     return this.http.get<string>(this.pathAll, { headers: headers, responseType: 'text' as 'json' })
-    .pipe(map((xml: string) => this.xmlToNotice(xml)));
+      .pipe(map((xml: string) => this.xmlToNotice(xml)));
   }
 
   searchByKeywords(xml: string): Observable<NoticeItem[]>{
@@ -94,24 +119,24 @@ export class NoticeService {
     .pipe(map((xml: string) => this.xmlToNotice(xml)));
   }
 
-  searchByMetadata(xml: string): Observable<NoticeItem[]>{
-    const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + localStorage.getItem("token"),
-      'Content-Type': 'application/xml', 
-      'Accept': 'application/xml',       
-      'Response-Type': 'text'
-    });
-    return this.http.post<string>(this.pathSearch, xml, { headers: headers, responseType: 'text' as 'json' })
-    .pipe(map((xml: string) => this.xmlToNotice(xml)));
-  }
+  // searchByMetadata(xml: string): Observable<NoticeItem[]>{
+  //   const headers = new HttpHeaders({
+  //     'Authorization': 'Bearer ' + localStorage.getItem("token"),
+  //     'Content-Type': 'application/xml', 
+  //     'Accept': 'application/xml',       
+  //     'Response-Type': 'text'
+  //   });
+  //   return this.http.post<string>(this.pathSearch, xml, { headers: headers, responseType: 'text' as 'json' })
+  //   .pipe(map((xml: string) => this.xmlToNotice(xml)));
+  // }
 
   private xmlToNotice(xml: string): NoticeItem[] {
     console.log("parse = ", xml);
     let noticeItems: NoticeItem[] = [];
     const parser = new DOMParser();
-    let noticesList = parser.parseFromString(xml,"text/xml").getElementsByTagName('noticeItem'); 
+    let noticesList = parser.parseFromString(xml, "text/xml").getElementsByTagName('noticeItem');
     console.log(noticesList);
-    for (let i = 0; i < noticesList.length; ++i){
+    for (let i = 0; i < noticesList.length; ++i) {
       noticeItems.push({
         'broj': noticesList.item(i).getElementsByTagName('broj')[0].textContent,
         'username': noticesList.item(i).getElementsByTagName('username')[0].textContent,
@@ -127,7 +152,7 @@ export class NoticeService {
     return noticeItems;
   }
 
-  getHTML(){
+  getHTML() {
     return this.http.get<void>(this.path + '/api/notice/html/123abc');
   }
 }

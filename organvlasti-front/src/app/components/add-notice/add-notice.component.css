@@ -2,18 +2,35 @@ textarea {
     width: 100%;
     height: 250px;
 }
+
 p.indent {
-      text-indent: 24px;
+    text-indent: 24px;
 }
+
 h1 {
-      text-align: center;
+    text-align: center;
 }
+
 h2 {
-      text-align: center;
+    text-align: center;
 }
+
 h3 {
-      text-align: center;
+    text-align: center;
 }
+
 .tekst {
-      text-align: left;
+    text-align: left;
+}
+
+.veca {
+    width: 100%;
+}
+
+.manja {
+    width: 22%;
+}
+
+.error {
+    color: red;
 }
