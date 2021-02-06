@@ -136,12 +136,12 @@ export class AddNoticeComponent implements OnInit {
       <ob:potpis>`+ this.potpisLica + `</ob:potpis>
     </ob:obavestenje>`;
 
-    // console.log(xmlSpec);
+    console.log(xmlSpec);
 
-    // this.service.addNotice(xmlSpec, ()=>{
-    //   this.router.navigateByUrl('/home');
-    // })
-    // this.submitted = false;
+    this.service.addNotice(xmlSpec, () => {
+      this.router.navigateByUrl('/notices');
+    })
+
   }
 
 }

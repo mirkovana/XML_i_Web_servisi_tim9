@@ -18,15 +18,20 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr class="text-center">
+                            <th colspan="2"></th>
+                            <th colspan="4">Zahtevi</th>
+                            <th colspan="3">Zalbe</th>
+                        </tr>
+                        <tr class="text-center">
                             <th>Broj</th>
                             <th>Datum</th>
-                            <th>Podneti Z.</th>
-                            <th>Usvojeni Z.</th>
-                            <th>Odbaceni Z.</th>
-                            <th>Odbijeni Z></th>
-                            <th>Podnete Za.</th>
-                            <th>Nepostupanja Za.</th>
-                            <th>Odbijanja Za.</th>
+                            <th>Podneti</th>
+                            <th>Usvojeni</th>
+                            <th>Odbaceni</th>
+                            <th>Odbijeni</th>
+                            <th>Podnete</th>
+                            <th>Zbog nepostupanja</th>
+                            <th>Zbog odbijanja</th>
                             <th>Files</th>
                         </tr>
                     </thead>
@@ -49,7 +54,7 @@
                     </tbody>
                 </table>
                 <div *ngIf="reports.length === 0">
-                    <h4>No reports in the database</h4>
+                    <h4>Nema dodatih izvestaja</h4>
                 </div>
             </div>
         </div>

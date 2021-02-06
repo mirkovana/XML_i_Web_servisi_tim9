@@ -110,6 +110,7 @@ public class RequestController {
         /*Setup converter properties. */
         ConverterProperties converterProperties = new ConverterProperties();
         converterProperties.setBaseUri("http://localhost:8070");
+        converterProperties.setCharset("UTF-8");
         /* Call convert method */
         HtmlConverter.convertToPdf(html, target, converterProperties);  
         /* extract output as bytes */

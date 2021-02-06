@@ -7,7 +7,9 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <head>
         <style>
           body {
-            margin:100px;
+            margin-top:10px;
+            margin-left:25px;
+            margin-right:25px;
           }
           p.indent {
             text-indent: 24px;
@@ -20,13 +22,13 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           }
           hr {
             border-top:2px dotted #000;
-            margin-left:100px;
-            margin-right:100px;
+            margin-left:200px;
+            margin-right:200px;
           }
         </style>
   </head>
   <body>
-   	  <p class="center"><b>ŽALBA KADA ORGAN VLASTI NIJE POSTUPIO/ nije postupio u celosti/ PO ZAHTEVU<br></br>TRAŽIOCA U ZAKONSKOM ROKU (ĆUTANjE UPRAVE)</b></p>
+   	  <p class="center"><b>ŽALBA KADA ORGAN VLASTI NIJE POSTUPIO/ NIJE POSTUPIO U CELOSTI / PO ZAHTEVU<br></br>TRAŽIOCA U ZAKONSKOM ROKU (ĆUTANjE UPRAVE)</b></p>
 	  <p><b>Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti</b></p>
 	  <p>Adesa za postu: Beograd, Bulevara kralja Aleksandra br.15</p>
 	  <br></br>
@@ -66,42 +68,40 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	  <p class="indent">
 	    <b>Napomena:</b>Kod žalbe zbog nepostupanju po zahtevu u celosti, treba priložiti i dobijeni odgovor organa vlasti.
 	  </p>
-	  <p style="text-align:right;">
-	    Podnosilac zalbe:
-	    <u>
-	      <xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_podnosiocu_zalbe/zc:ime/."/>
-	      <xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_podnosiocu_zalbe/zc:prezime/."/>
-	    </u>
-	  </p>
-	  <p style="text-align:right;">
-	    Potpis:
-	    <u>
-	      <xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_podnosiocu_zalbe/zc:potpis/."/>
-	    </u>
-	  </p>
-	  <p style="text-align:right;">
-	    Adresa:
-	    <u>
-	      <xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_podnosiocu_zalbe/zc:adresa/zc:grad/."/>,
-	      <xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_podnosiocu_zalbe/zc:adresa/zc:ulica/."/>,
-	      <xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_podnosiocu_zalbe/zc:adresa/zc:broj/."/>,
-	    </u>
-	  </p>
-	  <p style="text-align:right;">
-	    Drugi podaci za kontakt:
-	    <u>
-	      <xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_podnosiocu_zalbe/zc:drugi_podaci_za_kontakt/."/>
-	    </u>
-	  </p>
-	  <p>
-	    U
-	    <u>
-	      <xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_mestu_i_datumu_podnosenja_zalbe/zc:mesto/."/>
-	    </u>, dana 
-	    <u>
-	      <xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_mestu_i_datumu_podnosenja_zalbe/zc:datum/."/> godine.
-	    </u>
-	  </p>
+	  <p style="text-align:left;">
+		  U <u><xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_mestu_i_datumu_podnosenja_zalbe/zc:mesto/."/></u><br></br> 
+		  Datuma <xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_mestu_i_datumu_podnosenja_zalbe/zc:datum/."/>
+	  	  <span style="float:right;">
+	  	  	<table>
+		  		<tr>
+		  			<td>Ime:</td>
+		  			<td><u><xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_podnosiocu_zalbe/zc:ime/."/></u></td>
+		  		</tr>
+		  		<tr>
+		  			<td>Prezime:</td>
+		  			<td><u><xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_podnosiocu_zalbe/zc:prezime/."/></u></td>
+		  		</tr>
+		  		<tr>
+		  			<td>Potpis:</td>
+		  			<td><u><xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_podnosiocu_zalbe/zc:potpis/."/></u></td>
+		  		</tr>
+		  		<tr>
+		  			<td>Adresa:</td>
+		  			<td>
+			  			<u>
+					      <xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_podnosiocu_zalbe/zc:adresa/zc:grad/."/>,
+					      <xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_podnosiocu_zalbe/zc:adresa/zc:ulica/."/>,
+					      <xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_podnosiocu_zalbe/zc:adresa/zc:broj/."/>,
+					    </u>
+		  			</td>
+		  		</tr>
+				<tr>
+					<td>Drugi podaci za kontakt:</td>
+					<td><u><xsl:value-of select="zc:zalba_cutanje/zc:podaci_o_podnosiocu_zalbe/zc:drugi_podaci_za_kontakt/."/></u></td>
+				</tr>
+		  	</table>  
+	  	  </span>	
+	  </p> 
   </body>
   </html>
 </xsl:template>

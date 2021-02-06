@@ -104,16 +104,15 @@ public class RequestService {
 	
 	public RequestListResponse getAll() throws XMLDBException, ParserConfigurationException, SAXException, IOException, JAXBException {
 		return repository.getAll();
-		//return null;
 	}
 	
 	public RequestListResponse getAllForUser(String username) throws XMLDBException, ParserConfigurationException, SAXException, IOException, JAXBException {
-		//return repository.getAll(true, username);
 		return repository.getAllForUser(username);
 	}
 	
 	public void save(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("save service = " + dto);
+		domParser.setSchema(schemaPath);
 		Document document = domParser.getDocument(dto);
 		System.out.println("got document = " + document);
 		NodeList nodeList = document.getElementsByTagName("za:zahtev");		
@@ -161,17 +160,16 @@ public class RequestService {
 	public void deleteRequest(String broj) {
 		try {
 			repository.deleteRequest(broj);
+			FusekiWriter.saveRDF(FusekiWriter.REQUEST_RDF_FILEPATH, FusekiWriter.REQUEST_METADATA_GRAPH_URI);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (XMLDBException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -279,6 +277,7 @@ public class RequestService {
         /*Setup converter properties. */
         ConverterProperties converterProperties = new ConverterProperties();
         converterProperties.setBaseUri("http://localhost:8080");
+        converterProperties.setCharset("UTF-8");
         /* Call convert method */
         HtmlConverter.convertToPdf(html, target, converterProperties);  
         /* extract output as bytes */

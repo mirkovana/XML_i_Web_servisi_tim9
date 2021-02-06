@@ -38,7 +38,7 @@ export class NoticeService {
       .subscribe(response => {
         Swal.fire({
           title: 'Success!',
-          text: 'Add notice successfully!',
+          text: 'Obavestenje poslato!',
           icon: 'success',
           confirmButtonText: 'OK'
         });

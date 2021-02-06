@@ -1,23 +1,23 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/f43786584d34-2021">
-    <pred:status xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">resolved</pred:status>
+  <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/34d4eef3cc5a-2022">
+    <pred:status xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">pending</pred:status>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/f43786584d34-2021">
-    <pred:broj xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">f43786584d34-2021</pred:broj>
+  <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/34d4eef3cc5a-2022">
+    <pred:broj xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">34d4eef3cc5a-2022</pred:broj>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/f43786584d34-2021">
-    <pred:organVlasti xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">naziv_silence1</pred:organVlasti>
+  <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/34d4eef3cc5a-2022">
+    <pred:organVlasti xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdsasad</pred:organVlasti>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/f43786584d34-2021">
-    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">ime_silence1</pred:ime>
+  <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/34d4eef3cc5a-2022">
+    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">adsasd</pred:ime>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/f43786584d34-2021">
-    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">prezime_silence1</pred:prezime>
+  <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/34d4eef3cc5a-2022">
+    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">adsdas</pred:prezime>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/f43786584d34-2021">
-    <pred:mesto xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">u_silence1</pred:mesto>
+  <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/34d4eef3cc5a-2022">
+    <pred:mesto xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asddsa</pred:mesto>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/f43786584d34-2021">
-    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">dana_silence1</pred:datum>
+  <rdf:Description rdf:about="http://www.projekat.org/zalbazbogcutanja/34d4eef3cc5a-2022">
+    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">qsadsad</pred:datum>
   </rdf:Description>
 </rdf:RDF>

@@ -80,13 +80,27 @@ public class Izvestaj {
     protected String id;
     @XmlAttribute(name = "datum")
     protected String datum;
-
+    @XmlAttribute(name = "user")
+    protected String user;
+    
     public Izvestaj() {}
     
-    @Override
+    
+	@Override
 	public String toString() {
-		return "Izvestaj [zahtevi=" + zahtevi + ", zalbe=" + zalbe + ", id=" + id + ", datum=" + datum + "]";
+		return "Izvestaj [zahtevi=" + zahtevi + ", zalbe=" + zalbe + ", id=" + id + ", datum=" + datum + ", user="
+				+ user + "]";
 	}
+
+	public String getUser() {
+		return user;
+	}
+
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
 
 	/**
      * Gets the value of the zahtevi property.

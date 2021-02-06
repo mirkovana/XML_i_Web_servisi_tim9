@@ -5,7 +5,7 @@
         <head>
             <style>
                 body {
-                    margin: 100px;
+                    margin: 25px;
                 }
 
                 p.indent {
@@ -43,6 +43,10 @@
             <p class="indent">
                 Datum:
                 <xsl:value-of select="izvestaj/@datum/." />
+            </p>
+            <p class="indent">
+                Sluzbenik:
+                <xsl:value-of select="izvestaj/@user/." />
             </p>
             <p class="indent">
                 <b>1.Zahtevi:</b>

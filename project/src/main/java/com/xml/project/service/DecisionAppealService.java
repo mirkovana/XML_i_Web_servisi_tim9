@@ -44,6 +44,7 @@ import com.xml.project.repository.RequestRepository;
 public class DecisionAppealService {
 
 	private final String responseXSL = "src/main/resources/xsl/zalbanaodluku.xsl";
+	private static String schemaPath = "src/main/resources/documents/zalbanaodluku.xsd";
 
 	@Autowired
 	private DOMParser domParser;
@@ -58,6 +59,7 @@ public class DecisionAppealService {
 	
 	public void save(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("save service = " + dto);
+		domParser.setSchema(schemaPath);
 		Document document = domParser.getDocument(dto);
 		System.out.println("got document = " + document);
 		NodeList nodeList = document.getElementsByTagName("zo:zalba_na_odluku");

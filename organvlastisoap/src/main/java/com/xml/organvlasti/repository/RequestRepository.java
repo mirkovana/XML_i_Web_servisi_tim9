@@ -80,7 +80,22 @@ public class RequestRepository {
 	            "    \t</xu:update>\n" +
 	            "    </xu:modifications>)\n";
 	
+	public String save(String xmlEntity, String broj)
+			throws XMLDBException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+		System.out.println("save in repository entity = " + xmlEntity + " broj = " + broj);
+		if (!broj.endsWith(".xml")) {
+			broj = broj + ".xml";
+		}
+		dbManager.storeXMLFromText(collectionId, broj, xmlEntity);
+		return "SAVED";
+	}
 	
+	public void deleteRequest(String broj) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+		if (!broj.endsWith(".xml")) {
+			broj = broj + ".xml";
+		}
+		dbManager.deleteDocument(collectionId, broj);
+	}
 	
 	public String getStringFromDocument(Document document) throws TransformerException {
 		System.out.println("getstringfromdocument");

@@ -8,7 +8,7 @@
       <head>
         <style>
           body {
-            margin:100px;
+            margin:25px;
           }
           p.indent {
             text-indent: 24px;
@@ -33,8 +33,8 @@
         </xsl:if> 
         
         <p style="text-align:left;">
-          Broj: 
-           <a>
+          Broj:
+          <a>
          	<xsl:attribute name="href">
            		<xsl:text>http://localhost:8070/api/request/html/</xsl:text>
           	 	<xsl:value-of select="res:zalba/@broj"/>

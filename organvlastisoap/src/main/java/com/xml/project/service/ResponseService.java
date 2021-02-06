@@ -38,6 +38,7 @@ public class ResponseService {
 	private ResponseRepository repository;
 	private DecisionAppealService dAppealService;
 	private SilenceAppealService sAppealService;
+	private RequestService requestService;
 	private MetadataExtractor metadataExtractor;
 
 	public ResponseService() {
@@ -45,7 +46,7 @@ public class ResponseService {
 		repository = new ResponseRepository();
 		dAppealService = new DecisionAppealService();
 		sAppealService = new SilenceAppealService();
-
+		requestService = new RequestService();
 		try {
 			metadataExtractor = new MetadataExtractor();
 		} catch (SAXException e) {
@@ -95,6 +96,7 @@ public class ResponseService {
 		FusekiWriter.saveRDF(FusekiWriter.RESPONSE_RDF_FILEPATH, FusekiWriter.RESPONSE_METADATA_GRAPH_URI);
 	
 		dAppealService.updateStateResolved(broj);
+		requestService.updateStateResolved(broj, sp.getAttribute("status"));
 	}
 
 	public void saveSilenceResponse(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
@@ -137,6 +139,7 @@ public class ResponseService {
 		FusekiWriter.saveRDF(FusekiWriter.RESPONSE_RDF_FILEPATH, FusekiWriter.RESPONSE_METADATA_GRAPH_URI);
 	
 		sAppealService.updateStateResolved(broj);
+		requestService.updateStateResolved(broj, sp.getAttribute("status"));
 	}
 	
 }

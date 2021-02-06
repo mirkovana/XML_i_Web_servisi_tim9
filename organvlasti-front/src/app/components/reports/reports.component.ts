@@ -33,7 +33,7 @@ export class ReportsComponent implements OnInit {
 
   generateReport(){
     console.log("generate report");
-    this.service.generateReport().subscribe((data: any[])  => {
+    this.service.generateReport(localStorage.getItem('username')).subscribe((data: any[])  => {
       console.log("success = ", data);
       this.getReports();
     }, error => {

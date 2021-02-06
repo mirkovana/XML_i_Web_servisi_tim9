@@ -112,6 +112,7 @@ public class DecisionAppealController {
         /*Setup converter properties. */
         ConverterProperties converterProperties = new ConverterProperties();
         converterProperties.setBaseUri("http://localhost:8080");
+        converterProperties.setCharset("UTF-8");
         /* Call convert method */
         HtmlConverter.convertToPdf(html, target, converterProperties);  
         /* extract output as bytes */

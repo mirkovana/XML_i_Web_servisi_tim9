@@ -53,10 +53,17 @@ public class RequestController {
 	
 	@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
-	public ResponseEntity saveRequestXML(@RequestBody String xmlString) throws Exception {
+	public ResponseEntity saveRequestXML(@RequestBody String xmlString) {
 		System.out.println("controller saveRequest as xml= ");
-		service.save(xmlString);
-		return new ResponseEntity(HttpStatus.OK);
+		try {
+			service.save(xmlString);
+			return new ResponseEntity(HttpStatus.OK);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| ParserConfigurationException | SAXException | IOException | TransformerException
+				| XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+		}		
 	}
 	
 	@GetMapping(value = "/all", produces = MediaType.TEXT_XML_VALUE)
@@ -94,14 +101,6 @@ public class RequestController {
 		System.out.println("constroller result = " + result);
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
-	
-	/*@GetMapping(value = "/pdf/{broj}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-	public ResponseEntity<Object> getPdf(@PathVariable("broj") String broj) throws Exception {
-		Resource resource = service.getPdf(broj);
-		return ResponseEntity.ok().contentType(MediaType.APPLICATION_OCTET_STREAM)
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-				.body(resource);
-	}*/
 	
 	@RequestMapping(path = "/pdf/{broj}")
     public ResponseEntity<?> getPDF(@PathVariable("broj") String broj, HttpServletRequest request, HttpServletResponse response) throws IOException {

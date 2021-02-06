@@ -65,7 +65,7 @@
                             <th>Datum</th>
                             <th>Institucija</th>
                             <th>Status</th>
-                            <th>HTML</th>
+                            <th>File</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -85,15 +85,14 @@
                                 <a href="http://localhost:8080/api/request/pdf/{{c.broj}}">pdf</a>
                             </td>
                             <td>
-                                <button *ngIf="isUser() && c.status!='accepted'" mat-mini-fab color="warn"
+                                <button *ngIf="isUser() && (c.status=='denied' || c.status=='expired' || c.status=='sent')" mat-mini-fab color="warn"
                                     class="mr-2 mb-2" (click)="deleteRequest(c)" style="outline: none">
                                     <mat-icon>delete</mat-icon>
                                 </button>
-                                <button *ngIf="isAdmin() && c.status!='accepted'" mat-mini-fab color="warn"
+                                <button *ngIf="isAdmin() && c.status=='sent'" mat-mini-fab color="warn"
                                     class="mr-2 mb-2" (click)="replyRequest(c)" style="outline: none">
                                     <mat-icon>reply</mat-icon>
                                 </button>
-                                <!-- && c.status=='sent' -->
                                 <button *ngIf="isAdmin() && c.status=='sent'" mat-mini-fab color="warn"
                                     class="mr-2 mb-2" (click)="denyRequest(c)" style="outline: none">
                                     <mat-icon>cancel</mat-icon>
@@ -110,7 +109,7 @@
                     </tbody>
                 </table>
                 <div *ngIf="requests.length === 0">
-                    <h4>No requests in the database</h4>
+                    <h4>Nema dodatih zahteva</h4>
                 </div>
             </div>
         </div>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBException;
 import javax.xml.namespace.QName;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.ws.Service;
 
@@ -57,10 +58,16 @@ public class SilenceAppealController {
 	
 	@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
-	public ResponseEntity saveSilenceAppeal(@RequestBody String dto) throws Exception {
+	public ResponseEntity saveSilenceAppeal(@RequestBody String dto) {
 		System.out.println("controller saveSilenceAppeal= ");
-		service.save(dto);
-		return new ResponseEntity(HttpStatus.OK);
+		try {
+			service.save(dto);
+			return new ResponseEntity(HttpStatus.OK);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ParserConfigurationException
+				| SAXException | IOException | TransformerException | XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@GetMapping(value = "/{username}/all",  produces = MediaType.TEXT_XML_VALUE)
@@ -224,6 +231,7 @@ public class SilenceAppealController {
         /*Setup converter properties. */
         ConverterProperties converterProperties = new ConverterProperties();
         converterProperties.setBaseUri("http://localhost:8070");
+        converterProperties.setCharset("UTF-8");
         /* Call convert method */
         HtmlConverter.convertToPdf(html, target, converterProperties);  
         /* extract output as bytes */

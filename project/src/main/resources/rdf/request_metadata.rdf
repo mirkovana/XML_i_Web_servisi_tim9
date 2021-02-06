@@ -1,26 +1,26 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="http://www.projekat.org/zahtev/17bf0fdd3d9f-2021">
-    <pred:status xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">accepted</pred:status>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/65459158dbed-2021">
+    <pred:status xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">denied</pred:status>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zahtev/17bf0fdd3d9f-2021">
-    <pred:broj xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">17bf0fdd3d9f-2021</pred:broj>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/65459158dbed-2021">
+    <pred:broj xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">65459158dbed-2021</pred:broj>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zahtev/17bf0fdd3d9f-2021">
-    <pred:nazivInstitucije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdasdsa</pred:nazivInstitucije>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/65459158dbed-2021">
+    <pred:nazivInstitucije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdasdas</pred:nazivInstitucije>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zahtev/17bf0fdd3d9f-2021">
-    <pred:sedisteInstitucije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdasdsdasad</pred:sedisteInstitucije>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/65459158dbed-2021">
+    <pred:sedisteInstitucije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdasdsa</pred:sedisteInstitucije>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zahtev/17bf0fdd3d9f-2021">
-    <pred:informacije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">sadsadsad</pred:informacije>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/65459158dbed-2021">
+    <pred:informacije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdasdas</pred:informacije>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zahtev/17bf0fdd3d9f-2021">
-    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">sadsadsda</pred:datum>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/65459158dbed-2021">
+    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">10.10.2010.</pred:datum>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zahtev/17bf0fdd3d9f-2021">
-    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">sadsadsad</pred:ime>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/65459158dbed-2021">
+    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">sadsad</pred:ime>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/zahtev/17bf0fdd3d9f-2021">
-    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">sasda</pred:prezime>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/65459158dbed-2021">
+    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">sadsdasad</pred:prezime>
   </rdf:Description>
 </rdf:RDF>

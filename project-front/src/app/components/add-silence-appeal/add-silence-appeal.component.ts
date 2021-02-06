@@ -1,9 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { XonomyModel } from "../../model/xonomy.model";
 import { SilenceAppealService } from '../../service/silence-appeal.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SilenceAppealDTO } from "../../model/silence-appeal.model";
 import { RequestService } from '../../service/request.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-add-silence-appeal',
@@ -17,36 +16,38 @@ export class AddSilenceAppealComponent implements OnInit {
   requestXmlFile: string;
 
   readFile = (e) => {
+    console.log("e = ", e);
     const file = e.target.files[0];
     if (!file) {
       return;
     }
+    this.broj = file.name.split(".")[0];
     const reader = new FileReader();
     reader.onload = (evt) => {
       const xmlData: string = (evt as any).target.result;
-      console.log("xmldata = ", xmlData);
+      //console.log("xmldata = ", xmlData);
       this.requestXmlFile = xmlData;
     };
     reader.readAsText(file);
-    console.log("reader = ", reader.readAsText(file));
+    //console.log("reader = ", reader.readAsText(file));
   }
 
-  nazivOrgana: string;
+  nazivOrgana: string = "";
   option1: string;
   option2: string;
   option3: string;
-  datumPodnosenja: string;
-  broj: string;
-  podaciOInformaciji: string;
-  ime: string;
-  prezime: string;
-  potpis: string;
-  grad: string;
-  ulica: string;
-  br: string;
-  drugiPodaci: string;
-  mesto: string;
-  dana: string;
+  datumPodnosenja: string = "";
+  broj: string = "";
+  podaciOInformaciji: string = "";
+  ime: string = "";
+  prezime: string = "";
+  potpis: string = "";
+  grad: string = "";
+  ulica: string = "";
+  br: string = "";
+  drugiPodaci: string = "";
+  mesto: string = "";
+  dana: string = "";
 
   constructor(private service: SilenceAppealService,
     private requestService: RequestService,
@@ -54,6 +55,58 @@ export class AddSilenceAppealComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+  }
+
+  validate(){
+    
+    if(this.nazivOrgana == "" || this.datumPodnosenja == "" ||
+        this.broj == "" || this.podaciOInformaciji == "" || this.ime == "" || this.prezime == "" || this.potpis == "" || this.grad == "" || this.ulica == "" || this.br == "" || this.drugiPodaci == "" || this.mesto == "" || this.dana == ""){
+      Swal.fire({
+        title: 'Error!',
+        text: 'Sva polja su neophodna!',
+        icon: 'error',
+        confirmButtonColor: '#DC143C',
+        confirmButtonText: 'OK'
+      });
+      return false;
+    }
+
+    if(this.option1 == 'false' && this.option2 == 'false' && this.option3 == 'false'){
+      Swal.fire({
+        title: 'Error!',
+        text: 'Razlog zalbe mora biti odabran!',
+        icon: 'error',
+        confirmButtonColor: '#DC143C',
+        confirmButtonText: 'OK'
+      });
+      return false;
+    }
+
+    var date_regex = /^(0[1-9]|1\d|2\d|3[01])\.(0[1-9]|1[0-2])\.(19|20)\d{2}\.$/;
+    if (date_regex.test(this.datumPodnosenja) == false || date_regex.test(this.dana) == false) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Pogresan format datuma => dd.mm.yyyy.',
+        icon: 'error',
+        confirmButtonColor: '#DC143C',
+        confirmButtonText: 'OK'
+      });
+      return false;
+    }
+
+    let br_regex = /^\d+$/;
+    if (br_regex.test(this.br) == false) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Pogresan format broja ulice',
+        icon: 'error',
+        confirmButtonColor: '#DC143C',
+        confirmButtonText: 'OK'
+      });
+      return false;
+    }
+
+    return true;
   }
 
   sendFile() {
@@ -66,6 +119,10 @@ export class AddSilenceAppealComponent implements OnInit {
     }
     if(this.option3 == undefined){
       this.option3 = 'false';
+    }
+
+    if (!this.validate()) {
+      return;
     }
 
     let xmlSpec: string = `<?xml version="1.0" encoding="UTF-8"?>
@@ -115,7 +172,7 @@ export class AddSilenceAppealComponent implements OnInit {
     if (this.requestXmlFile != undefined) {
       this.requestService.addDeniedRequest(this.requestXmlFile, () => {
         this.service.addSilenceAppeal(xmlSpec, () => {
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/silence-appeals');
         })
       })
     } else {

@@ -128,7 +128,7 @@ export class DecisionAppealService {
         updateTable();
         Swal.fire({
           title: 'Success!',
-          text: 'Appeal successfully deleted!',
+          text: 'Zalba na odluku uspesno obrisana!',
           icon: 'success',
           confirmButtonText: 'OK'
         });

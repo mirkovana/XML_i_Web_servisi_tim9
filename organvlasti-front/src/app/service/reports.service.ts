@@ -11,7 +11,7 @@ import { ReportItem } from '../model/report.model';
 export class ReportsService {
   path = 'http://localhost:8080/api/report/';
   pathGetAll = this.path + "all";
-  pathGenerate = this.path + "generate";
+  pathGenerate = this.path + "generate/";
 
   constructor(private http: HttpClient) { }
 
@@ -21,10 +21,10 @@ export class ReportsService {
     .pipe(map((xml: string) => this.xmlToReports(xml)));
   }
 
-  generateReport(){
+  generateReport(username: string){
     console.log("generate report service");
     const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("token") });
-    return this.http.get<any>(this.pathGenerate, { headers: headers });
+    return this.http.get<any>(this.pathGenerate + username, { headers: headers });
   }
 
   private xmlToReports(xml: string): ReportItem[] {

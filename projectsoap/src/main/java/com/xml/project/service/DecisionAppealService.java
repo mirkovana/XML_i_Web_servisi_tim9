@@ -99,7 +99,7 @@ public class DecisionAppealService {
 		System.out.println("updatedfile = " + xmlString);
 		repository.save(xmlString, broj);
 		
-		metadataExtractor.extractMetadata(xmlString, MetadataExtractor.DECISION_APPEAL_RDF_FILE);
-		FusekiWriter.saveRDF(FusekiWriter.DECISION_APPEAL_RDF_FILEPATH, FusekiWriter.DECISION_APPEAL_METADATA_GRAPH_URI);
+		//metadataExtractor.extractMetadata(xmlString, MetadataExtractor.DECISION_APPEAL_RDF_FILE);
+		//FusekiWriter.saveRDF(FusekiWriter.DECISION_APPEAL_RDF_FILEPATH, FusekiWriter.DECISION_APPEAL_METADATA_GRAPH_URI);
 	}
 }
