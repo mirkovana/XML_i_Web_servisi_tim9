@@ -1,20 +1,20 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/65459158dbed-2021">
-    <pred:nazivOrgana xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdasdas</pred:nazivOrgana>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/f875b6c41f14-2021">
+    <pred:nazivOrgana xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asd</pred:nazivOrgana>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/65459158dbed-2021">
-    <pred:sedisteOrgana xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdadssa</pred:sedisteOrgana>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/f875b6c41f14-2021">
+    <pred:sedisteOrgana xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asd</pred:sedisteOrgana>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/65459158dbed-2021">
-    <pred:brojPredmeta xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">65459158dbed-2021</pred:brojPredmeta>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/f875b6c41f14-2021">
+    <pred:brojPredmeta xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">f875b6c41f14-2021</pred:brojPredmeta>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/65459158dbed-2021">
-    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">10.10.2010.</pred:datum>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/f875b6c41f14-2021">
+    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">20.12.2012.</pred:datum>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/65459158dbed-2021">
-    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdsa</pred:ime>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/f875b6c41f14-2021">
+    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Ilija</pred:ime>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/65459158dbed-2021">
-    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdsa</pred:prezime>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/f875b6c41f14-2021">
+    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Gek</pred:prezime>
   </rdf:Description>
 </rdf:RDF>

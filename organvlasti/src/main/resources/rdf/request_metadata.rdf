@@ -22,5 +22,6 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://www.projekat.org/zahtev/731eb28cd188-2021">
     <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">sadsad</pred:prezime>
+
   </rdf:Description>
 </rdf:RDF>

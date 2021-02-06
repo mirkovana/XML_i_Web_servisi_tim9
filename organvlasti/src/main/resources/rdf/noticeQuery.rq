@@ -1,15 +1,15 @@
 SELECT * FROM <http://localhost:8081/fuseki/OrganVlasti/data/noticeMetadata> WHERE {
+	?obavestenje <http://www.projekat.org/predicate/nazivOrgana> ?nazivOrgana .
+	?obavestenje <http://www.projekat.org/predicate/sedisteOrgana> ?sedisteOrgana .
 	?obavestenje <http://www.projekat.org/predicate/ime> ?ime .
 	?obavestenje <http://www.projekat.org/predicate/prezime> ?prezime .
 	?obavestenje <http://www.projekat.org/predicate/datum> ?datum .
 	?obavestenje <http://www.projekat.org/predicate/brojPredmeta> ?broj_predmeta .
-	?obavestenje <http://www.projekat.org/predicate/sedisteOrgana> ?sedisteOrgana .
-	?obavestenje <http://www.projekat.org/predicate/nazivOrgana> ?nazivOrgana .
 	FILTER( CONTAINS(UCASE(str(?ime)), UCASE("{{ime}}"))
-    || CONTAINS(UCASE(str(?prezime)), UCASE("{{prezime}}"))
-    || CONTAINS(UCASE(str(?datum)), UCASE("{{datum}}"))
-    || CONTAINS(UCASE(str(?brojPredmeta)), UCASE("{{brojPredmeta}}"))
-    || CONTAINS(UCASE(str(?sedisteOrgana)), UCASE("{{sedisteOrgana}}"))
-    || CONTAINS(UCASE(str(?nazivOrgana)), UCASE("{{nazivOrgana}}"))
+	&& CONTAINS(UCASE(str(?nazivOrgana)), UCASE("{{nazivOrgana}}"))
+	&& CONTAINS(UCASE(str(?sedisteOrgana)), UCASE("{{sedisteOrgana}}"))
+    && CONTAINS(UCASE(str(?prezime)), UCASE("{{prezime}}"))
+    && CONTAINS(UCASE(str(?datum)), UCASE("{{datum}}"))
+    && CONTAINS(UCASE(str(?broj_predmeta)), UCASE("{{broj_predmeta}}"))
   ) .
 }

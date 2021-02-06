@@ -41,9 +41,9 @@ public class FusekiReader {
 		ConnectionProperties conn = FusekiAuthenticationUtilities.loadProperties();
 		
 		String sparqlQueryTemplate = readFile(QUERY_FILEPATH, StandardCharsets.UTF_8);
-		System.out.println("Query: " + sparqlQueryTemplate);
+//		System.out.println("Query: " + sparqlQueryTemplate);
 		String sparqlQuery = StringSubstitutor.replace(sparqlQueryTemplate, params, "{{", "}}");
-		System.out.println("Query: " + sparqlQuery);
+//		System.out.println("Query: " + sparqlQuery);
 		
 		// Create a QueryExecution that will access a SPARQL service over HTTP
 		QueryExecution query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
@@ -55,7 +55,7 @@ public class FusekiReader {
 		ArrayList<Map<String, String>> returnList = new ArrayList<>();
 		
 		while(results.hasNext()){
-			System.out.println("results.hasNext()");
+//			System.out.println("results.hasNext()");
             // A single answer from a SELECT query
 			QuerySolution querySolution = results.next() ;
 			Iterator<String> variableBindings = querySolution.varNames();
@@ -67,12 +67,12 @@ public class FusekiReader {
 		    	varValue = querySolution.get(varName);
 		    	
 		    	String[] v = varValue.toString().split("\\^");
-		    	System.out.println(varName + ": " + varValue.toString());
+//		    	System.out.println(varName + ": " + varValue.toString());
 		    	if(v.length > 0) {
 			    	itemsMap.put(varName, v[0]);		    		
 		    	}
 		    }
-		    System.out.println();
+//		    System.out.println();
 		    returnList.add(itemsMap);
         }
 		
@@ -163,3 +163,4 @@ public class FusekiReader {
 		query.close();
 	}
 }
+

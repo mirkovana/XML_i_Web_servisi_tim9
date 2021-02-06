@@ -56,9 +56,9 @@ public class NoticeService {
 	private NoticeRepository repository;
 	@Autowired
 	private RequestService requestService;
-	@Autowired 
+	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private MetadataExtractor metadataExtractor;
 	
@@ -81,7 +81,7 @@ public class NoticeService {
 			return;
 		}
 		System.out.println("found response = " + prev);
-		
+
 		StringWriter sw = new StringWriter();
 		TransformerFactory tf = TransformerFactory.newInstance();
 		Transformer transformer = tf.newTransformer();
@@ -89,34 +89,36 @@ public class NoticeService {
 		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
 		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 		transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-		
+
 		transformer.transform(new DOMSource(document), new StreamResult(sw));
-		
+
 		System.out.println("broj after = " + broj);
 		repository.save(sw.toString(), broj + ".xml");
-		
+
 		requestService.acceptRequest(broj);
-		
+
 		metadataExtractor.extractMetadata(sw.toString(), MetadataExtractor.NOTICE_RDF_FILE);
 		FusekiWriter.saveRDF(FusekiWriter.NOTICE_RDF_FILEPATH, FusekiWriter.NOTICE_METADATA_GRAPH_URI);
-		
+
 		NodeList root = document.getElementsByTagName("ob:obavestenje");
 		el = (Element) root.item(0);
 		sendEmail(broj, el.getAttribute("username"), el.getAttribute("organVlastiUsername"));
 	}
-	
+
 	public NoticeListResponse getAll() throws XMLDBException, JAXBException, SAXException {
 		return repository.getAll();
 	}
-	
-	public NoticeListResponse getAllForOrganVlastiUsername(String username) throws XMLDBException, JAXBException, SAXException {
+
+	public NoticeListResponse getAllForOrganVlastiUsername(String username)
+			throws XMLDBException, JAXBException, SAXException {
 		return repository.getAllForUsername(username, NoticeRepository.X_QUERY_FIND_ALL_BY_ORGANVLASTI_USERNAME);
 	}
 
-	public NoticeListResponse getAllForUserUsername(String username) throws XMLDBException, JAXBException, SAXException {
+	public NoticeListResponse getAllForUserUsername(String username)
+			throws XMLDBException, JAXBException, SAXException {
 		return repository.getAllForUsername(username, NoticeRepository.X_QUERY_FIND_ALL_BY_USER_USERNAME);
 	}
-	
+
 	public void deleteNotice(String broj) {
 		try {
 			repository.deleteRequest(broj);
@@ -130,7 +132,7 @@ public class NoticeService {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public String getHTML(String broj) {
 		Document xml = repository.findNoticeById(broj);
 		return xslTransformer.getHTMLfromXML(requestXSL, xml);
@@ -151,14 +153,14 @@ public class NoticeService {
 
         return bytes;
 	}
-	
+
 	public void sendEmail(String broj, String to, String from) {
 		try {
 			System.out.println("to = " + to + " from = " + from);
 			String toEmail = userService.getUserEmailByUsername(to);
 			String fromEmail = userService.getUserEmailByUsername(from);
 			byte[] pdfBytes = getPdfBytes(broj);
-			
+
 			System.out.println("sendemailnoticeservice");
 			String fooResourceUrl = "http://localhost:5000/email";
 			RestTemplate restTemplate = new RestTemplate();
@@ -167,61 +169,55 @@ public class NoticeService {
 			email.setPdf(Base64.getEncoder().encodeToString(pdfBytes));
 			email.setSubject("Obavestenje o zahtevu za pristup informacijama");
 			email.setText("Vas zahtev br." + broj + " je prihvacen. U prilogu je dokument sa podacima o datum"
-					+ " i vremenu preuzimanja trazenih informaicja.\n"
-					+ "html: http://localhost:8080/api/notice/html/" + broj + " \n"
-					+ "pdf: http://localhost:8080/api/notice/pdf/" + broj + " \n");
+					+ " i vremenu preuzimanja trazenih informaicja.\n" + "html: http://localhost:8080/api/notice/html/"
+					+ broj + " \n" + "pdf: http://localhost:8080/api/notice/pdf/" + broj + " \n");
 			email.setTo(toEmail);
 			System.out.println("emailmodel = " + email);
 			HttpEntity<EmailModel> request = new HttpEntity<>(email);
 			restTemplate.postForObject(fooResourceUrl, request, EmailModel.class);
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public NoticeListResponse searchByMetadata(Map<String, String> params) throws IOException {
-		System.out.println("service executeQuerry!");
-        ArrayList<Map<String, String>> result = FusekiReader.executeQuery(params, FusekiReader.NOTICE_QUERY_FILEPATH);
-        System.out.println("return result querry!");
-        ArrayList<String> brojList = new ArrayList<>();
-        for(Map<String, String> map : result) {
-        	String obavestenje = map.get("obavestenje");
-        	String[] split = obavestenje.split("\\/");
-        	brojList.add(split[split.length-1]);
-        	/*System.out.println("map = ");
-        	for(String key : map.keySet()) {
-            	System.out.println("ket = " + key + " value = " + map.get(key));        		
-        	}
-        	System.out.println();*/
-        }
-        NoticeListResponse response = new NoticeListResponse();
-        List<NoticeItem> itemsList = new ArrayList<>();
-        
-        for(String broj : brojList) {
-        	Obavestenje notice = repository.findNoticeByIdMarshall(broj);
-        	if(notice == null) {
-        		continue;
-        	}
-    		
-    		NoticeItem item = new NoticeItem();
-    		item.setBroj(notice.getBroj());
-    		item.setDatum(notice.getDatum());
-    		item.setImePodnosioca(notice.getOpsteInformacije().getPodaciOPodnosiocu().getIme().getValue());
-    		item.setPrezimePodnosioca(notice.getOpsteInformacije().getPodaciOPodnosiocu().getPrezime().getValue());
-    		item.setIznos(Double.toString(notice.getTelo().getIznos()));
-    		item.setNazivOrgana(notice.getOpsteInformacije().getPodaciOOrganu().getNaziv().getValue());
-    		item.setOrganVlastiUsername(notice.getOrganVlastiUsername());
-    		item.setSedisteOrgana(notice.getOpsteInformacije().getPodaciOOrganu().getSediste().getValue());
-    		item.setUsername(notice.getUsername());
-    		itemsList.add(item);
-        }
-        response.setNoticeItem(itemsList);
-        System.out.println("find all notice response = " + response);
-        return response;
+	public NoticeListResponse search(Map<String, String> params) throws IOException {
+		ArrayList<Map<String, String>> result = FusekiReader.executeQuery(params, FusekiReader.NOTICE_QUERY_FILEPATH);
+		ArrayList<String> brojeviPredmeta = new ArrayList<>();
+		for (Map<String, String> map : result) {
+			String obavestenje = map.get("obavestenje");
+			String[] split = obavestenje.split("\\/");
+			brojeviPredmeta.add(split[split.length - 1]);	
+		}
+		NoticeListResponse response = new NoticeListResponse();
+		List<NoticeItem> itemsList = new ArrayList<>();
+
+		for (String broj : brojeviPredmeta) {
+			Obavestenje notice = repository.findNoticeByIdMarshall(broj);
+			if (notice == null) {
+				continue;
+			}
+
+			NoticeItem item = new NoticeItem();
+			item.setBroj(notice.getBroj());
+			item.setDatum(notice.getDatum());
+			item.setImePodnosioca(notice.getOpsteInformacije().getPodaciOPodnosiocu().getIme().getValue());
+			item.setPrezimePodnosioca(notice.getOpsteInformacije().getPodaciOPodnosiocu().getPrezime().getValue());
+			item.setIznos(Double.toString(notice.getTelo().getIznos()));
+			item.setNazivOrgana(notice.getOpsteInformacije().getPodaciOOrganu().getNaziv().getValue());
+			item.setOrganVlastiUsername(notice.getOrganVlastiUsername());
+			item.setSedisteOrgana(notice.getOpsteInformacije().getPodaciOOrganu().getSediste().getValue());
+			item.setUsername(notice.getUsername());
+			itemsList.add(item);
+		}
+		response.setNoticeItem(itemsList);
+		return response;
+		
 	}
 
-	public NoticeListResponse searchByKeywords(KeywordSearch s) throws NumberFormatException, XMLDBException, JAXBException, SAXException {
+
+	public NoticeListResponse searchByKeywords(KeywordSearch s)
+			throws NumberFormatException, XMLDBException, JAXBException, SAXException {
 		return repository.searchByKeywords(s);
 	}
 
@@ -247,5 +243,5 @@ public class NoticeService {
 		transformer.transform(new DOMSource(document), new StreamResult(sw));	
 		return sw.toString();
 	}
-	
+
 }
