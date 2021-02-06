@@ -34,6 +34,8 @@ pregled email poruka na https://maildrop.cc/
 [![](http://img.youtube.com/vi/eXQYxrgbWuQ/0.jpg)](http://www.youtube.com/watch?v=eXQYxrgbWuQ "v6")
 ### 7.Kreiranje dokumenta resenje od strane poverenika na dobijeno izjasnjenje organa vlasti povodom zalbe, pregled html-a i pdf-a donetog resenja
 [![](http://img.youtube.com/vi/xc_mJnVWdro/0.jpg)](http://www.youtube.com/watch?v=xc_mJnVWdro "v7")
+
+na grani A_final je rdf/json file download
 ### 8.Kreiranje dokumenta obavestenje od strane organa vlasti na dostavljeno resenje poverenika, pregled html-a i pdf-a obavestenja, pregled resenja poverenika i dobijenog obavestenja od strane gradjanina
 [![](http://img.youtube.com/vi/kEZwSvv-CfA/0.jpg)](http://www.youtube.com/watch?v=kEZwSvv-CfA "v8")
 
