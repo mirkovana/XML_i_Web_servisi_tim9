@@ -9,8 +9,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
+import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+
 import static org.apache.xerces.jaxp.JAXPConstants.*;
 
 @Component
@@ -23,7 +26,7 @@ public class DOMParser {
 	public DOMParser() {
 		factory = DocumentBuilderFactory.newInstance();
 
-		factory.setValidating(false);
+		factory.setValidating(true);
 		factory.setNamespaceAware(true);
 		factory.setIgnoringComments(true);
 		factory.setIgnoringElementContentWhitespace(true);
@@ -31,7 +34,6 @@ public class DOMParser {
 	}
 
 	public Document buildDocument(String filePath) throws SAXException, IOException, ParserConfigurationException {
-
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		document = builder.parse(new File(filePath));
 		if (document != null)
@@ -43,9 +45,24 @@ public class DOMParser {
 	}
 	public Document getDocument(String xmlText) throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilder builder = factory.newDocumentBuilder();
-		//System.out.println("getDocument = " + xmlText);
+		builder.setErrorHandler(new ErrorHandler(){
+		    @Override
+		    public void fatalError(SAXParseException exception) throws SAXException{
+		        System.err.println("fatalError: " + exception);
+		        throw exception;
+		    }
+		    @Override
+		    public void error(SAXParseException exception) throws SAXException{
+		        System.err.println("error: " + exception);
+		        throw exception;
+		    }
+		    @Override
+		    public void warning(SAXParseException exception) throws SAXException{
+		        System.err.println("warning: " + exception);
+		        throw exception;
+		    }
+		});
 		Document document = builder.parse(new InputSource(new StringReader(xmlText)));
-		//System.out.println("document parsed = " + document);
 		return document;
 	}
 
@@ -53,5 +70,10 @@ public class DOMParser {
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		Document document = builder.parse(new InputSource(new StringReader(fileText)));
 		return document;
+	}
+
+	public void setSchema(String schemaPath) {
+		System.out.println("set schema = " + schemaPath);
+		factory.setAttribute(JAXP_SCHEMA_SOURCE, schemaPath);
 	}
 }

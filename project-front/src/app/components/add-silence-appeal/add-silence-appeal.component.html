@@ -40,6 +40,7 @@
                 <input value="u zakonskom roku" (change)="treci($event)" type="checkbox"  />u zakonskom roku
                 <p class="center">(podvuci zbog cega se izjavljuje zalba)</p>
             </div>
+
             <table>
                 <tr>
                     <td>
@@ -53,6 +54,7 @@
             </table>
             
             <!-- <u><input [(ngModel)]="datumPodnosenja" type="text" placeholder="Datum"></u> -->
+
             godine, a kojim sam tražio/la da mi se u skladu sa Zakona o slobodnom pristupu informacijama od javnog značaja
             omogući uvid- kopija dokumenta koji sadrži informacije o /u vezi sa zahtevom broj:
             <input value="{{broj}}" type="text" disabled/>
@@ -121,6 +123,7 @@
             <table style="text-align:left; margin-left: 20px;">
                 <tr>
                     <td>U</td>
+ 
                     <td>
                         <!-- <input [(ngModel)]="mesto" type="text" /> -->
                         <input type="text" id="mesto" placeholder="Mesto" formControlName="mesto" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('mesto').errors }" />
@@ -132,6 +135,7 @@
                         <input type="text" id="dana" placeholder="Dana" formControlName="dana" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('dana').errors }" />
                         <b class='error' *ngIf="submitted && myForm.get('mesto').errors">Neispravno unet datum</b>
                     </td>
+ 
                 </tr>
             </table>
         </div>

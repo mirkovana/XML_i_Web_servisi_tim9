@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -45,10 +46,16 @@ public class NoticeController {
 
 	@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
-	public ResponseEntity saveNotice(@RequestBody String xml) throws Exception {
+	public ResponseEntity saveNotice(@RequestBody String xml){
 		System.out.println("controller saveNotice = ");
-		service.save(xml);
-		return new ResponseEntity(HttpStatus.OK);
+		try {
+			service.save(xml);
+			return new ResponseEntity(HttpStatus.OK);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ParserConfigurationException
+				| SAXException | IOException | TransformerException | XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+		}		
 	}
 	
 	@GetMapping(value = "/all", produces = MediaType.TEXT_XML_VALUE)

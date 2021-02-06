@@ -42,6 +42,7 @@ import com.xml.project.repository.SilenceAppealRepository;
 public class SilenceAppealService {
 
 	private final String requestXSL = "src/main/resources/xsl/zalbazbogcutanja.xsl";
+	private static String schemaPath = "src/main/resources/documents/zalbazbogcutanja.xsd";
 
 	@Autowired
 	private DOMParser domParser;
@@ -56,14 +57,12 @@ public class SilenceAppealService {
 
 	public void save(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("save service = " + dto);
+		domParser.setSchema(schemaPath);
 		Document document = domParser.getDocument(dto);
 		System.out.println("got document = " + document);
 		NodeList nodeList = document.getElementsByTagName("zc:zalba_cutanje");
 		Element sp = (Element) nodeList.item(0);
 		String broj = sp.getAttribute("broj");
-		//sp.setAttribute("about", "http://www.projekat.org/zalbazbogcutanja/" + broj);
-		//System.out.println("node broj = " + broj);
-		//broj = broj.replace("/", "_");
 		
 		Document prev = null;
 		try {

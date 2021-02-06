@@ -104,6 +104,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 		<p><li>Uz žalbu obavezno priložiti kopiju podnetog zahteva i dokaz o njegovoj 
           predaji-upućivanju organu kao i kopiju odluke organa koja se osporava žalbom.</li></p>
 	</ul>
+
   </body>
   </html>
 </xsl:template>

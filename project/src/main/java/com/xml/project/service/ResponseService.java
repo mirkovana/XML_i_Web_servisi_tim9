@@ -51,6 +51,7 @@ import com.xml.project.repository.SilenceAppealRepository;
 public class ResponseService {
 
 	private final String responseXSL = "src/main/resources/xsl/resenje.xsl";
+	private static String schemaPath = "src/main/resources/documents/resenje.xsd";
 
 	@Autowired
 	private DOMParser domParser;
@@ -69,6 +70,7 @@ public class ResponseService {
 
 	public void save(String dto, String tip) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
 		System.out.println("save service = " + dto);
+		domParser.setSchema(schemaPath);
 		Document document = domParser.getDocument(dto);
 		System.out.println("got document = " + document);
 		NodeList nodeList = document.getElementsByTagName("res:zalba");

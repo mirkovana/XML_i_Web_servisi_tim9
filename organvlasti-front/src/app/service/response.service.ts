@@ -31,7 +31,7 @@ export class ResponseService {
       .subscribe(response => {
         Swal.fire({
           title: 'Success!',
-          text: 'Add response successfully!',
+          text: 'Resenje poslato!',
           icon: 'success',
           confirmButtonText: 'OK'
         });

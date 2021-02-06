@@ -68,6 +68,7 @@
                 <hr>
                 (Naziv organa koji je doneo odluku)
             </div>
+ 
             <table>
                 <tr>
                     <td>
@@ -139,6 +140,7 @@
 
             </table>
             
+ 
             <p class="indent">Na osnovu iznetih razloga, predlažem da Poverenik uvaži moju žalbu, poništi odluka
                 prvostepenog organa i omogući mi pristup traženoj/im informaciji/ma.</p>
             <p class="indent">Žalbu podnosim blagovremeno, u zakonskom roku utvrđenom u članu 22. st. 1. Zakona o slobodnom pristupu informacijama od javnog značaja.</p>
@@ -156,9 +158,11 @@
                         Datuma:
                     </td>
                     <td>
+ 
                         <u><input type="text" id="datum" placeholder="datum" formControlName="datum" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('datum').errors }" />
                             <b class='error' *ngIf="submitted && myForm.get('datum').errors">Neispravan datum </b></u>
                         <!-- <u><input [(ngModel)]="datum" type="text" id="datum"/></u> -->
+ 
                     </td>
                 </tr>
                 <tr>

@@ -85,7 +85,7 @@ export class AddResponseComponent implements OnInit {
         </res:sadrzaj>
     </res:zalba>`
     this.responseService.addResponse(xmlString, () => {
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/responses');
     });
     
   }

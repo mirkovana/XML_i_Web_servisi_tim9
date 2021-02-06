@@ -1,11 +1,16 @@
+ 
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { XonomyModel } from "../../model/xonomy.model";
 import { DecisionAppealService } from '../../service/decision-appeal.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DecisionAppealDTO } from "../../model/decision-appeal.model";
 import { RequestService } from '../../service/request.service';
+ 
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { subscribeOn } from 'rxjs/operators';
+ 
+import Swal from "sweetalert2";
+
+ 
 @Component({
   selector: 'app-add-decision-appeal',
   templateUrl: './add-decision-appeal.component.html',
@@ -34,6 +39,7 @@ export class AddDecisionAppealComponent implements OnInit {
   }
 
 
+
   ime: string ='';
   prezime: string  ='';
   grad: string  ='';
@@ -48,6 +54,7 @@ export class AddDecisionAppealComponent implements OnInit {
   datum: string ='';
   drugiPodaci: string ='';
   potpis: string ='';
+
 
   myForm: FormGroup;
   submitted = false;
@@ -79,6 +86,45 @@ export class AddDecisionAppealComponent implements OnInit {
 
   }
 
+  validate() {
+    if (this.ime == "" || this.prezime == "" || this.grad == "" || this.ulica == "" || this.br == "" || this.nazivOrgana == "" || this.broj == "" || this.odDatum == "" || this.uputioDatum == "" || this.zbogCega == "" ||
+      this.mesto == "" || this.datum == "" || this.drugiPodaci == "" || this.potpis == "") {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Sva polja su neophodna!',
+        icon: 'error',
+        confirmButtonColor: '#DC143C',
+        confirmButtonText: 'OK'
+      });
+      return false;
+    }
+
+    var date_regex = /^(0[1-9]|1\d|2\d|3[01])\.(0[1-9]|1[0-2])\.(19|20)\d{2}\.$/;
+    if (date_regex.test(this.datum) == false || date_regex.test(this.odDatum) == false || date_regex.test(this.uputioDatum) == false) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Pogresan format datuma => dd.mm.yyyy.',
+        icon: 'error',
+        confirmButtonColor: '#DC143C',
+        confirmButtonText: 'OK'
+      });
+      return false;
+    }
+
+    let br_regex = /^\d+$/;
+    if (br_regex.test(this.br) == false) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Pogresan format broja ulice',
+        icon: 'error',
+        confirmButtonColor: '#DC143C',
+        confirmButtonText: 'OK'
+      });
+      return false;
+    }
+    return true;
+  }
+
   sendFile() {
 
     this.submitted = true;
@@ -89,6 +135,10 @@ export class AddDecisionAppealComponent implements OnInit {
      
     // console.log("sendFile");
     // console.log("xmlrequest file = ", this.requestXmlFile);
+
+    if (!this.validate()) {
+      return;
+    }
 
     let xmlString: string = `<?xml version="1.0" encoding="UTF-8"?>
     <zo:zalba_na_odluku 
@@ -145,7 +195,7 @@ export class AddDecisionAppealComponent implements OnInit {
     if (this.requestXmlFile != undefined) {
       this.requestService.addDeniedRequest(this.requestXmlFile, () => {
         this.service.addDecisionAppeal(xmlString, () => {
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/decision-appeals');
         })
       })
     } else {

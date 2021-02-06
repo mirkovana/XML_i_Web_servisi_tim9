@@ -80,7 +80,7 @@ export class RequestService {
         updateTable();
         Swal.fire({
           title: 'Success!',
-          text: 'Request successfully deleted!',
+          text: 'Zahtev obrisan!',
           icon: 'success',
           confirmButtonText: 'OK'
         });
@@ -135,7 +135,7 @@ export class RequestService {
       .subscribe(response => {
         Swal.fire({
           title: 'Success!',
-          text: 'Add request successfully!',
+          text: 'Zahtev poslat!',
           icon: 'success',
           confirmButtonText: 'OK'
         });

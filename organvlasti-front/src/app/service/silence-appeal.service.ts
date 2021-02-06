@@ -37,7 +37,7 @@ export class SilenceAppealService {
       .subscribe(response => {
         Swal.fire({
           title: 'Success!',
-          text: 'Add silence appeal successfully!',
+          text: 'Zalba na cutanje poslata!',
           icon: 'success',
           confirmButtonText: 'OK'
         });

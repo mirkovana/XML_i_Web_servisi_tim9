@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ExplanationService } from '../../service/explanation.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-add-explanation',
@@ -13,12 +14,12 @@ export class AddExplanationComponent implements OnInit {
   tip: string;
   username: string;
 
-  obrazlozenje: string;
-  ime: string;
-  prezime: string;
-  potpis: string;
-  mesto: string;
-  dana: string;
+  obrazlozenje: string = "";
+  ime: string = "";
+  prezime: string = "";
+  potpis: string = "";
+  mesto: string = "";
+  dana: string = "";
 
   constructor(private service: ExplanationService,
     private router: Router,
@@ -30,8 +31,39 @@ export class AddExplanationComponent implements OnInit {
     this.username = this.route.snapshot.paramMap.get('username')
   }
 
+  validate() {
+    if (this.obrazlozenje == "" || this.ime == "" || this.prezime == "" || this.potpis == "" ||
+      this.mesto == "" || this.dana == "") {
+        Swal.fire({
+          title: 'Error!',
+          text: 'Sva polja su neophodna!',
+          icon: 'error',
+          confirmButtonColor: '#DC143C',
+          confirmButtonText: 'OK'
+        });
+        return false;
+    }
+
+    var date_regex = /^(0[1-9]|1\d|2\d|3[01])\.(0[1-9]|1[0-2])\.(19|20)\d{2}\.$/;
+    if(date_regex.test(this.dana) == false){
+      Swal.fire({
+        title: 'Error!',
+        text: 'Pogresan format datuma => dd.mm.yyyy.',
+        icon: 'error',
+        confirmButtonColor: '#DC143C',
+        confirmButtonText: 'OK'
+      });
+      return false;
+    }
+    return true;
+  }
+
   sendFile() {
     console.log("sendFile");
+
+    if (!this.validate()) {
+      return;
+    }
 
     let xmlSpec: string = `<?xml version="1.0" encoding="UTF-8"?>
     <ex:explanation 
@@ -57,10 +89,10 @@ export class AddExplanationComponent implements OnInit {
 
     console.log("xmlString = ", xmlSpec);
     this.service.addExplanation(xmlSpec, () => {
-      if(this.tip === "decision"){
+      if (this.tip === "decision") {
         this.router.navigateByUrl('/decision-appeals');
-      }else if (this.tip === "silence"){
-        this.router.navigateByUrl('/silence-appeals');  
+      } else if (this.tip === "silence") {
+        this.router.navigateByUrl('/silence-appeals');
       }
     });
   }

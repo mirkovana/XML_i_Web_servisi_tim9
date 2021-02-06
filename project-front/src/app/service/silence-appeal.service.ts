@@ -131,7 +131,7 @@ export class SilenceAppealService {
         updateTable();
         Swal.fire({
           title: 'Success!',
-          text: 'Appeal successfully deleted!',
+          text: 'Zalba na cutanje obrisana!',
           icon: 'success',
           confirmButtonText: 'OK'
         });

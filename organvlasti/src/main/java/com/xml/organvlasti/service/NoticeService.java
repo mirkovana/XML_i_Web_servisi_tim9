@@ -29,28 +29,24 @@ import org.xmldb.api.base.XMLDBException;
 
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
-import com.xml.organvlasti.dto.NoticeDTO;
 import com.xml.organvlasti.model.email.EmailModel;
 import com.xml.organvlasti.model.keywordSearch.KeywordSearch;
 import com.xml.organvlasti.model.notice.Obavestenje;
 import com.xml.organvlasti.model.noticeResponse.NoticeListResponse;
 import com.xml.organvlasti.model.noticeResponse.NoticeListResponse.NoticeItem;
-import com.xml.organvlasti.model.request.Zahtev;
-import com.xml.organvlasti.model.zahtevResponse.RequestListResponse;
-import com.xml.organvlasti.model.zahtevResponse.RequestListResponse.RequestItem;
 import com.xml.organvlasti.parser.DOMParser;
 import com.xml.organvlasti.parser.XSLTransformer;
 import com.xml.organvlasti.rdf.FusekiReader;
 import com.xml.organvlasti.rdf.FusekiWriter;
 import com.xml.organvlasti.rdf.MetadataExtractor;
 import com.xml.organvlasti.repository.NoticeRepository;
-import com.xml.organvlasti.repository.RequestRepository;
 
 @Service()
 public class NoticeService {
 
 	private final String requestXSL = "src/main/resources/xsl/obavestenje.xsl";
-	
+	private static String schemaPath = "src/main/resources/documents/Obavestenje.xsd";
+
 	@Autowired
 	private DOMParser domParser;
 	@Autowired
@@ -66,11 +62,12 @@ public class NoticeService {
 	private MetadataExtractor metadataExtractor;
 	
 	public void save(String dto) throws ParserConfigurationException, SAXException, IOException, TransformerException, ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException {
+		domParser.setSchema(schemaPath);
 		Document document = domParser.getDocument(dto);
 		NodeList br_predmeta = document.getElementsByTagName("ob:broj_predmeta");
 		Element el = (Element) br_predmeta.item(0);
-		String broj = el.getTextContent(); // broj_predmeta
-
+		String broj = el.getTextContent(); 
+		
 		Document prev = null;
 		try {
 			System.out.println("findNoticeById call");

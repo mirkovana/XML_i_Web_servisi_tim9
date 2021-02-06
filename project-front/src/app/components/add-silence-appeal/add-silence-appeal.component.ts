@@ -1,10 +1,15 @@
+ 
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { XonomyModel } from "../../model/xonomy.model";
+ 
 import { SilenceAppealService } from '../../service/silence-appeal.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SilenceAppealDTO } from "../../model/silence-appeal.model";
 import { RequestService } from '../../service/request.service';
+ 
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+ 
+import Swal from "sweetalert2";
+ 
 
 @Component({
   selector: 'app-add-silence-appeal',
@@ -34,6 +39,7 @@ export class AddSilenceAppealComponent implements OnInit {
     //console.log("reader = ", reader.readAsText(file));
   }
 
+ 
   nazivOrgana: string ='';
   option1: string ='nije postupio';
   option2:string  ='nije postupio u celosti';
@@ -55,6 +61,7 @@ export class AddSilenceAppealComponent implements OnInit {
   checked3: boolean = false;
   myForm: FormGroup;
   submitted = false;
+ 
  
   constructor(private service: SilenceAppealService,
     private requestService: RequestService,
@@ -84,6 +91,7 @@ export class AddSilenceAppealComponent implements OnInit {
       dana:  new FormControl('', [Validators.required, Validators.pattern(/^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\.\s*$/)])
     });
   }
+ 
   prvi(event) {
     if ( event.target.checked ) {
         this.checked1 = true;
@@ -97,6 +105,61 @@ export class AddSilenceAppealComponent implements OnInit {
         this.checked3 = true;
    }
 }
+ 
+
+  validate(){
+    
+    if(this.nazivOrgana == "" || this.datumPodnosenja == "" ||
+        this.broj == "" || this.podaciOInformaciji == "" || this.ime == "" || this.prezime == "" || this.potpis == "" || this.grad == "" || this.ulica == "" || this.br == "" || this.drugiPodaci == "" || this.mesto == "" || this.dana == ""){
+      Swal.fire({
+        title: 'Error!',
+        text: 'Sva polja su neophodna!',
+        icon: 'error',
+        confirmButtonColor: '#DC143C',
+        confirmButtonText: 'OK'
+      });
+      return false;
+    }
+
+    if(this.option1 == 'false' && this.option2 == 'false' && this.option3 == 'false'){
+      Swal.fire({
+        title: 'Error!',
+        text: 'Razlog zalbe mora biti odabran!',
+        icon: 'error',
+        confirmButtonColor: '#DC143C',
+        confirmButtonText: 'OK'
+      });
+      return false;
+    }
+
+    var date_regex = /^(0[1-9]|1\d|2\d|3[01])\.(0[1-9]|1[0-2])\.(19|20)\d{2}\.$/;
+    if (date_regex.test(this.datumPodnosenja) == false || date_regex.test(this.dana) == false) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Pogresan format datuma => dd.mm.yyyy.',
+        icon: 'error',
+        confirmButtonColor: '#DC143C',
+        confirmButtonText: 'OK'
+      });
+      return false;
+    }
+
+    let br_regex = /^\d+$/;
+    if (br_regex.test(this.br) == false) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Pogresan format broja ulice',
+        icon: 'error',
+        confirmButtonColor: '#DC143C',
+        confirmButtonText: 'OK'
+      });
+      return false;
+    }
+
+    return true;
+  }
+
+ 
   sendFile() {
     this.submitted = true;
     
@@ -122,10 +185,18 @@ export class AddSilenceAppealComponent implements OnInit {
     if(this.checked3 == false){
       this.option3 = 'false';
     }
+ 
     else{
       this.option3='true';
     }
     console.log("EEEEEEEEEE" + this.option1 + "   " + this.option2 + "    " + this.option3)
+ 
+
+    if (!this.validate()) {
+      return;
+    }
+
+ 
     let xmlSpec: string = `<?xml version="1.0" encoding="UTF-8"?>
     <zc:zalba_cutanje 
       xmlns="http://www.projekat.org/zalbazbogcutanja"
@@ -173,7 +244,7 @@ export class AddSilenceAppealComponent implements OnInit {
     if (this.requestXmlFile != undefined) {
       this.requestService.addDeniedRequest(this.requestXmlFile, () => {
         this.service.addSilenceAppeal(xmlSpec, () => {
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/silence-appeals');
         })
       })
     } else {

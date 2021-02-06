@@ -1,39 +1,10 @@
 package com.xml.project.service;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.UUID;
-
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.w3c.dom.Attr;
-import org.w3c.dom.CDATASection;
-import org.w3c.dom.Comment;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Entity;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 import org.xmldb.api.base.XMLDBException;
-
-import com.xml.organvlasti.parser.DOMParser;
 import com.xml.organvlasti.repository.RequestRepository;
 
 public class RequestService {
@@ -57,5 +28,24 @@ public class RequestService {
 			e.printStackTrace();
 		}
 		return "error";
+	}
+
+	public void updateStateResolved(String broj, String status) throws ClassNotFoundException, InstantiationException, IllegalAccessException, XMLDBException, TransformerException {
+		if (!broj.endsWith(".xml")) {
+			broj = broj + ".xml";
+		}
+		Document document = repository.findRequestById(broj);
+		NodeList nodeList = document.getElementsByTagName("za:zahtev");
+		Element sp = (Element) nodeList.item(0);
+		sp.setAttribute("status", status);
+		String xmlString;
+		
+		xmlString = repository.getStringFromDocument(document);
+		xmlString = xmlString.replace("expired", status);
+		xmlString = xmlString.replace("denied", status);
+
+		System.out.println("updatedstate = " + xmlString);
+		repository.deleteRequest(broj);
+		repository.save(xmlString, broj);		
 	}
 }

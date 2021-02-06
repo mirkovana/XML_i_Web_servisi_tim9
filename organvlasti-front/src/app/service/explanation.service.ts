@@ -28,7 +28,7 @@ export class ExplanationService {
       .subscribe(response => {
         Swal.fire({
           title: 'Success!',
-          text: 'Explanation sent!',
+          text: 'Obrazlozenje poslato!',
           icon: 'success',
           confirmButtonText: 'OK'
         });

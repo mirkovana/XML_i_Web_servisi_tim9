@@ -89,21 +89,9 @@ export class AddSilenceAppealComponent implements OnInit {
       </zc:podaci_o_mestu_i_datumu_podnosenja_zalbe>
     </zc:zalba_cutanje>`;
     console.log(xmlSpec);
-    /*let obj: SilenceAppealDTO = {
-      "text" : xmlSpec
-    };
-    console.log(obj);*/
+    
     this.service.addSilenceAppeal(xmlSpec, ()=>{
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/silence-appeals');
     })
-    /*.subscribe(
-      response => {
-        console.log("added appeal");
-        this.router.navigateByUrl('/home');
-      },
-      error => {
-        console.log(error);
-      }
-    );*/
   }
 }
