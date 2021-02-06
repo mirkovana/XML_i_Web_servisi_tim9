@@ -1,8 +1,6 @@
 package com.xml.organvlasti.controller;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBException;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -140,6 +137,41 @@ public class ResponseController {
 		}
 	}
 	
+	/*@GetMapping("/search")
+	public ResponseEntity<String> searchFromRDF() throws IOException{
+	//public ResponseEntity<String> searchFromRDF(@PathVariable("broj") String broj,
+    //										@PathVariable("osobaIme") String osobaIme,
+	//							    		@PathVariable("osobaPrezime") String osobaPrezime) throws IOException {
+        String broj = "000-00-0000/0000-00";
+        String status = "osnovana";
+        String osobaIme = "A";
+        String osobaPrezime = "A";
+        String institucijaNaziv = "Učiteljskog fakulteta";
+        String datum = "16.04.2020.";
+        String trazena_informacija = "Ugovor o radu";
+        String poverenikIme = "IME";
+        String poverenikPrezime = "PREZIME";
+        Map<String, String> params = new HashMap<>();
+        params.put("broj", broj);
+        params.put("status", status);
+        params.put("osobaIme", osobaIme);
+        params.put("osobaPrezime", osobaPrezime);
+        params.put("institucijaNaziv", institucijaNaziv);
+        params.put("datum", datum);
+        params.put("trazena_informacija", trazena_informacija);
+        params.put("poverenikIme", poverenikIme);
+        params.put("poverenikPrezime", poverenikPrezime);
+
+        System.out.println("seatchFromRDF = " + broj + " " + osobaIme + " " + osobaPrezime);
+        ArrayList<String> result = service.searchByMetadata(params);
+        String output = "";
+        for (String r : result) {
+            output += "\n" + r;
+        }
+        System.out.println("OUTPUT: " + output);
+        return new ResponseEntity<>(output, HttpStatus.OK);
+    }*/
+	
 	@GetMapping(value = "/html/{id}", produces = MediaType.TEXT_HTML_VALUE)
 	public ResponseEntity<String> getResponseHTML(@PathVariable("id") String id) {
 		System.out.println("controller broj = " + id);
@@ -168,47 +200,12 @@ public class ResponseController {
                 .contentType(MediaType.APPLICATION_PDF) 
                 .body(bytes);       
     }
-	
-	@GetMapping("/generateJSON/{broj}")
-	public ResponseEntity<byte[]> generateJSON(@PathVariable("broj") String broj) throws XMLDBException {
+	/*@GetMapping(value = "/pdf/{id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	public ResponseEntity<Object> getPdf(@PathVariable("id") String id) throws Exception {
+		Resource resource = service.getPdf(id);
+		return ResponseEntity.ok().contentType(MediaType.APPLICATION_OCTET_STREAM)
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+				.body(resource);
+	}*/
 
-		try {
-			String jsonPath = "src/main/resources/json/resenje_" + broj + ".json";
-
-			service.generateResponseJSON(broj);
-			File file = new File(jsonPath);
-			FileInputStream fileInputStream = new FileInputStream(file);
-			
-			return ResponseEntity.ok()
-	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + broj + ".json") 
-	                .contentType(MediaType.APPLICATION_JSON) 
-	                .body(IOUtils.toByteArray(fileInputStream));    
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
-	}
-	
-	@GetMapping("/generateRDF/{broj}")
-	public ResponseEntity<byte[]> generateRDF(@PathVariable("broj") String broj) throws XMLDBException {
-
-		try {
-			String rdfPath = "src/main/resources/rdf_gen/resenje_" + broj + ".rdf";
-
-			service.generateResponseRDF(broj, rdfPath);
-			File file = new File(rdfPath);
-			FileInputStream fileInputStream = new FileInputStream(file);
-			
-			return ResponseEntity.ok()
-	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + broj + ".rdf") 
-	                .contentType(MediaType.APPLICATION_JSON) 
-	                .body(IOUtils.toByteArray(fileInputStream));    
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
-	}
-	
 }

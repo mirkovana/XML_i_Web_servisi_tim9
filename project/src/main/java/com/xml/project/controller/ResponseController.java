@@ -1,8 +1,6 @@
 package com.xml.project.controller;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -18,7 +16,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.ws.Service;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -264,45 +261,12 @@ public class ResponseController {
 		}
 	}
 
-	@GetMapping("/generateJSON/{broj}")
-	public ResponseEntity<byte[]> generateJSON(@PathVariable("broj") String broj) throws XMLDBException {
+	/*@GetMapping(value = "/pdf/{id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	public ResponseEntity<Object> getPdf(@PathVariable("id") String id) throws Exception {
+		Resource resource = service.getPdf(id);
+		return ResponseEntity.ok().contentType(MediaType.APPLICATION_OCTET_STREAM)
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+				.body(resource);
+	}*/
 
-		try {
-			String jsonPath = "src/main/resources/json/resenje_" + broj + ".json";
-
-			service.generateResponseJSON(broj);
-			File file = new File(jsonPath);
-			FileInputStream fileInputStream = new FileInputStream(file);
-			
-			return ResponseEntity.ok()
-	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + broj + ".json") 
-	                .contentType(MediaType.APPLICATION_JSON) 
-	                .body(IOUtils.toByteArray(fileInputStream));    
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
-	}
-	
-	@GetMapping("/generateRDF/{broj}")
-	public ResponseEntity<byte[]> generateRDF(@PathVariable("broj") String broj) throws XMLDBException {
-
-		try {
-			String rdfPath = "src/main/resources/rdf_gen/resenje_" + broj + ".rdf";
-
-			service.generateResponseRDF(broj, rdfPath);
-			File file = new File(rdfPath);
-			FileInputStream fileInputStream = new FileInputStream(file);
-			
-			return ResponseEntity.ok()
-	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + broj + ".rdf") 
-	                .contentType(MediaType.APPLICATION_JSON) 
-	                .body(IOUtils.toByteArray(fileInputStream));    
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
-	}
 }

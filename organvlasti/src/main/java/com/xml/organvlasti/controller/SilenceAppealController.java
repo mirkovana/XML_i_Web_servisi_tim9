@@ -1,15 +1,12 @@
 package com.xml.organvlasti.controller;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBException;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -39,6 +36,14 @@ public class SilenceAppealController {
 
 	@Autowired
 	private SilenceAppealService service;
+	
+	/*@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@CrossOrigin
+	public ResponseEntity<SilenceAppealDTO> saveSilenceAppeal(@RequestBody SilenceAppealDTO dto) throws Exception {
+		System.out.println("controller saveSilenceAppeal= ");
+		service.save(dto);
+		return new ResponseEntity<>(dto, HttpStatus.OK);
+	}*/
 	
 	@PostMapping(value = "", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
@@ -118,46 +123,4 @@ public class SilenceAppealController {
                 .contentType(MediaType.APPLICATION_PDF) 
                 .body(bytes);       
     }
-	
-	@GetMapping("/generateJSON/{broj}")
-	public ResponseEntity<byte[]> generateJSON(@PathVariable("broj") String broj) throws XMLDBException {
-
-		try {
-			String jsonPath = "src/main/resources/json/zalbazbogcutanja_" + broj + ".json";
-
-			service.generateAppealJSON(broj);
-			File file = new File(jsonPath);
-			FileInputStream fileInputStream = new FileInputStream(file);
-			
-			return ResponseEntity.ok()
-	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + broj + ".json") 
-	                .contentType(MediaType.APPLICATION_JSON) 
-	                .body(IOUtils.toByteArray(fileInputStream));    
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
-	}
-	
-	@GetMapping("/generateRDF/{broj}")
-	public ResponseEntity<byte[]> generateRDF(@PathVariable("broj") String broj) throws XMLDBException {
-
-		try {
-			String rdfPath = "src/main/resources/rdf_gen/zalbazbogcutanja_" + broj + ".rdf";
-
-			service.generateAppealRDF(broj, rdfPath);
-			File file = new File(rdfPath);
-			FileInputStream fileInputStream = new FileInputStream(file);
-			
-			return ResponseEntity.ok()
-	                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + broj + ".rdf") 
-	                .contentType(MediaType.APPLICATION_JSON) 
-	                .body(IOUtils.toByteArray(fileInputStream));    
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		}
-	}
 }

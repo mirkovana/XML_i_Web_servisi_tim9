@@ -65,9 +65,7 @@
                             <td>
                                 <a href="http://localhost:8080/api/response/html/{{a.broj}}"
                                     target="_blank">html</a><br>
-                                <a href="http://localhost:8080/api/response/pdf/{{a.broj}}">pdf</a><br>
-                                <a href="http://localhost:8080/api/response/generateJSON/{{a.broj}}">json</a><br>
-                                <a href="http://localhost:8080/api/response/generateRDF/{{a.broj}}">rdf</a>
+                                <a href="http://localhost:8080/api/response/pdf/{{a.broj}}">pdf</a>
                             </td>
                             <td>
                                 <button *ngIf="isAdmin() && a.status=='osnovana'" mat-mini-fab color="warn"
