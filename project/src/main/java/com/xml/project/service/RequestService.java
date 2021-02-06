@@ -36,7 +36,6 @@ import org.xmldb.api.base.XMLDBException;
 import com.xml.project.model.zahtevResponse.RequestListResponse;
 import com.xml.project.parser.DOMParser;
 import com.xml.project.parser.XSLTransformer;
-import com.xml.project.rdf.FusekiReader;
 import com.xml.project.rdf.FusekiWriter;
 import com.xml.project.rdf.MetadataExtractor;
 import com.xml.project.repository.RequestRepository;
@@ -292,13 +291,24 @@ public class RequestService {
 		return sw.toString();
 	}
 	
-	public void generateRequestJSON(String broj) throws IOException {
-		FusekiReader.generateRequestJSON(broj);
-	}
-
-	public void generateRequestRDF(String broj, String rdfPath) throws TransformerException, FileNotFoundException {
-		Document document = repository.findRequestById(broj);
-		String xmlString = getStringFromDocument(document);
-		metadataExtractor.extractMetadata(xmlString, rdfPath);
-	}
+	/*private void printNode(Node node) {
+		if (node == null)
+			return;
+		if (node instanceof Element) {
+			
+			Element element = (Element) node;
+			
+			System.out.print("START_ELEMENT: " + element.getTagName());
+			System.out.println();
+			// Prikaz svakog od child nodova, rekurzivnim pozivom
+			NodeList children = element.getChildNodes();
+			
+			if (children != null) {
+				for (int i = 0; i < children.getLength(); i++) {
+					Node aChild = children.item(i);
+					printNode(aChild);
+				}
+			}
+		} 			
+	}*/
 }

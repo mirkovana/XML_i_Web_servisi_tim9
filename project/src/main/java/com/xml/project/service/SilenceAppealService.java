@@ -1,6 +1,5 @@
 package com.xml.project.service;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -206,28 +205,5 @@ public class SilenceAppealService {
 
 	public SAppealListResponse searchByKeywords(KeywordSearch s) throws XMLDBException, JAXBException, SAXException {
 		return repository.searchByKeywords(s);
-	}
-	
-	public void generateAppealJSON(String broj) throws IOException {
-		FusekiReader.generateSAppealJSON(broj);
-	}
-
-	public void generateAppealRDF(String broj, String rdfPath) throws TransformerException, FileNotFoundException {
-		Document document = repository.findSilenceAppealByBroj(broj);
-		String xmlString = getStringFromDocument(document);
-		metadataExtractor.extractMetadata(xmlString, rdfPath);
-	}
-	
-	private String getStringFromDocument(Document document) throws TransformerException {
-		StringWriter sw = new StringWriter();
-		TransformerFactory tf = TransformerFactory.newInstance();
-		Transformer transformer = tf.newTransformer();
-		transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
-		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
-		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-		transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-		
-		transformer.transform(new DOMSource(document), new StreamResult(sw));	
-		return sw.toString();
 	}
 }

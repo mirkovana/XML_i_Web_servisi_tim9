@@ -1,6 +1,5 @@
 package com.xml.organvlasti.service;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
@@ -144,18 +143,9 @@ public class ResponseService {
 	public ResponseList searchByKeywords(KeywordSearch s) throws XMLDBException, JAXBException, SAXException {
 		return repository.searchByKeywords(s);
 	}
-
-	public void generateResponseJSON(String broj) throws IOException {
-		FusekiReader.generateResponseJSON(broj);		
-	}
 	
-	public void generateResponseRDF(String broj, String rdfPath) throws TransformerException, FileNotFoundException {
-		Document document = repository.findResponseByBroj(broj);
-		String xmlString = getStringFromDocument(document);
-		metadataExtractor.extractMetadata(xmlString, rdfPath);
-	}
-
-	private String getStringFromDocument(Document document) throws TransformerException {
+	/*public Resource getPdf(String name) throws Exception {
+		Document document = repository.findResponseByBroj(name);
 		StringWriter sw = new StringWriter();
 		TransformerFactory tf = TransformerFactory.newInstance();
 		Transformer transformer = tf.newTransformer();
@@ -163,9 +153,13 @@ public class ResponseService {
 		transformer.setOutputProperty(OutputKeys.METHOD, "xml");
 		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 		transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-		
-		transformer.transform(new DOMSource(document), new StreamResult(sw));	
-		return sw.toString();
-	}
-	
+
+		transformer.transform(new DOMSource(document), new StreamResult(sw));
+		ByteArrayOutputStream outputStream = xslTransformer.generatePDf(sw.toString(), xslFOPath);
+
+		Path file = Paths.get(name + ".pdf");
+		Files.write(file, outputStream.toByteArray());
+
+		return new UrlResource(file.toUri());
+	}*/
 }
