@@ -168,6 +168,7 @@ public class NoticeRepository {
 			Unmarshaller unmarshaller = JAXParser.createUnmarshaller(contextPath, schemaPath);
 			notice = (Obavestenje) unmarshaller.unmarshal(xmlResource.getContentAsDOM());
 		} catch (Exception e) {
+			System.out.println("OVDE PUCA");
 			e.printStackTrace();
 		}
 		return notice;

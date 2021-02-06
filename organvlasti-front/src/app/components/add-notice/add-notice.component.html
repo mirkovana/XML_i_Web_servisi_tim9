@@ -11,7 +11,7 @@
                         <td><b> Naziv organa: </b></td>
                         <td><input type="text" formControlName="nazivOrgana" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('nazivOrgana').errors }" /></td>
                         <b class='error' *ngIf="submitted && myForm.get('nazivOrgana').errors">Neispravan naziv organa</b>
-                    </tr>{{submitted}}
+                    </tr>
                     <tr>
                         <td><b>Sediste organa: </b></td>
                         <td><input id="sedisteOrgana" formControlName="sedisteOrgana" class="form-control veca" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('sedisteOrgana').errors }" /></td>
@@ -60,7 +60,7 @@
                 <h3>o stavljanju na uvid dokumenta koji sadrži traženu informaciju i o izradi kopije</h3>
                 <p class="indent">
                     Na osnovu člana 16. st. 1. Zakona o slobodnom pristupu informacijama od javnog značaja, postupajući po vašem zahtevu za slobodan pristup informacijama od
-                    <input type="text" placeholder="xx.xx.xxxx." formControlName="odDatum" class="form-control manja" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('odDatum').errors }" />
+                    <input type="text" placeholder="xxxx" formControlName="odDatum" class="form-control manja" required [ngClass]="{ 'is-invalid': submitted &&  myForm.get('odDatum').errors }" />
                     <b class='error' *ngIf="submitted && myForm.get('odDatum').errors">Neispravan datum</b><br/> god., kojim ste tražili uvid u dokument/e sa informacijama o / u vezi sa:
 
                 </p>

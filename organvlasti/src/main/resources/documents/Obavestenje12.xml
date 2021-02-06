@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ob:obavestenje about="" broj="" datum="10.10.2020." organVlastiUsername="" username="" xmlns:ob="http://www.projekat.org/obavestenje" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.projekat.org/obavestenje Obavestenje.xsd ">
+  <ob:opste_informacije>
+    <ob:podaci_o_organu>
+      <ob:naziv property="">ob:naziv</ob:naziv>
+      <ob:sediste property="">ob:sediste</ob:sediste>
+    </ob:podaci_o_organu>
+    <ob:broj_predmeta property="">ob:broj_predmeta</ob:broj_predmeta>
+    <ob:datum property="">ob:datum</ob:datum>
+    <ob:podaci_o_podnosiocu>
+      <ob:ime property="">ob:ime</ob:ime>
+      <ob:prezime property="">ob:prezime</ob:prezime>
+      <ob:adresa>
+        <ob:naziv_ulice>ob:naziv_ulice</ob:naziv_ulice>
+        <ob:grad>ob:grad</ob:grad>
+      </ob:adresa>
+    </ob:podaci_o_podnosiocu>
+  </ob:opste_informacije>
+  <ob:naslov>ob:naslov</ob:naslov>
+  <ob:podnaslov>ob:podnaslov</ob:podnaslov>
+  <ob:telo>
+    <ob:godina>2001</ob:godina>
+    <ob:opis>ob:opis</ob:opis>
+    <ob:datum>10.10.2020.</ob:datum>
+    <ob:vreme>12:00:00</ob:vreme>
+    <ob:od>12:00:00</ob:od>
+    <ob:do>12:00:00</ob:do>
+    <ob:adresa_organa>
+      <ob:naziv_ulice>ob:naziv_ulice</ob:naziv_ulice>
+      <ob:broj_kancelarije>1</ob:broj_kancelarije>
+    </ob:adresa_organa>
+    <ob:iznos>1220.00</ob:iznos>
+  </ob:telo>
+  <ob:dostavljeno>Imenovanom</ob:dostavljeno>
+  <ob:potpis>ob:potpis</ob:potpis>
+</ob:obavestenje>

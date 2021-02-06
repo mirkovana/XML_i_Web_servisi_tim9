@@ -64,16 +64,16 @@ export class AddNoticeComponent implements OnInit {
       prezime: new FormControl('', [Validators.required, Validators.pattern(/^[A-Z]{1,30}$/i)]),
       ulica: new FormControl('', [Validators.required, Validators.pattern(/^[A-Z ]{1,30}$/i)]),
       grad: new FormControl('', [Validators.required,  Validators.pattern(/^[A-Z ]{1,30}$/i)]),
-      odDatum: new FormControl('', [Validators.required, Validators.pattern(/^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\.\s*$/)]),
+      odDatum: new FormControl('', [Validators.required, Validators.pattern(/^\s*((?:19|20)\d{2})\s*$/)]),
       opisInformacije: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9!.?,:;'" ]{1,250}$/i)]),
       danaDatum: new FormControl('', [Validators.required, Validators.pattern(/^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\.\s*$/)]),
-      casova: new FormControl('', [Validators.required, Validators.pattern(/^(0?[1-9]|1[0-2]):[0-5][0-9]:[0-5][0-9]$/)]),
-      odCasova: new FormControl('', [Validators.required, Validators.pattern(/^(0?[1-9]|1[0-2]):[0-5][0-9]:[0-5][0-9]$/)]),
-      doCasova: new FormControl('', [Validators.required, Validators.pattern(/^(0?[1-9]|1[0-2]):[0-5][0-9]:[0-5][0-9]$/)]),
+      casova: new FormControl('', [Validators.required, Validators.pattern(/^(0?[1-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/)]),
+      odCasova: new FormControl('', [Validators.required, Validators.pattern(/^(0?[1-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/)]),
+      doCasova: new FormControl('', [Validators.required, Validators.pattern(/^(0?[1-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/)]),
       nazivUlice: new FormControl('', [Validators.required,  Validators.pattern(/^[A-Z ]{1,40}$/i)]),
       brojUlice: new FormControl('', [Validators.required, Validators.pattern(/^[0-9a-z]{1,5}$/i)]),
       brKancelarije: new FormControl('', [Validators.required, Validators.pattern(/^[0-9a-z]{1,5}$/i)]),
-      iznos: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{1,12}.[0-9]{2}$/i)]),
+      iznos: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{1,12}[.][0-9]{2}$/i)]),
       potpisLica: new FormControl('', [Validators.required,  Validators.pattern(/^[A-Z ]{1,50}$/i)]),
       brUlice: new FormControl('', [Validators.required,  Validators.pattern(/^[0-9a-z]{1,6}$/i)]),
       postanskiBroj : new FormControl('', [Validators.required,  Validators.pattern(/^(11[0-9]{3}|[2-3][0-9]{4})$/i)]),
@@ -101,39 +101,39 @@ export class AddNoticeComponent implements OnInit {
       xsi:schemaLocation="http://www.projekat.org/obavestenje Obavestenje.xsd"
       broj="`+ this.broj + `"
       username="`+ this.podnosiocUsername + `"  
-      datum="`+ this.datum + `"
+      datum="`+ this.myForm.get("datum").value + `"
       organVlastiUsername="`+ localStorage.getItem('username') + `">
       <ob:opste_informacije>
         <ob:podaci_o_organu>
-          <ob:naziv xmlns:ob="http://www.projekat.org/obavestenje" property="pred:nazivOrgana">`+ this.nazivOrgana + `</ob:naziv>
-          <ob:sediste xmlns:ob="http://www.projekat.org/obavestenje" property="pred:sedisteOrgana">`+ this.myForm.get("sedisteOrgana") + `</ob:sediste>
+          <ob:naziv xmlns:ob="http://www.projekat.org/obavestenje" property="pred:nazivOrgana">`+ this.myForm.get("nazivOrgana").value + `</ob:naziv>
+          <ob:sediste xmlns:ob="http://www.projekat.org/obavestenje" property="pred:sedisteOrgana">`+ this.myForm.get("sedisteOrgana").value + `</ob:sediste>
         </ob:podaci_o_organu>
         <ob:broj_predmeta xmlns:ob="http://www.projekat.org/obavestenje" property="pred:brojPredmeta">`+ this.broj + `</ob:broj_predmeta>
-        <ob:datum xmlns:ob="http://www.projekat.org/obavestenje" property="pred:datum">`+ this.datum + `</ob:datum>
+        <ob:datum xmlns:ob="http://www.projekat.org/obavestenje" property="pred:datum">`+ this.myForm.get("datum").value + `</ob:datum>
         <ob:podaci_o_podnosiocu>
-          <ob:ime xmlns:ob="http://www.projekat.org/obavestenje" property="pred:ime">`+ this.ime + `</ob:ime>
-          <ob:prezime xmlns:ob="http://www.projekat.org/obavestenje" property="pred:prezime">`+ this.prezime + `</ob:prezime>
+          <ob:ime xmlns:ob="http://www.projekat.org/obavestenje" property="pred:ime">`+ this.myForm.get("ime").value + `</ob:ime>
+          <ob:prezime xmlns:ob="http://www.projekat.org/obavestenje" property="pred:prezime">`+ this.myForm.get("prezime").value + `</ob:prezime>
           <ob:adresa>
-            <ob:naziv_ulice>`+ this.ulica + `</ob:naziv_ulice>
-            <ob:grad>`+ this.grad + `</ob:grad>
+            <ob:naziv_ulice>`+ this.myForm.get("ulica").value + `</ob:naziv_ulice>
+            <ob:grad>`+ this.myForm.get("grad").value + `</ob:grad>
           </ob:adresa>
         </ob:podaci_o_podnosiocu>
       </ob:opste_informacije>
       <ob:telo>
-        <ob:godina>`+ this.odDatum + `</ob:godina>
-        <ob:opis>`+ this.opisInformacije + `</ob:opis>
-         <ob:datum>`+ this.danaDatum + `</ob:datum>
-        <ob:vreme>`+ this.casova + `</ob:vreme>
-        <ob:od>`+ this.odCasova + `</ob:od>
-        <ob:do>`+ this.doCasova + `</ob:do>
+        <ob:godina>`+ this.myForm.get("odDatum").value + `</ob:godina>
+        <ob:opis>`+ this.myForm.get("opisInformacije").value + `</ob:opis>
+         <ob:datum>`+ this.myForm.get("danaDatum").value + `</ob:datum>
+        <ob:vreme>`+ this.myForm.get("casova").value + `</ob:vreme>
+        <ob:od>`+ this.myForm.get("odCasova").value + `</ob:od>
+        <ob:do>`+ this.myForm.get("doCasova").value + `</ob:do>
         <ob:adresa_organa>
-          <ob:naziv_ulice>`+ this.nazivUlice + `</ob:naziv_ulice>
-          <ob:broj_ulice>`+ this.brojUlice + `</ob:broj_ulice>
-          <ob:broj_kancelarije>`+ this.brKancelarije + `</ob:broj_kancelarije>
+          <ob:naziv_ulice>`+ this.myForm.get("nazivUlice").value + `</ob:naziv_ulice>
+          <ob:broj_ulice>`+ this.myForm.get("brojUlice").value + `</ob:broj_ulice>
+          <ob:broj_kancelarije>`+ this.myForm.get("brKancelarije").value + `</ob:broj_kancelarije>
         </ob:adresa_organa>
-        <ob:iznos>`+ this.iznos + `</ob:iznos>
+        <ob:iznos>`+ this.myForm.get("iznos").value + `</ob:iznos>
       </ob:telo>
-      <ob:potpis>`+ this.potpisLica + `</ob:potpis>
+      <ob:potpis>`+ this.myForm.get("potpisLica").value + `</ob:potpis>
     </ob:obavestenje>`;
 
     console.log(xmlSpec);
