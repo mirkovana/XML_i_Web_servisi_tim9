@@ -136,10 +136,6 @@ export class AddDecisionAppealComponent implements OnInit {
     // console.log("sendFile");
     // console.log("xmlrequest file = ", this.requestXmlFile);
 
-    if (!this.validate()) {
-      return;
-    }
-
     let xmlString: string = `<?xml version="1.0" encoding="UTF-8"?>
     <zo:zalba_na_odluku 
       xmlns="http://www.projekat.org/zalbanaodluku"
