@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.projekat.org/zalbanaodluku"
+    xmlns:zo="http://www.projekat.org/zalbanaodluku" xmlns:pred="http://www.projekat.org/predicate/">
+
+    <xs:element name="zalba_na_odluku">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="naslov" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="podaci_o_povereniku" type="zo:TPravno_lice" minOccurs="0"/>
+                <xs:element name="podaci_o_zalbi" type="zo:Tpodaci_o_zalbi"/>
+                <xs:element name="sadrzaj_zalbe" type="zo:Tsadrzaj_zalbe"/>
+                <xs:element name="podaci_o_podnosiocu_zalbe" type="zo:TFizicko_lice"/>
+                <xs:element name="podaci_o_mestu_i_datumu_podnosenja_zalbe" type="zo:Tmesto_datum"/>
+                <xs:element name="napomena" type="zo:Tnapomena" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute name="broj" type="zo:TBroj" use="required"/>
+            <xs:attribute name="username" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="datum" type="zo:TDatum" use="required"/>
+            <xs:attribute name="about" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="adresa">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="grad">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                            <xs:maxLength value="50"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="ulica">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                            <xs:maxLength value="50"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="broj" type="xs:positiveInteger"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType abstract="true" name="TLice">
+        <xs:sequence>
+            <xs:element ref="zo:adresa"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TPravno_lice">
+        <xs:complexContent>
+            <xs:extension base="zo:TLice">
+                <xs:sequence>
+                    <xs:element name="naziv_poverenika" minOccurs="0">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="500"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="TFizicko_lice">
+        <xs:complexContent>
+            <xs:extension base="zo:TLice">
+                <xs:sequence>
+                    <xs:element name="ime">
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="property" type="xs:string" use="optional"/>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="prezime">
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="property" type="xs:string" use="optional"/>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="potpis">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="30"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="drugi_podaci_za_kontakt" minOccurs="0">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:minLength value="1"/>
+                                <xs:maxLength value="50"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType mixed="true" name="Tpodaci_o_zalbi">
+        <xs:sequence>
+            <xs:element name="naslov" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="podnosilac_zalbe" type="zo:TFizicko_lice"/>
+            <xs:element name="organ_koji_je_doneo_odluku">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="broj_zalbe">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="zo:TBroj">
+                            <xs:attribute name="property" type="xs:string" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="datum" type="zo:TDatum"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tsadrzaj_zalbe" mixed="true">
+        <xs:sequence minOccurs="0">
+            <xs:element name="datum" type="zo:TDatum" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="zbog_cega_se_pobija_odluka" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="500"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element minOccurs="0" name="predlog_povereniku" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tmesto_datum">
+        <xs:sequence>
+            <xs:element name="mesto">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="datum">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="zo:TDatum">
+                            <xs:attribute name="property" type="xs:string" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tnapomena">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="tacka">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="TDatum">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{2}[.]\d{2}[.]\d{4}[.]"/>
+            <xs:length value="11"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TBroj">
+        <xs:restriction base="xs:string"> </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,31 @@
+.userImg {
+    background-image: url("src/assets/img/user.png");
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
+  
+.myFont{
+    font-family: "Modern No. 20";
+    font-size: xx-large;
+  
+}
+  
+.logoImg {
+    height: 80px;
+}
+  
+.items:hover {
+    display: block;
+}
+  
+.dropdown {
+    border: none;
+    outline: none;
+}
+  
+.dropdown:hover {
+    border: none;
+    outline: none;
+}

@@ -1,0 +1,107 @@
+<div class="backgroundImg">
+    <div class="col-md-12 pl-0 pr-0">
+        <app-navigation-bar></app-navigation-bar>
+    </div>
+    <div class="row col-md-12">
+        <div class="jumbotron col-md-10 ml-auto mr-auto bg-light shadow mt-2 float-left pt-3">
+            <div class="row col-md-12 pl-5 pr-0">
+                <p *ngIf="isAdmin()">
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
+                        aria-expanded="false" aria-controls="collapseExample">
+                        Pretraga
+                    </a>
+                </p>
+                <div *ngIf="isAdmin()" class="collapse" id="collapseExample" style="margin-bottom: 10px;">
+                    <form [formGroup]="myForm" (ngSubmit)="submit()">
+                        <div class="row">
+                            <div class="col">
+                                <input formControlName="broj" type="text" class="form-control" placeholder="Broj zahteva">
+                            </div>
+                            <div class="col">
+                                <input formControlName="datum" type="text" class="form-control" placeholder="Datum">
+                            </div>
+                            <div class="col">
+                                <input formControlName="mesto" type="text" class="form-control" placeholder="Mesto">
+                            </div>
+                            <div class="col">
+                                <input formControlName="nazivOrgana" type="text" class="form-control" placeholder="Naziv organa">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <input formControlName="ime" type="text" class="form-control" placeholder="Ime">
+                            </div>
+                            <div class="col">
+                                <input formControlName="prezime" type="text" class="form-control" placeholder="Prezime">
+                            </div>
+                            <div class="col">
+                                <input formControlName="status" type="text" class="form-control" placeholder="Status">
+                            </div>
+                            <div class="col">
+                                <div class="form-group float-right mt-3">
+                                    <button mat-raised-button color="primary" id="submit" type="submit"
+                                        class="btn btn-primary">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form [formGroup]="myForm1" (ngSubmit)="submit1()">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Kljucne reci:</label>
+                            <input formControlName="keywords" type="text" class="form-control"
+                                placeholder="Kljucne reci odvojene razmakom">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </form>
+                </div>
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Broj</th>
+                            <th>Podnosioc</th>
+                            <th>Grad</th>
+                            <th>Datum</th>
+                            <th>Organ vlasti</th>
+                            <th>Razlog</th>
+                            <th>Status</th>
+                            <th>File</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center" *ngFor="let a of appeals">
+                            <td><a href="http://localhost:8070/api/request/html/{{a.broj}}" target="_blank">{{a.broj}}</a></td>
+                            <td>{{a.podnosiocIme}}  {{a.podnosiocPrezime}}</td>
+                            <td>{{a.podnosiocGrad}}</td>
+                            <td>{{a.datumSlanja}}</td>
+                            <td>{{a.organVlasti}}</td>
+                            <td>{{a.razlog}}</td>
+                            <td>
+                                <div *ngIf="a.status!='answered'">{{a.status}}</div>
+                                <a *ngIf="a.status=='answered'" href="http://localhost:8070/api/explanation/html/{{a.broj}}" target="_blank">answered</a>
+                            </td>
+                            <td>
+                                <a href="http://localhost:8070/api/silence-appeals/html/{{a.broj}}" target="_blank">html</a><br>
+                                <a href="http://localhost:8070/api/silence-appeals/pdf/{{a.broj}}">pdf</a>
+                            </td>
+                            <td>
+                                <button *ngIf="isUser() && a.status=='sent'" (click)="deleteAppeal(a)" mat-mini-fab color="warn"class="mr-2 mb-2"  style="outline: none">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                                <button *ngIf="isAdmin() && a.status=='sent'" (click)="requestExplanation(a)" mat-mini-fab color="warn"class="mr-2 mb-2"  style="outline: none">
+                                    <mat-icon>message</mat-icon>
+                                </button>
+                                <button *ngIf="isAdmin() && a.status=='answered'" (click)="sendResponse(a)" mat-mini-fab color="warn"class="mr-2 mb-2"  style="outline: none">
+                                    <mat-icon>message</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="appeals.length === 0">
+                    <h4>Nema dodatih zalbi na cutanje</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

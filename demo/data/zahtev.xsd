@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://www.projekat.org/zahtev" xmlns:za="http://www.projekat.org/zahtev">
+    targetNamespace="http://www.projekat.org/zahtev" xmlns:za="http://www.projekat.org/zahtev"
+    xmlns:pred="http://www.projekat.org/predicate/">
 
     <xs:element name="zahtev">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="zahtev_status">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="zahtev_broj">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element ref="za:institucija"/>
-                <xs:element ref="za:naslov"/>
-                <xs:element ref="za:tekst_zahteva"/>
+                <xs:element ref="za:naslov" minOccurs="0"/>
+                <xs:element ref="za:tekst_zahteva" minOccurs="1"/>
                 <xs:element name="mesto_datum">
                     <xs:complexType mixed="true">
                         <xs:sequence>
@@ -31,6 +50,30 @@
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
+            <xs:attribute name="broj" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string"> </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="username" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="datum" type="za:TDatum" use="required"/>
+            <xs:attribute form="unqualified" name="institucijaNaziv" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="about" type="xs:string"/>
+            <xs:attribute name="time" type="xs:string" use="required"/>
+            <xs:attribute name="status" type="xs:string" use="required"/>
+            <xs:attribute name="vocab" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="institucija">
@@ -40,13 +83,23 @@
         <xs:complexType mixed="true">
             <xs:sequence>
                 <xs:element name="naziv">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:minLength value="2"/>
-                        </xs:restriction>
-                    </xs:simpleType>
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
                 </xs:element>
-                <xs:element ref="za:mesto"/>
+                <xs:element name="mesto">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string" use="required"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -58,7 +111,7 @@
     <xs:element name="tekst_zahteva">
         <xs:complexType mixed="true">
             <xs:sequence>
-                <xs:element name="uvod">
+                <xs:element name="uvod" minOccurs="0">
                     <xs:complexType mixed="true">
                         <xs:sequence>
                             <xs:element minOccurs="0" name="zakon" maxOccurs="unbounded">
@@ -107,32 +160,29 @@
                 </xs:element>
                 <xs:element ref="za:lista"/>
                 <xs:element name="informacije">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:minLength value="2"/>
-                        </xs:restriction>
-                    </xs:simpleType>
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
                 </xs:element>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="mesto">
-        <xs:simpleType>
-            <xs:restriction base="xs:string">
-                <xs:minLength value="2"/>
-            </xs:restriction>
-        </xs:simpleType>
-    </xs:element>
+    <xs:element name="mesto" type="xs:string"> </xs:element>
     <xs:element name="datum">
         <xs:annotation>
             <xs:documentation>Datum formata dd.mm.yyyy.</xs:documentation>
         </xs:annotation>
-        <xs:simpleType>
-            <xs:restriction base="xs:string">
-                <xs:pattern value="\d{2}[.]\d{2}[.]\d{4}[.]"/>
-                <xs:length value="11"/>
-            </xs:restriction>
-        </xs:simpleType>
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="za:TDatum">
+                    <xs:attribute name="property" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
     </xs:element>
     <xs:element name="podnosilac">
         <xs:complexType>
@@ -164,31 +214,9 @@
     </xs:element>
     <xs:complexType name="naslovi">
         <xs:simpleContent>
-            <xs:extension base="xs:string">
-                <xs:attribute ref="za:nivo" use="required"/>
-                <xs:attribute ref="za:stil" use="optional"/>
-            </xs:extension>
+            <xs:extension base="xs:string"> </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
-    <xs:attribute name="nivo" type="za:nivoi">
-        <xs:annotation>
-            <xs:documentation>atribut koji predstavlja nivo naslova ili liste</xs:documentation>
-        </xs:annotation>
-    </xs:attribute>
-    <xs:attribute name="stil" type="xs:string">
-        <xs:annotation>
-            <xs:documentation>atribut kojim se defini[e stil odre]eneog elementa</xs:documentation>
-        </xs:annotation>
-    </xs:attribute>
-    <xs:simpleType name="nivoi">
-        <xs:annotation>
-            <xs:documentation>Tip koji predstalvja nivoe 1-6</xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:positiveInteger">
-            <xs:minInclusive value="1"/>
-            <xs:maxInclusive value="6"/>
-        </xs:restriction>
-    </xs:simpleType>
     <xs:attribute default="false" name="checked" type="xs:boolean"/>
     <xs:attribute name="id">
         <xs:simpleType>
@@ -213,18 +241,31 @@
         </xs:annotation>
         <xs:sequence>
             <xs:element name="ime" nillable="false">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:minLength value="2"/>
-                    </xs:restriction>
-                </xs:simpleType>
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
             </xs:element>
             <xs:element name="prezime" nillable="false">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:minLength value="2"/>
-                    </xs:restriction>
-                </xs:simpleType>
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string" use="required"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="username">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
             </xs:element>
         </xs:sequence>
     </xs:complexType>
@@ -251,4 +292,10 @@
             </xs:restriction>
         </xs:simpleType>
     </xs:element>
+    <xs:simpleType name="TDatum">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{2}[.]\d{2}[.]\d{4}[.]"/>
+            <xs:length value="11"/>
+        </xs:restriction>
+    </xs:simpleType>
 </xs:schema>

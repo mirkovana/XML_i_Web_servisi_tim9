@@ -9,8 +9,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
+import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+
 import static org.apache.xerces.jaxp.JAXPConstants.*;
 
 @Component
@@ -43,9 +46,26 @@ public class DOMParser {
 	}
 	public Document getDocument(String xmlText) throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilder builder = factory.newDocumentBuilder();
-		System.out.println("getDocument = " + xmlText);
+		builder.setErrorHandler(new ErrorHandler(){
+		    @Override
+		    public void fatalError(SAXParseException exception) throws SAXException{
+		        System.err.println("fatalError: " + exception);
+		        throw exception;
+		    }
+		    @Override
+		    public void error(SAXParseException exception) throws SAXException{
+		        System.err.println("error: " + exception);
+		        throw exception;
+		    }
+		    @Override
+		    public void warning(SAXParseException exception) throws SAXException{
+		        System.err.println("warning: " + exception);
+		        throw exception;
+		    }
+		});
+		//System.out.println("getDocument = " + xmlText);
 		Document document = builder.parse(new InputSource(new StringReader(xmlText)));
-		System.out.println("document parsed = " + document);
+		//System.out.println("document parsed = " + document);
 		return document;
 	}
 
@@ -53,5 +73,10 @@ public class DOMParser {
 		DocumentBuilder builder = factory.newDocumentBuilder();
 		Document document = builder.parse(new InputSource(new StringReader(fileText)));
 		return document;
+	}
+	
+	public void setSchema(String schemaPath) {
+		//System.out.println("set schema = " + schemaPath);
+		factory.setAttribute(JAXP_SCHEMA_SOURCE, schemaPath);
 	}
 }

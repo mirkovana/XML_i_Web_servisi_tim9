@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ex:explanation 
+    xmlns:ex="http://www.projekat.org/explanation"
+    xmlns:pred="http://www.projekat.org/predicate/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
+    xsi:schemaLocation="http://www.projekat.org/explanation explanation.xsd"
+    broj="broj0" 
+    tipZalbe="tipZalbe0"
+    username="username0"
+    organVlastiUsername="organVlastiUsername0" 
+    about="http://www.projekat.org/explanation/aa54057c188c-2021">
+    <ex:broj property="pred:broj">aa54057c188c-2021</ex:broj>
+    <ex:username property="pred:username">username0</ex:username>
+    <ex:organVlastiUsername property="pred:organVlastiUsername">organVlastiUsername0</ex:organVlastiUsername>
+    <ex:text>dashdkjahdadakdjhadkajhdahjkdhakj</ex:text>
+    <ex:mesto>mesto</ex:mesto>
+    <ex:datum property="pred:datum">10.10.2010.</ex:datum>
+    <ex:ime>ime</ex:ime>
+    <ex:prezime>prezime</ex:prezime>
+    <ex:potpis>potpis</ex:potpis>
+</ex:explanation>

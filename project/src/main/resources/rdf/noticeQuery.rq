@@ -1,8 +1,8 @@
-SELECT * FROM <http://localhost:8081/fuseki/Project/data/requestMetadata> WHERE {
-	?ime <http://www.ftn.uns.ac.rs/obavestenje/predicate/ime> ?ime .
-	?prezime <http://www.ftn.uns.ac.rs/obavestenje/predicate/prezime> ?prezime .
-	?datum <http://www.ftn.uns.ac.rs/obavestenje/predicate/datum> ?datum .
-	?broj_predmeta <<http://www.ftn.uns.ac.rs/obavestenje/predicate/brojPredmeta> ?broj_predmeta .
+SELECT * FROM <http://localhost:8081/fuseki/Project/data/noticeMetadata> WHERE {
+	?obavestenje <http://www.projekat.org/predicate/ime> ?ime .
+	?obavestenje <http://www.projekat.org/predicate/prezime> ?prezime .
+	?obavestenje <http://www.projekat.org/predicate/datum> ?datum .
+	?obavestenje <http://www.projekat.org/predicate/brojPredmeta> ?broj_predmeta .
 	FILTER( CONTAINS(UCASE(str(?ime)), UCASE("{{ime}}"))
     && CONTAINS(UCASE(str(?prezime)), UCASE("{{prezime}}"))
     && CONTAINS(UCASE(str(?datum)), UCASE("{{datum}}"))

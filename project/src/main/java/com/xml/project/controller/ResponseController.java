@@ -1,12 +1,22 @@
 package com.xml.project.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.JAXBException;
+import javax.xml.namespace.QName;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.ws.Service;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,9 +28,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.xml.sax.SAXException;
+import org.xmldb.api.base.XMLDBException;
 
-import com.xml.project.dto.ResponseDTO;
+import com.itextpdf.html2pdf.ConverterProperties;
+import com.itextpdf.html2pdf.HtmlConverter;
+import com.xml.project.model.keywordSearch.KeywordSearch;
+import com.xml.project.model.resenjeSearch.ResenjeSearch;
+import com.xml.project.model.responseList.ResponseList;
 import com.xml.project.service.ResponseService;
+import com.xml.project.soap.Sluzbenik;
 
 @RestController()
 @RequestMapping(value = "api/response")
@@ -30,20 +47,126 @@ public class ResponseController {
 	@Autowired
 	private ResponseService service;
 	
-	@PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/decision", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	@CrossOrigin
-	public ResponseEntity<ResponseDTO> saveResponse(@RequestBody ResponseDTO dto) throws Exception {
-		System.out.println("controller saveresponse = ");
-		service.save(dto);
-		return new ResponseEntity<>(dto, HttpStatus.OK);
+	public ResponseEntity saveResponseDecision(@RequestBody String dto) {
+		System.out.println("controller saveresponse for decision appeal = ");
+		try {
+			service.save(dto, "decision");
+			saveDecisionResponseSoap(dto);
+			return new ResponseEntity(HttpStatus.OK);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ParserConfigurationException
+				| SAXException | IOException | TransformerException | XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+		}
 	}
 	
-	@GetMapping("/search")
+	@PostMapping(value = "/silence", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity saveResponseSilence(@RequestBody String dto) {
+		System.out.println("controller saveresponse for silence appeals= ");
+		try {
+			service.save(dto, "silence");
+			saveSilenceResponseSoap(dto);
+			return new ResponseEntity(HttpStatus.OK);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | ParserConfigurationException
+				| SAXException | IOException | TransformerException | XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@GetMapping(value = "/{username}/all",  produces = MediaType.TEXT_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<ResponseList> getAllForUsername(@PathVariable("username") String username){
+		System.out.println("controller getallforusername = " + username);
+		try {
+			return new ResponseEntity<>(service.getAllForUsername(username), HttpStatus.OK);
+		} catch (XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);	
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);	
+		} catch (SAXException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);	
+		}
+	}
+	
+	@GetMapping(value = "/all", produces = MediaType.TEXT_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<ResponseList> getAll() throws MalformedURLException{
+		System.out.println("controller get all = ");
+		try {
+			return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+		} catch (XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);	
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		} catch (SAXException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@PostMapping(value = "/keywords", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<ResponseList> searchKeywords(@RequestBody KeywordSearch s){
+		System.out.println("controller searchKeywords xml = " + s);
+		ResponseList result;
+		try {
+			result = service.searchByKeywords(s);
+	        System.out.println("OUTPUT: " + result);
+			return new ResponseEntity<>(result, HttpStatus.OK);
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (XMLDBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		} catch (SAXException e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@PostMapping(value = "/search", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	@CrossOrigin
+	public ResponseEntity<ResponseList> searchMetadata(@RequestBody ResenjeSearch s) throws Exception {
+		System.out.println("controller searchMetadata xml = " + s);
+		String broj = isEmpty(s.getBroj());
+        String datum = isEmpty(s.getDatum());
+        String status = isEmpty(s.getStatus());
+        Map<String, String> params = new HashMap<>();
+        params.put("broj", broj);
+        params.put("datum", datum);
+        params.put("status", status);
+        
+        ResponseList result = service.searchByMetadata(params);
+        
+        System.out.println("OUTPUT: " + result);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
+	private String isEmpty(String s) {
+		if(s.contentEquals("")) {
+			return "_";
+		}else {
+			return s;
+		}
+	}
+	
+	
+	/*@GetMapping("/search")
 	public ResponseEntity<String> searchFromRDF() throws IOException{
-	//public ResponseEntity<String> searchFromRDF(@PathVariable("broj") String broj,
-    //										@PathVariable("osobaIme") String osobaIme,
-	//							    		@PathVariable("osobaPrezime") String osobaPrezime) throws IOException {
-        String broj = "000-00-0000/0000-00";
+	    String broj = "000-00-0000/0000-00";
         String status = "osnovana";
         String osobaIme = "A";
         String osobaPrezime = "A";
@@ -71,7 +194,7 @@ public class ResponseController {
         }
         System.out.println("OUTPUT: " + output);
         return new ResponseEntity<>(output, HttpStatus.OK);
-    }
+    }*/
 	
 	@GetMapping(value = "/html/{id}", produces = MediaType.TEXT_HTML_VALUE)
 	public ResponseEntity<String> getResponseHTML(@PathVariable("id") String id) {
@@ -79,6 +202,63 @@ public class ResponseController {
 		String result = service.getHTML(id);
 		System.out.println("constroller result = " + result);
 		return new ResponseEntity<String>(result, HttpStatus.OK);
+	}
+
+	@RequestMapping(path = "/pdf/{broj}")
+    public ResponseEntity<?> getPDF(@PathVariable("broj") String broj, HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        String html = service.getHTML(broj);
+        /* Setup Source and target I/O streams */
+        ByteArrayOutputStream target = new ByteArrayOutputStream();
+        /*Setup converter properties. */
+        ConverterProperties converterProperties = new ConverterProperties();
+        converterProperties.setBaseUri("http://localhost:8070");
+        converterProperties.setCharset("UTF-8");
+        /* Call convert method */
+        HtmlConverter.convertToPdf(html, target, converterProperties);  
+        /* extract output as bytes */
+        byte[] bytes = target.toByteArray();
+        /* Send the response as downloadable PDF */
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + broj + ".pdf") 
+                .contentType(MediaType.APPLICATION_PDF) 
+                .body(bytes);       
+    }
+	
+	private void saveDecisionResponseSoap(String xml) {
+		System.out.println("sendAppeal");
+		try {
+			URL wsdlLocation = new URL("http://localhost:8050/ws/sluzbenik?wsdl");
+			QName serviceName = new QName("http://soap.spring.com/ws/sluzbenik", "SluzbenikService");
+			QName portName = new QName("http://soap.spring.com/ws/sluzbenik", "SluzbenikPort");
+
+			Service service2 = Service.create(wsdlLocation, serviceName);
+				
+			Sluzbenik sluzbenik = service2.getPort(portName, Sluzbenik.class); 
+				
+			String response = sluzbenik.saveDecisionResponse(xml);
+			System.out.println("Response from WS: " + response);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void saveSilenceResponseSoap(String xml) {
+		System.out.println("sendAppeal");
+		try {
+			URL wsdlLocation = new URL("http://localhost:8050/ws/sluzbenik?wsdl");
+			QName serviceName = new QName("http://soap.spring.com/ws/sluzbenik", "SluzbenikService");
+			QName portName = new QName("http://soap.spring.com/ws/sluzbenik", "SluzbenikPort");
+
+			Service service2 = Service.create(wsdlLocation, serviceName);
+				
+			Sluzbenik sluzbenik = service2.getPort(portName, Sluzbenik.class); 
+				
+			String response = sluzbenik.saveSilenceResponse(xml);
+			System.out.println("Response from WS: " + response);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/*@GetMapping(value = "/pdf/{id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)

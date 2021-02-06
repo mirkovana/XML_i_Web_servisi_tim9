@@ -66,5 +66,9 @@ public class UserService {
 		JwtResponseDTO jwtDto = new JwtResponseDTO(jwt);
 		return jwtDto;
 	}
-
+	
+	public String getUserEmailByUsername(String username) {
+		TUser user = userRepository.findOneByUsername(username);
+		return user.getEmail();
+	}
 }

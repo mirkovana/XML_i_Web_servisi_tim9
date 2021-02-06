@@ -1,0 +1,39 @@
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div id="navbarDiv" class="container-fluid">
+            <a class="navbar-brand myFont" href="/home"><i>Poverenik</i></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item" *ngIf="isUser()">
+                        <a class="nav-link" routerLink="/add-decision-appeal">Kreiraj zalbu na odluku</a>
+                    </li>
+                    <li class="nav-item" *ngIf="isUser()">
+                        <a class="nav-link" routerLink="/add-silence-appeal">Kreiraj zalbu na cutanje</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/decision-appeals">Zalbe na odluku</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/silence-appeals">Zalbe na cutanje</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/responses">Resenja</a>
+                    </li>
+                    <li class="nav-item" *ngIf="isUserAdmin()">
+                        <a class="nav-link" routerLink="/reports">Izvestaj</a>
+                    </li>
+                </ul>
+            </div>
+            <span class="float-right" *ngIf="!getUser()">
+                <a routerLink="/login"><button mat-raised-button color="primary" id="loginBtn"
+                        class="mr-2">Login</button></a>
+                <a routerLink="/sign-up"><button mat-raised-button color="primary" id="signUpBtn">Sign Up</button></a>
+            </span>
+            <span class="float-right" *ngIf="getUser()">
+                <button mat-raised-button color="primary" id="loginBtn" class="mr-2" (click)="logout()">Logout</button>
+            </span>
+            <button id="userBtn" mat-mini-fab color="primary" class="dropdown"
+                *ngIf="getUser()">{{getUsername()[0]}}</button>
+        </div>
+    </nav>
+</div>

@@ -1,0 +1,23 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
+  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/ed29a195e0c5-2021">
+    <pred:status xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">answered</pred:status>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/ed29a195e0c5-2021">
+    <pred:organVlasti xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdadssad</pred:organVlasti>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/ed29a195e0c5-2021">
+    <pred:broj xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">ed29a195e0c5-2021</pred:broj>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/ed29a195e0c5-2021">
+    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdsadsda</pred:ime>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/ed29a195e0c5-2021">
+    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdsad</pred:prezime>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/ed29a195e0c5-2021">
+    <pred:mesto xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdas</pred:mesto>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.projekat.org/zalbanaodluku/ed29a195e0c5-2021">
+    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">asdasd</pred:datum>
+  </rdf:Description>
+</rdf:RDF>

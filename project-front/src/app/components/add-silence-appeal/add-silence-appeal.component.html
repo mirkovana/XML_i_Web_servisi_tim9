@@ -1,9 +1,86 @@
-<div>
-    <div id="silence-appeal"></div>
-    <div>
-        <textarea [(ngModel)]="textArea"></textarea>
+<div class="backgroundImg">
+    <div class="col-md-12 pl-0 pr-0">
+        <app-navigation-bar></app-navigation-bar>
     </div>
-    <div>
-        <button mat-raised-button color="primary" (click)="sendFile()">Save file</button>
+    <div class="jumbotron bg-light col-md-10 ml-auto mr-auto mt-3 pt-5">
+        <div class="form-group">
+            <label for="file">Upload fajl zahteva:</label>
+            <input type="file" id="file-input" (change)="readFile($event)" />
+        </div>
+        
+        <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px">
+            <p class="center"><b>ŽALBA KADA ORGAN VLASTI NIJE POSTUPIO/ nije postupio u celosti/ PO ZAHTEVU<br>TRAŽIOCA
+                    U ZAKONSKOM ROKU (ĆUTANjE UPRAVE)</b></p>
+            <p><b>Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti</b></p>
+            <p>Adesa za postu: Beograd, Bulevara kralja Aleksandra br.15</p>
+            <br>
+            <p>U skladu sa clanom 22.Zakona o slobodnom pristupu informacijama od javnog znacaja podnosim:</p>
+            <br>
+            <h3 class="headertekst">ZALBU</h3>
+            <p class="center">protiv</p>
+            <p class="center">
+                <input [(ngModel)]="nazivOrgana" style="width: 50%;" type="text" name="nazivOrgana"
+                    placeholder="Naziv organa">
+            </p>
+            <hr>
+            <p class="center">(navesti naziv organa)</p>
+            <p class="center">zbog toga sto organ vlasti nije:</p>
+            <div class="center">
+                <input [(ngModel)]="option1" type="checkbox" />nije postupio /
+                <input [(ngModel)]="option2" type="checkbox" />nije postupio u celosti /
+                <input [(ngModel)]="option3" type="checkbox" />u zakonskom roku
+                <p class="center">(podvuci zbog cega se izjavljuje zalba)</p>
+            </div>
+            po mom zahtevu za slobodan pristup informacijama od javnog značaja koji sam podneo tom organu dana
+            <u><input [(ngModel)]="datumPodnosenja" type="text" placeholder="dd.mm.yyyy."></u>
+            godine, a kojim sam tražio/la da mi se u skladu sa Zakona o slobodnom pristupu informacijama od javnog značaja
+            omogući uvid- kopija dokumenta koji sadrži informacije o /u vezi sa zahtevom broj:
+            <input [(ngModel)]="broj" type="text" disabled/>
+            <br>
+            <textarea [(ngModel)]="podaciOInformaciji" placeholder="Podaci o informaciji"></textarea>
+            <p class="indent">
+                Na osnovu iznetog, predlažem da Poverenik uvaži moju žalbu i omogući mi pristup traženoj/im informaciji/ma.
+            </p>
+            <p class="indent">
+                Kao dokaz , uz žalbu dostavljam kopiju zahteva sa dokazom o predaji organu vlasti
+            </p>
+            <p class="indent">
+                <b>Napomena:</b>Kod žalbe zbog nepostupanju po zahtevu u celosti, treba priložiti i dobijeni odgovor organa
+                vlasti.
+            </p>
+            <table style="text-align:left; margin-left: 20px;">
+    
+                <tr>
+                    <td>Podnosilac zalbe:</td>
+                    <td>
+                        <input [(ngModel)]="ime" type="text" placeholder="Ime" />
+                        <input [(ngModel)]="prezime" type="text" placeholder="Prezime" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Potpis:</td>
+                    <td><input [(ngModel)]="potpis" type="text" /></td>
+                </tr>
+                <tr>
+                    <td>Adresa:</td>
+                    <td>
+                        <input [(ngModel)]="grad" type="text" placeholder="Grad" />,
+                        <input [(ngModel)]="ulica" type="text" placeholder="Ulica" />,
+                        <input [(ngModel)]="br" type="text" placeholder="Br." />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Drugi podaci:</td>
+                    <td><input [(ngModel)]="drugiPodaci" type="text" /></td>
+                </tr>
+                <tr>
+                    <td>U</td>
+                    <td><input [(ngModel)]="mesto" type="text" /> Dana <input [(ngModel)]="dana" type="text" placeholder="dd.mm.yyyy."/></td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <button mat-raised-button color="primary" (click)="sendFile()">Save file</button>
+        </div>
     </div>
 </div>

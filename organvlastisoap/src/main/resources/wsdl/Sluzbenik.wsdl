@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SluzbenikService" targetNamespace="http://soap.spring.com/ws/sluzbenik" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://soap.spring.com/ws/sluzbenik" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:message name="saveSilenceAppealResponse">
+    <wsdl:part name="return" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveSilenceResponseResponse">
+    <wsdl:part name="return" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayHiResponse">
+    <wsdl:part name="return" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveSilenceAppeal">
+    <wsdl:part name="xml" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayHi">
+    <wsdl:part name="text" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveDecisionAppeal">
+    <wsdl:part name="xml" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveDecisionResponseResponse">
+    <wsdl:part name="return" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveDecisionResponse">
+    <wsdl:part name="xml" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveDecisionAppealResponse">
+    <wsdl:part name="return" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="saveSilenceResponse">
+    <wsdl:part name="xml" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Sluzbenik">
+    <wsdl:operation name="saveSilenceAppeal">
+      <wsdl:input name="saveSilenceAppeal" message="tns:saveSilenceAppeal">
+    </wsdl:input>
+      <wsdl:output name="saveSilenceAppealResponse" message="tns:saveSilenceAppealResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sayHi">
+      <wsdl:input name="sayHi" message="tns:sayHi">
+    </wsdl:input>
+      <wsdl:output name="sayHiResponse" message="tns:sayHiResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveDecisionAppeal">
+      <wsdl:input name="saveDecisionAppeal" message="tns:saveDecisionAppeal">
+    </wsdl:input>
+      <wsdl:output name="saveDecisionAppealResponse" message="tns:saveDecisionAppealResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveDecisionResponse">
+      <wsdl:input name="saveDecisionResponse" message="tns:saveDecisionResponse">
+    </wsdl:input>
+      <wsdl:output name="saveDecisionResponseResponse" message="tns:saveDecisionResponseResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveSilenceResponse">
+      <wsdl:input name="saveSilenceResponse" message="tns:saveSilenceResponse">
+    </wsdl:input>
+      <wsdl:output name="saveSilenceResponseResponse" message="tns:saveSilenceResponseResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SluzbenikServiceSoapBinding" type="tns:Sluzbenik">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="saveSilenceAppeal">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="saveSilenceAppeal">
+        <soap:body use="literal" namespace="http://soap.spring.com/ws/sluzbenik"/>
+      </wsdl:input>
+      <wsdl:output name="saveSilenceAppealResponse">
+        <soap:body use="literal" namespace="http://soap.spring.com/ws/sluzbenik"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sayHi">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="sayHi">
+        <soap:body use="literal" namespace="http://soap.spring.com/ws/sluzbenik"/>
+      </wsdl:input>
+      <wsdl:output name="sayHiResponse">
+        <soap:body use="literal" namespace="http://soap.spring.com/ws/sluzbenik"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveDecisionAppeal">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="saveDecisionAppeal">
+        <soap:body use="literal" namespace="http://soap.spring.com/ws/sluzbenik"/>
+      </wsdl:input>
+      <wsdl:output name="saveDecisionAppealResponse">
+        <soap:body use="literal" namespace="http://soap.spring.com/ws/sluzbenik"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveDecisionResponse">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="saveDecisionResponse">
+        <soap:body use="literal" namespace="http://soap.spring.com/ws/sluzbenik"/>
+      </wsdl:input>
+      <wsdl:output name="saveDecisionResponseResponse">
+        <soap:body use="literal" namespace="http://soap.spring.com/ws/sluzbenik"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="saveSilenceResponse">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="saveSilenceResponse">
+        <soap:body use="literal" namespace="http://soap.spring.com/ws/sluzbenik"/>
+      </wsdl:input>
+      <wsdl:output name="saveSilenceResponseResponse">
+        <soap:body use="literal" namespace="http://soap.spring.com/ws/sluzbenik"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SluzbenikService">
+    <wsdl:port name="SluzbenikPort" binding="tns:SluzbenikServiceSoapBinding">
+      <soap:address location="http://localhost:8050/SluzbenikPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

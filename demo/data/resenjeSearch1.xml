@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resenjeSearch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="file:/D:/2020/XML/projekatgit/XML_i_Web_servisi_tim9/demo/data/resenjeSearch.xsd">
+    <broj>broj0</broj>
+    <datum>datum0</datum>
+    <status>status0</status>
+</resenjeSearch>

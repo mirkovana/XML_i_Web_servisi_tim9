@@ -4,129 +4,27 @@
     xmlns:res="http://www.projekat.org/resenje"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:pred="http://www.projekat.org/predicate/"
+    about="http://www.projekat.org/resenje/aa54057c188c-2021"
     xsi:schemaLocation="http://www.projekat.org/resenje resenje.xsd"
     status="osnovana"
-    broj="000-00-0000/0000-00"
+    broj="aa54057c188c-2021"
     username="username"
     datum="00.00.0000."
     poverenikUsername="poverenikUsername">
-    <res:broj xmlns:res ="http://www.projekat.org/resenje" property="pred:broj">000-00-0000/0000-00</res:broj>
-    <res:status xmlns:res ="http://www.projekat.org/resenje" property="pred:status">osnovana</res:status>
-    <res:uvod>
+    <res:zalba_broj xmlns:res ="http://www.projekat.org/resenje" property="pred:broj">aa54057c188c-2021</res:zalba_broj>
+    <res:datum_slanja xmlns:res ="http://www.projekat.org/resenje" property="pred:datum">10.10.2010.</res:datum_slanja>
+    <res:zalba_status xmlns:res ="http://www.projekat.org/resenje" property="pred:status">osnovana</res:zalba_status>
+    <res:uvod> 
         <res:paragraf>
-            Poverenik za informacije od javnog značaja i zaštitu
-            podataka o ličnosti, u postupku po zalbi koju je izjavio
-            <res:osoba>
-                <res:ime  xmlns:res ="http://www.projekat.org/resenje" property="pred:osobaIme">A</res:ime>
-                <res:prezime  xmlns:res ="http://www.projekat.org/resenje" property="pred:osobaPrezime">A</res:prezime>
-            </res:osoba> 
-            zbog nepostupanja
-            <res:institucija> 
-                <res:naziv xmlns:res ="http://www.projekat.org/resenje" property="pred:institucijaNaziv">Učiteljskog fakulteta</res:naziv> 
-                u <res:mesto>Prizrenu</res:mesto>
-            </res:institucija>
-            sa privremenim sedištem u 
-            <res:mesto>Leposaviću, ul. Nemanjina bb</res:mesto>, 
-            po njegovom zahtevu od 
-            <res:datum xmlns:res ="http://www.projekat.org/resenje" property="pred:datum">16.04.2020.</res:datum> 
-            godine za pristup informacijama od javnog značaja, na osnovu 
-            <res:zakon>
-                <res:clan>člana 35.</res:clan>
-                <res:stav>stav 1.</res:stav>
-                <res:tacka>tačka 5.</res:tacka>
-                <res:naziv>Zakona o slobodnom pristupu informacijama od javnog značaja</res:naziv>
-                <res:glasnik>(„Sl. glasnik RS“, br. 120/04, 54/07, 104/09 i 36/10)</res:glasnik>
-            </res:zakon> 
-            a u vezi sa 
-            <res:zakon>
-                <res:clan>članom 4.</res:clan>
-                <res:tacka>tačka 22.</res:tacka>
-                <res:naziv>Zakona o zaštiti podataka o ličnosti</res:naziv>
-                <res:glasnik>(„Sl. glasnik RS“, broj 87/18)</res:glasnik>
-            </res:zakon>
-            kao i 
-            <res:zakon>
-                <res:clan>člana 23. i člana 24.</res:clan>
-                <res:stav>stav 4.</res:stav>
-                <res:naziv>Zakona o slobodnom pristupu informacijama od javnog značaja</res:naziv>
-            </res:zakon>
-            i
-            <res:zakon>
-                <res:clan>člana 173.</res:clan>
-                <res:stav>stav 2.</res:stav>
-                <res:naziv>Zakona o opštem upravnom postupku</res:naziv>
-                <res:glasnik>(„Sl. glasnik RS“, br. 18/2016 i 95/2018-autentično tumačenje)</res:glasnik>
-            </res:zakon>
-            , donosi
         </res:paragraf>
-    </res:uvod>
+    </res:uvod> 
     <res:sadrzaj>
         <res:resenje>
-            <res:naslov>RESENJE</res:naslov>
             <res:paragraf>
-                Nalaže se 
-                <res:institucija>
-                    <res:naziv>Učiteljskom fakultetu</res:naziv> u
-                    <res:mesto>Prizrenu</res:mesto>
-                </res:institucija>
-                sa privremenim sedištem u 
-                <res:mesto>Leposaviću</res:mesto>
-                , da bez odlaganja, a najkasnije u roku od pet dana od dana prijema 
-                ovog rešenja, obavesti 
-                <res:osoba><res:ime>A</res:ime><res:prezime>A</res:prezime></res:osoba>
-                , da li poseduje tražene informacije odnosno dokument u kome su iste 
-                sadržane, i to: <res:trazena_informacija xmlns:res ="http://www.projekat.org/resenje" property="pred:trazena_informacija">Ugovor o radu</res:trazena_informacija> 
-                koji je kao poslednji potpisan između tog Fakulteta i 
-                <res:osoba><res:ime>B</res:ime><res:prezime>B</res:prezime></res:osoba>
-                , te da mu, ukoliko takav dokument poseduje dostavi kopiju
-                istog elektronskom poštom na adresu … ili poštom,
-                s tim što će pre dostavljanja zaštititi i učiniti nedostupnim
-                podatke o ličnosti kojima bi se povredilo pravo na privatnost
-                lica na koje se informacije odnose, kao što su: 
-                adresa stanovanja, lični matični broj građana, ime oca, radni staž,
-                prosečna ocena studiranja i sl. ukoliko su takvi podaci sadržani
-                u traženom dokumentu.
-            </res:paragraf>
-            <res:paragraf>
-                II O izvršenju rešenja 
-                <res:institucija>
-                    <res:naziv>Učiteljski fakultet</res:naziv> u 
-                    <res:mesto>Prizrenu</res:mesto>
-                </res:institucija>
-                sa privremenim sedištem u 
-                <res:mesto>Leposaviću</res:mesto>
-                , će obavestiti Poverenika u roku od sedam dana od prijema ovog rešenja.
             </res:paragraf>
         </res:resenje>
         <res:obrazlozenje>
-            <res:naslov>OBRAZLOZENJE</res:naslov>
             <res:paragraf> 
-                <res:osoba><res:ime>A</res:ime><res:prezime>A</res:prezime></res:osoba>
-                , kao tražilac informacija, izjavio je dana 
-                <res:datum>07.05.2020.</res:datum>
-                godine žalbu Povereniku, zbog nepostupanja 
-                <res:institucija>
-                    <res:naziv>Učiteljskog fakulteta</res:naziv>u
-                    <res:mesto>Prizrenu</res:mesto>
-                </res:institucija>
-                sa privremenim sedištem u 
-                <res:mesto>Leposaviću</res:mesto>
-                po njegovom zahtevu od
-                <res:datum>16.04.2020.</res:datum>
-                godine za pristup informacijama od javnog značaja i u prilogu dostavio kopiju istog.
-            </res:paragraf>
-            <res:paragraf>
-                Protiv ovog rešenja nije dopuštena žalba već se, u skladu sa 
-                <res:zakon>
-                    <res:naziv>Zakonom o upravnim sporovima</res:naziv>
-                </res:zakon>
-                , može pokrenuti upravni spor tužbom 
-                <res:institucija>
-                    <res:naziv>Upravnom sudu</res:naziv> u 
-                    <res:mesto>Beogradu</res:mesto>
-                </res:institucija>
-                u roku od 30 dana od dana prijema rešenja. 
-                Taksa na tužbu iznosi <res:taksa>390.00</res:taksa>dinara.
             </res:paragraf>
         </res:obrazlozenje>
         <res:poverenik>

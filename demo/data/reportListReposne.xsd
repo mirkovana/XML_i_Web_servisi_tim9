@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:element name="reportListResponse">
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+                <xs:element name="reportItem">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="id" type="xs:string"/>
+                            <xs:element name="datum" type="xs:string"/>
+                            <xs:element name="zahtevBrojPodnetih" type="xs:int"/>
+                            <xs:element name="zahtevBrojUsvojenih" type="xs:int"/>
+                            <xs:element name="zahtevBrojOdbacenih" type="xs:int"/>
+                            <xs:element name="zahtevBrojOdbijenih" type="xs:int"/>
+                            <xs:element name="zalbaBrojPodnetih" type="xs:int"/>
+                            <xs:element name="zalbaBrojZbogNepostupanja" type="xs:int"/>
+                            <xs:element name="zalbaBrojZbogOdbijanja" type="xs:int"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

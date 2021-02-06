@@ -60,6 +60,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.GET, "/api/request/**").permitAll()
 			.antMatchers(HttpMethod.GET, "/api/decision-appeals/**").permitAll()
 			.antMatchers(HttpMethod.GET, "/api/silence-appeals/**").permitAll()
+			.antMatchers(HttpMethod.GET, "/api/explanation/**").permitAll()
+			.antMatchers(HttpMethod.GET, "/api/report/**").permitAll()
 
 			.anyRequest().authenticated().and()
 			.cors().and();
@@ -71,12 +73,30 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) {
 		web.ignoring().antMatchers(HttpMethod.POST, "/api/user/login");
 		web.ignoring().antMatchers(HttpMethod.POST, "/api/user/register");
+		
 		web.ignoring().antMatchers(HttpMethod.GET, "/api/response/**");
+		web.ignoring().antMatchers(HttpMethod.POST, "/api/response/**");
+
 		web.ignoring().antMatchers(HttpMethod.GET, "/api/request/**");
+		web.ignoring().antMatchers(HttpMethod.POST, "/api/request/**");
+
 		web.ignoring().antMatchers(HttpMethod.GET, "/api/decision-appeals/**");
+		web.ignoring().antMatchers(HttpMethod.POST, "/api/decision-appeals/**");
+
 		web.ignoring().antMatchers(HttpMethod.GET, "/api/silence-appeals/**");
+		web.ignoring().antMatchers(HttpMethod.POST, "/api/silence-appeals/**");
+		
 		web.ignoring().antMatchers(HttpMethod.GET, "/api/notice/**");
+		web.ignoring().antMatchers(HttpMethod.POST, "/api/notice/**");
+
+		web.ignoring().antMatchers(HttpMethod.GET, "/api/explanation/**");
+		web.ignoring().antMatchers(HttpMethod.POST, "/api/explanation/**");
+
+		web.ignoring().antMatchers(HttpMethod.GET, "/api/report/**");
+		web.ignoring().antMatchers(HttpMethod.POST, "/api/report/**");
+		
 		web.ignoring().antMatchers(HttpMethod.GET, "/api/db/init");
+		
 		web.ignoring().antMatchers(HttpMethod.GET, "/", "/webjars/**", "/*.html", "/favicon.ico", "/**/*.html",
 				"/**/*.css", "/**/*.js","/v2/api-docs");
 	}

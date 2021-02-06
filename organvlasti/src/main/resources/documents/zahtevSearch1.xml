@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zahtevSearch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <broj>broj0</broj>
+    <datum>datum0</datum>
+    <ime>ime0</ime>
+    <prezime>prezime0</prezime>
+    <nazivOrgana>nazivOrgana0</nazivOrgana>
+    <sediste>sediste0</sediste>
+    <status>status0</status>
+</zahtevSearch>

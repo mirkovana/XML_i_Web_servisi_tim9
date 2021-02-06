@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<izvestaj xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="./izvestaj.xsd">
+    <zahtevi>
+        <brojPodnetih>0</brojPodnetih> 
+        <brojUsvojenih>0</brojUsvojenih>
+        <brojOdbacenih>0</brojOdbacenih>
+        <brojOdbijenih>0</brojOdbijenih>
+    </zahtevi>
+    <zalbe>
+        <brojPodnetih>0</brojPodnetih>
+        <brojZbogNepostupanja>0</brojZbogNepostupanja>
+        <brojZbogOdbijanja>0</brojZbogOdbijanja>
+        <brojNaZakljucakOdbacivanju>0</brojNaZakljucakOdbacivanju>
+    </zalbe>
+</izvestaj>

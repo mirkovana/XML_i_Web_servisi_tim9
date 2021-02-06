@@ -1,15 +1,17 @@
 SELECT * FROM <http://localhost:8081/fuseki/Project/data/decisionAppealMetadata> WHERE {
-  ?organVlasti <http://www.projekat.org/zalbanaodluku/predicate/organVlasti> ?organVlasti .
-  ?broj <http://www.projekat.org/zalbanaodluku/predicate/broj> ?broj .
-  ?ime <http://www.projekat.org/zalbanaodluku/predicate/ime> ?ime .
-  ?prezime <http://www.projekat.org/zalbanaodluku/predicate/prezime> ?prezime .
-  ?mesto <http://www.projekat.org/zalbanaodluku/predicate/mesto> ?mesto .
-  ?datum <http://www.projekat.org/zalbanaodluku/predicate/datum> ?datum .
+  ?zalbanaodluku <http://www.projekat.org/predicate/organVlasti> ?organVlasti .
+  ?zalbanaodluku <http://www.projekat.org/predicate/broj> ?broj .
+  ?zalbanaodluku <http://www.projekat.org/predicate/ime> ?ime .
+  ?zalbanaodluku <http://www.projekat.org/predicate/prezime> ?prezime .
+  ?zalbanaodluku <http://www.projekat.org/predicate/mesto> ?mesto .
+  ?zalbanaodluku <http://www.projekat.org/predicate/datum> ?datum .
+  ?zalbanaodluku <http://www.projekat.org/predicate/status> ?status .
   FILTER( CONTAINS(UCASE(str(?organVlasti)), UCASE("{{organVlasti}}"))
-    && CONTAINS(UCASE(str(?broj)), UCASE("{{broj}}"))
-    && CONTAINS(UCASE(str(?ime)), UCASE("{{ime}}"))
-    && CONTAINS(UCASE(str(?prezime)), UCASE("{{prezime}}"))
-    && CONTAINS(UCASE(str(?mesto)), UCASE("{{mesto}}"))
-    && CONTAINS(UCASE(str(?datum)), UCASE("{{datum}}"))
+    || CONTAINS(UCASE(str(?broj)), UCASE("{{broj}}"))
+    || CONTAINS(UCASE(str(?ime)), UCASE("{{ime}}"))
+    || CONTAINS(UCASE(str(?prezime)), UCASE("{{prezime}}"))
+    || CONTAINS(UCASE(str(?mesto)), UCASE("{{mesto}}"))
+    || CONTAINS(UCASE(str(?datum)), UCASE("{{datum}}"))
+    || CONTAINS(UCASE(str(?status)), UCASE("{{status}}"))
   ) .
 } 
