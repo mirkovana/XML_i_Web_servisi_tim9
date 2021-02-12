@@ -166,12 +166,14 @@ public class SilenceAppealService {
         for(Map<String, String> map : result) {
         	String zalbaNaCutanje = map.get("zalba_cutanje");
         	String[] split = zalbaNaCutanje.split("\\/");
-        	brojList.add(split[split.length-1]);
-        	System.out.println("map = ");
+        	if(!brojList.contains(split[split.length-1])) {
+            	brojList.add(split[split.length-1]);
+        	}
+        	/*System.out.println("map = ");
         	for(String key : map.keySet()) {
             	System.out.println("ket = " + key + " value = " + map.get(key));        		
         	}
-        	System.out.println();
+        	System.out.println();*/
         }
         SAppealListResponse response = new SAppealListResponse();
         List<SAppealItem> itemsList = new ArrayList<>();

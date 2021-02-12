@@ -166,12 +166,14 @@ public class DecisionAppealService {
         for(Map<String, String> map : result) {
         	String zalbaNaOdluku = map.get("zalba_na_odluku");
         	String[] split = zalbaNaOdluku.split("\\/");
-        	brojList.add(split[split.length-1]);
-        	System.out.println("map = ");
+        	if(!brojList.contains(split[split.length-1])) {
+        		brojList.add(split[split.length-1]);
+        	}
+        	/*System.out.println("map = ");
         	for(String key : map.keySet()) {
             	System.out.println("ket = " + key + " value = " + map.get(key));        		
         	}
-        	System.out.println();
+        	System.out.println();*/
         }
         DAppealListResponse response = new DAppealListResponse();
         List<DAppealItem> itemsList = new ArrayList<>();

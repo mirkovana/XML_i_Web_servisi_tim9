@@ -124,14 +124,16 @@ public class ResponseService {
         System.out.println("return result querry!");
         ArrayList<String> brojList = new ArrayList<>();
         for(Map<String, String> map : result) {
-        	String zalba = map.get("zalba");
+        	String zalba = map.get("resenje");
         	String[] split = zalba.split("\\/");
-        	brojList.add(split[split.length-1]);
-        	System.out.println("map = ");
+        	if(!brojList.contains(split[split.length-1])) {
+            	brojList.add(split[split.length-1]);
+        	}
+        	/*System.out.println("map = ");
         	for(String key : map.keySet()) {
             	System.out.println("ket = " + key + " value = " + map.get(key));        		
         	}
-        	System.out.println();
+        	System.out.println();*/
         }
         ResponseList response = new ResponseList();
         List<ResponseItem> itemsList = new ArrayList<>();

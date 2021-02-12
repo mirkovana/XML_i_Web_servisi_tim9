@@ -10,7 +10,7 @@
                     <td><input [(ngModel)]="nazivOrgana" type="text" /></td>
                 </tr>
                 <tr>
-                    <td><b>Sediste organa: </b></td>
+                    <td><b>Sedište organa: </b></td>
                     <td><input [(ngModel)]="sedisteOrgana" type="text" /></td>
                 </tr>
                 <tr>
@@ -35,7 +35,7 @@
                     <td><input [(ngModel)]="grad" type="text" placeholder="Grad" /></td>    
                 </tr>
             </table>
-            <h2>O B A V E S T E NJ E</h2>
+            <h2>O B A V E Š T E NJ E</h2>
             <h3>o stavljanju na uvid dokumenta koji sadrži traženu informaciju i o izradi kopije</h3>
             <p class="indent">
                 Na osnovu člana 16. st. 1. Zakona o slobodnom pristupu informacijama od javnog značaja, postupajući
@@ -48,7 +48,7 @@
                 <input [(ngModel)]="danaDatum" type="text" placeholder="dd.mm.yyyy."/>, u 
                 <input [(ngModel)]="casova" type="text" placeholder="hh:mm:ss"/> casova, odnosno u vremenu od
                 <input [(ngModel)]="odCasova" type="text" placeholder="hh:mm:ss"/> do <input [(ngModel)]="doCasova" type="text" placeholder="hh:mm:ss"/>
-                u prostorijama organa u <input [(ngModel)]="nazivUlice" type="text" placeholder="Ulica"/>, <input [(ngModel)]="brojUlice" type="text" placeholder="Br."/>
+                u prostorijama organa u ulici <input [(ngModel)]="nazivUlice" type="text" placeholder="Ulica"/>, <input [(ngModel)]="brojUlice" type="text" placeholder="Br."/>
                 kancelarija br. <input [(ngModel)]="brKancelarije" type="text" placeholder="br."/> možete <b>izvršiti uvid</b> u dokument/e u
                 kome je sadržana tražena informacija.    
             </p>
@@ -74,12 +74,12 @@
                 <b><i>2. Arhivi</i></b>  
             </p>
             <tr>
-                <td>Potpis ovlascenog lica:</td>
+                <td>Potpis ovlašćenog lica:</td>
                 <td><input [(ngModel)]="potpisLica" type="text"/></td>
             </tr>
         </div>
         <div>
-            <button mat-raised-button color="primary" (click)="sendFile()">Save file</button>
+            <button mat-raised-button color="primary" (click)="sendFile()">Pošalji</button>
         </div>        
     </div>
 </div>

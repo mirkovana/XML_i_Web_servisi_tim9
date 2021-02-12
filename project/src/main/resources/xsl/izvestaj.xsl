@@ -33,19 +33,19 @@
         </head>
 
         <body>
-            <h3 class="headertekst">IZVESTAJ</h3>
+            <h3 class="headertekst">IZVEŠTAJ</h3>
             <p class="indent">
-                Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti
+                Povereniku za informacije od javnog značaja i zaštitu podataka o licnosti
             </p>
             <p class="indent">
-                Adesa za postu: Beograd, Bulevara kralja Aleksandra br.15
+                Adresa za poštu: Beograd, Bulevara kralja Aleksandra br.15
             </p>
             <p class="indent">
                 Datum:
                 <xsl:value-of select="izvestaj/@datum/." />
             </p>
             <p class="indent">
-                Sluzbenik:
+                Službenik:
                 <xsl:value-of select="izvestaj/@user/." />
             </p>
             <p class="indent">
@@ -54,10 +54,10 @@
                     <thead>
                         <th>Red.broj</th>
                         <th>Tražilac Informacije</th>
-                        <th>Broj podnetih zahteva</th>
+                        <th>Br. podnetih zahteva</th>
                         <th>Br.usvojenih zahteva</th>
-                        <th>Broj odbačenih zahteva</th>
-                        <th>Broj odbijenih zahteva</th>
+                        <th>Br. odbačenih zahteva</th>
+                        <th>Br. odbijenih zahteva</th>
                     </thead>
                     <tbody>
                         <tr>
@@ -88,8 +88,8 @@
                         <th>Red.broj</th>
                         <th>Tražilac Informacije</th>
                         <th>Ukupan broj izjavljenih žalbi</th>
-                        <th>Broj žalbi zbog nepostupanja po zahtevu</th>
-                        <th>Broj žalbi zbog odbijanja zahteva</th>
+                        <th>Br. žalbi zbog nepostupanja po zahtevu</th>
+                        <th>Br. žalbi zbog odbijanja zahteva</th>
                     </thead>
                     <tbody>
                         <tr>

@@ -18,20 +18,20 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
             </head>
             <body>
                 <h3 class="headertekst">OBRAŽLOŽENJE ORGANA VLASTI POVODOM ŽALBE ZBOG ODBIJANJA ZAHTEVA ZA PRISTUP
-                    INFORMACIJAMA OD JAVNOG ZNACAJA</h3>
+                    INFORMACIJAMA OD JAVNOG ZNAČAJA</h3>
                 <p class="indent">
-                    Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti
+                    Povereniku za informacije od javnog značaja i zaštitu podataka o licnosti
                 </p>
                 <p class="indent">
-                    Adesa za postu: Beograd, Bulevara kralja Aleksandra br.15
+                    Adresa za poštu: Beograd, Bulevara kralja Aleksandra br.15
                 </p>
-                <p class="indent">Obrazlozenje:</p>
+                <p class="indent">Obrazloženje:</p>
                 <p class="indent">
                     <xsl:value-of select="ex:explanation/ex:text/." />
                 </p>
                 <table style="text-align:left; margin-left: 20px;">
                     <tr>
-                        <td>Sluzbenik:</td>
+                        <td>Službenik:</td>
                     </tr>
                     <tr>
                         <td>Ime:</td>

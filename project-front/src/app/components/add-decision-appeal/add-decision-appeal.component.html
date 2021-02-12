@@ -4,16 +4,16 @@
     </div>
     <div class="jumbotron bg-light col-md-10 ml-auto mr-auto mt-3 pt-5">
         <div class="form-group">
-            <label for="file">Choose request file</label>
+            <label for="file">Dokument zahteva:</label>
             <input type="file" id="file-input" (change)="readFile($event)" />
         </div>
 
         <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px">
-            <h4 class="headertekst">ZALBA PROTIV ODLUKE ORGANA VLASTI KOJOM JE <br><u>ODBIJEN ILI ODBACEN ZAHTEV</u> ZA
+            <h4 class="headertekst">ŽALBA PROTIV ODLUKE ORGANA VLASTI KOJOM JE <br><u>ODBIJEN ILI ODBAČEN ZAHTEV</u> ZA
                 PRISTUP INFORMACIJI</h4>
-            <p><b>Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti</b></p>
-            <p>Adresa za postu:Beograd, Bulevar kralja aleksandra br.15</p>
-            <h3 class="headertekst">ZALBA</h3>
+            <p><b>Povereniku za informacije od javnog značaja i zaštitu podataka o ličnosti</b></p>
+            <p>Adresa za poštu: Beograd, Bulevar kralja Aleksandra br.15</p>
+            <h3 class="headertekst">ŽALBA</h3>
             <div class="center">
                 <input [(ngModel)]="ime" type="text" id="ime" placeholder="Ime" />,
                 <input [(ngModel)]="prezime" type="text" id="prezime" placeholder="Prezime" />,
@@ -21,9 +21,9 @@
                 <input [(ngModel)]="ulica" type="text" placeholder="Ulica"/>,
                 <input [(ngModel)]="br" type="text" placeholder="Br."/>
                 <hr>
-                (Ime, prezime, odnosno naziv, adresa i sediste zalioca)
+                (Ime, prezime, odnosno naziv, adresa i sedište žalica)
             </div>
-            <p class="center"> protiv resenja-zakljucka</p>
+            <p class="center">protiv rešenja-zaključka</p>
             <div class="center">
                 <input [(ngModel)]="nazivOrgana" type="text" id="nazivOrgana" placeholder="Naziv organa" />
                 <hr>
@@ -87,7 +87,7 @@
             </table>
         </div>
         <div>
-            <button mat-raised-button color="primary" (click)="sendFile()">Save file</button>
+            <button mat-raised-button color="primary" (click)="sendFile()">Pošalji</button>
         </div>
     </div>
 </div>

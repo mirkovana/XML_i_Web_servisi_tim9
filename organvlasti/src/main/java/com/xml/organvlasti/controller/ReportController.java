@@ -48,7 +48,7 @@ public class ReportController {
 
 	@GetMapping(value = "/generate/{username}")
 	@CrossOrigin
-	public ResponseEntity<HttpStatus> generateReport(@PathVariable("broj") String username){
+	public ResponseEntity<HttpStatus> generateReport(@PathVariable("username") String username){
 		System.out.println("generatereportcontroller");
 		try {
 			String izvestaj = service.generateReport(username);

@@ -188,7 +188,9 @@ public class NoticeService {
         for(Map<String, String> map : result) {
         	String obavestenje = map.get("obavestenje");
         	String[] split = obavestenje.split("\\/");
-        	brojList.add(split[split.length-1]);
+        	if(!brojList.contains(split[split.length-1])) {
+        		brojList.add(split[split.length-1]);
+            }
         	/*System.out.println("map = ");
         	for(String key : map.keySet()) {
             	System.out.println("ket = " + key + " value = " + map.get(key));        		

@@ -1,0 +1,26 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/697d7c5d2f8e-2021">
+    <pred:status xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">sent</pred:status>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/697d7c5d2f8e-2021">
+    <pred:broj xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">697d7c5d2f8e-2021</pred:broj>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/697d7c5d2f8e-2021">
+    <pred:nazivInstitucije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">naziv organa zahtev1</pred:nazivInstitucije>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/697d7c5d2f8e-2021">
+    <pred:sedisteInstitucije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">sediste zahtev1</pred:sedisteInstitucije>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/697d7c5d2f8e-2021">
+    <pred:informacije xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">opis informacije zahtev1</pred:informacije>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/697d7c5d2f8e-2021">
+    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">10.10.2010.</pred:datum>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/697d7c5d2f8e-2021">
+    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">ime zahtev1</pred:ime>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.projekat.org/zahtev/697d7c5d2f8e-2021">
+    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">prezime zahtev1</pred:prezime>
+  </rdf:Description>
+</rdf:RDF>

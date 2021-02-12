@@ -34,7 +34,7 @@
 					<td><xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:podaci_o_organu/ob:naziv/." /></td>
 				</tr>
 				<tr>
-					<td><b>Sediste organa: </b></td>
+					<td><b>Sedište organa: </b></td>
 					<td><xsl:value-of select="ob:obavestenje/ob:opste_informacije/ob:podaci_o_organu/ob:sediste/."/></td>
 				</tr>
 				<tr>
@@ -72,7 +72,7 @@
 			</table>
 
                 <h1>
-                   O B A V E S T E NJ E
+                   O B A V E Š T E NJ E
                 </h1>
                 <h3>
                     o stavljanju na uvid dokumenta koji sadrži traženu informaciju i o izradi kopije
@@ -93,7 +93,7 @@
                     <xsl:variable name="do"  select="ob:obavestenje/ob:telo/ob:do" />
                     <xsl:variable name="doNovo"  select="substring($do, 1, 5)" />
                     <xsl:value-of select="$doNovo"/>
-                    časova, u prostorijama organa u
+                    časova, u prostorijama organa u ulici
                     <xsl:value-of select="ob:obavestenje/ob:telo/ob:adresa_organa/ob:naziv_ulice" /> br.
                     <xsl:value-of select="ob:obavestenje/ob:telo/ob:adresa_organa/ob:broj_ulice" /> kancelarija br.
                     <xsl:value-of select="ob:obavestenje/ob:telo/ob:adresa_organa/ob:broj_kancelarije" />
@@ -128,7 +128,7 @@
                     <b><i>2. Arhivi</i></b>
            
             <br/>
-            Potpis ovlascenog lica: <u><xsl:value-of select="ob:obavestenje/ob:potpis/."/></u>
+            Potpis ovlašćenog lica: <u><xsl:value-of select="ob:obavestenje/ob:potpis/."/></u>
         </body>
         </html>
     </xsl:template>

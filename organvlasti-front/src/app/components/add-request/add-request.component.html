@@ -12,12 +12,11 @@
                         name="sediste_organa" placeholder="Sediste organa">
                     <br>
                     <hr>
-                    (naziv i sediste organa kome se zahtev upucuje)
+                    (naziv i sedište organa kome se zahtev upućuje)
                 </div>
                 <h2 class="headertekst">Zahtev za pristupanje informacijama</h2>
                 <p class="indent">Na osnovu člana 15. Zakona o slobodnom pristupu informacijama od javnog značaja
-                    („Službeni
-                    glasnik RS“, br. 120/04, 54/07, 104/09 i 36/10) ,
+                    („Službeni glasnik RS“, br. 120/04, 54/07, 104/09 i 36/10) ,
                     od gore navedenog organa zahtevam:*</p>
                 <ul>
                     <p><input [(ngModel)]="option1" type="checkbox" />
@@ -40,12 +39,12 @@
                     </p>
                     <ul>
                         <p><input [(ngModel)]="option5" type="checkbox" />
-                            postom
+                            poštom
                         </p>
                     </ul>
                     <ul>
                         <p><input [(ngModel)]="option6" type="checkbox" />
-                            elektronsom postom
+                            elektronsom poštom
                         </p>
                     </ul>
                     <ul>
@@ -55,12 +54,12 @@
                     </ul>
                     <ul>
                         <p><input [(ngModel)]="option8" type="checkbox" />
-                            na drugi nacin <input [(ngModel)]="drugiNacin" style="width: 400px;" type="text"
+                            na drugi način <input [(ngModel)]="drugiNacin" style="width: 400px;" type="text"
                                 id="drugiNacinText" />
                         </p>
                     </ul>
                 </ul>
-                <p class="indent">Ovaj zahtev se odnosi na sledece informacije:</p>
+                <p class="indent">Ovaj zahtev se odnosi na sledeće informacije:</p>
                 <p class="indent">
                     <u>
                         <textarea [(ngModel)]="informacije" id="informacije"></textarea>
@@ -116,7 +115,7 @@
                     zahtevate.</p>
             </div>
             <div>
-                <button mat-raised-button color="primary" (click)="sendFile()">Save</button>
+                <button mat-raised-button color="primary" (click)="sendFile()">Pošalji</button>
             </div>
     </div>
 </div>

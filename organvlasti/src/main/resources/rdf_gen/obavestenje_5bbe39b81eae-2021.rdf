@@ -1,0 +1,20 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/5bbe39b81eae-2021">
+    <pred:nazivOrgana xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">naziv notice1</pred:nazivOrgana>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/5bbe39b81eae-2021">
+    <pred:sedisteOrgana xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">sediste notice1</pred:sedisteOrgana>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/5bbe39b81eae-2021">
+    <pred:brojPredmeta xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">5bbe39b81eae-2021</pred:brojPredmeta>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/5bbe39b81eae-2021">
+    <pred:datum xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">11.10.2010.</pred:datum>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/5bbe39b81eae-2021">
+    <pred:ime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">ime notice1</pred:ime>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.projekat.org/obavestenje/5bbe39b81eae-2021">
+    <pred:prezime xmlns:pred="http://www.projekat.org/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">prezime notice1</pred:prezime>
+  </rdf:Description>
+</rdf:RDF>

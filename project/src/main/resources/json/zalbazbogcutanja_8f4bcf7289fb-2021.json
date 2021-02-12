@@ -1,0 +1,37 @@
+{
+  "head": {
+    "vars": [ "p" , "o" ]
+  } ,
+  "results": {
+    "bindings": [
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/status" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "sent" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/datum" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "10.10.2020." }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/broj" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "8f4bcf7289fb-2021" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/prezime" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "prezime zalbacutanje1" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/ime" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "ime zalbacutanje1" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/mesto" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "mesto zalbacutanje1" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/organVlasti" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "naziv zalbacutanje1" }
+      }
+    ]
+  }
+}

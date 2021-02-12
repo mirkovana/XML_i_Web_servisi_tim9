@@ -1,16 +1,11 @@
 <div style="margin: 100px;">
-    <!--<div id="response"></div>
-    <div>
-        <textarea [(ngModel)]="textArea"></textarea>
-    </div>-->
-
     Status:
     <select [(ngModel)]="status" class="custom-select" style="width: 25%;">
-        <option selected>Status zalbe</option>
+        <option selected>Status žalbe</option>
         <option value="osnovana">Osnovana</option>
         <option value="neosnovana">Odbija se kao neosnovana</option>
         <option value="odbijena">Odbija se zahtev</option>
-        <option value="ponistena">Ponistava se</option>
+        <option value="ponistena">Poništava se</option>
     </select>
     <br>
     Broj: <input [(ngModel)]="broj" type="text" />
@@ -18,9 +13,9 @@
     Datum: <input [(ngModel)]="datum" type="text" />,
     <br>
     <textarea [(ngModel)]="uvod"></textarea>
-    <h3 class="headertekst">RESENJE</h3>
+    <h3 class="headertekst">REŠENJE</h3>
     <textarea [(ngModel)]="resenje"></textarea>
-    <h3 class="headertekst">OBRAZLOZENJE</h3>
+    <h3 class="headertekst">OBRAZLOŽENJE</h3>
     <textarea [(ngModel)]="obrazlozenje"></textarea>
 
     <table>
@@ -38,6 +33,6 @@
     </table>
     
     <div>
-        <button mat-raised-button color="primary" (click)="sendFile()">Save file</button>
+        <button mat-raised-button color="primary" (click)="sendFile()">Pošalji</button>
     </div>
 </div>

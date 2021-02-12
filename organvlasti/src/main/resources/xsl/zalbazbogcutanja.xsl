@@ -29,17 +29,17 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   </head>
   <body>
    	  <p class="center"><b>ŽALBA KADA ORGAN VLASTI NIJE POSTUPIO/ NIJE POSTUPIO U CELOSTI / PO ZAHTEVU<br></br>TRAŽIOCA U ZAKONSKOM ROKU (ĆUTANjE UPRAVE)</b></p>
-	  <p><b>Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti</b></p>
-	  <p>Adesa za postu: Beograd, Bulevara kralja Aleksandra br.15</p>
+	  <p><b>Povereniku za informacije od javnog značaja i zaštitu podataka o ličnosti</b></p>
+	  <p>Adesa za poštu: Beograd, Bulevara kralja Aleksandra br.15</p>
 	  <br></br>
-	  <p>U skladu sa clanom 22.Zakona o slobodnom pristupu informacijama od javnog znacaja podnosim:</p>
+	  <p>U skladu sa članom 22.Zakona o slobodnom pristupu informacijama od javnog značaja podnosim:</p>
 	  <br></br>
-	  <h3 class="headertekst">ZALBU</h3>
+	  <h3 class="headertekst">ŽALBU</h3>
 	  <p class="center">protiv</p>
 	  <p class="center"><xsl:value-of select="zc:zalba_cutanje/zc:telo_zalbe/zc:naziv_organa/."/></p>
 	  <hr></hr>
 	  <p class="center">(navesti naziv organa)</p>
-	  <p class="center">zbog toga sto organ vlasti nije:</p>
+	  <p class="center">zbog toga što organ vlasti nije:</p>
 	  <div class="center">
 	    <xsl:for-each select="zc:zalba_cutanje/zc:telo_zalbe/zc:razlozi/zc:razlog">
 	      <xsl:if test="./@podvuceno = 'true'">
@@ -49,7 +49,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	        <b><xsl:value-of select="."/>/</b>
 	      </xsl:if> 
 	    </xsl:for-each>
-	    <p class="center">(podvuci zbog cega se izjavljuje zalba)</p>
+	    <p class="center">(podvući zbog čega se izjavljuje žalba)</p>
 	  </div>
 	  po mom zahtevu za slobodan pristup informacijama od javnog značaja koji sam podneo tom organu dana
 	  <u>

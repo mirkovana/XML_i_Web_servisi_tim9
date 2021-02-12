@@ -4,19 +4,19 @@
     </div>
     <div class="jumbotron bg-light col-md-10 ml-auto mr-auto mt-3 pt-5">
         <div class="form-group">
-            <label for="file">Upload fajl zahteva:</label>
+            <label for="file">Dokument zahteva:</label>
             <input type="file" id="file-input" (change)="readFile($event)" />
         </div>
         
         <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px">
-            <p class="center"><b>ŽALBA KADA ORGAN VLASTI NIJE POSTUPIO/ nije postupio u celosti/ PO ZAHTEVU<br>TRAŽIOCA
-                    U ZAKONSKOM ROKU (ĆUTANjE UPRAVE)</b></p>
-            <p><b>Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti</b></p>
-            <p>Adesa za postu: Beograd, Bulevara kralja Aleksandra br.15</p>
+            <p class="center"><b>ŽALBA KADA ORGAN VLASTI NIJE POSTUPIO/ NIJE POSTPIO U CELOSTI / PO ZAHTEVU<br>TRAŽIOCA
+                    U ZAKONSKOM ROKU (ĆUTANJE UPRAVE)</b></p>
+            <p><b>Povereniku za informacije od javnog značaja i zaštitu podataka o licnosti</b></p>
+            <p>Adesa za poštu: Beograd, Bulevara kralja Aleksandra br.15</p>
             <br>
-            <p>U skladu sa clanom 22.Zakona o slobodnom pristupu informacijama od javnog znacaja podnosim:</p>
+            <p>U skladu sa članom 22.Zakona o slobodnom pristupu informacijama od javnog značaja podnosim:</p>
             <br>
-            <h3 class="headertekst">ZALBU</h3>
+            <h3 class="headertekst">ŽALBU</h3>
             <p class="center">protiv</p>
             <p class="center">
                 <input [(ngModel)]="nazivOrgana" style="width: 50%;" type="text" name="nazivOrgana"
@@ -24,12 +24,12 @@
             </p>
             <hr>
             <p class="center">(navesti naziv organa)</p>
-            <p class="center">zbog toga sto organ vlasti nije:</p>
+            <p class="center">zbog toga što organ vlasti nije:</p>
             <div class="center">
                 <input [(ngModel)]="option1" type="checkbox" />nije postupio /
                 <input [(ngModel)]="option2" type="checkbox" />nije postupio u celosti /
                 <input [(ngModel)]="option3" type="checkbox" />u zakonskom roku
-                <p class="center">(podvuci zbog cega se izjavljuje zalba)</p>
+                <p class="center">(podvući zbog cega se izjavljuje žalba)</p>
             </div>
             po mom zahtevu za slobodan pristup informacijama od javnog značaja koji sam podneo tom organu dana
             <u><input [(ngModel)]="datumPodnosenja" type="text" placeholder="dd.mm.yyyy."></u>
@@ -51,7 +51,7 @@
             <table style="text-align:left; margin-left: 20px;">
     
                 <tr>
-                    <td>Podnosilac zalbe:</td>
+                    <td>Podnosilac žalbe:</td>
                     <td>
                         <input [(ngModel)]="ime" type="text" placeholder="Ime" />
                         <input [(ngModel)]="prezime" type="text" placeholder="Prezime" />
@@ -75,12 +75,12 @@
                 </tr>
                 <tr>
                     <td>U</td>
-                    <td><input [(ngModel)]="mesto" type="text" /> Dana <input [(ngModel)]="dana" type="text" placeholder="dd.mm.yyyy."/></td>
+                    <td><input [(ngModel)]="mesto" type="text" />Dana<input [(ngModel)]="dana" type="text" placeholder="dd.mm.yyyy."/></td>
                 </tr>
             </table>
         </div>
         <div>
-            <button mat-raised-button color="primary" (click)="sendFile()">Save file</button>
+            <button mat-raised-button color="primary" (click)="sendFile()">Pošalji</button>
         </div>
     </div>
 </div>

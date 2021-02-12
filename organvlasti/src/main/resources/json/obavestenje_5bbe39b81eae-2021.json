@@ -1,0 +1,33 @@
+{
+  "head": {
+    "vars": [ "p" , "o" ]
+  } ,
+  "results": {
+    "bindings": [
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/prezime" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "prezime notice1" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/ime" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "ime notice1" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/datum" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "11.10.2010." }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/brojPredmeta" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "5bbe39b81eae-2021" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/sedisteOrgana" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "sediste notice1" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/nazivOrgana" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "naziv notice1" }
+      }
+    ]
+  }
+}

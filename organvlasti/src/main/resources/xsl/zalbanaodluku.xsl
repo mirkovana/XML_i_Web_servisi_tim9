@@ -30,16 +30,16 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
         </style>
       </head>
   <body>
-    <h4 class="headertekst">ZALBA PROTIV ODLUKE ORGANA VLASTI KOJOM JE <br></br><u>ODBIJEN ILI ODBACEN ZAHTEV</u> ZA PRISTUP INFORMACIJI</h4>
-	<p><b>Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti</b></p>
-	<p>Adresa za postu:Beograd, Bulevar kralja aleksandra br.15</p>
-	<h3 class="headertekst">ZALBA</h3>
+    <h4 class="headertekst">ŽALBA PROTIV ODLUKE ORGANA VLASTI KOJOM JE <br></br><u>ODBIJEN ILI ODBAČEN ZAHTEV</u> ZA PRISTUP INFORMACIJI</h4>
+	<p><b>Povereniku za informacije od javnog značaja i zaštitu podataka o ličnosti</b></p>
+	<p>Adresa za poštu: Beograd, Bulevar kralja Aleksandra br.15</p>
+	<h3 class="headertekst">ŽALBA</h3>
 	<div class="center">
 		<xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_zalbi/zo:podnosilac_zalbe/zo:ime/."/>,<xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_zalbi/zo:podnosilac_zalbe/zo:prezime/."/>,<xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_zalbi/zo:podnosilac_zalbe/zo:adresa/."/>
 		<hr></hr>
-	    (Ime, prezime, odnosno naziv, adresa i sediste zalioca)
+	    (Ime, prezime, odnosno naziv, adresa i sedište zalioca)
 	</div>
-	<p class="center"> protiv resenja-zakljucka</p>
+	<p class="center"> protiv rešenja-zaključka</p>
 	<div class="center">
 		<xsl:value-of select="zo:zalba_na_odluku/zo:podaci_o_zalbi/zo:organ_koji_je_doneo_odluku/."/>
 	    <hr></hr>

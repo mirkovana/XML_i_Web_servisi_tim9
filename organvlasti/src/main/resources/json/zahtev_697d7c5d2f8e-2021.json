@@ -1,0 +1,41 @@
+{
+  "head": {
+    "vars": [ "p" , "o" ]
+  } ,
+  "results": {
+    "bindings": [
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/prezime" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "prezime zahtev1" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/ime" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "ime zahtev1" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/datum" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "10.10.2010." }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/informacije" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "opis informacije zahtev1" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/sedisteInstitucije" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "sediste zahtev1" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/nazivInstitucije" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "naziv organa zahtev1" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/broj" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "697d7c5d2f8e-2021" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.projekat.org/predicate/status" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "sent" }
+      }
+    ]
+  }
+}

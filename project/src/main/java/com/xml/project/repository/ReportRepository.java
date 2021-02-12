@@ -41,11 +41,8 @@ public class ReportRepository {
 	
 	public static final String X_QUERY_FIND_ALL_BY_CONTENT = "xquery version \"3.1\";\n" + 
             "for $x in collection(\"/db/XmlProject/reports\")\n" +
-			"where $x/izvestaj/@datum='%s'\n" + 
+			"where $x/izvestaj[contains(@datum, '%s')]\n" + 
 			"return $x";
-	
-	/*where $x/zalba/@username='%s'\n" + 
-			"return $x\n";*/
 	
 	public Document findReportById(String id) {
 		Document document = null;

@@ -51,7 +51,7 @@
                             <th>Datum</th>
                             <th>Status</th>
                             <th>File</th>
-                            <th>Action</th>
+                            <th *ngIf="isAdmin()">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,7 +69,7 @@
                                 <a href="http://localhost:8080/api/response/generateJSON/{{a.broj}}">json</a><br>
                                 <a href="http://localhost:8080/api/response/generateRDF/{{a.broj}}">rdf</a>
                             </td>
-                            <td>
+                            <td *ngIf="isAdmin()">
                                 <button *ngIf="isAdmin() && a.status=='osnovana'" mat-mini-fab color="warn"
                                     class="mr-2 mb-2" (click)="replyRequest(a)" style="outline: none">
                                     <mat-icon>reply</mat-icon>

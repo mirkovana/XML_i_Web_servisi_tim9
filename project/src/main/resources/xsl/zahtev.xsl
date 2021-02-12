@@ -33,7 +33,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
       <xsl:value-of select="za:zahtev/za:institucija/."/>
       <br></br>
       <hr></hr>
-      (naziv i sediste organa kome se zahtev upucuje)
+      (naziv i sedište organa kome se zahtev upućuje)
     </div>
     <h2 class="headertekst">Zahtev za pristupanje informacijama</h2>
     <p class="indent">Na osnovu člana 15. st. 1. Zakona o slobodnom pristupu informacijama od javnog značaja („Službeni glasnik RS“, br. 120/04, 54/07, 104/09 i 36/10) od gore navedenog organa zahtevam:*</p>
@@ -88,7 +88,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[4]/za:lista/za:stavka[1]/@za:checked = 'false'">
             <span font-size="12pt">☐</span>
           </xsl:if>
-           postom
+           poštom
         </p>
       </ul>
       <ul>
@@ -99,7 +99,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[4]/za:lista/za:stavka[2]/@za:checked = 'false'">
             <span font-size="12pt">☐</span>
           </xsl:if>
-          elektronskom postom
+          elektronskom poštom
         </p>
       </ul>
       <ul>
@@ -121,10 +121,10 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
           <xsl:if test="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[4]/za:lista/za:stavka[4]/@za:checked = 'false'">
             <span font-size="12pt">☐</span>
           </xsl:if>
-          na drugi nacin***:<u><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[@za:id='4']/za:lista/za:stavka[@za:id='8']/za:drugi_nacin/."/></u></p>
+          na drugi način***:<u><xsl:value-of select="za:zahtev/za:tekst_zahteva/za:lista/za:stavka[@za:id='4']/za:lista/za:stavka[@za:id='8']/za:drugi_nacin/."/></u></p>
       </ul>
     </ul>
-    <p class="indent">Ovaj zahtev se odnosi na sledece informacije:</p>
+    <p class="indent">Ovaj zahtev se odnosi na sledeće informacije:</p>
     <p class="indent">
       <u>
         <xsl:value-of select="za:zahtev/za:tekst_zahteva/za:informacije/."/>

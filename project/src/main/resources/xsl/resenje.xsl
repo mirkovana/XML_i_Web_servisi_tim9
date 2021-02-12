@@ -20,16 +20,16 @@
       </head>
       <body>
         <xsl:if test="res:zalba/@status = 'osnovana'">  
-          Resenje kada je zalba osnovana nalaze se:<br></br>
+          Rešenje kada je žalba osnovana nalaže se:<br></br>
         </xsl:if> 
         <xsl:if test="res:zalba/@status = 'neosnovana'">
-          Resenje: odbija se kao neosnovana:<br></br>
+          Rešenje: odbija se kao neosnovana:<br></br>
         </xsl:if>
         <xsl:if test="res:zalba/@status = 'odbijena'">  
-          Resenje - odbija se:<br></br>
+          Rešenje - odbija se:<br></br>
         </xsl:if> 
         <xsl:if test="res:zalba/@status = 'ponistena'">  
-          Resenje - ponistava se:<br></br>
+          Rešenje - poništava se:<br></br>
         </xsl:if> 
         
         <p style="text-align:left;">
@@ -48,13 +48,13 @@
         <xsl:value-of select="res:zalba/res:uvod/res:paragraf/."/>
         <br></br>
         
-        <h3 class="headertekst">RESENJE</h3>
+        <h3 class="headertekst">REŠENJE</h3>
         
         <xsl:for-each select="res:zalba/res:sadrzaj/res:resenje/res:paragraf">
           <p class="indent"><xsl:value-of select="."/></p>
         </xsl:for-each>
         
-        <h3 class="headertekst">OBRAZLOZENJE</h3>
+        <h3 class="headertekst">OBRAZLOŽENJE</h3>
         
         <xsl:for-each select="res:zalba/res:sadrzaj/res:obrazlozenje/res:paragraf">
           <p class="indent"><xsl:value-of select="."/></p>
